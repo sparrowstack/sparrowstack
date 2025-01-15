@@ -57,11 +57,11 @@ assets
 *.pdf
 
 # Configuration files
-.eslintrc
-.prettierrc
-.babelrc
-tsconfig.json
-tsconfig.*.json
+# .eslintrc
+# .prettierrc
+# .babelrc
+# tsconfig.json
+# tsconfig.*.json
 
 # Documentation
 README.md

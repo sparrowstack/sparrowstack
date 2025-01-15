@@ -1,1 +1,7 @@
-console.log('Hello via Bun!');
+export class Loom {
+	constructor() {}
+
+	hello() {
+		console.log('Hello from Loom!');
+	}
+}
