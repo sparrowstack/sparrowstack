@@ -57,11 +57,7 @@ assets
 *.pdf
 
 # Configuration files
-# .eslintrc
-# .prettierrc
-# .babelrc
-# tsconfig.json
-# tsconfig.*.json
+bunfig.toml
 
 # Documentation
 README.md

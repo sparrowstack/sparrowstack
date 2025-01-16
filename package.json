@@ -1,6 +1,6 @@
 {
-	"name": "loom",
-	"description": "Weaves clean and efficient lines of code seamlessly.",
+	"name": "ai-agent-starter-template",
+	"description": "Stater template for building your own AI agents",
 	"type": "module",
 	"module": "dist/index.js",
 	"files": [
@@ -17,6 +17,7 @@
 	],
 	"scripts": {
 		"start": "bun run src/index.ts",
+		"start:interactive": "bun run src/run/interactive.ts",
 		"dev": "bun --watch run src/index.ts",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
@@ -34,5 +35,8 @@
 		"eslint": "8.56.0",
 		"eslint-config-prettier": "9.1.0",
 		"typescript": "5.3.3"
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "^0.33.1"
 	}
 }
