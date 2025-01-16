@@ -1,8 +1,8 @@
 import AnthropicSDK from '@anthropic-ai/sdk';
-import type { ILLM } from '../common/interfaces';
-import { AnthropicModel } from '../common/enums';
+import type { IBaseLLM } from '../../common/interfaces';
+import { AnthropicModel } from '../../common/enums';
 
-export class Anthropic implements ILLM {
+export class Anthropic implements IBaseLLM {
 	maxTokens: number;
 	model: AnthropicModel;
 	anthropic: AnthropicSDK;

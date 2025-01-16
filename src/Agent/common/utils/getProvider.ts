@@ -1,5 +1,5 @@
 import { Provider } from '../../../common/enums';
-import { Anthropic } from '../../../llms/anthropic';
+import { Anthropic } from '../../../core/llms/anthropic';
 
 const providers = {
 	[Provider.Anthropic]: Anthropic,

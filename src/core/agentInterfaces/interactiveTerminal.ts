@@ -1,11 +1,11 @@
-import type { ILLM } from '../common/interfaces';
+import type { IBaseLLM } from '../../common/interfaces';
 
 interface IConstructorOptions {
-	llm: ILLM;
+	llm: IBaseLLM;
 }
 
-export class InteractiveAgent {
-	private llm: ILLM;
+export class InteractiveTerminal {
+	private llm: IBaseLLM;
 
 	constructor({ llm }: IConstructorOptions) {
 		this.llm = llm;

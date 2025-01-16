@@ -1,7 +1,7 @@
 import { getProvider } from './common/utils';
-import type { ILLM } from '../common/interfaces';
+import type { IBaseLLM } from '../common/interfaces';
 import { Provider, AnthropicModel } from '../common/enums';
-import { InteractiveAgent } from '../interactive';
+import { InteractiveTerminal } from '../core/agentInterfaces';
 
 interface IConstructorOptions {
 	apiKey: string;
@@ -10,7 +10,7 @@ interface IConstructorOptions {
 }
 
 export class Agent {
-	llm: ILLM;
+	llm: IBaseLLM;
 
 	constructor({ provider, model, apiKey }: IConstructorOptions) {
 		const llm = getProvider({ provider });
@@ -22,8 +22,8 @@ export class Agent {
 		return await this.llm.sendMessage({ message });
 	}
 
-	async startInteractive() {
-		const agent = new InteractiveAgent({ llm: this.llm });
-		await agent.start();
+	async startInteractiveTerminal() {
+		const interactiveTerminal = new InteractiveTerminal({ llm: this.llm });
+		await interactiveTerminal.start();
 	}
 }
