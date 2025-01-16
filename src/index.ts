@@ -1,2 +1,2 @@
-export { Loom } from './Loom/Loom';
+export { Agent } from './Agent/Agent';
 export { Provider, AnthropicModel } from './common/enums';

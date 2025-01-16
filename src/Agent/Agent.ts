@@ -9,7 +9,7 @@ interface IConstructorOptions {
 	model: AnthropicModel;
 }
 
-export class Loom {
+export class Agent {
 	llm: ILLM;
 
 	constructor({ provider, model, apiKey }: IConstructorOptions) {
