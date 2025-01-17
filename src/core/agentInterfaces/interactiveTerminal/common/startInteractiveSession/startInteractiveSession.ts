@@ -1,9 +1,11 @@
 import * as readline from 'readline';
-import { validateInput } from './validateInput';
-import { printResponse } from './printResponse';
-import { sendMessageToLLM } from './sendMessageToLLM';
-import type { IBaseLLM } from '../../../../common/interfaces';
-import { exitProcessIfApplicable } from './exitProcessIfApplicable';
+import type { IBaseLLM } from '../../../../../common/interfaces';
+import {
+	printResponse,
+	validateInput,
+	sendMessageToLLM,
+	exitProcessIfApplicable,
+} from './common/utils';
 
 interface IOptions {
 	llm: IBaseLLM;

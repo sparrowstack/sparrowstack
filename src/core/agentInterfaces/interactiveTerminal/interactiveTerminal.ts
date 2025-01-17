@@ -1,6 +1,6 @@
-import type { IBaseLLM } from '../../../common/interfaces';
 import { printHeader } from './common/utils';
-import { startInteractiveSession } from './startInteractiveSession';
+import type { IBaseLLM } from '../../../common/interfaces';
+import { startInteractiveSession } from './common/startInteractiveSession';
 
 interface IConstructorOptions {
 	llm: IBaseLLM;

@@ -1,4 +1,4 @@
-import type { IBaseLLM } from '../../../../common/interfaces';
+import type { IBaseLLM } from '../../../../../../../common/interfaces';
 
 interface IOptions {
 	llm: IBaseLLM;
