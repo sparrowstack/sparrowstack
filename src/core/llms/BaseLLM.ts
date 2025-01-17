@@ -11,7 +11,7 @@ export abstract class BaseLLM implements IBaseLLM {
 
 	constructor() {}
 
-	protected addToMessages({ message }: { message: IChatMessage }): void {
+	public addToMessages({ message }: { message: IChatMessage }): void {
 		this.messages.push(message);
 	}
 

@@ -1,7 +1,7 @@
-import { BaseLLM } from './BaseLLM';
+import { BaseLLM } from '../BaseLLM';
 import { Anthropic } from '@anthropic-ai/sdk';
-import type { LLMResponseMessage } from '../../common/types';
-import { Role, Provider, AnthropicModel } from '../../common/enums';
+import type { LLMResponseMessage } from '../../../common/types';
+import { Role, Provider, AnthropicModel } from '../../../common/enums';
 
 const defaultSystemPrompt =
 	'You are a helpful AI assistant who is an expert in TypeScript.';
@@ -19,7 +19,7 @@ export class AnthropicLLM extends BaseLLM {
 		systemPrompt,
 	}: {
 		apiKey: string;
-		systemPrompt: string;
+		systemPrompt?: string;
 		model: AnthropicModel;
 	}) {
 		super();

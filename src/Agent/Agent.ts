@@ -1,5 +1,5 @@
 import { getLLM } from './common/utils';
-import type { IBaseLLM } from '../common/interfaces';
+import { BaseLLM } from '../core/llms/BaseLLM';
 import { Provider, AnthropicModel } from '../common/enums';
 
 interface IConstructorOptions {
@@ -9,7 +9,7 @@ interface IConstructorOptions {
 }
 
 export class Agent {
-	llm: IBaseLLM;
+	llm: BaseLLM;
 
 	constructor({ provider, model, apiKey }: IConstructorOptions) {
 		const llm = getLLM({ provider });

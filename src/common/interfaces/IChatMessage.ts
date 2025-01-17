@@ -1,6 +1,6 @@
-import { IRole } from '../enums';
+import { Role } from '../enums';
 
 export interface IChatMessage {
-	role: IRole;
+	role: Role;
 	content: string;
 }

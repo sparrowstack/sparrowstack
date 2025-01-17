@@ -1,13 +1,13 @@
 import { printHeader } from './common/utils';
-import type { IBaseLLM } from '../../../common/interfaces';
+import { BaseLLM } from '../../../core/llms/BaseLLM';
 import { startInteractiveSession } from './common/startInteractiveSession';
 
 interface IConstructorOptions {
-	llm: IBaseLLM;
+	llm: BaseLLM;
 }
 
 export class InteractiveTerminal {
-	private llm: IBaseLLM;
+	private llm: BaseLLM;
 
 	constructor({ llm }: IConstructorOptions) {
 		this.llm = llm;
