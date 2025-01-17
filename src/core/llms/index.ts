@@ -1,1 +1,1 @@
-export { Anthropic } from './anthropic';
+export { AnthropicLLM } from './AnthropicLLM';

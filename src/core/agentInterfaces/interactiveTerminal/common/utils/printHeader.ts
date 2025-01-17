@@ -7,8 +7,6 @@ interface IOptions {
 
 export const printHeader = ({ llm }: IOptions) => {
 	const { provider, model } = llm;
-	const providerNameCapitalized =
-		provider.charAt(0).toUpperCase() + provider.slice(1);
 
 	console.log(
 		chalk.greenBright(`
@@ -17,7 +15,7 @@ export const printHeader = ({ llm }: IOptions) => {
 ═════════════════════════════════════════
 `),
 	);
-	console.log(`Provider: ${providerNameCapitalized}`);
+	console.log(`Provider: ${provider}`);
 	console.log(`Model: ${model}`);
 	console.log('');
 	console.log(chalk.dim('- Type "q" to quit'));

@@ -1,4 +1,4 @@
 export enum Provider {
-	Anthropic = 'anthropic',
-	OpenAI = 'openai',
+	Anthropic = 'Anthropic',
+	// OpenAI = 'openai',
 }
