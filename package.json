@@ -17,7 +17,7 @@
 	],
 	"scripts": {
 		"start": "bun run src/index.ts",
-		"start:interactive": "bun run src/core/startAgentInterfaces/interactiveTerminal.ts",
+		"start:interactive": "bun run src/core/agentInterfaces/InteractiveTerminal/start.ts",
 		"dev": "bun --watch run src/index.ts",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",

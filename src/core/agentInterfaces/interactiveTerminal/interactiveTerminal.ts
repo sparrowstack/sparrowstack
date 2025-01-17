@@ -1,21 +1,23 @@
+import type { Agent } from '../../../Agent';
 import { printHeader } from './common/utils';
-import { BaseLLM } from '../../../core/llms/BaseLLM';
-import { startInteractiveSession } from './common/startInteractiveSession';
+import { BaseLLM } from '../../llms/BaseLLM';
+import { InteractiveSession } from './classes/InteractiveSession';
 
 interface IConstructorOptions {
-	llm: BaseLLM;
+	agent: Agent;
 }
 
 export class InteractiveTerminal {
 	private llm: BaseLLM;
 
-	constructor({ llm }: IConstructorOptions) {
-		this.llm = llm;
+	constructor({ agent }: IConstructorOptions) {
+		this.llm = agent.llm;
 	}
 
 	public async start() {
 		console.clear();
 		printHeader({ llm: this.llm });
-		startInteractiveSession({ llm: this.llm });
+
+		new InteractiveSession({ llm: this.llm }).start();
 	}
 }

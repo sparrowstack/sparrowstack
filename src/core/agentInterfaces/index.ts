@@ -1,1 +1,1 @@
-export { InteractiveTerminal } from './interactiveTerminal/interactiveTerminal';
+export { InteractiveTerminal } from './InteractiveTerminal';
