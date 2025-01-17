@@ -1,51 +1,75 @@
 import { BaseLLM } from './BaseLLM';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { Provider, AnthropicModel } from '../../common/enums';
+import type { LLMResponseMessage } from '../../common/types';
+import { Role, Provider, AnthropicModel } from '../../common/enums';
+
+const defaultSystemPrompt =
+	'You are a helpful AI assistant who is an expert in TypeScript.';
 
 export class AnthropicLLM extends BaseLLM {
 	maxTokens: number;
+	systemPrompt: string;
 	anthropic: Anthropic;
 	model: AnthropicModel;
 	provider = Provider.Anthropic;
 
-	constructor({ model, apiKey }: { model: AnthropicModel; apiKey: string }) {
+	constructor({
+		model,
+		apiKey,
+		systemPrompt,
+	}: {
+		apiKey: string;
+		systemPrompt: string;
+		model: AnthropicModel;
+	}) {
 		super();
+
 		this.model = model;
 		this.maxTokens = 1024;
+		this.systemPrompt = systemPrompt || defaultSystemPrompt;
+
 		this.anthropic = new Anthropic({
 			apiKey,
 		});
+	}
+
+	getTextFromResponseMessage({
+		responseMessage,
+	}: {
+		responseMessage: LLMResponseMessage;
+	}) {
+		return responseMessage.content[0].type === 'text'
+			? responseMessage.content[0].text
+			: '';
 	}
 
 	async sendMessage({
 		message,
 	}: {
 		message: string;
-	}): Promise<Anthropic.Message> {
-		this.addToHistory({ role: 'user', content: message });
+		// TODO: Return message needs to be custom for app
+	}): Promise<LLMResponseMessage> {
+		const userMessage = { role: Role.User, content: message };
+		this.addToMessages({ message: userMessage });
 
-		const messages = [...this.messageHistory];
-
-		console.log(messages);
+		const messages = [...this.messages];
 
 		const params: Anthropic.MessageCreateParams = {
 			messages: messages as Anthropic.MessageParam[],
 			model: this.model,
 			max_tokens: this.maxTokens,
-			system: 'You are a helpful AI assistant. Who is an expert in TypeScript and mows the best lawns in town.',
+			system: this.systemPrompt,
 		};
 
-		const response = await this.anthropic.messages.create(params);
+		const responseMessage = await this.anthropic.messages.create(params);
 
 		// Add assistant's response to history
-		this.addToHistory({
-			role: 'assistant',
-			content:
-				response.content[0].type === 'text'
-					? response.content[0].text
-					: '',
-		});
+		const assistantMessage = {
+			role: Role.Assistant,
+			content: this.getTextFromResponseMessage({ responseMessage }),
+		};
+		this.addToMessages({ message: assistantMessage });
 
-		return response;
+		return responseMessage as LLMResponseMessage;
 	}
 }

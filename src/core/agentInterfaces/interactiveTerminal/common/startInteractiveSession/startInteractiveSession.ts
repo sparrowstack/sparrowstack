@@ -1,16 +1,18 @@
 import * as readline from 'readline';
-import type { IBaseLLM } from '../../../../../common/interfaces';
+import { BaseLLM } from '../../../../llms/BaseLLM';
 import {
-	printResponse,
+	printContext,
 	validateInput,
 	sendMessageToLLM,
+	printAgentResponse,
 	exitProcessIfApplicable,
 } from './common/utils';
 
 interface IOptions {
-	llm: IBaseLLM;
+	llm: BaseLLM;
 }
 
+// TODO: InteractiveSession Class?
 export const startInteractiveSession = ({ llm }: IOptions) => {
 	const rl = readline.createInterface({
 		input: process.stdin,
@@ -30,9 +32,17 @@ export const startInteractiveSession = ({ llm }: IOptions) => {
 				return;
 			}
 
-			const response = await sendMessageToLLM({ llm, message: input });
+			const responseMessage = await sendMessageToLLM({
+				llm,
+				message: input,
+			});
+			const responseText = llm.getTextFromResponseMessage({
+				responseMessage,
+			});
 
-			printResponse({ response });
+			// TODO: Print if verbose
+			printContext({ llm });
+			printAgentResponse({ response: responseText });
 
 			prompt(); // Continue the loop
 		});

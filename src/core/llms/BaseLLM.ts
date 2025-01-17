@@ -1,30 +1,37 @@
+import type { LLMResponseMessage } from '../../common/types';
 import { AnthropicModel, Provider } from '../../common/enums';
-import type { IBaseLLM } from '../../common/interfaces';
-
-export interface Message {
-	role: 'user' | 'assistant' | 'system';
-	content: string;
-}
+import type { IBaseLLM, IChatMessage } from '../../common/interfaces';
 
 export abstract class BaseLLM implements IBaseLLM {
-	protected messageHistory: Message[] = [];
-	abstract readonly provider: Provider;
-	abstract readonly model: AnthropicModel;
+	protected messages: IChatMessage[] = [];
 	abstract readonly maxTokens: number;
+	abstract readonly provider: Provider;
+	abstract readonly systemPrompt: string;
+	abstract readonly model: AnthropicModel;
 
 	constructor() {}
 
-	protected addToHistory(message: Message): void {
-		this.messageHistory.push(message);
+	protected addToMessages({ message }: { message: IChatMessage }): void {
+		this.messages.push(message);
 	}
 
-	public clearHistory(): void {
-		this.messageHistory = [];
+	public clearMessages(): void {
+		this.messages = [];
 	}
 
-	public getHistory(): Message[] {
-		return [...this.messageHistory];
+	public getMessages(): IChatMessage[] {
+		return [...this.messages];
 	}
 
-	abstract sendMessage({ message }: { message: string }): Promise<any>;
+	abstract sendMessage({
+		message,
+	}: {
+		message: string;
+	}): Promise<LLMResponseMessage>;
+
+	abstract getTextFromResponseMessage({
+		responseMessage,
+	}: {
+		responseMessage: LLMResponseMessage;
+	}): string;
 }

@@ -1,15 +1,28 @@
+import type { IChatMessage } from './IChatMessage';
 import { Provider, AnthropicModel } from '../../common/enums';
+import type { LLMResponseMessage } from '../../common/types';
 
-export interface Message {
-	role: 'user' | 'assistant' | 'system';
-	content: string;
-}
-
+// TODO: Fix Typings for messages, no 'any'etc..
 export interface IBaseLLM {
+	//Properties
 	maxTokens: number;
 	provider: Provider;
 	model: AnthropicModel;
-	getHistory: () => Message[];
-	clearHistory: () => void;
-	sendMessage: ({ message }: { message: string }) => Promise<any>;
+	systemPrompt: string;
+
+	//Methods
+	clearMessages: () => void;
+
+	getMessages: () => IChatMessage[];
+
+	sendMessage: ({
+		message,
+	}: {
+		message: string;
+	}) => Promise<LLMResponseMessage>;
+	getTextFromResponseMessage({
+		responseMessage,
+	}: {
+		responseMessage: LLMResponseMessage;
+	}): string;
 }
