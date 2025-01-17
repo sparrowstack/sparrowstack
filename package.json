@@ -17,7 +17,7 @@
 	],
 	"scripts": {
 		"start": "bun run src/index.ts",
-		"start:interactive": "bun run src/core/start/interactive.ts",
+		"start:interactive": "bun run src/core/startAgentInterfaces/interactiveTerminal.ts",
 		"dev": "bun --watch run src/index.ts",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
@@ -29,14 +29,17 @@
 	},
 	"devDependencies": {
 		"@types/bun": "latest",
-		"prettier": "3.2.0",
+		"@types/figlet": "^1.7.0",
 		"@typescript-eslint/eslint-plugin": "6.21.0",
 		"@typescript-eslint/parser": "6.21.0",
 		"eslint": "8.56.0",
 		"eslint-config-prettier": "9.1.0",
+		"prettier": "3.2.0",
 		"typescript": "5.3.3"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^0.33.1"
+		"@anthropic-ai/sdk": "^0.33.1",
+		"chalk": "^5.4.1",
+		"ora": "^8.1.1"
 	}
 }

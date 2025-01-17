@@ -1,4 +1,4 @@
-import { getProvider } from './common/utils';
+import { getLLM } from './common/utils';
 import type { IBaseLLM } from '../common/interfaces';
 import { Provider, AnthropicModel } from '../common/enums';
 import { InteractiveTerminal } from '../core/agentInterfaces';
@@ -13,7 +13,7 @@ export class Agent {
 	llm: IBaseLLM;
 
 	constructor({ provider, model, apiKey }: IConstructorOptions) {
-		const llm = getProvider({ provider });
+		const llm = getLLM({ provider });
 
 		this.llm = new llm({ model, apiKey });
 	}

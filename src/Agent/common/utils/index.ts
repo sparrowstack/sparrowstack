@@ -1,1 +1,1 @@
-export { getProvider } from './getProvider';
+export { getLLM } from './getLLM';

@@ -1,0 +1,1 @@
+export { printHeader } from './printHeader';
