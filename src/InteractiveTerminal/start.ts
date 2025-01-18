@@ -1,9 +1,9 @@
 import { AgentLogger } from '../AgentLogger';
-import { Agent, Provider } from '../Agent';
-import type { Model } from '../Agent/common/types';
-import { getCommandLineArgs } from './common/utils';
+import { Agent } from '../Agent';
+import { getCommandLineArgs, getModel, getSystemPrompt } from './common/utils';
 import { InteractiveTerminal } from '../InteractiveTerminal';
-import { getApiKey } from './common/utils';
+import { getApiKey, getProvider } from './common/utils';
+import type { ICommandLineArgs } from './common/interfaces';
 import {
 	validateApiKey,
 	validateValidSystemPrompt,
@@ -12,22 +12,32 @@ import {
 
 const logger = new AgentLogger('InteractiveTerminal');
 
-interface ICommandLineArgs {
-	model: Model;
-	provider: Provider;
-	systemPrompt: string;
-}
+const {
+	provider: providerName,
+	model: modelName,
+	systemPrompt: systemPromptName,
+} = <ICommandLineArgs>getCommandLineArgs();
 
-const { provider, model, systemPrompt } = <ICommandLineArgs>(
-	getCommandLineArgs()
-);
+const model = getModel({ providerName, modelName });
+const provider = getProvider({ providerName });
+validateBothProviderAndModelProvided({
+	logger,
+	model: modelName,
+	provider: providerName,
+});
 
-const apiKey = getApiKey({ provider });
-console.log(apiKey);
+const systemPrompt = getSystemPrompt({ systemPromptName });
+validateValidSystemPrompt({
+	logger,
+	systemPrompt: systemPromptName,
+});
 
-validateBothProviderAndModelProvided({ provider, model, logger });
-validateValidSystemPrompt({ systemPrompt, logger });
-validateApiKey({ apiKey, provider, logger });
+const apiKey = getApiKey({ provider: providerName });
+validateApiKey({
+	apiKey,
+	logger,
+	provider: providerName,
+});
 
 // Configuration
 // --------------------------------
@@ -44,8 +54,8 @@ validateApiKey({ apiKey, provider, logger });
 // Should we pull Agent into the InteractiveTerminal?
 // Should agent be able to start the InteractiveTerminal?
 const agent = new Agent({
-	provider,
 	model,
+	provider,
 	systemPrompt,
 	apiKey: apiKey as string,
 });
