@@ -9,9 +9,7 @@ export const getTextContent = ({ message }: IOptions) => {
 	let type = '';
 	const content = message.content[0];
 
-	// TODO: put logger here
-	// Could cause issues if tools?
-
+	// TODO: Could cause issues if tools?
 	if (content.type === 'text') {
 		text = content.text;
 		type = content.type;
