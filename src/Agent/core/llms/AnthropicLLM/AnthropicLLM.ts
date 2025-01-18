@@ -1,15 +1,10 @@
 import { BaseLLM } from '../BaseLLM';
+import { sendMessage } from './core';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { defaultPrompt } from '../../systemPrompts';
 import { AgentLogger } from '../../../../AgentLogger';
 import { Provider, Model } from '../../../common/enums';
 import type { ILLMResponseMessage } from '../../../common/interfaces';
-import { infoLogContext, infoLogLLMResponseMessage } from './common/infoLogs';
-import {
-	sendContextToLLM,
-	addUserMessageToMessages,
-	addAssistantMessageToMessages,
-} from './common/utils';
 
 interface IContructorOptions {
 	apiKey: string;
@@ -42,29 +37,11 @@ export class AnthropicLLM extends BaseLLM {
 	}: {
 		message: string;
 	}): Promise<ILLMResponseMessage> {
-		const messages = addUserMessageToMessages({ llm: this, message });
-
-		infoLogContext({
-			messages,
-			logger: this.logger,
-			systemPrompt: this.systemPrompt,
-		});
-
-		const responseMessage = await sendContextToLLM({
+		return await sendMessage({
+			message,
 			llm: this,
+			logger: this.logger,
 			anthropic: this.anthropic,
 		});
-
-		infoLogLLMResponseMessage({
-			logger: this.logger,
-			message: responseMessage,
-		});
-
-		addAssistantMessageToMessages({
-			llm: this,
-			message: responseMessage.contentText,
-		});
-
-		return responseMessage;
 	}
 }

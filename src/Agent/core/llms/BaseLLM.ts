@@ -1,3 +1,4 @@
+import { AgentLogger } from '../../../AgentLogger';
 import { Model, Provider } from '../../common/enums';
 import type {
 	IChatMessage,
@@ -6,10 +7,11 @@ import type {
 
 export abstract class BaseLLM {
 	protected messages: IChatMessage[] = [];
+	abstract readonly model: Model;
 	abstract readonly maxTokens: number;
 	abstract readonly provider: Provider;
 	abstract readonly systemPrompt: string;
-	abstract readonly model: Model;
+	abstract readonly logger: AgentLogger;
 
 	constructor() {}
 
