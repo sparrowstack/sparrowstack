@@ -1,5 +1,6 @@
+import { Provider } from '../../common/enums';
+import type { Model } from '../../common/types';
 import { AgentLogger } from '../../../AgentLogger';
-import { Model, Provider } from '../../common/enums';
 import type {
 	IChatMessage,
 	ILLMResponseMessage,

@@ -1,6 +1,6 @@
+import OpenAI from 'openai';
 import { BaseLLM } from '../BaseLLM';
 import { sendMessage } from './core';
-import { Anthropic } from '@anthropic-ai/sdk';
 import { SystemPrompts } from '../../SystemPrompts';
 import { AgentLogger } from '../../../../AgentLogger';
 import { Provider } from '../../../common/enums';
@@ -13,13 +13,13 @@ interface IContructorOptions {
 	systemPrompt?: string;
 }
 
-export class AnthropicLLM extends BaseLLM {
+export class OpenAILLM extends BaseLLM {
 	model: Model;
 	maxTokens: number;
 	systemPrompt: string;
-	anthropic: Anthropic;
-	provider = Provider.Anthropic;
-	logger = new AgentLogger('AnthropicLLM');
+	openai: OpenAI;
+	provider = Provider.OpenAI;
+	logger = new AgentLogger('OpenAILLM');
 
 	constructor({ model, apiKey, systemPrompt }: IContructorOptions) {
 		super();
@@ -28,7 +28,7 @@ export class AnthropicLLM extends BaseLLM {
 		this.maxTokens = 1024;
 		this.systemPrompt = systemPrompt || SystemPrompts.Default;
 
-		this.anthropic = new Anthropic({
+		this.openai = new OpenAI({
 			apiKey,
 		});
 	}
@@ -42,7 +42,7 @@ export class AnthropicLLM extends BaseLLM {
 			message,
 			llm: this,
 			logger: this.logger,
-			anthropic: this.anthropic,
+			openai: this.openai,
 		});
 	}
 }

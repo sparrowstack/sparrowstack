@@ -1,2 +1,1 @@
-export { Sage } from './Sage';
-export { defaultPrompt } from './deafultPrompt';
+export { SystemPrompts } from './SystemPrompts';
