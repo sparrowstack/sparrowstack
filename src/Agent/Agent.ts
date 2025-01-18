@@ -1,19 +1,25 @@
+import { BaseLLM } from './core/llms';
 import { getLLM } from './common/utils';
-import { BaseLLM } from '../core/llms/BaseLLM';
-import { Provider, AnthropicModel } from '../common/enums';
+import { Provider, Model } from './common/enums';
 
 interface IConstructorOptions {
 	apiKey: string;
 	provider: Provider;
-	model: AnthropicModel;
+	model: Model;
+	systemPrompt: string;
 }
 
 export class Agent {
 	llm: BaseLLM;
 
-	constructor({ provider, model, apiKey }: IConstructorOptions) {
+	constructor({
+		model,
+		apiKey,
+		provider,
+		systemPrompt,
+	}: IConstructorOptions) {
 		const llm = getLLM({ provider });
 
-		this.llm = new llm({ model, apiKey });
+		this.llm = new llm({ model, apiKey, systemPrompt });
 	}
 }
