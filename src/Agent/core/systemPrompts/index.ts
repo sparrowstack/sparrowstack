@@ -1,2 +1,2 @@
-export { Nova } from './Nova';
+export { Sage } from './Sage';
 export { defaultPrompt } from './deafultPrompt';

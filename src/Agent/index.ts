@@ -1,6 +1,6 @@
-import { Nova } from './core/systemPrompts';
+import { Sage } from './core/systemPrompts';
 
-export const SystemPrompts = { Nova };
+export const SystemPrompts = { Sage };
 
 export { Agent } from './Agent';
 export { Provider, Model } from './common/enums';

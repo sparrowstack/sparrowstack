@@ -7,7 +7,7 @@ import { InteractiveTerminal } from '../InteractiveTerminal';
 // --------------------------------
 const provider = Provider.Anthropic;
 const model = Model.Claude35Sonnet;
-const systemPrompt = SystemPrompts.Nova;
+const systemPrompt = SystemPrompts.Sage;
 const apiKey = process.env['ANTHROPIC_API_KEY'] || '';
 // --------------------------------
 
