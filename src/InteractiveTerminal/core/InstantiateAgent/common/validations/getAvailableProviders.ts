@@ -1,4 +1,4 @@
-import { Provider } from '../../../../Agent';
+import { Provider } from '../../../../../Agent';
 
 export const getAvailableProviders = () => {
 	const availableProviders = Object.values(Provider)

@@ -1,7 +1,6 @@
 import { Agent } from '../Agent';
 import { AgentLogger } from '../AgentLogger';
-import { InteractiveSession } from './core/InteractiveSession';
-import { instantiateAgent } from './core/common/utils/instantiateAgent';
+import { InstantiateAgent, InteractiveSession } from './core';
 
 interface IConstructorOptions {
 	agent?: Agent;
@@ -15,11 +14,11 @@ export class InteractiveTerminal {
 		if (agent) {
 			this.agent = agent;
 		} else {
-			this.agent = instantiateAgent({ logger: this.logger });
+			this.agent = new InstantiateAgent({ logger: this.logger }).start();
 		}
 	}
 
-	public async start() {
+	public start() {
 		new InteractiveSession({ agent: this.agent }).start();
 	}
 }

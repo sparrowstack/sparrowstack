@@ -6,7 +6,7 @@ interface IOptions {
 }
 
 export const printHeader = ({ llm }: IOptions) => {
-	const { provider, model } = llm;
+	const { providerName, model, systemPromptName } = llm;
 
 	console.log(
 		chalk.greenBright(`
@@ -15,8 +15,9 @@ export const printHeader = ({ llm }: IOptions) => {
 ═════════════════════════════════════════
 `),
 	);
-	console.log(`Provider: ${provider}`);
+	console.log(`Provider: ${providerName}`);
 	console.log(`Model: ${model}`);
+	console.log(`System Prompt: ${systemPromptName}`);
 	console.log('');
 	console.log(chalk.dim('- Type "q" to quit'));
 	console.log('');

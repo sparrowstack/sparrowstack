@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import { SystemPrompts } from '../../../../Agent';
-import { AgentLogger } from '../../../../AgentLogger';
+import { SystemPrompts } from '../../../../../Agent';
+import { AgentLogger } from '../../../../../AgentLogger';
 import { getAvailableSystemPrompts } from './getAvailableSystemPrompts';
 
 interface IOptions {
@@ -13,8 +13,9 @@ export const validateValidSystemPrompt = ({
 	systemPromptName,
 }: IOptions) => {
 	const availableSystemPrompts = getAvailableSystemPrompts();
-	const errorTemplate =
-		chalk.red(`The System Prompt '${systemPromptName}' is not available.
+	const errorTemplate = chalk.red(`
+			
+The System Prompt '${systemPromptName}' is not available.
 
 Available System Prompts:
 ${availableSystemPrompts}

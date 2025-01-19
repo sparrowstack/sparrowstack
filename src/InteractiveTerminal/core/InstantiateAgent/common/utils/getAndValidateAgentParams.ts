@@ -1,10 +1,10 @@
 import { getApiKey } from './getApiKey';
 import { getProvider } from './getProvider';
 import { getSystemPrompt } from './getSystemPrompt';
-import { AgentLogger } from '../../../../AgentLogger';
+import { validateIsValidProvider } from '../validations';
 import type { ICommandLineArgs } from '../interfaces';
-import { SystemPrompts, Provider, Model } from '../../../../Agent';
-
+import { AgentLogger } from '../../../../../AgentLogger';
+import { SystemPrompts, Provider, Model } from '../../../../../Agent';
 import {
 	validateApiKey,
 	validateValidSystemPrompt,
@@ -33,14 +33,18 @@ export const getAndValidateAgentParams = ({
 		providerName,
 	});
 
+	// Provides Model
+	const model = modelName || Model.Anthropic.Claude35Sonnet;
+
 	// Provides Provider
 	let provider: Provider = Provider.Anthropic;
 	if (providerName) {
+		validateIsValidProvider({
+			logger,
+			providerName,
+		});
 		provider = getProvider({ providerName });
 	}
-
-	// Provides Model
-	const model = modelName || Model.Anthropic.Claude35Sonnet;
 
 	// Provides System Prompt
 	let systemPrompt: string = SystemPrompts.Default;

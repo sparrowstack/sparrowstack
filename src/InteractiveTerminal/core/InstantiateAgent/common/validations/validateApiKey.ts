@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { AgentLogger } from '../../../../AgentLogger';
+import { AgentLogger } from '../../../../../AgentLogger';
 
 enum ApiKeys {
 	openai = 'OPENAI_API_KEY',

@@ -1,4 +1,4 @@
-import { SystemPrompts } from '../../../../Agent';
+import { SystemPrompts } from '../../../../../Agent';
 
 export const getAvailableSystemPrompts = () => {
 	const availableSystemPrompts = Object.keys(SystemPrompts)

@@ -10,7 +10,9 @@ export abstract class BaseLLM {
 	abstract readonly model: string;
 	abstract readonly maxTokens: number;
 	abstract readonly provider: Provider;
+	abstract readonly providerName: string;
 	abstract readonly systemPrompt: string;
+	abstract readonly systemPromptName: string;
 	abstract readonly logger: AgentLogger;
 
 	constructor() {}
