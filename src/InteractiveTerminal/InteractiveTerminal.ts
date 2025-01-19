@@ -1,23 +1,25 @@
-import type { Agent } from '../Agent';
-import { printHeader } from './common/utils';
-import { BaseLLM } from '../Agent';
+import { Agent } from '../Agent';
+import { AgentLogger } from '../AgentLogger';
 import { InteractiveSession } from './core/InteractiveSession';
+import { instantiateAgent } from './core/common/utils/instantiateAgent';
 
 interface IConstructorOptions {
-	agent: Agent;
+	agent?: Agent;
 }
 
 export class InteractiveTerminal {
-	private llm: BaseLLM;
+	agent: Agent;
+	logger = new AgentLogger('InteractiveTerminal');
 
-	constructor({ agent }: IConstructorOptions) {
-		this.llm = agent.llm;
+	constructor({ agent }: IConstructorOptions = {}) {
+		if (agent) {
+			this.agent = agent;
+		} else {
+			this.agent = instantiateAgent({ logger: this.logger });
+		}
 	}
 
 	public async start() {
-		console.clear();
-		printHeader({ llm: this.llm });
-
-		new InteractiveSession({ llm: this.llm }).start();
+		new InteractiveSession({ agent: this.agent }).start();
 	}
 }

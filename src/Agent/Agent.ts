@@ -1,12 +1,11 @@
 import { BaseLLM } from './core/llms';
 import { getLLM } from './common/utils';
-import type { Model } from './common/types';
 import { Provider } from './common/enums/Provider';
 
 interface IConstructorOptions {
+	model: string;
 	apiKey: string;
 	provider: Provider;
-	model: Model;
 	systemPrompt: string;
 }
 

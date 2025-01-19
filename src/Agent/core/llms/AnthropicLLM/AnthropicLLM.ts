@@ -1,20 +1,19 @@
 import { BaseLLM } from '../BaseLLM';
 import { sendMessage } from './core';
 import { Anthropic } from '@anthropic-ai/sdk';
+import { Provider } from '../../../common/enums';
 import { SystemPrompts } from '../../SystemPrompts';
 import { AgentLogger } from '../../../../AgentLogger';
-import { Provider } from '../../../common/enums';
-import type { Model } from '../../../common/types';
 import type { ILLMResponseMessage } from '../../../common/interfaces';
 
 interface IContructorOptions {
 	apiKey: string;
-	model: Model;
+	model: string;
 	systemPrompt?: string;
 }
 
 export class AnthropicLLM extends BaseLLM {
-	model: Model;
+	model: string;
 	maxTokens: number;
 	systemPrompt: string;
 	anthropic: Anthropic;

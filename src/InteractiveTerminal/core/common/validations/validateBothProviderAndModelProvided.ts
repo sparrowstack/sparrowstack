@@ -1,19 +1,18 @@
 import chalk from 'chalk';
 import { AgentLogger } from '../../../../AgentLogger';
-import { getAvailableModels, getAvailableProviders } from '../utils';
+import { getAvailableProviders } from './getAvailableProviders';
 
 interface IOptions {
-	provider: string;
-	model: string;
+	modelName: string;
 	logger: AgentLogger;
+	providerName: string;
 }
 
 export const validateBothProviderAndModelProvided = ({
-	provider,
-	model,
 	logger,
+	modelName,
+	providerName,
 }: IOptions) => {
-	const availableModels = getAvailableModels();
 	const availableProviders = getAvailableProviders();
 	const errorTemplate =
 		chalk.red(`Both 'provider' and 'model' values required when specifying a provider/model.
@@ -25,10 +24,12 @@ Available providers:
 ${availableProviders}
 
 Available models:
-${availableModels}
+OpenAI: https://platform.openai.com/docs/models
+Anthropic: https://docs.anthropic.com/en/docs/about-claude/models
+
 `);
 
-	if ((provider && !model) || (model && !provider)) {
+	if ((providerName && !modelName) || (modelName && !providerName)) {
 		logger.error(errorTemplate);
 		process.exit(1);
 	}

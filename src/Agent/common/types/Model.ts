@@ -1,3 +1,3 @@
-import { OpenAIModel, AnthropicModel } from '../enums';
+import { OpenAIModel, AnthropicModel } from '../enums/Model';
 
 export type Model = AnthropicModel | OpenAIModel;

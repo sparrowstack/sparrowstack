@@ -1,20 +1,21 @@
 import * as readline from 'readline';
-import { BaseLLM } from '../../../Agent';
+import { Agent, BaseLLM } from '../../../Agent';
 import {
+	printHeader,
 	validateInput,
 	printAgentResponse,
 	exitProcessIfApplicable,
 } from './common/utils';
 
 interface IOptions {
-	llm: BaseLLM;
+	agent: Agent;
 }
 
 export class InteractiveSession {
 	llm: BaseLLM;
 
-	constructor({ llm }: IOptions) {
-		this.llm = llm;
+	constructor({ agent }: IOptions) {
+		this.llm = agent.llm;
 	}
 
 	public start() {
@@ -47,6 +48,8 @@ export class InteractiveSession {
 			});
 		};
 
+		console.clear();
+		printHeader({ llm: this.llm });
 		prompt();
 	}
 }

@@ -1,4 +1,4 @@
-import { SystemPrompts } from '../../../Agent/core/SystemPrompts';
+import { SystemPrompts } from '../../../../Agent/core/SystemPrompts';
 
 interface IOptions {
 	systemPromptName: string;

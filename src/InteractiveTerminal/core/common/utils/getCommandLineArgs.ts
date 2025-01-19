@@ -1,6 +1,6 @@
 export const getCommandLineArgs = <
-	ReturnValue = Record<string, string>,
->(): ReturnValue => {
+	T extends Record<string, string> = Record<string, string>,
+>(): T => {
 	const args: Record<string, string> = {};
 	const argv = process.argv.slice(2);
 
@@ -25,5 +25,5 @@ export const getCommandLineArgs = <
 		}
 	}
 
-	return args as unknown as ReturnValue;
+	return args as T;
 };
