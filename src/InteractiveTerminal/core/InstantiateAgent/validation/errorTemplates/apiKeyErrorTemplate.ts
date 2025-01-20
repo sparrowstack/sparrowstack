@@ -1,10 +1,5 @@
 import chalk from 'chalk';
-
-// TODO: API Key Names
-enum ApiKeys {
-	openai = 'OPENAI_API_KEY',
-	anthropic = 'ANTHROPIC_API_KEY',
-}
+import { ApiKeys } from '@Agent/common/enums';
 
 interface IOptions {
 	providerName: string;

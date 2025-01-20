@@ -5,7 +5,7 @@ import {
 	validateInput,
 	printAgentResponse,
 	exitProcessIfApplicable,
-} from '@InteractiveTerminal/core/InteractiveSession/common/utils';
+} from '@InteractiveSession/common/utils';
 
 interface IOptions {
 	agent: Agent;

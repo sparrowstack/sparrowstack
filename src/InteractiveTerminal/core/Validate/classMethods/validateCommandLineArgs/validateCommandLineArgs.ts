@@ -5,7 +5,7 @@ import {
 	validateIsValidProvider,
 	validateValidSystemPrompt,
 	validateBothProviderAndModelProvided,
-} from '@InteractiveTerminal/core/Validate/validation/validatators';
+} from '@Validate/validation/validatators';
 
 interface IOptions {
 	logger: AgentLogger;

@@ -1,6 +1,6 @@
 import { SystemPrompts } from '@Agent';
 import { AgentLogger } from '@AgentLogger';
-import { isValidSystemPromptErrorTemplate } from '@InteractiveTerminal/core/Validate/validation/errorTemplates';
+import { isValidSystemPromptErrorTemplate } from '@Validate/validation/errorTemplates';
 
 interface IOptions {
 	systemPromptName: string;

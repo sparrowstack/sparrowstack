@@ -3,8 +3,8 @@ import { AgentLogger } from '@AgentLogger';
 import { Provider } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
 import { ProviderName } from '@Agent/common/constants';
-import { sendMessage } from '@Agent/core/llms/OpenAILLM/core';
 import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import { sendMessage } from '@Agent/core/llms/OpenAILLM/classMethods';
 import { SystemPrompts, SystemPromptName } from '@Agent/core/SystemPrompts';
 
 interface IContructorOptions {

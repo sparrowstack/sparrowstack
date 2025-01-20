@@ -1,28 +1,28 @@
-import OpenAI from 'openai';
 import { AgentLogger } from '@AgentLogger';
+import { Anthropic } from '@anthropic-ai/sdk';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { sendContextToLLM } from '@Agent/core/llms/AnthropicLLM/common/utils';
 import {
 	infoLogContextWindow,
 	infoLogLLMResponseMessage,
-} from '@Agent/core/llms/OpenAILLM/common/infoLogs';
+} from '@Agent/core/llms/common/infoLogs';
 import {
-	sendContextToLLM,
 	addUserMessageToMessages,
 	addAssistantMessageToMessages,
-} from '@Agent/core/llms/OpenAILLM/common/utils';
+} from '@Agent/core/llms/common/utils';
 
 interface IOptions {
 	llm: BaseLLM;
 	message: string;
 	logger: AgentLogger;
-	openai: OpenAI;
+	anthropic: Anthropic;
 }
 
 export const sendMessage = async ({
 	llm,
 	logger,
 	message,
-	openai,
+	anthropic,
 }: IOptions) => {
 	const messages = addUserMessageToMessages({ llm, message });
 
@@ -34,7 +34,7 @@ export const sendMessage = async ({
 
 	const responseMessage = await sendContextToLLM({
 		llm,
-		openai,
+		anthropic,
 	});
 
 	infoLogLLMResponseMessage({

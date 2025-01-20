@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { getAvailableProviders } from '@InteractiveTerminal/core/Validate/validation/utils';
+import { getAvailableProviders } from '@Validate/validation/utils';
 
 export const bothProviderAndModelProvidedErrorTemplate = () => {
 	const availableProviders = getAvailableProviders();

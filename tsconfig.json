@@ -35,7 +35,21 @@
 			"@AgentLogger": ["./src/AgentLogger"],
 			"@AgentLogger/*": ["./src/AgentLogger/*"],
 			"@InteractiveTerminal": ["./src/InteractiveTerminal"],
-			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"]
+			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"],
+			"@InstantiateAgent": [
+				"./src/InteractiveTerminal/core/InstantiateAgent"
+			],
+			"@InstantiateAgent/*": [
+				"./src/InteractiveTerminal/core/InstantiateAgent/*"
+			],
+			"@InteractiveSession": [
+				"./src/InteractiveTerminal/core/InteractiveSession"
+			],
+			"@InteractiveSession/*": [
+				"./src/InteractiveTerminal/core/InteractiveSession/*"
+			],
+			"@Validate": ["./src/InteractiveTerminal/core/Validate"],
+			"@Validate/*": ["./src/InteractiveTerminal/core/Validate/*"]
 		}
 	}
 }

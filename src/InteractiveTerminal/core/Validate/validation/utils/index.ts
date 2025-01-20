@@ -1,2 +1,2 @@
-export { getAvailableProviders } from '@InteractiveTerminal/core/Validate/validation/utils/getAvailableProviders';
-export { getAvailableSystemPrompts } from '@InteractiveTerminal/core/Validate/validation/utils/getAvailableSystemPrompts';
+export { getAvailableProviders } from '@Validate/validation/utils/getAvailableProviders';
+export { getAvailableSystemPrompts } from '@Validate/validation/utils/getAvailableSystemPrompts';

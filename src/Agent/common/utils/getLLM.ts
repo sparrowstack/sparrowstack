@@ -10,7 +10,8 @@ interface IOptions {
 	provider: Provider;
 }
 
-// TODO: Add Better Error Messaging
+// User should get type errors in this scenario
+// so just throwing minimal error messages for now..
 export const getLLM = ({ provider }: IOptions) => {
 	if (!provider) {
 		throw new Error('Provider Required');
