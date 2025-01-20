@@ -2,7 +2,7 @@ import { BaseLLM } from '../BaseLLM';
 import { sendMessage } from './core';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { Provider, ProviderName } from '../../../common/enums';
-import { SystemPrompts } from '../../SystemPrompts';
+import { SystemPrompts, SystemPromptName } from '../../SystemPrompts';
 import { AgentLogger } from '../../../../AgentLogger';
 import type { ILLMResponseMessage } from '../../../common/interfaces';
 
@@ -28,7 +28,7 @@ export class AnthropicLLM extends BaseLLM {
 		this.model = model;
 		this.maxTokens = 1024;
 		this.systemPrompt = systemPrompt || SystemPrompts.Default;
-		this.systemPromptName = systemPrompt as string;
+		this.systemPromptName = SystemPromptName[this.systemPrompt];
 
 		this.anthropic = new Anthropic({
 			apiKey,

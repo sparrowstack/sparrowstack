@@ -1,5 +1,5 @@
-import { Agent, Provider, Model, SystemPrompts } from '../Agent';
-import { InteractiveTerminal } from '.';
+import { Agent, Provider, Model, SystemPrompts } from '../src/Agent';
+import { InteractiveTerminal } from '../src/InteractiveTerminal';
 
 // Configuration
 // --------------------------------

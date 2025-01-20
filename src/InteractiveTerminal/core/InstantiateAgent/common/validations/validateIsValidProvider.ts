@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { Provider } from '../../../../../Agent';
+import { Provider, ProviderName } from '../../../../../Agent';
 import { AgentLogger } from '../../../../../AgentLogger';
 import { getAvailableProviders } from './getAvailableProviders';
 
@@ -9,6 +9,7 @@ interface IOptions {
 }
 
 export const validateIsValidProvider = ({ logger, providerName }: IOptions) => {
+	// Note that this is not the same as the Provider enum
 	const availableProviders = getAvailableProviders();
 	const errorTemplate = chalk.red(`
 
@@ -25,7 +26,7 @@ Note: If the provider is not provided, the default Provider '${Provider.Anthropi
 `);
 
 	if (typeof providerName === 'string') {
-		if (!Provider[providerName as keyof typeof Provider]) {
+		if (!ProviderName[providerName as keyof typeof ProviderName]) {
 			logger.error(errorTemplate);
 			process.exit(1);
 		}
