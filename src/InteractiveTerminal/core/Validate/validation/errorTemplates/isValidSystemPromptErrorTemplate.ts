@@ -1,15 +1,11 @@
 import chalk from 'chalk';
-import { SystemPrompts } from '../../../../../Agent';
-import { AgentLogger } from '../../../../../AgentLogger';
 import { getAvailableSystemPrompts } from '../utils/getAvailableSystemPrompts';
 
 interface IOptions {
 	systemPromptName: string;
-	logger: AgentLogger;
 }
 
-export const validateValidSystemPrompt = ({
-	logger,
+export const isValidSystemPromptErrorTemplate = ({
 	systemPromptName,
 }: IOptions) => {
 	const availableSystemPrompts = getAvailableSystemPrompts();
@@ -23,14 +19,9 @@ ${availableSystemPrompts}
 Example:
 bun start:interactiveTerminal --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
 
-Note: If the system prompt is not provided, the default system prompt will be used.
+Note: If the System Prompt is not provided, the default System Prompt will be used.
 
 `);
 
-	if (typeof systemPromptName === 'string') {
-		if (!SystemPrompts[systemPromptName]) {
-			logger.error(errorTemplate);
-			process.exit(1);
-		}
-	}
+	return errorTemplate;
 };

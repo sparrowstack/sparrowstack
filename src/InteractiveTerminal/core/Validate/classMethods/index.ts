@@ -1,0 +1,1 @@
+export { validateCommandLineArgs } from './validateCommandLineArgs';

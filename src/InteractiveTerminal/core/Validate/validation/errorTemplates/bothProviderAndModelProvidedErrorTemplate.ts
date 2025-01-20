@@ -1,19 +1,9 @@
 import chalk from 'chalk';
 import { getAvailableProviders } from '../utils';
-import { AgentLogger } from '../../../../../AgentLogger';
 
-interface IOptions {
-	modelName: string;
-	logger: AgentLogger;
-	providerName: string;
-}
-
-export const validateBothProviderAndModelProvided = ({
-	logger,
-	modelName,
-	providerName,
-}: IOptions) => {
+export const bothProviderAndModelProvidedErrorTemplate = () => {
 	const availableProviders = getAvailableProviders();
+
 	const errorTemplate = chalk.red(`
 
 Both 'provider' and 'model' values required when specifying a provider/model.
@@ -30,8 +20,5 @@ Anthropic: https://docs.anthropic.com/en/docs/about-claude/models
 
 `);
 
-	if ((providerName && !modelName) || (modelName && !providerName)) {
-		logger.error(errorTemplate);
-		process.exit(1);
-	}
+	return errorTemplate;
 };

@@ -1,5 +1,5 @@
-import { instantiateAgent } from './core';
 import type { AgentLogger } from '../../../AgentLogger';
+import { instantiateAgentWithCommandLineArgs } from './classMethods';
 import type { ICommandLineArgs } from '../../common/interfaces';
 
 export class InstantiateAgent {
@@ -12,8 +12,9 @@ export class InstantiateAgent {
 		logger: AgentLogger;
 		commandLineArgs: ICommandLineArgs;
 	}) {
-		const agent = instantiateAgent({ logger, commandLineArgs });
-
-		return agent;
+		return instantiateAgentWithCommandLineArgs({
+			logger,
+			commandLineArgs,
+		});
 	}
 }

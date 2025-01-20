@@ -1,10 +1,5 @@
-import chalk from 'chalk';
 import { AgentLogger } from '../../../../../AgentLogger';
-
-enum ApiKeys {
-	openai = 'OPENAI_API_KEY',
-	anthropic = 'ANTHROPIC_API_KEY',
-}
+import { apiKeyErrorTemplate } from '../errorTemplates';
 
 interface IOptions {
 	apiKey: string | undefined;
@@ -13,12 +8,7 @@ interface IOptions {
 }
 
 export const validateApiKey = ({ apiKey, providerName, logger }: IOptions) => {
-	const apiKeyName = ApiKeys[providerName as keyof typeof ApiKeys];
-	const errorTemplate = chalk.red(
-		`No API key found for Provider ${providerName}. 
-
-Please add your ${providerName} API key to '${apiKeyName}' in your '.env' file.`,
-	);
+	const errorTemplate = apiKeyErrorTemplate({ providerName });
 
 	if (!apiKey) {
 		console.log('');
