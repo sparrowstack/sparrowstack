@@ -1,1 +1,1 @@
-export { sendMessage } from '@Agent/core/llms/AnthropicLLM/core/sendMessage';
+export { sendMessage } from '@Agent/core/llms/AnthropicLLM/classMethods/sendMessage';

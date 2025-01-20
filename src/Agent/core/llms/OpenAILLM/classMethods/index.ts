@@ -1,1 +1,1 @@
-export { sendMessage } from '@Agent/core/llms/OpenAILLM/core/sendMessage';
+export { sendMessage } from '@Agent/core/llms/OpenAILLM/classMethods/sendMessage';
