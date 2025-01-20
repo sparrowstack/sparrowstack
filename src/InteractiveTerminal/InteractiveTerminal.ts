@@ -1,6 +1,8 @@
 import { Agent } from '../Agent';
 import { AgentLogger } from '../AgentLogger';
-import { InstantiateAgent, InteractiveSession } from './core';
+import { getCommandLineArgs } from './common/utils';
+import type { ICommandLineArgs } from './common/interfaces';
+import { Validate, InteractiveSession, InstantiateAgent } from './core';
 
 interface IConstructorOptions {
 	agent?: Agent;
@@ -14,7 +16,17 @@ export class InteractiveTerminal {
 		if (agent) {
 			this.agent = agent;
 		} else {
-			this.agent = new InstantiateAgent({ logger: this.logger }).start();
+			const commandLineArgs = getCommandLineArgs<ICommandLineArgs>();
+
+			const validatedCommandLineArgs = Validate.commandLineArgs({
+				commandLineArgs,
+				logger: this.logger,
+			});
+
+			this.agent = InstantiateAgent.withCommandLineArgs({
+				logger: this.logger,
+				commandLineArgs: validatedCommandLineArgs,
+			});
 		}
 	}
 

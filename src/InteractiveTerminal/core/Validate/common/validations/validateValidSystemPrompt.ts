@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { SystemPrompts } from '../../../../../Agent';
 import { AgentLogger } from '../../../../../AgentLogger';
-import { getAvailableSystemPrompts } from './getAvailableSystemPrompts';
+import { getAvailableSystemPrompts } from '../utils/getAvailableSystemPrompts';
 
 interface IOptions {
 	systemPromptName: string;
@@ -21,7 +21,7 @@ Available System Prompts:
 ${availableSystemPrompts}
 
 Example:
-bun start:interactive --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
+bun start:interactiveTerminal --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
 
 Note: If the system prompt is not provided, the default system prompt will be used.
 

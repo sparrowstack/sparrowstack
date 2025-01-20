@@ -1,19 +1,18 @@
-import { instantiateAgent } from './common/utils';
+import { instantiateAgent } from './core';
 import type { AgentLogger } from '../../../AgentLogger';
-
-interface IConstructorOptions {
-	logger: AgentLogger;
-}
+import type { ICommandLineArgs } from '../../common/interfaces';
 
 export class InstantiateAgent {
-	logger: AgentLogger;
+	constructor() {}
 
-	constructor({ logger }: IConstructorOptions) {
-		this.logger = logger;
-	}
-
-	public start() {
-		const agent = instantiateAgent({ logger: this.logger });
+	static withCommandLineArgs({
+		logger,
+		commandLineArgs,
+	}: {
+		logger: AgentLogger;
+		commandLineArgs: ICommandLineArgs;
+	}) {
+		const agent = instantiateAgent({ logger, commandLineArgs });
 
 		return agent;
 	}

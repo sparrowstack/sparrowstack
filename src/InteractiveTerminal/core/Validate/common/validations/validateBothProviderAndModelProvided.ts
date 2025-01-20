@@ -1,6 +1,6 @@
 import chalk from 'chalk';
+import { getAvailableProviders } from '../utils';
 import { AgentLogger } from '../../../../../AgentLogger';
-import { getAvailableProviders } from './getAvailableProviders';
 
 interface IOptions {
 	modelName: string;
@@ -19,7 +19,7 @@ export const validateBothProviderAndModelProvided = ({
 Both 'provider' and 'model' values required when specifying a provider/model.
 
 Example:
-bun start:interactive --provider=anthropic --model=claude-3-5-sonnet-20241022
+bun start:interactiveTerminal --provider=anthropic --model=claude-3-5-sonnet-20241022
 
 Available providers:
 ${availableProviders}

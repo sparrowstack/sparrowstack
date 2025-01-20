@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { Provider, ProviderName } from '../../../../../Agent';
 import { AgentLogger } from '../../../../../AgentLogger';
-import { getAvailableProviders } from './getAvailableProviders';
+import { getAvailableProviders } from '../utils/getAvailableProviders';
 
 interface IOptions {
 	logger: AgentLogger;
@@ -9,7 +9,6 @@ interface IOptions {
 }
 
 export const validateIsValidProvider = ({ logger, providerName }: IOptions) => {
-	// Note that this is not the same as the Provider enum
 	const availableProviders = getAvailableProviders();
 	const errorTemplate = chalk.red(`
 
@@ -19,7 +18,7 @@ Available Providers:
 ${availableProviders}
 
 Example:
-bun start:interactive --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
+bun start:interactiveTerminal --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
 
 Note: If the provider is not provided, the default Provider '${Provider.Anthropic}' will be used.
 

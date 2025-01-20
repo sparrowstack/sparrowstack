@@ -1,0 +1,1 @@
+export { getCommandLineArgs } from './getCommandLineArgs';

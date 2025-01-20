@@ -8,16 +8,16 @@ enum ApiKeys {
 
 interface IOptions {
 	apiKey: string | undefined;
-	provider: string;
+	providerName: string;
 	logger: AgentLogger;
 }
 
-export const validateApiKey = ({ apiKey, provider, logger }: IOptions) => {
-	const apiKeyName = ApiKeys[provider as keyof typeof ApiKeys];
+export const validateApiKey = ({ apiKey, providerName, logger }: IOptions) => {
+	const apiKeyName = ApiKeys[providerName as keyof typeof ApiKeys];
 	const errorTemplate = chalk.red(
-		`No API key found for Provider ${provider}. 
+		`No API key found for Provider ${providerName}. 
 
-Please add your ${provider} API key to '${apiKeyName}' in your '.env' file.`,
+Please add your ${providerName} API key to '${apiKeyName}' in your '.env' file.`,
 	);
 
 	if (!apiKey) {
