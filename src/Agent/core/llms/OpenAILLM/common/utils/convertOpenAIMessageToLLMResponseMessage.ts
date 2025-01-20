@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import { getChoiceParams } from './getChoiceParams';
-import type { ILLMResponseMessage } from '../../../../../common/interfaces';
+import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import { getChoiceParams } from '@Agent/core/llms/OpenAILLM/common/utils/getChoiceParams';
 
 export const convertOpenAIMessageToLLMResponseMessage = ({
 	message,

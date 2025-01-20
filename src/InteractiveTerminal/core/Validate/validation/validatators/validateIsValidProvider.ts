@@ -1,6 +1,6 @@
-import { ProviderName } from '../../../../../Agent';
-import { AgentLogger } from '../../../../../AgentLogger';
-import { isValidProviderErrorTemplate } from '../errorTemplates';
+import { ProviderName } from '@Agent';
+import { AgentLogger } from '@AgentLogger';
+import { isValidProviderErrorTemplate } from '@InteractiveTerminal/core/Validate/validation/errorTemplates';
 
 interface IOptions {
 	logger: AgentLogger;

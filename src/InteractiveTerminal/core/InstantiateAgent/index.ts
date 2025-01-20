@@ -1,1 +1,1 @@
-export { InstantiateAgent } from './InstantiateAgent';
+export { InstantiateAgent } from '@InteractiveTerminal/core/InstantiateAgent/InstantiateAgent';

@@ -1,4 +1,4 @@
-export { printHeader } from './printHeader';
-export { validateInput } from './validateInput';
-export { printAgentResponse } from './printAgentResponse';
-export { exitProcessIfApplicable } from './exitProcessIfApplicable';
+export { printHeader } from '@InteractiveTerminal/core/InteractiveSession/common/utils/printHeader';
+export { validateInput } from '@InteractiveTerminal/core/InteractiveSession/common/utils/validateInput';
+export { printAgentResponse } from '@InteractiveTerminal/core/InteractiveSession/common/utils/printAgentResponse';
+export { exitProcessIfApplicable } from '@InteractiveTerminal/core/InteractiveSession/common/utils/exitProcessIfApplicable';

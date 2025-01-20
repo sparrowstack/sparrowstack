@@ -1,11 +1,11 @@
-import { AgentLogger } from '../../../../../AgentLogger';
-import type { ICommandLineArgs } from '../../../../common/interfaces';
+import { AgentLogger } from '@AgentLogger';
+import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 
 import {
 	validateIsValidProvider,
 	validateValidSystemPrompt,
 	validateBothProviderAndModelProvided,
-} from '../../validation/validatators';
+} from '@InteractiveTerminal/core/Validate/validation/validatators';
 
 interface IOptions {
 	logger: AgentLogger;

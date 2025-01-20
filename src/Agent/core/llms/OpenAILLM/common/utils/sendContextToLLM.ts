@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
-import { Role } from '../../../../../common/enums';
-import { BaseLLM } from '../../../BaseLLM';
-import { convertOpenAIMessageToLLMResponseMessage } from './convertOpenAIMessageToLLMResponseMessage';
+import { Role } from '@Agent/common/enums';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { convertOpenAIMessageToLLMResponseMessage } from '@Agent/core/llms/OpenAILLM/common/utils/convertOpenAIMessageToLLMResponseMessage';
 
 interface IOptions {
 	llm: BaseLLM;

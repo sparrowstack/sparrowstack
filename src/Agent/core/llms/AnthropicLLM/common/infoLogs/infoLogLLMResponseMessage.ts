@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import { AgentLogger } from '../../../../../../AgentLogger';
-import type { ILLMResponseMessage } from '../../../../../common/interfaces';
+import { AgentLogger } from '@AgentLogger';
+import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 
 interface IOptions {
 	logger: AgentLogger;

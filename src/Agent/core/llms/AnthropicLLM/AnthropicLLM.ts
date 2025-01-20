@@ -1,10 +1,11 @@
-import { BaseLLM } from '../BaseLLM';
-import { sendMessage } from './core';
+import { AgentLogger } from '@AgentLogger';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { Provider, ProviderName } from '../../../common/enums';
-import { SystemPrompts, SystemPromptName } from '../../SystemPrompts';
-import { AgentLogger } from '../../../../AgentLogger';
-import type { ILLMResponseMessage } from '../../../common/interfaces';
+import { Provider } from '@Agent/common/enums';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { ProviderName } from '@Agent/common/constants';
+import { sendMessage } from '@Agent/core/llms/AnthropicLLM/core';
+import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import { SystemPrompts, SystemPromptName } from '@Agent/core/SystemPrompts';
 
 interface IContructorOptions {
 	apiKey: string;

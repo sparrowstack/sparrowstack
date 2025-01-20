@@ -1,5 +1,5 @@
-import { BaseLLM } from '../../../BaseLLM';
-import { Role } from '../../../../../common/enums';
+import { Role } from '@Agent/common/enums';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM';
 
 interface IOptions {
 	llm: BaseLLM;

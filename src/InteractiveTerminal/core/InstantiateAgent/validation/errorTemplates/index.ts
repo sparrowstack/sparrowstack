@@ -1,1 +1,1 @@
-export { apiKeyErrorTemplate } from './apiKeyErrorTemplate';
+export { apiKeyErrorTemplate } from '@InteractiveTerminal/core/InstantiateAgent/validation/errorTemplates/apiKeyErrorTemplate';

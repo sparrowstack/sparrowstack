@@ -1,5 +1,5 @@
-import { AgentLogger } from '../../../../../AgentLogger';
-import { apiKeyErrorTemplate } from '../errorTemplates';
+import { AgentLogger } from '@AgentLogger';
+import { apiKeyErrorTemplate } from '@InteractiveTerminal/core/InstantiateAgent/validation/errorTemplates';
 
 interface IOptions {
 	apiKey: string | undefined;

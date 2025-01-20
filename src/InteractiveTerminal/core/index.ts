@@ -1,3 +1,3 @@
-export { Validate } from './Validate';
-export { InstantiateAgent } from './InstantiateAgent';
-export { InteractiveSession } from './InteractiveSession';
+export { Validate } from '@InteractiveTerminal/core/Validate';
+export { InstantiateAgent } from '@InteractiveTerminal/core/InstantiateAgent';
+export { InteractiveSession } from '@InteractiveTerminal/core/InteractiveSession';

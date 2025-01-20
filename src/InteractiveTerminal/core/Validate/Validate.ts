@@ -1,6 +1,6 @@
-import { AgentLogger } from '../../../AgentLogger';
-import { validateCommandLineArgs } from './classMethods';
-import type { ICommandLineArgs } from '../../common/interfaces';
+import { AgentLogger } from '@AgentLogger/AgentLogger';
+import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
+import { validateCommandLineArgs } from '@InteractiveTerminal/core/Validate/classMethods';
 
 export class Validate {
 	static commandLineArgs({

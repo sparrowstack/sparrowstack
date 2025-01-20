@@ -1,6 +1,6 @@
-import { BaseLLM } from '../../../BaseLLM';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { convertAnthropicMessageToLLMResponseMessage } from './convertAnthropicMessageToLLMResponseMessage';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { convertAnthropicMessageToLLMResponseMessage } from '@Agent/core/llms/AnthropicLLM/common/utils/convertAnthropicMessageToLLMResponseMessage';
 
 interface IOptions {
 	llm: BaseLLM;

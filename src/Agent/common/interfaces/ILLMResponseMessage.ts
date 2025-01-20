@@ -1,4 +1,4 @@
-import type { LLMResponseMessageRaw } from '../types';
+import type { LLMResponseMessageRaw } from '@Agent/common/types';
 
 export interface IUsage {
 	inputTokens: number | null;

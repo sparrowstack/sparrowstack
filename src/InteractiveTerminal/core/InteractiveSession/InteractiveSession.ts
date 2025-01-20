@@ -1,11 +1,11 @@
 import * as readline from 'readline';
-import { Agent, BaseLLM } from '../../../Agent';
+import { Agent, BaseLLM } from '@Agent';
 import {
 	printHeader,
 	validateInput,
 	printAgentResponse,
 	exitProcessIfApplicable,
-} from './common/utils';
+} from '@InteractiveTerminal/core/InteractiveSession/common/utils';
 
 interface IOptions {
 	agent: Agent;

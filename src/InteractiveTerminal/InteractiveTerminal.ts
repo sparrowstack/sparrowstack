@@ -1,8 +1,12 @@
-import { Agent } from '../Agent';
-import { AgentLogger } from '../AgentLogger';
-import { getCommandLineArgs } from './common/utils';
-import type { ICommandLineArgs } from './common/interfaces';
-import { Validate, InteractiveSession, InstantiateAgent } from './core';
+import { Agent } from '@Agent/Agent';
+import { AgentLogger } from '@AgentLogger/AgentLogger';
+import { getCommandLineArgs } from '@InteractiveTerminal/common/utils';
+import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
+import {
+	Validate,
+	InteractiveSession,
+	InstantiateAgent,
+} from '@InteractiveTerminal/core';
 
 interface IConstructorOptions {
 	agent?: Agent;

@@ -1,4 +1,4 @@
-import { InteractiveTerminal } from '../src/InteractiveTerminal';
+import { InteractiveTerminal } from '@InteractiveTerminal';
 
 const interactiveTerminal = new InteractiveTerminal();
 

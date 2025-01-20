@@ -1,4 +1,4 @@
-import { LogLevel } from '../enums';
+import { LogLevel } from '@AgentLogger/common/enums';
 
 interface IOptions {
 	level?: string;

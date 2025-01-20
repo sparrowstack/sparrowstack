@@ -1,9 +1,9 @@
-import { Provider } from '../../common/enums';
-import { AgentLogger } from '../../../AgentLogger';
+import { AgentLogger } from '@AgentLogger';
+import { Provider } from '@Agent/common/enums';
 import type {
 	IChatMessage,
 	ILLMResponseMessage,
-} from '../../common/interfaces';
+} from '@Agent/common/interfaces';
 
 export abstract class BaseLLM {
 	protected messages: IChatMessage[] = [];

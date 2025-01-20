@@ -1,12 +1,15 @@
 import OpenAI from 'openai';
-import { BaseLLM } from '../../BaseLLM';
-import { AgentLogger } from '../../../../../AgentLogger';
-import { infoLogContext, infoLogLLMResponseMessage } from '../common/infoLogs';
+import { AgentLogger } from '@AgentLogger';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import {
+	infoLogContextWindow,
+	infoLogLLMResponseMessage,
+} from '@Agent/core/llms/OpenAILLM/common/infoLogs';
 import {
 	sendContextToLLM,
 	addUserMessageToMessages,
 	addAssistantMessageToMessages,
-} from '../common/utils';
+} from '@Agent/core/llms/OpenAILLM/common/utils';
 
 interface IOptions {
 	llm: BaseLLM;
@@ -23,7 +26,7 @@ export const sendMessage = async ({
 }: IOptions) => {
 	const messages = addUserMessageToMessages({ llm, message });
 
-	infoLogContext({
+	infoLogContextWindow({
 		messages,
 		logger: logger,
 		systemPrompt: llm.systemPrompt,

@@ -1,5 +1,5 @@
-import { Default } from './prompts/Default';
-import { SoftwareEngineerTypeScript } from './prompts/SoftwareEngineerTypeScript';
+import { Default } from '@Agent/core/SystemPrompts/prompts/Default';
+import { SoftwareEngineerTypeScript } from '@Agent/core/SystemPrompts/prompts/SoftwareEngineerTypeScript';
 
 interface ISystemPrompts {
 	Default: string;
@@ -11,4 +11,3 @@ export const SystemPrompts: ISystemPrompts = {
 	Default,
 	SoftwareEngineerTypeScript,
 };
-

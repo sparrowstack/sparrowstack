@@ -1,5 +1,5 @@
-import { LogLevel } from '../enums';
-import { LogLevelColors } from '../constants';
+import { LogLevel } from '@AgentLogger/common/enums';
+import { LogLevelColors } from '@AgentLogger/common/constants';
 
 interface IOptions {
 	message: any;

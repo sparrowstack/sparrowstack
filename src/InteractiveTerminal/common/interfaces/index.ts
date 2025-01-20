@@ -1,1 +1,1 @@
-export type { ICommandLineArgs } from './ICommandLineArgs';
+export type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces/ICommandLineArgs';

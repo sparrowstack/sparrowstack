@@ -1,1 +1,1 @@
-export { getCommandLineArgs } from './getCommandLineArgs';
+export { getCommandLineArgs } from '@InteractiveTerminal/common/utils/getCommandLineArgs';

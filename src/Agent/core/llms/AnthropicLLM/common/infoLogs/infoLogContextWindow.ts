@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import { AgentLogger } from '../../../../../../AgentLogger';
-import type { IChatMessage } from '../../../../../common/interfaces';
+import { AgentLogger } from '@AgentLogger';
+import type { IChatMessage } from '@Agent/common/interfaces';
 
 interface IOptions {
 	logger: AgentLogger;
@@ -8,10 +8,10 @@ interface IOptions {
 	messages: IChatMessage[];
 }
 
-export const infoLogContext = ({
+export const infoLogContextWindow = ({
 	logger,
-	systemPrompt,
 	messages,
+	systemPrompt,
 }: IOptions) => {
 	console.log('');
 

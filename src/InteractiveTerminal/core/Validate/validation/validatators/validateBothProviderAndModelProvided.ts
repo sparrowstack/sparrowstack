@@ -1,5 +1,5 @@
-import { AgentLogger } from '../../../../../AgentLogger';
-import { bothProviderAndModelProvidedErrorTemplate } from '../errorTemplates';
+import { AgentLogger } from '@AgentLogger';
+import { bothProviderAndModelProvidedErrorTemplate } from '@InteractiveTerminal/core/Validate/validation/errorTemplates';
 
 interface IOptions {
 	modelName: string;

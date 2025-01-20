@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import type { BaseLLM } from '../../../../../Agent';
+import type { BaseLLM } from '@Agent';
 
 interface IOptions {
 	llm: BaseLLM;

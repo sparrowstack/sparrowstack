@@ -1,6 +1,6 @@
-import { BaseLLM } from './core/llms';
-import { getLLM } from './common/utils';
-import { Provider } from './common/enums/Provider';
+import { BaseLLM } from '@Agent/core/llms';
+import { getLLM } from '@Agent/common/utils';
+import { Provider } from '@Agent/common/enums/Provider';
 
 interface IConstructorOptions {
 	model: string;

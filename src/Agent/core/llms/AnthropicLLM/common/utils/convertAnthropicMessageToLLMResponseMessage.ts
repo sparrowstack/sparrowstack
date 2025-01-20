@@ -1,6 +1,6 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import { getTextContent } from './getTextContent';
-import type { ILLMResponseMessage } from '../../../../../common/interfaces';
+import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import { getTextContent } from '@Agent/core/llms/AnthropicLLM/common/utils/getTextContent';
 
 export const convertAnthropicMessageToLLMResponseMessage = ({
 	message,

@@ -1,4 +1,4 @@
-import { Provider } from './Provider';
+import { Provider } from '@Agent/common/enums/Provider';
 
 // Reverse mapping of Provider to ProviderName
 export const ProviderName: {

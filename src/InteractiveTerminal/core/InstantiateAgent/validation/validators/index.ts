@@ -1,1 +1,1 @@
-export { validateApiKey } from './validateApiKey';
+export { validateApiKey } from '@InteractiveTerminal/core/InstantiateAgent/validation/validators/validateApiKey';

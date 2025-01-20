@@ -1,1 +1,1 @@
-export { LogLevelColors } from './LogLevelColors';
+export { LogLevelColors } from '@AgentLogger/common/constants/LogLevelColors';

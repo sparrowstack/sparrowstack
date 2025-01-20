@@ -1,7 +1,4 @@
-import {
-	Provider,
-	ProviderName,
-} from '../../../../../../../Agent/common/enums';
+import { Provider, ProviderName } from '@Agent';
 
 interface IOptions {
 	providerName: string;

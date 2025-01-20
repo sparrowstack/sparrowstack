@@ -1,5 +1,5 @@
-import { Provider } from '../enums';
-import { AnthropicLLM, OpenAILLM } from '../../core/llms';
+import { Provider } from '@Agent/common/enums';
+import { AnthropicLLM, OpenAILLM } from '@Agent/core/llms';
 
 const providersLLM = {
 	[Provider.OpenAI]: OpenAILLM,

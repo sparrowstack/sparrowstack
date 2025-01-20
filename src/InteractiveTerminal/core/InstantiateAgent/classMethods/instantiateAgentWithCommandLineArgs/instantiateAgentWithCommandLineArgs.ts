@@ -1,9 +1,9 @@
-import { AgentLogger } from '../../../../../AgentLogger';
-import { getApiKey } from './common/utils/getApiKey';
-import { getProvider } from './common/utils/getProvider';
-import type { ICommandLineArgs } from '../../../../common/interfaces';
-import { validateApiKey } from '../../validation/validators/validateApiKey';
-import { Agent, Provider, Model, SystemPrompts } from '../../../../../Agent';
+import { AgentLogger } from '@AgentLogger';
+import { Agent, Provider, Model, SystemPrompts } from '@Agent';
+import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
+import { validateApiKey } from '@InteractiveTerminal/core/InstantiateAgent/validation/validators/validateApiKey';
+import { getApiKey } from '@InteractiveTerminal/core/InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getApiKey';
+import { getProvider } from '@InteractiveTerminal/core/InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getProvider';
 
 interface IOptions {
 	logger: AgentLogger;

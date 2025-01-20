@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { getAvailableSystemPrompts } from '../utils/getAvailableSystemPrompts';
+import { getAvailableSystemPrompts } from '@InteractiveTerminal/core/Validate/validation/utils';
 
 interface IOptions {
 	systemPromptName: string;

@@ -1,2 +1,2 @@
-export { SystemPrompts } from './SystemPrompts';
-export { SystemPromptName } from './SystemPromptNames';
+export { SystemPrompts } from '@Agent/core/SystemPrompts/SystemPrompts';
+export { SystemPromptName } from '@Agent/core/SystemPrompts/SystemPromptNames';

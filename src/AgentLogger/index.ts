@@ -1,1 +1,1 @@
-export { AgentLogger } from './AgentLogger';
+export { AgentLogger } from '@AgentLogger/AgentLogger';
