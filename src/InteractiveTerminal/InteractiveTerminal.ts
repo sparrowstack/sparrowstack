@@ -4,8 +4,8 @@ import { getCommandLineArgs } from '@InteractiveTerminal/common/utils';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import {
 	Validate,
-	InteractiveSession,
 	InstantiateAgent,
+	InteractiveSession,
 } from '@InteractiveTerminal/core';
 
 interface IConstructorOptions {

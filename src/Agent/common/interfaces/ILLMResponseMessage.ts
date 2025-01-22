@@ -1,3 +1,4 @@
+import { Anthropic } from '@anthropic-ai/sdk';
 import type { LLMResponseMessageRaw } from '@Agent/common/types';
 
 export interface IUsage {
@@ -25,14 +26,7 @@ export interface ILLMResponseMessage {
 	usage: IUsage;
 
 	// Tool usage (function calling)
-	toolCalls?: Array<{
-		id: string;
-		type: 'function';
-		function: {
-			name: string;
-			arguments: string;
-		};
-	}>;
+	toolCalls?: Anthropic.Messages.ToolUseBlock[];
 
 	// Additional metadata
 	created?: number; // Unix timestamp

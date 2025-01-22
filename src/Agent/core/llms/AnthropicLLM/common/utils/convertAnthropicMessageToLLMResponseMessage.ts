@@ -1,6 +1,9 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import type { ILLMResponseMessage } from '@Agent/common/interfaces';
-import { getTextContent } from '@Agent/core/llms/AnthropicLLM/common/utils/getTextContent';
+import {
+	getToolCalls,
+	getTextContent,
+} from '@Agent/core/llms/AnthropicLLM/common/utils';
 
 export const convertAnthropicMessageToLLMResponseMessage = ({
 	message,
@@ -17,7 +20,11 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 		usage,
 	} = message;
 	const { input_tokens: inputTokens, output_tokens: outputTokens } = usage;
+	// TODO: Only supports fetching single text content, the first found..
 	const { text: contentText, type: contentType } = getTextContent({
+		message,
+	});
+	const toolCalls = getToolCalls({
 		message,
 	});
 
@@ -34,12 +41,15 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 			inputTokens,
 			outputTokens,
 		},
+		toolCalls,
 		rawMessage: message,
 	};
 
 	return llmResponseMessage;
 };
 
+// Anthropic Message: Standard
+// -------------------------------
 // {
 //     "id": "msg_019LZDahyujLagiLNC9AV8oh",
 //     "type": "message",
@@ -58,5 +68,36 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 //       "cache_creation_input_tokens": 0,
 //       "cache_read_input_tokens": 0,
 //       "output_tokens": 120
+//     }
+//   }
+
+// Anthropic Message: Tool Call
+// -------------------------------
+// {
+//     "id": "msg_01XfCptmFeKYUGU5BPj4CcFg",
+//     "type": "message",
+//     "role": "assistant",
+//     "model": "claude-3-5-sonnet-20241022",
+//     "content": [
+//       {
+//         "type": "text",
+//         "text": "I'll help you get the directory structure of the current working project using the `get_directory_structure` function."
+//       },
+//       {
+//         "type": "tool_use",
+//         "id": "toolu_01Fu8qw648A2ffFvXa8eFbkn",
+//         "name": "get_directory_structure",
+//         "input": {
+//           "directoryStructure": "."
+//         }
+//       }
+//     ],
+//     "stop_reason": "tool_use",
+//     "stop_sequence": null,
+//     "usage": {
+//       "input_tokens": 1209,
+//       "cache_creation_input_tokens": 0,
+//       "cache_read_input_tokens": 0,
+//       "output_tokens": 82
 //     }
 //   }

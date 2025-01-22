@@ -1,10 +1,11 @@
 import { InteractiveTerminal } from '@InteractiveTerminal';
-import { Agent, Provider, Model, SystemPrompts } from '@Agent';
+import { Agent, Provider, Model, SystemPrompts, Tools } from '@Agent';
 
 // Configuration
 // --------------------------------
 const provider = Provider.Anthropic;
 const model = Model.Anthropic.Claude35Sonnet;
+const tools = [Tools.getDirectoryStructure];
 const systemPrompt = SystemPrompts.SoftwareEngineerTypeScript;
 const apiKey = process.env['ANTHROPIC_API_KEY'] as string;
 
@@ -16,6 +17,7 @@ const apiKey = process.env['ANTHROPIC_API_KEY'] as string;
 
 const agent = new Agent({
 	model,
+	tools,
 	apiKey,
 	provider,
 	systemPrompt,

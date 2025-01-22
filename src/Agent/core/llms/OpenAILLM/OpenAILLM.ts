@@ -7,10 +7,12 @@ import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/OpenAILLM/classMethods';
 import { SystemPrompts, SystemPromptName } from '@Agent/core/SystemPrompts';
 
+// TODO Abstract common interface
 interface IContructorOptions {
 	apiKey: string;
 	model: string;
 	systemPrompt?: string;
+	tools?: any[];
 }
 
 export class OpenAILLM extends BaseLLM {
@@ -18,18 +20,23 @@ export class OpenAILLM extends BaseLLM {
 	maxTokens: number;
 	systemPrompt: string;
 	systemPromptName: string;
+	tools?: any[];
 	openai: OpenAI;
 	provider = Provider.OpenAI;
 	providerName = ProviderName[Provider.OpenAI];
 	logger = new AgentLogger('OpenAILLM');
 
-	constructor({ model, apiKey, systemPrompt }: IContructorOptions) {
+	constructor({ model, apiKey, systemPrompt, tools }: IContructorOptions) {
 		super();
 
+		// LLM
 		this.model = model;
-		this.maxTokens = 1024;
 		this.systemPrompt = systemPrompt || SystemPrompts.Default;
 		this.systemPromptName = SystemPromptName[this.systemPrompt];
+		this.tools = tools;
+
+		// System
+		this.maxTokens = 1024;
 
 		this.openai = new OpenAI({
 			apiKey,

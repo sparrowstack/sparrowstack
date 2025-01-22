@@ -13,6 +13,7 @@ export const sendContextToLLM = async ({ llm, anthropic }: IOptions) => {
 		model: llm.model,
 		max_tokens: llm.maxTokens,
 		system: llm.systemPrompt,
+		tools: llm.tools,
 	});
 
 	const responseMessage = convertAnthropicMessageToLLMResponseMessage({

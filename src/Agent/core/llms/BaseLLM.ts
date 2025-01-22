@@ -14,6 +14,8 @@ export abstract class BaseLLM {
 	abstract readonly systemPrompt: string;
 	abstract readonly systemPromptName: string;
 	abstract readonly logger: AgentLogger;
+	abstract readonly tools?: any[];
+	abstract readonly toolCalls?: Record<string, CallableFunction>;
 
 	constructor() {}
 

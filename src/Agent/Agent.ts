@@ -7,6 +7,7 @@ interface IConstructorOptions {
 	apiKey: string;
 	provider: Provider;
 	systemPrompt: string;
+	tools?: any[];
 }
 
 export class Agent {
@@ -14,12 +15,13 @@ export class Agent {
 
 	constructor({
 		model,
+		tools,
 		apiKey,
 		provider,
 		systemPrompt,
 	}: IConstructorOptions) {
 		const llm = getLLM({ provider });
 
-		this.llm = new llm({ model, apiKey, systemPrompt });
+		this.llm = new llm({ model, apiKey, systemPrompt, tools });
 	}
 }
