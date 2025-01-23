@@ -5,8 +5,8 @@ import { Provider, ProviderName } from '@Agent';
 import { SystemPrompts, SystemPromptName } from '@SystemPrompts';
 import type {
 	IChatMessage,
-	ILLMResponseMessage,
-} from '@Agent/common/interfaces';
+	IModelResponse,
+} from '@Agent/core/llms/BaseLLM/common/interfaces';
 
 interface IConstructorOptions {
 	model: string;
@@ -83,5 +83,5 @@ export abstract class BaseLLM {
 		message,
 	}: {
 		message: string;
-	}): Promise<ILLMResponseMessage>;
+	}): Promise<IModelResponse>;
 }

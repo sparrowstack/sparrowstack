@@ -5,7 +5,7 @@ import {
 	validateInput,
 	printAgentResponse,
 	exitProcessIfApplicable,
-} from '@InteractiveSession/common/utils';
+} from '@InteractiveTerminal/core/InteractiveSession/common/utils';
 
 interface IParams {
 	agent: Agent;
@@ -38,11 +38,11 @@ export class InteractiveSession {
 
 				exitProcessIfApplicable({ input: message });
 
-				const { contentText } = await this.llm.sendMessage({
+				const { text } = await this.llm.sendMessage({
 					message,
 				});
 
-				printAgentResponse({ response: contentText });
+				printAgentResponse({ response: text });
 
 				prompt();
 			});

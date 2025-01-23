@@ -5,6 +5,7 @@ interface IParams {
 	message: Anthropic.Messages.Message;
 }
 
+// TODO: getTextFromModelResponse
 export const getTextContent = ({ message }: IParams) => {
 	let text = '';
 	let type = '';

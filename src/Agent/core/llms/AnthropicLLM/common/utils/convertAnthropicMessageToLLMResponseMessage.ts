@@ -1,7 +1,7 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
 import {
-	getToolCalls,
+	// getToolCalls,
 	getTextContent,
 } from '@Agent/core/llms/AnthropicLLM/common/utils';
 
@@ -9,7 +9,7 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 	message,
 }: {
 	message: Anthropic.Messages.Message;
-}): ILLMResponseMessage => {
+}): IModelResponse => {
 	const {
 		id,
 		role,
@@ -21,29 +21,27 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 	} = message;
 	const { input_tokens: inputTokens, output_tokens: outputTokens } = usage;
 	// TODO: Only supports fetching single text content, the first found..
-	// call getFirstTextContent
-	const { text: contentText, type: contentType } = getTextContent({
+	// call getModelResponseText
+	const { text } = getTextContent({
 		message,
 	});
-	const toolCalls = getToolCalls({
-		message,
-	});
+	// const toolCalls = getToolCalls({
+	// 	message,
+	// });
 
-	const llmResponseMessage: ILLMResponseMessage = {
+	const llmResponseMessage: IModelResponse = {
 		id,
 		role,
 		model,
 		type,
-		// TODO: Just `text`
-		contentType,
-		contentText,
+		text,
 		stopReason,
 		stopSequence,
 		usage: {
 			inputTokens,
 			outputTokens,
 		},
-		toolCalls,
+		// toolCalls,
 		rawMessage: message,
 	};
 

@@ -37,7 +37,7 @@
 // 	});
 
 // 	// Log LLM Response
-// 	infoLogLLMResponseMessage({
+// 	infoLogModelResponse({
 // 		logger,
 // 		message: responseMessage,
 // 	});

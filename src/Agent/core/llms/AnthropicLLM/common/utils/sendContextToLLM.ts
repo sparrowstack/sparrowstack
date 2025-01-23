@@ -7,6 +7,7 @@ interface IParams {
 	anthropic: Anthropic;
 }
 
+// TODO: executeLLMRequest
 export const sendContextToLLM = async ({ llm, anthropic }: IParams) => {
 	const anthropicResponseMessage = await anthropic.messages.create({
 		messages: llm.getMessages() as Anthropic.MessageParam[],

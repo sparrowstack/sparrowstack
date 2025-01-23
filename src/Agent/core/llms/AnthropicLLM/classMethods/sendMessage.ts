@@ -6,7 +6,7 @@ import { sendContextToLLM } from '@Agent/core/llms/AnthropicLLM/common/utils';
 import {
 	// infoLogMessages,
 	infoLogContextWindow,
-	infoLogLLMResponseMessage,
+	infoLogModelResponse,
 } from '@Agent/core/llms/common/infoLogs';
 import {
 	// addToolResultsToMessages,
@@ -40,14 +40,14 @@ export const sendMessage = async ({
 		anthropic,
 	});
 
-	infoLogLLMResponseMessage({
+	infoLogModelResponse({
 		logger,
 		message: responseMessage,
 	});
 
 	addAssistantMessageToMessages({
 		llm,
-		message: responseMessage.contentText,
+		message: responseMessage.text,
 	});
 
 	return responseMessage;

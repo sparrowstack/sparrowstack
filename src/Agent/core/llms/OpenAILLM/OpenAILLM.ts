@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import type { IToolParams } from '@Tool';
 import { Provider } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/OpenAILLM/classMethods';
 
 interface IContructorOptions {
@@ -30,7 +30,7 @@ export class OpenAILLM extends BaseLLM {
 		message,
 	}: {
 		message: string;
-	}): Promise<ILLMResponseMessage> {
+	}): Promise<IModelResponse> {
 		return await sendMessage({
 			message,
 			llm: this,

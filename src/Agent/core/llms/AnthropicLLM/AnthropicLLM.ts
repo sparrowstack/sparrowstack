@@ -2,8 +2,8 @@ import type { IToolParams } from '@Tool';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { Provider } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/AnthropicLLM/classMethods';
+import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
 
 interface IContructorOptions {
 	model: string;
@@ -30,7 +30,7 @@ export class AnthropicLLM extends BaseLLM {
 		message,
 	}: {
 		message: string;
-	}): Promise<ILLMResponseMessage> {
+	}): Promise<IModelResponse> {
 		const responseMessage = await sendMessage({
 			message,
 			llm: this,

@@ -1,40 +1,39 @@
 import OpenAI from 'openai';
-import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
 import { getChoiceParams } from '@Agent/core/llms/OpenAILLM/common/utils/getChoiceParams';
 
 export const convertOpenAIMessageToLLMResponseMessage = ({
 	message,
 }: {
 	message: OpenAI.ChatCompletion;
-}): ILLMResponseMessage => {
+}): IModelResponse => {
 	const { id, model, usage } = message;
 	const { prompt_tokens: inputTokens, completion_tokens: outputTokens } =
 		usage || {};
 	const {
 		role,
-		content: contentText,
+		content: text,
 		finish_reason: stopReason,
 	} = getChoiceParams({
 		message,
 		index: 0,
 	});
 
-	const llmResponseMessage = {
+	const modelResponse: IModelResponse = {
 		id,
 		role,
 		model,
 		type: 'message', // TODO: Find way to dynamically update
-		contentType: 'text', // TODO: Find way to dynamically update
-		contentText,
+		text: text || '',
 		stopReason,
 		usage: {
-			inputTokens,
-			outputTokens,
+			inputTokens: inputTokens ?? null,
+			outputTokens: outputTokens ?? null,
 		},
 		rawMessage: message,
-	} as ILLMResponseMessage;
+	};
 
-	return llmResponseMessage as ILLMResponseMessage;
+	return modelResponse;
 };
 
 // OpenAI::ResponseMessage {

@@ -4,7 +4,7 @@ import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 import { sendContextToLLM } from '@Agent/core/llms/OpenAILLM/common/utils';
 import {
 	infoLogContextWindow,
-	infoLogLLMResponseMessage,
+	infoLogModelResponse,
 } from '@Agent/core/llms/common/infoLogs';
 import {
 	addUserMessageToMessages,
@@ -37,14 +37,14 @@ export const sendMessage = async ({
 		openai,
 	});
 
-	infoLogLLMResponseMessage({
+	infoLogModelResponse({
 		logger,
 		message: responseMessage,
 	});
 
 	addAssistantMessageToMessages({
 		llm,
-		message: responseMessage.contentText,
+		message: responseMessage.text,
 	});
 
 	return responseMessage;

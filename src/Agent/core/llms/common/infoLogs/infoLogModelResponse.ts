@@ -1,19 +1,19 @@
 import chalk from 'chalk';
 import { Logger } from '@Logger';
-import type { ILLMResponseMessage } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
 
 interface IParams {
 	logger: Logger;
-	message: ILLMResponseMessage;
+	message: IModelResponse;
 }
 
-export const infoLogLLMResponseMessage = ({ logger, message }: IParams) => {
+export const infoLogModelResponse = ({ logger, message }: IParams) => {
 	console.log('');
 
 	logger.info(
 		chalk.dim(`
 ------------------------------------ 
-LLM Response Message:
+Model Response:
 ------------------------------------
 ${JSON.stringify(message, null, 2)}
 `),
