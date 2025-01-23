@@ -1,7 +1,7 @@
-import { LogLevel } from '@AgentLogger/common/enums';
-import { log, getLogLevel } from '@AgentLogger/common/utils';
+import { LogLevel } from '@root/src/Logger/common/enums';
+import { log, getLogLevel } from '@root/src/Logger/common/utils';
 
-export class AgentLogger {
+export class Logger {
 	private context?: string;
 	private logLevel: LogLevel;
 

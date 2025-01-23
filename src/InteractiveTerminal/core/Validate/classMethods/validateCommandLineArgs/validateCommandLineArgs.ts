@@ -1,4 +1,4 @@
-import { AgentLogger } from '@AgentLogger';
+import { Logger } from '@root/src/Logger';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 
 import {
@@ -8,7 +8,7 @@ import {
 } from '@Validate/validation/validatators';
 
 interface IParams {
-	logger: AgentLogger;
+	logger: Logger;
 	commandLineArgs: ICommandLineArgs;
 }
 

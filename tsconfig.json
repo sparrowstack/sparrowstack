@@ -32,10 +32,13 @@
 			"@src/*": ["./src/*"],
 			"@Agent": ["./src/Agent"],
 			"@Agent/*": ["./src/Agent/*"],
-			"@AgentLogger": ["./src/AgentLogger"],
-			"@AgentLogger/*": ["./src/AgentLogger/*"],
+			"@Logger": ["./src/Logger"],
+			"@Logger/*": ["./src/Logger/*"],
+			"@Tool": ["./src/Tool"],
+			"@Tool/*": ["./src/Tool/*"],
 			"@InteractiveTerminal": ["./src/InteractiveTerminal"],
 			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"],
+
 			"@InstantiateAgent": [
 				"./src/InteractiveTerminal/core/InstantiateAgent"
 			],
@@ -48,8 +51,6 @@
 			"@InteractiveSession/*": [
 				"./src/InteractiveTerminal/core/InteractiveSession/*"
 			],
-			"@Tool": ["./src/Tool"],
-			"@Tool/*": ["./src/Tool/*"],
 			"@Validate": ["./src/InteractiveTerminal/core/Validate"],
 			"@Validate/*": ["./src/InteractiveTerminal/core/Validate/*"]
 		}

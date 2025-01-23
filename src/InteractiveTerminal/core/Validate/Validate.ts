@@ -1,4 +1,4 @@
-import { AgentLogger } from '@AgentLogger/AgentLogger';
+import { Logger } from '@root/src/Logger/Logger';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import { validateCommandLineArgs } from '@Validate/classMethods';
 
@@ -7,7 +7,7 @@ export class Validate {
 		logger,
 		commandLineArgs,
 	}: {
-		logger: AgentLogger;
+		logger: Logger;
 		commandLineArgs: ICommandLineArgs;
 	}) {
 		return validateCommandLineArgs({ logger, commandLineArgs });

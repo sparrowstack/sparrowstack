@@ -1,4 +1,4 @@
-import { LogLevel } from '@AgentLogger/common/enums';
+import { LogLevel } from '@root/src/Logger/common/enums';
 
 export const LogLevelColors = {
 	[LogLevel.ERROR]: '\x1b[31m', // Red

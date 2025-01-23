@@ -1,10 +1,10 @@
 import { SystemPrompts } from '@Agent';
-import { AgentLogger } from '@AgentLogger';
+import { Logger } from '@root/src/Logger';
 import { isValidSystemPromptErrorTemplate } from '@Validate/validation/errorTemplates';
 
 interface IParams {
 	systemPromptName: string;
-	logger: AgentLogger;
+	logger: Logger;
 }
 
 export const validateValidSystemPrompt = ({

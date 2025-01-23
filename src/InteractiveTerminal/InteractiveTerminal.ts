@@ -1,5 +1,5 @@
 import { Agent } from '@Agent/Agent';
-import { AgentLogger } from '@AgentLogger/AgentLogger';
+import { Logger } from '@root/src/Logger/Logger';
 import { getCommandLineArgs } from '@InteractiveTerminal/common/utils';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import {
@@ -14,7 +14,7 @@ interface IConstructorOptions {
 
 export class InteractiveTerminal {
 	agent: Agent;
-	logger = new AgentLogger('InteractiveTerminal');
+	logger = new Logger('InteractiveTerminal');
 
 	constructor({ agent }: IConstructorOptions = {}) {
 		if (agent) {

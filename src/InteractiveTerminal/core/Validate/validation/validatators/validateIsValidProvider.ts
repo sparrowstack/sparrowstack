@@ -1,9 +1,9 @@
 import { ProviderName } from '@Agent';
-import { AgentLogger } from '@AgentLogger';
+import { Logger } from '@root/src/Logger';
 import { isValidProviderErrorTemplate } from '@Validate/validation/errorTemplates';
 
 interface IParams {
-	logger: AgentLogger;
+	logger: Logger;
 	providerName: string;
 }
 

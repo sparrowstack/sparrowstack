@@ -1,4 +1,4 @@
-import type { AgentLogger } from '@AgentLogger';
+import type { Logger } from '@root/src/Logger';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import { instantiateAgentWithCommandLineArgs } from '@InstantiateAgent/classMethods';
 
@@ -9,7 +9,7 @@ export class InstantiateAgent {
 		logger,
 		commandLineArgs,
 	}: {
-		logger: AgentLogger;
+		logger: Logger;
 		commandLineArgs: ICommandLineArgs;
 	}) {
 		return instantiateAgentWithCommandLineArgs({

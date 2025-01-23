@@ -1,4 +1,4 @@
-import { AgentLogger } from '@AgentLogger';
+import { Logger } from '@root/src/Logger';
 import { Agent, Provider, Model, SystemPrompts } from '@Agent';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import { validateApiKey } from '@InstantiateAgent/validation/validators/validateApiKey';
@@ -6,7 +6,7 @@ import { getApiKey } from '@InstantiateAgent/classMethods/instantiateAgentWithCo
 import { getProvider } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getProvider';
 
 interface IParams {
-	logger: AgentLogger;
+	logger: Logger;
 	commandLineArgs: ICommandLineArgs;
 }
 

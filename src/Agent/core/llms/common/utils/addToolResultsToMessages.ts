@@ -1,6 +1,6 @@
 import { Role } from '@Agent/common/enums';
 import { ContentType } from '@Agent/common/enums';
-import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
 import type { IToolCallResult } from '@Agent/core/Tools/common/interfaces';
 
 interface IToolCallContentResult {

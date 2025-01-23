@@ -1,7 +1,7 @@
 import type { IToolParams } from '@Tool';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { Provider } from '@Agent/common/enums';
-import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
 import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/AnthropicLLM/classMethods';
 

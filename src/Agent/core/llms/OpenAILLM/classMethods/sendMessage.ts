@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import { AgentLogger } from '@AgentLogger';
-import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import { Logger } from '@root/src/Logger';
+import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
 import { sendContextToLLM } from '@Agent/core/llms/OpenAILLM/common/utils';
 import {
 	infoLogContextWindow,
@@ -14,7 +14,7 @@ import {
 interface IParams {
 	llm: BaseLLM;
 	message: string;
-	logger: AgentLogger;
+	logger: Logger;
 	openai: OpenAI;
 }
 

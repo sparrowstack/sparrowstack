@@ -1,6 +1,6 @@
 import { Tool } from '@Tool';
 import type { IToolParams } from '@Tool';
-import { AgentLogger } from '@AgentLogger';
+import { Logger } from '@root/src/Logger';
 import type {
 	IChatMessage,
 	ILLMResponseMessage,
@@ -30,7 +30,7 @@ export abstract class BaseLLM {
 	readonly systemPromptName: string;
 
 	// Utilities
-	readonly logger: AgentLogger;
+	readonly logger: Logger;
 
 	// Tools
 	readonly tools?: Tool[];
@@ -45,7 +45,7 @@ export abstract class BaseLLM {
 		systemPrompt,
 		tools: toolsParams,
 	}: IConstructorOptions) {
-		// Add Base Properties
+		// Base Properties
 		// --------------------------------
 		this.model = model; // e.g. 'gpt-4o'
 		this.provider = provider; // e.g. 'openai'
@@ -53,11 +53,11 @@ export abstract class BaseLLM {
 		this.systemPrompt = systemPrompt || SystemPrompts.Default; // e.g. 'You are a helpful assistant.'
 		this.systemPromptName = SystemPromptName[this.systemPrompt]; // e.g. 'Default | SoftwareEngineerTypeScript'
 
-		// Add Utilities
+		// Utilities
 		// --------------------------------
-		this.logger = new AgentLogger(this.providerName);
+		this.logger = new Logger(this.providerName);
 
-		// Add Tools
+		// Tools
 		// --------------------------------
 		this.tools = toolsParams?.map((toolParams) => new Tool(toolParams));
 
