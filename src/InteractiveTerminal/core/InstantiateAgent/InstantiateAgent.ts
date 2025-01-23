@@ -1,4 +1,4 @@
-import type { Logger } from '@root/src/Logger';
+import type { Logger } from '@Logger';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import { instantiateAgentWithCommandLineArgs } from '@InstantiateAgent/classMethods';
 

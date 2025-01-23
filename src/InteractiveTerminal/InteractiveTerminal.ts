@@ -1,5 +1,5 @@
 import { Agent } from '@Agent/Agent';
-import { Logger } from '@root/src/Logger/Logger';
+import { Logger } from '@Logger/Logger';
 import { getCommandLineArgs } from '@InteractiveTerminal/common/utils';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import {

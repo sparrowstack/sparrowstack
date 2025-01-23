@@ -1,4 +1,4 @@
-import { LogLevel } from '@root/src/Logger/common/enums';
+import { LogLevel } from '@Logger/common/enums';
 
 interface IParams {
 	level?: string;

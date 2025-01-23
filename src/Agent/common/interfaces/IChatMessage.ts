@@ -1,5 +1,5 @@
 import { Role } from '@Agent/common/enums';
-// import type { IToolCallContentResult } from '@root/src/Agent/common/interfaces/IToolCallContentResult';
+// import type { IToolCallContentResult } from '@Agent/common/interfaces/IToolCallContentResult';
 
 export interface IChatMessage {
 	role: Role;

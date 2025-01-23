@@ -1,6 +1,6 @@
 import * as path from 'path';
 import ignore from 'ignore';
-import { findGitRoot } from '@Agent/core/Tools/getDirectoryStucture/common/utils';
+import { findGitRoot } from '@root/src/Tools/getDirectoryStucture/common/utils';
 
 export const filterFiles = ({
 	ig,

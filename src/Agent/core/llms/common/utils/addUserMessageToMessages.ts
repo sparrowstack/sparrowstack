@@ -1,5 +1,5 @@
 import { Role } from '@Agent/common/enums';
-import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 
 interface IParams {
 	llm: BaseLLM;

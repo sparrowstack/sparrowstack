@@ -1,6 +1,8 @@
 // import type { IToolParams } from '@Tool';
+// import { Tools } from '@Tools';
+// import { SystemPrompts, SystemPromptName } from '@SystemPrompts';
+import { Agent, Provider, Model } from '@Agent';
 import { InteractiveTerminal } from '@InteractiveTerminal';
-import { Agent, Provider, Model /*, SystemPrompts*/ } from '@Agent';
 
 // const helloWorldTool: IToolParams = {
 // 	name: 'helloWorld',

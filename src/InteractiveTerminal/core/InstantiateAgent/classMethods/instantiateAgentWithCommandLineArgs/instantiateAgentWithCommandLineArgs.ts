@@ -1,5 +1,6 @@
-import { Logger } from '@root/src/Logger';
-import { Agent, Provider, Model, SystemPrompts } from '@Agent';
+import { Logger } from '@Logger';
+import { SystemPrompts } from '@SystemPrompts';
+import { Agent, Provider, Model } from '@Agent';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import { validateApiKey } from '@InstantiateAgent/validation/validators/validateApiKey';
 import { getApiKey } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getApiKey';

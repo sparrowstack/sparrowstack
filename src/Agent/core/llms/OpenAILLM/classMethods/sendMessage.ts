@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import { Logger } from '@root/src/Logger';
-import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
+import { Logger } from '@Logger';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 import { sendContextToLLM } from '@Agent/core/llms/OpenAILLM/common/utils';
 import {
 	infoLogContextWindow,

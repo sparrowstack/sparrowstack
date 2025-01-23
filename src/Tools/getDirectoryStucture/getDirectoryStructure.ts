@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 import ignore from 'ignore';
 import * as path from 'path';
-import { DirectoryNodeType } from '@Agent/core/Tools/getDirectoryStucture/common/enums';
-import type { IDirectoryNode } from '@Agent/core/Tools/getDirectoryStucture/common/interfaces';
+import { DirectoryNodeType } from '@root/src/Tools/getDirectoryStucture/common/enums';
+import type { IDirectoryNode } from '@root/src/Tools/getDirectoryStucture/common/interfaces';
 import {
-	loadGitignore,
 	filterFiles,
-} from '@Agent/core/Tools/getDirectoryStucture/common/utils';
+	loadGitignore,
+} from '@root/src/Tools/getDirectoryStucture/common/utils';
 
 interface IParams {
 	directoryPath: string;

@@ -1,2 +1,2 @@
-export { log } from '@root/src/Logger/common/utils/log';
-export { getLogLevel } from '@root/src/Logger/common/utils/getLogLevel';
+export { log } from '@Logger/common/utils/log';
+export { getLogLevel } from '@Logger/common/utils/getLogLevel';

@@ -1,4 +1,4 @@
-import { Logger } from '@root/src/Logger';
+import { Logger } from '@Logger';
 import { bothProviderAndModelProvidedErrorTemplate } from '@Validate/validation/errorTemplates';
 
 interface IParams {

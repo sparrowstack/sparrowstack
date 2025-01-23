@@ -1,5 +1,5 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 import { convertAnthropicMessageToLLMResponseMessage } from '@Agent/core/llms/AnthropicLLM/common/utils/convertAnthropicMessageToLLMResponseMessage';
 
 interface IParams {

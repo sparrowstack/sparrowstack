@@ -1,5 +1,5 @@
-import { LogLevel } from '@root/src/Logger/common/enums';
-import { LogLevelColors } from '@root/src/Logger/common/constants';
+import { LogLevel } from '@Logger/common/enums';
+import { LogLevelColors } from '@Logger/common/constants';
 
 interface IParams {
 	message: any;

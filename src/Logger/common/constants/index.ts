@@ -1,1 +1,1 @@
-export { LogLevelColors } from '@root/src/Logger/common/constants/LogLevelColors';
+export { LogLevelColors } from '@Logger/common/constants/LogLevelColors';

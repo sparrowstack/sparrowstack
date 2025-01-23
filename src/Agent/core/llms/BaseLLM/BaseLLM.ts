@@ -1,16 +1,12 @@
 import { Tool } from '@Tool';
 import type { IToolParams } from '@Tool';
-import { Logger } from '@root/src/Logger';
+import { Logger } from '@Logger';
+import { Provider, ProviderName } from '@Agent';
+import { SystemPrompts, SystemPromptName } from '@SystemPrompts';
 import type {
 	IChatMessage,
 	ILLMResponseMessage,
 } from '@Agent/common/interfaces';
-import {
-	Provider,
-	ProviderName,
-	SystemPrompts,
-	SystemPromptName,
-} from '@Agent';
 
 interface IConstructorOptions {
 	model: string;

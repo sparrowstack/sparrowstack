@@ -1,6 +1,6 @@
-import { Logger } from '@root/src/Logger';
+import { Logger } from '@Logger';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { BaseLLM } from '@root/src/Agent/core/llms/BaseLLM/BaseLLM';
+import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 // import { executeToolCalls } from '@Agent/core/llms/common/utils';
 import { sendContextToLLM } from '@Agent/core/llms/AnthropicLLM/common/utils';
 import {

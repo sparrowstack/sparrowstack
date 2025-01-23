@@ -1,5 +1,5 @@
-import { SystemPrompts } from '@Agent';
-import { Logger } from '@root/src/Logger';
+import { Logger } from '@Logger';
+import { SystemPrompts } from '@SystemPrompts';
 import { isValidSystemPromptErrorTemplate } from '@Validate/validation/errorTemplates';
 
 interface IParams {

@@ -36,6 +36,10 @@
 			"@Logger/*": ["./src/Logger/*"],
 			"@Tool": ["./src/Tool"],
 			"@Tool/*": ["./src/Tool/*"],
+			"@Tools": ["./src/Tools"],
+			"@Tools/*": ["./src/Tools/*"],
+			"@SystemPrompts": ["./src/SystemPrompts"],
+			"@SystemPrompts/*": ["./src/SystemPrompts/*"],
 			"@InteractiveTerminal": ["./src/InteractiveTerminal"],
 			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"],
 

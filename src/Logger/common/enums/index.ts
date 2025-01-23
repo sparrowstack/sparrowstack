@@ -1,1 +1,1 @@
-export { LogLevel } from '@root/src/Logger/common/enums/LogLevel';
+export { LogLevel } from '@Logger/common/enums/LogLevel';

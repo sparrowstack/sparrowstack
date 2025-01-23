@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { Logger } from '@root/src/Logger';
+import { Logger } from '@Logger';
 import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 
 interface IParams {

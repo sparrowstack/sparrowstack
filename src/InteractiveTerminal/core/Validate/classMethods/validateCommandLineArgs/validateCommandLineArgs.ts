@@ -1,4 +1,4 @@
-import { Logger } from '@root/src/Logger';
+import { Logger } from '@Logger';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 
 import {

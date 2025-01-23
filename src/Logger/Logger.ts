@@ -1,5 +1,5 @@
-import { LogLevel } from '@root/src/Logger/common/enums';
-import { log, getLogLevel } from '@root/src/Logger/common/utils';
+import { LogLevel } from '@Logger/common/enums';
+import { log, getLogLevel } from '@Logger/common/utils';
 
 export class Logger {
 	private context?: string;
