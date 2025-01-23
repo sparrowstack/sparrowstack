@@ -7,14 +7,14 @@ import {
 	exitProcessIfApplicable,
 } from '@InteractiveSession/common/utils';
 
-interface IOptions {
+interface IParams {
 	agent: Agent;
 }
 
 export class InteractiveSession {
 	llm: BaseLLM;
 
-	constructor({ agent }: IOptions) {
+	constructor({ agent }: IParams) {
 		this.llm = agent.llm;
 	}
 

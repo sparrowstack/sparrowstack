@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { AgentLogger } from '@AgentLogger';
 import type { IChatMessage } from '@Agent/common/interfaces';
 
-interface IOptions {
+interface IParams {
 	logger: AgentLogger;
 	systemPrompt: string;
 	messages: IChatMessage[];
@@ -12,7 +12,7 @@ export const infoLogContextWindow = ({
 	logger,
 	messages,
 	systemPrompt,
-}: IOptions) => {
+}: IParams) => {
 	console.log('');
 
 	logger.info(

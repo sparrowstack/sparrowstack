@@ -11,7 +11,7 @@ import {
 	addAssistantMessageToMessages,
 } from '@Agent/core/llms/common/utils';
 
-interface IOptions {
+interface IParams {
 	llm: BaseLLM;
 	message: string;
 	logger: AgentLogger;
@@ -23,7 +23,7 @@ export const sendMessage = async ({
 	logger,
 	message,
 	openai,
-}: IOptions) => {
+}: IParams) => {
 	const messages = addUserMessageToMessages({ llm, message });
 
 	infoLogContextWindow({

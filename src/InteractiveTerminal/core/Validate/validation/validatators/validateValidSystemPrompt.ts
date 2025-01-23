@@ -2,7 +2,7 @@ import { SystemPrompts } from '@Agent';
 import { AgentLogger } from '@AgentLogger';
 import { isValidSystemPromptErrorTemplate } from '@Validate/validation/errorTemplates';
 
-interface IOptions {
+interface IParams {
 	systemPromptName: string;
 	logger: AgentLogger;
 }
@@ -10,7 +10,7 @@ interface IOptions {
 export const validateValidSystemPrompt = ({
 	logger,
 	systemPromptName,
-}: IOptions) => {
+}: IParams) => {
 	const errorTemplate = isValidSystemPromptErrorTemplate({
 		systemPromptName,
 	});

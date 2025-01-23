@@ -2,12 +2,12 @@ import chalk from 'chalk';
 import { AgentLogger } from '@AgentLogger';
 import type { IChatMessage } from '@Agent/common/interfaces';
 
-interface IOptions {
+interface IParams {
 	logger: AgentLogger;
 	messages: IChatMessage[];
 }
 
-export const infoLogMessages = ({ logger, messages }: IOptions) => {
+export const infoLogMessages = ({ logger, messages }: IParams) => {
 	console.log('');
 
 	logger.info(

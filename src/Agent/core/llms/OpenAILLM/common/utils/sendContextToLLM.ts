@@ -3,12 +3,12 @@ import { Role } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
 import { convertOpenAIMessageToLLMResponseMessage } from '@Agent/core/llms/OpenAILLM/common/utils/convertOpenAIMessageToLLMResponseMessage';
 
-interface IOptions {
+interface IParams {
 	llm: BaseLLM;
 	openai: OpenAI;
 }
 
-export const sendContextToLLM = async ({ llm, openai }: IOptions) => {
+export const sendContextToLLM = async ({ llm, openai }: IParams) => {
 	const systemPromptMessage = {
 		role: Role.System,
 		content: llm.systemPrompt,

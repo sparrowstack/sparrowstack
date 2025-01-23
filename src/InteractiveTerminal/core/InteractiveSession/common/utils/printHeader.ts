@@ -1,11 +1,11 @@
 import chalk from 'chalk';
 import type { BaseLLM } from '@Agent';
 
-interface IOptions {
+interface IParams {
 	llm: BaseLLM;
 }
 
-export const printHeader = ({ llm }: IOptions) => {
+export const printHeader = ({ llm }: IParams) => {
 	const { providerName, model, systemPromptName } = llm;
 
 	console.log(

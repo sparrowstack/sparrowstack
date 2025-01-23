@@ -5,7 +5,7 @@ import { validateApiKey } from '@InstantiateAgent/validation/validators/validate
 import { getApiKey } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getApiKey';
 import { getProvider } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getProvider';
 
-interface IOptions {
+interface IParams {
 	logger: AgentLogger;
 	commandLineArgs: ICommandLineArgs;
 }
@@ -13,7 +13,7 @@ interface IOptions {
 export const instantiateAgentWithCommandLineArgs = ({
 	logger,
 	commandLineArgs,
-}: IOptions) => {
+}: IParams) => {
 	const {
 		model: modelName,
 		provider: providerName,

@@ -2,11 +2,11 @@ import chalk from 'chalk';
 import { Provider } from '@Agent';
 import { getAvailableProviders } from '@Validate/validation/utils';
 
-interface IOptions {
+interface IParams {
 	providerName: string;
 }
 
-export const isValidProviderErrorTemplate = ({ providerName }: IOptions) => {
+export const isValidProviderErrorTemplate = ({ providerName }: IParams) => {
 	const availableProviders = getAvailableProviders();
 	const errorTemplate = chalk.red(`
 

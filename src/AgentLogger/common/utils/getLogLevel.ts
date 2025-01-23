@@ -1,10 +1,10 @@
 import { LogLevel } from '@AgentLogger/common/enums';
 
-interface IOptions {
+interface IParams {
 	level?: string;
 }
 
-export const getLogLevel = ({ level }: IOptions): LogLevel => {
+export const getLogLevel = ({ level }: IParams): LogLevel => {
 	let logLevel: LogLevel = LogLevel.INFO;
 
 	if (!level) return LogLevel.INFO; // Default to INFO if not set

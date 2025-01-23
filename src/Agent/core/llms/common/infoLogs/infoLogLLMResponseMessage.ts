@@ -2,12 +2,12 @@ import chalk from 'chalk';
 import { AgentLogger } from '@AgentLogger';
 import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 
-interface IOptions {
+interface IParams {
 	logger: AgentLogger;
 	message: ILLMResponseMessage;
 }
 
-export const infoLogLLMResponseMessage = ({ logger, message }: IOptions) => {
+export const infoLogLLMResponseMessage = ({ logger, message }: IParams) => {
 	console.log('');
 
 	logger.info(

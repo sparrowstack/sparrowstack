@@ -1,11 +1,11 @@
 import chalk from 'chalk';
 import { ApiKeys } from '@Agent/common/enums';
 
-interface IOptions {
+interface IParams {
 	providerName: string;
 }
 
-export const apiKeyErrorTemplate = ({ providerName }: IOptions) => {
+export const apiKeyErrorTemplate = ({ providerName }: IParams) => {
 	const apiKeyName = ApiKeys[providerName as keyof typeof ApiKeys];
 	const errorTemplate = chalk.red(
 		`

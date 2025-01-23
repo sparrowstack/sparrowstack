@@ -1,11 +1,11 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ContentType } from '@Agent/common/enums';
 
-interface IOptions {
+interface IParams {
 	message: Anthropic.Messages.Message;
 }
 
-export const getTextContent = ({ message }: IOptions) => {
+export const getTextContent = ({ message }: IParams) => {
 	let text = '';
 	let type = '';
 

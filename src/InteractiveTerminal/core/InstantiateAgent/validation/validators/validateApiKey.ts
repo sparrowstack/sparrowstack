@@ -1,13 +1,13 @@
 import { AgentLogger } from '@AgentLogger';
 import { apiKeyErrorTemplate } from '@InstantiateAgent/validation/errorTemplates';
 
-interface IOptions {
+interface IParams {
 	apiKey: string | undefined;
 	providerName: string;
 	logger: AgentLogger;
 }
 
-export const validateApiKey = ({ apiKey, providerName, logger }: IOptions) => {
+export const validateApiKey = ({ apiKey, providerName, logger }: IParams) => {
 	const errorTemplate = apiKeyErrorTemplate({ providerName });
 
 	if (!apiKey) {

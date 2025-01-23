@@ -49,7 +49,7 @@ const FunctionStyling = `
 Function Styling:
 - Always use arrow functions
 - Always use objects as arguments (makes method more flexible)
-- Always add an interface explicity called 'IOptions' when defining the function arguments. Do not use anything other than than this exact spelling 'IOptions' when defining the interface.
+- Always add an interface explicity called 'IParams' when defining the function arguments. Do not use anything other than than this exact spelling 'IParams' when defining the interface.
 - When an argument has explict options, always use an enum to define the options.
 
 \`\`\`typescript
@@ -61,12 +61,12 @@ enum TimeOfDay {
   Evening = 'evening',
 }
 
-interface IOptions {
+interface IParams {
   name: string;
   timeOfDay?: TimeOfDay;
 }
 
-export const createGreeting = ({ name, timeOfDay = 'morning' }: IOptions): string => {
+export const createGreeting = ({ name, timeOfDay = 'morning' }: IParams): string => {
   // Ensure name is properly formatted
   const formattedName = name.trim().charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
@@ -83,11 +83,11 @@ Variable Styling:
 \`\`\`typescript
 // src/utils/sortNumbers.ts
 
-interface IOptions {
+interface IParams {
   numbers: number[];
 }
 
-export const sortNumbersDescending = ({ numbers }: IOptions): number[] =>
+export const sortNumbersDescending = ({ numbers }: IParams): number[] =>
   [...numbers].sort((firstNumber, secondNumber) => secondNumber - firstNumber);
 \`\`\`
 `;

@@ -1,12 +1,12 @@
 import { Role } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
 
-interface IOptions {
+interface IParams {
 	llm: BaseLLM;
 	message: string;
 }
 
-export const addUserMessageToMessages = ({ llm, message }: IOptions) => {
+export const addUserMessageToMessages = ({ llm, message }: IParams) => {
 	const userMessage = { role: Role.User, content: message };
 
 	llm.addToMessages({ message: userMessage });

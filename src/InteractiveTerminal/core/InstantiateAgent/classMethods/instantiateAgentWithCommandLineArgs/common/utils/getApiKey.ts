@@ -1,10 +1,10 @@
 import { ProviderNameApiKeys } from '@Agent/common/constants';
 
-interface IOptions {
+interface IParams {
 	provider: string;
 }
 
-export const getApiKey = ({ provider }: IOptions) => {
+export const getApiKey = ({ provider }: IParams) => {
 	const apiKey = ProviderNameApiKeys[provider];
 
 	return apiKey;

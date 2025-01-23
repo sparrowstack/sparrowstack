@@ -1,7 +1,7 @@
 import { AgentLogger } from '@AgentLogger';
 import { bothProviderAndModelProvidedErrorTemplate } from '@Validate/validation/errorTemplates';
 
-interface IOptions {
+interface IParams {
 	modelName: string;
 	logger: AgentLogger;
 	providerName: string;
@@ -11,7 +11,7 @@ export const validateBothProviderAndModelProvided = ({
 	logger,
 	modelName,
 	providerName,
-}: IOptions) => {
+}: IParams) => {
 	const errorTemplate = bothProviderAndModelProvidedErrorTemplate();
 
 	if ((providerName && !modelName) || (modelName && !providerName)) {

@@ -7,7 +7,7 @@ import {
 	validateBothProviderAndModelProvided,
 } from '@Validate/validation/validatators';
 
-interface IOptions {
+interface IParams {
 	logger: AgentLogger;
 	commandLineArgs: ICommandLineArgs;
 }
@@ -15,7 +15,7 @@ interface IOptions {
 export const validateCommandLineArgs = ({
 	logger,
 	commandLineArgs,
-}: IOptions) => {
+}: IParams) => {
 	const {
 		model: modelName,
 		provider: providerName,

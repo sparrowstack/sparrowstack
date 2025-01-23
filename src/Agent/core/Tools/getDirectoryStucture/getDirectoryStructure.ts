@@ -8,7 +8,7 @@ import {
 	filterFiles,
 } from '@Agent/core/Tools/getDirectoryStucture/common/utils';
 
-interface IOptions {
+interface IParams {
 	directoryPath: string;
 	indent?: string;
 	isLast?: boolean;
@@ -18,7 +18,7 @@ interface IOptions {
 export const getDirectoryStructure = ({
 	directoryPath,
 	ig = loadGitignore({ startPath: directoryPath }),
-}: Omit<IOptions, 'indent' | 'isLast'>): IDirectoryNode => {
+}: Omit<IParams, 'indent' | 'isLast'>): IDirectoryNode => {
 	const files = fs.readdirSync(directoryPath);
 
 	// Filter out git ignored files and dot folders

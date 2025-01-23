@@ -4,7 +4,7 @@ import type {
 	IToolCallResult,
 } from '@Agent/core/Tools/common/interfaces';
 
-interface IOptions {
+interface IParams {
 	llmToolCalls?: IToolCalls;
 	toolCalls: Anthropic.Messages.ToolUseBlock[];
 }
@@ -12,7 +12,7 @@ interface IOptions {
 export const executeToolCalls = async ({
 	toolCalls,
 	llmToolCalls,
-}: IOptions) => {
+}: IParams) => {
 	const toolCallResults: IToolCallResult[] = [];
 
 	for (const toolCall of toolCalls) {

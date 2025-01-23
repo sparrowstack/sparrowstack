@@ -1,10 +1,10 @@
 import { Provider, ProviderName } from '@Agent';
 
-interface IOptions {
+interface IParams {
 	providerName: string;
 }
 
-export const getProvider = ({ providerName }: IOptions): Provider => {
+export const getProvider = ({ providerName }: IParams): Provider => {
 	const providerEnumName =
 		ProviderName[providerName as keyof typeof ProviderName];
 	const provider = Provider[providerEnumName as keyof typeof Provider];

@@ -1,11 +1,11 @@
 import { OpenAI } from 'openai';
 
-interface IOptions {
+interface IParams {
 	index: number;
 	message: OpenAI.ChatCompletion;
 }
 
-export const getChoiceParams = ({ message, index }: IOptions) => {
+export const getChoiceParams = ({ message, index }: IParams) => {
 	const choice = message.choices[index];
 	const { message: choiceMessage, logprobs, finish_reason } = choice;
 	const { role, content, refusal } = choiceMessage;
@@ -18,7 +18,7 @@ export const getChoiceParams = ({ message, index }: IOptions) => {
 //       index: 0,
 //       message: {
 //         role: "assistant",
-//         content: "```typescript\n// src/utils/addNumbers.ts\n\ninterface IOptions {\n  firstNumber: number;\n  secondNumber: number;\n}\n\nexport const addNumbers = ({ firstNumber, secondNumber }: IOptions): number => {\n  return firstNumber + secondNumber;\n};\n```",
+//         content: "```typescript\n// src/utils/addNumbers.ts\n\ninterface IParams {\n  firstNumber: number;\n  secondNumber: number;\n}\n\nexport const addNumbers = ({ firstNumber, secondNumber }: IParams): number => {\n  return firstNumber + secondNumber;\n};\n```",
 //         refusal: null,
 //       },
 //       logprobs: null,

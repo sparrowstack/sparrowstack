@@ -1,13 +1,13 @@
 import chalk from 'chalk';
 import { getAvailableSystemPrompts } from '@Validate/validation/utils';
 
-interface IOptions {
+interface IParams {
 	systemPromptName: string;
 }
 
 export const isValidSystemPromptErrorTemplate = ({
 	systemPromptName,
-}: IOptions) => {
+}: IParams) => {
 	const availableSystemPrompts = getAvailableSystemPrompts();
 	const errorTemplate = chalk.red(`
 			

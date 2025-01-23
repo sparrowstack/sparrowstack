@@ -9,15 +9,12 @@ interface IToolCallContentResult {
 	content: string; // or whatever your tool returns
 }
 
-interface IOptions {
+interface IParams {
 	llm: BaseLLM;
 	toolCallResults: IToolCallResult[];
 }
 
-export const addToolResultsToMessages = ({
-	llm,
-	toolCallResults,
-}: IOptions) => {
+export const addToolResultsToMessages = ({ llm, toolCallResults }: IParams) => {
 	const toolCallContentResults = toolCallResults.map((toolCallResult) => {
 		const { id, result } = toolCallResult;
 

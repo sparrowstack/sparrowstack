@@ -1,8 +1,8 @@
-interface IOptions {
+interface IParams {
 	input: string;
 }
 
-export const exitProcessIfApplicable = ({ input }: IOptions) => {
+export const exitProcessIfApplicable = ({ input }: IParams) => {
 	if (
 		input.toLowerCase() === 'q' ||
 		input.toLowerCase() === 'quit' ||

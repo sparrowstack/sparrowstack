@@ -1,7 +1,7 @@
 import { LogLevel } from '@AgentLogger/common/enums';
 import { LogLevelColors } from '@AgentLogger/common/constants';
 
-interface IOptions {
+interface IParams {
 	message: any;
 	context?: string;
 	level: LogLevel;
@@ -9,7 +9,7 @@ interface IOptions {
 }
 
 export const log = (
-	{ message, context, level, logLevel }: IOptions,
+	{ message, context, level, logLevel }: IParams,
 	...args: any[]
 ): void => {
 	if (level <= logLevel) {
