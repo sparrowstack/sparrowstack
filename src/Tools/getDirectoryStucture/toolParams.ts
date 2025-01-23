@@ -1,5 +1,5 @@
 import type { IToolParams } from '@Tool';
-import { getDirectoryStructure as getDirectoryStructureMethod } from '@root/src/Tools/getDirectoryStucture/getDirectoryStructure';
+import { getDirectoryStructure as getDirectoryStructureMethod } from '@Tools/getDirectoryStucture/getDirectoryStructure';
 
 export const toolParams: IToolParams = {
 	name: 'getDirectoryStructure',

@@ -8,7 +8,7 @@ interface IParams {
 	messages: IChatMessage[];
 }
 
-export const infoLogContextWindow = ({
+export const logContextWindow = ({
 	logger,
 	messages,
 	systemPrompt,

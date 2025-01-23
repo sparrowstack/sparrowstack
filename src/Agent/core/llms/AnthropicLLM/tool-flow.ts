@@ -24,7 +24,7 @@
 // 	});
 
 // 	// Log Messages
-// 	infoLogMessages({
+// 	logMessages({
 // 		logger,
 // 		messages: llm.getMessages(),
 // 	});
@@ -37,7 +37,7 @@
 // 	});
 
 // 	// Log LLM Response
-// 	infoLogModelResponse({
+// 	logModelResponse({
 // 		logger,
 // 		message: responseMessage,
 // 	});

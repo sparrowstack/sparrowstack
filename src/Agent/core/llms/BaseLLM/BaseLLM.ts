@@ -1,8 +1,13 @@
 import { Tool } from '@Tool';
-import type { IToolParams } from '@Tool';
 import { Logger } from '@Logger';
+import type { IToolParams } from '@Tool';
+import { Role } from '@Agent/common/enums';
 import { Provider, ProviderName } from '@Agent';
 import { SystemPrompts, SystemPromptName } from '@SystemPrompts';
+import {
+	logContextWindow,
+	logModelResponse,
+} from '@Agent/core/llms/BaseLLM/common/loggers';
 import type {
 	IChatMessage,
 	IModelResponse,
@@ -67,6 +72,16 @@ export abstract class BaseLLM {
 		// --------------------------------
 	}
 
+	public addUserMessage({ content }: { content: string }): void {
+		this.messages.push({ role: Role.User, content });
+	}
+
+	public addAssistantMessage({ content }: { content: string }): void {
+		// if (Array.isArray(toolCalls) && toolCalls.length > 0) {
+		// 	const content = [{ type: 'text', text: message }, ...toolCalls];
+		this.messages.push({ role: Role.Assistant, content });
+	}
+
 	public addToMessages({ message }: { message: IChatMessage }): void {
 		this.messages.push(message);
 	}
@@ -77,6 +92,29 @@ export abstract class BaseLLM {
 
 	public clearMessages(): void {
 		this.messages = [];
+	}
+
+	public logContextWindow(): void {
+		// Two parts:
+		// getLogTemplate
+		// logContextWindow
+		// args logLevel
+		logContextWindow({
+			logger: this.logger,
+			messages: this.messages,
+			systemPrompt: this.systemPrompt,
+		});
+	}
+
+	public logModelResponse({ message }: { message: IModelResponse }): void {
+		// Two parts:
+		// getLogTemplate
+		// logContextWindow
+		// args logLevel
+		logModelResponse({
+			message,
+			logger: this.logger,
+		});
 	}
 
 	abstract sendMessage({

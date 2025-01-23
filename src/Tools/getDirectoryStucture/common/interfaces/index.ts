@@ -1,1 +1,1 @@
-export type { IDirectoryNode } from '@root/src/Tools/getDirectoryStucture/common/interfaces/IDirectoryNode';
+export type { IDirectoryNode } from '@Tools/getDirectoryStucture/common/interfaces/IDirectoryNode';

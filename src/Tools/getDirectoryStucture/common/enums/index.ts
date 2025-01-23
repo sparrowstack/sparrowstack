@@ -1,1 +1,1 @@
-export { DirectoryNodeType } from '@root/src/Tools/getDirectoryStucture/common/enums/DirectoryNodeType';
+export { DirectoryNodeType } from '@Tools/getDirectoryStucture/common/enums/DirectoryNodeType';

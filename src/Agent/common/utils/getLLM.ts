@@ -10,8 +10,6 @@ interface IParams {
 	provider: Provider;
 }
 
-// User should get type errors in this scenario
-// so just throwing minimal error messages for now..
 export const getLLM = ({ provider }: IParams) => {
 	if (!provider) {
 		throw new Error('Provider Required');

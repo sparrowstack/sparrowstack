@@ -1,21 +1,21 @@
 import chalk from 'chalk';
 import { Logger } from '@Logger';
-import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import type { IChatMessage } from '@Agent/core/llms/BaseLLM/common/interfaces';
 
 interface IParams {
 	logger: Logger;
-	message: IModelResponse;
+	messages: IChatMessage[];
 }
 
-export const infoLogModelResponse = ({ logger, message }: IParams) => {
+export const logMessages = ({ logger, messages }: IParams) => {
 	console.log('');
 
 	logger.info(
 		chalk.dim(`
 ------------------------------------ 
-Model Response:
+Messages:
 ------------------------------------
-${JSON.stringify(message, null, 2)}
+${JSON.stringify(messages, null, 2)}
 `),
 	);
 };

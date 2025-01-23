@@ -1,12 +1,13 @@
 import * as fs from 'fs';
 import ignore from 'ignore';
 import * as path from 'path';
-import { DirectoryNodeType } from '@root/src/Tools/getDirectoryStucture/common/enums';
-import type { IDirectoryNode } from '@root/src/Tools/getDirectoryStucture/common/interfaces';
+import { formatForMarkdown } from '@Tools/getDirectoryStucture/common/utils/formatForMarkdown';
+import { DirectoryNodeType } from '@Tools/getDirectoryStucture/common/enums';
+import type { IDirectoryNode } from '@Tools/getDirectoryStucture/common/interfaces';
 import {
 	filterFiles,
 	loadGitignore,
-} from '@root/src/Tools/getDirectoryStucture/common/utils';
+} from '@Tools/getDirectoryStucture/common/utils';
 
 interface IParams {
 	directoryPath: string;
@@ -51,3 +52,8 @@ export const getDirectoryStructure = ({
 
 	return node;
 };
+
+const directoryStructure = getDirectoryStructure({
+	directoryPath: process.cwd(),
+});
+console.log(formatForMarkdown(directoryStructure));

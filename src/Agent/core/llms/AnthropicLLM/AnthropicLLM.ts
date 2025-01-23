@@ -34,7 +34,6 @@ export class AnthropicLLM extends BaseLLM {
 		const responseMessage = await sendMessage({
 			message,
 			llm: this,
-			logger: this.logger,
 			anthropic: this.anthropic,
 		});
 

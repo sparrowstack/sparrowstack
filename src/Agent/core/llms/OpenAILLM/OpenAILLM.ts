@@ -34,7 +34,6 @@ export class OpenAILLM extends BaseLLM {
 		return await sendMessage({
 			message,
 			llm: this,
-			logger: this.logger,
 			openai: this.openai,
 		});
 	}
