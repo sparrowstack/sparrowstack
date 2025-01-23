@@ -48,6 +48,8 @@
 			"@InteractiveSession/*": [
 				"./src/InteractiveTerminal/core/InteractiveSession/*"
 			],
+			"@Tool": ["./src/Tool"],
+			"@Tool/*": ["./src/Tool/*"],
 			"@Validate": ["./src/InteractiveTerminal/core/Validate"],
 			"@Validate/*": ["./src/InteractiveTerminal/core/Validate/*"]
 		}

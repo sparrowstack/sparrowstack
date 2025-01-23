@@ -21,6 +21,7 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 	} = message;
 	const { input_tokens: inputTokens, output_tokens: outputTokens } = usage;
 	// TODO: Only supports fetching single text content, the first found..
+	// call getFirstTextContent
 	const { text: contentText, type: contentType } = getTextContent({
 		message,
 	});
@@ -33,6 +34,7 @@ export const convertAnthropicMessageToLLMResponseMessage = ({
 		role,
 		model,
 		type,
+		// TODO: Just `text`
 		contentType,
 		contentText,
 		stopReason,

@@ -3,28 +3,21 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import { Provider } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
 import { ProviderName } from '@Agent/common/constants';
+import { parseToolSchemas } from '@Agent/core/llms/common/utils';
 import type { ILLMResponseMessage } from '@Agent/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/AnthropicLLM/classMethods';
 import { SystemPrompts, SystemPromptName } from '@Agent/core/SystemPrompts';
-
-export const formatToolCalls = ({ tools }: { tools: any[] }) => {
-	return {
-		llmTools: tools.map((obj) => obj.tool),
-		toolCalls: tools.reduce(
-			(acc, obj) => ({
-				...acc,
-				[obj.toolCall.name]: obj.toolCall.method,
-			}),
-			{} as Record<string, () => string>,
-		),
-	};
-};
+import type {
+	ITool,
+	IToolCalls,
+	IToolSchema,
+} from '@Agent/core/Tools/common/interfaces';
 
 interface IContructorOptions {
 	apiKey: string;
 	model: string;
 	systemPrompt?: string;
-	tools?: any[];
+	tools?: IToolSchema[];
 }
 
 export class AnthropicLLM extends BaseLLM {
@@ -32,8 +25,8 @@ export class AnthropicLLM extends BaseLLM {
 	maxTokens: number;
 	systemPrompt: string;
 	systemPromptName: string;
-	tools?: any[];
-	toolCalls?: Record<string, CallableFunction>;
+	tools?: ITool[];
+	toolCalls?: IToolCalls;
 	anthropic: Anthropic;
 	provider = Provider.Anthropic;
 	providerName = ProviderName[Provider.Anthropic];
@@ -43,19 +36,27 @@ export class AnthropicLLM extends BaseLLM {
 		super();
 
 		// Base
+		// --------------------------------
 		this.model = model;
 		this.systemPrompt = systemPrompt || SystemPrompts.Default;
 		this.systemPromptName = SystemPromptName[this.systemPrompt];
 
 		if (tools) {
-			const { llmTools, toolCalls } = formatToolCalls({ tools });
+			const { tools: llmTools, toolCalls: llmToolCalls } =
+				parseToolSchemas({
+					tools,
+				});
+
 			this.tools = llmTools;
-			this.toolCalls = toolCalls;
+			this.toolCalls = llmToolCalls;
 		}
 
-		// Additional Parameters
+		// Settings
+		// --------------------------------
 		this.maxTokens = 1024;
 
+		// SDK
+		// --------------------------------v
 		this.anthropic = new Anthropic({
 			apiKey,
 		});

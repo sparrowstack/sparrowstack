@@ -1,36 +1,37 @@
 import { Role } from '@Agent/common/enums';
+import { ContentType } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import type { IToolCallResult } from '@Agent/core/Tools/common/interfaces';
 
-interface IToolCallResponseContent {
-	type: 'tool_result';
+interface IToolCallContentResult {
+	type: ContentType.ToolResult;
 	tool_use_id: string; // This should match the tool_use id from Claude's request
 	content: string; // or whatever your tool returns
 }
 
-interface IToolResult {
-	id: string; // This should match the tool_use id from Claude's request
-	result: string;
-}
-
 interface IOptions {
 	llm: BaseLLM;
-	toolResults: IToolResult[];
+	toolCallResults: IToolCallResult[];
 }
 
-export const addToolResultsToMessages = ({ llm, toolResults }: IOptions) => {
-	const toolCallResultsContent = toolResults.map((toolResult) => {
-		const { id, result } = toolResult;
+export const addToolResultsToMessages = ({
+	llm,
+	toolCallResults,
+}: IOptions) => {
+	const toolCallContentResults = toolCallResults.map((toolCallResult) => {
+		const { id, result } = toolCallResult;
 
-		const toolCallResponseContent: IToolCallResponseContent = {
-			type: 'tool_result',
+		const toolCallContentResult: IToolCallContentResult = {
+			// TODO: Might need to be refactored to Anthopic Type
+			type: ContentType.ToolResult,
 			tool_use_id: id,
-			content: result, // or whatever your tool returns
+			content: result,
 		};
 
-		return toolCallResponseContent;
+		return toolCallContentResult;
 	});
 
-	const userMessage = { role: Role.User, content: toolCallResultsContent };
+	const userMessage = { role: Role.User, content: toolCallContentResults };
 
 	llm.addToMessages({ message: userMessage });
 

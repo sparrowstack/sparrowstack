@@ -1,5 +1,6 @@
 import { AgentLogger } from '@AgentLogger';
 import { Provider } from '@Agent/common/enums';
+import type { ITool, IToolCalls } from '@Agent/core/Tools/common/interfaces';
 import type {
 	IChatMessage,
 	ILLMResponseMessage,
@@ -14,8 +15,8 @@ export abstract class BaseLLM {
 	abstract readonly systemPrompt: string;
 	abstract readonly systemPromptName: string;
 	abstract readonly logger: AgentLogger;
-	abstract readonly tools?: any[];
-	abstract readonly toolCalls?: Record<string, CallableFunction>;
+	abstract readonly tools?: ITool[];
+	abstract readonly toolCalls?: IToolCalls;
 
 	constructor() {}
 

@@ -8,7 +8,11 @@ interface IOptions {
 	messages: IChatMessage[];
 }
 
-export const infoLogContextWindow = ({ logger, systemPrompt, messages }: IOptions) => {
+export const infoLogContextWindow = ({
+	logger,
+	messages,
+	systemPrompt,
+}: IOptions) => {
 	console.log('');
 
 	logger.info(

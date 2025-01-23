@@ -1,10 +1,11 @@
 import { Role } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import type { IToolCallContentResult } from '@Agent/common/interfaces/IToolCallContentResult';
 
 interface IOptions {
 	llm: BaseLLM;
 	message: string;
-	toolCalls?: any[];
+	toolCalls?: IToolCallContentResult[];
 }
 
 export const addAssistantMessageToMessages = ({
@@ -14,11 +15,12 @@ export const addAssistantMessageToMessages = ({
 }: IOptions) => {
 	if (Array.isArray(toolCalls) && toolCalls.length > 0) {
 		const content = [{ type: 'text', text: message }, ...toolCalls];
-		const assistantMessage = { role: Role.Assistant, content };
-		llm.addToMessages({ message: assistantMessage });
+		const newMessage = { role: Role.Assistant, content };
+
+		llm.addToMessages({ message: newMessage });
 	} else {
-		const assistantMessage = { role: Role.Assistant, content: message };
-		llm.addToMessages({ message: assistantMessage });
+		const newMessage = { role: Role.Assistant, content: message };
+		llm.addToMessages({ message: newMessage });
 	}
 
 	return [...llm.getMessages()];

@@ -26,6 +26,7 @@ export interface ILLMResponseMessage {
 	usage: IUsage;
 
 	// Tool usage (function calling)
+	// TODO: Normalize..
 	toolCalls?: Anthropic.Messages.ToolUseBlock[];
 
 	// Additional metadata
