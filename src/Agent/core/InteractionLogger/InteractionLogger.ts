@@ -1,12 +1,12 @@
 import { Logger } from '@Logger';
-import {
-	logMessages,
-	logContextWindow,
-	logModelResponse,
-} from '@InteractionLogger/common/loggers';
 import type { IChatMessage } from '@ChatMessage';
 import type { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import {
+	messagesTemplate,
+	contextWindowTemplate,
+	modelResponseTemplate,
+} from '@InteractionLogger/common/templates';
 
 interface IConstructorParams {
 	logger: Logger;
@@ -19,19 +19,31 @@ export class InteractionLogger {
 		this.logger = logger;
 	}
 
-	public logMessages({ messages }: { messages: IChatMessage[] }) {
-		logMessages({ messages, logger: this.logger });
+	public logMessages({
+		messages: chatMessages,
+	}: {
+		messages: IChatMessage[];
+	}) {
+		const messages = messagesTemplate({ messages: chatMessages });
+
+		console.log('');
+		this.logger.info(messages);
 	}
 
 	public logContextWindow({ llm }: { llm: BaseLLM }) {
-		logContextWindow({
-			logger: this.logger,
+		const contextWindow = contextWindowTemplate({
 			systemPrompt: llm.systemPrompt,
 			messages: llm.chatMessageManager.getMessages(),
 		});
+
+		console.log('');
+		this.logger.info(contextWindow);
 	}
 
 	public logModelResponse({ message }: { message: IModelResponse }) {
-		logModelResponse({ message, logger: this.logger });
+		const modelResponse = modelResponseTemplate({ message });
+
+		console.log('');
+		this.logger.info(modelResponse);
 	}
 }
