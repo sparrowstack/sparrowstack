@@ -8,7 +8,7 @@ import {
 	InteractiveSession,
 } from '@InteractiveTerminal/core';
 
-interface IConstructorOptions {
+interface IConstructorParams {
 	agent?: Agent;
 }
 
@@ -16,7 +16,7 @@ export class InteractiveTerminal {
 	agent: Agent;
 	logger = new Logger('InteractiveTerminal');
 
-	constructor({ agent }: IConstructorOptions = {}) {
+	constructor({ agent }: IConstructorParams = {}) {
 		if (agent) {
 			this.agent = agent;
 		} else {

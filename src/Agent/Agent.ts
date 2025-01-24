@@ -3,7 +3,7 @@ import { BaseLLM } from '@Agent/core/llms';
 import { getLLM } from '@Agent/common/utils';
 import { Provider } from '@Agent/common/enums/Provider';
 
-interface IConstructorOptions {
+interface IConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: Provider;
@@ -20,7 +20,7 @@ export class Agent {
 		apiKey,
 		provider,
 		systemPrompt,
-	}: IConstructorOptions) {
+	}: IConstructorParams) {
 		const llm = getLLM({ provider });
 
 		this.llm = new llm({ model, apiKey, systemPrompt, tools });

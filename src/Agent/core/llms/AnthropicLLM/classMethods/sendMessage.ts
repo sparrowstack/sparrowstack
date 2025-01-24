@@ -10,17 +10,19 @@ interface IParams {
 }
 
 export const sendMessage = async ({ llm, message, anthropic }: IParams) => {
-	llm.addUserMessage({ content: message });
-	llm.logContextWindow();
+	llm.chatMessageManager.addUserMessage({ content: message });
+	llm.interactionLogger.logContextWindow({ llm });
 
 	const responseMessage = await sendContextToLLM({
 		llm,
 		anthropic,
 	});
 
-	llm.logModelResponse({ message: responseMessage });
+	llm.interactionLogger.logModelResponse({ message: responseMessage });
 
-	llm.addAssistantMessage({ content: responseMessage.text });
+	llm.chatMessageManager.addAssistantMessage({
+		content: responseMessage.text,
+	});
 
 	return responseMessage;
 };

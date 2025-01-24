@@ -2,7 +2,7 @@ import { Provider } from '@Agent';
 import { providerSchemas } from '@Tool/common/constants';
 import type { IParameterDefinition } from '@Tool/common/interfaces';
 
-export interface IConstructorOptions {
+export interface IConstructorParams {
 	name: string;
 	description: string;
 	function: (...args: unknown[]) => Promise<unknown>;
@@ -20,7 +20,7 @@ export class Tool {
 		description,
 		function: func,
 		parameters = {},
-	}: IConstructorOptions) {
+	}: IConstructorParams) {
 		this.name = name;
 		this.function = func;
 		this.description = description;

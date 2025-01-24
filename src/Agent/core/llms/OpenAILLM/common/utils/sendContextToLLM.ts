@@ -14,7 +14,10 @@ export const sendContextToLLM = async ({ llm, openai }: IParams) => {
 		content: llm.systemPrompt,
 	};
 	const openaiResponseMessage = await openai.chat.completions.create({
-		messages: [systemPromptMessage, ...llm.getMessages()],
+		messages: [
+			systemPromptMessage,
+			...llm.chatMessageManager.getMessages(),
+		],
 		model: llm.model,
 		max_tokens: llm.maxTokens,
 	});

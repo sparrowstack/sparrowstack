@@ -26,7 +26,7 @@
 // 	// Log Messages
 // 	logMessages({
 // 		logger,
-// 		messages: llm.getMessages(),
+// 		messages: llm.chatMessageManager.getMessages(),
 // 	});
 
 // 	// Send LLM updated messages with tool call results,

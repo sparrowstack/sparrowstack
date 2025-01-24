@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { Logger } from '@Logger';
-import type { IChatMessage } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import type { IChatMessage } from '@ChatMessage';
 
 interface IParams {
 	logger: Logger;

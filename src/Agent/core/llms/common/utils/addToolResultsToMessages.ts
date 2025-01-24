@@ -32,7 +32,7 @@
 
 // 	llm.addToMessages({ message: userMessage });
 
-// 	return [...llm.getMessages()];
+// 	return [...llm.chatMessageManager.getMessages()];
 // };
 
 // // {

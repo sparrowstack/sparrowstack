@@ -10,7 +10,8 @@ interface IParams {
 // TODO: executeLLMRequest
 export const sendContextToLLM = async ({ llm, anthropic }: IParams) => {
 	const anthropicResponseMessage = await anthropic.messages.create({
-		messages: llm.getMessages() as Anthropic.MessageParam[],
+		messages:
+			llm.chatMessageManager.getMessages() as Anthropic.MessageParam[],
 		model: llm.model,
 		max_tokens: llm.maxTokens,
 		system: llm.systemPrompt,
