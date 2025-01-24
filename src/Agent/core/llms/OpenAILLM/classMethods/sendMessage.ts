@@ -11,14 +11,14 @@ interface IParams {
 export const sendMessage = async ({ llm, message, openai }: IParams) => {
 	llm.chatMessageManager.addUserMessage({ content: message });
 
-	llm.llm.interactionLogger.logContextWindow();
+	llm.interactionLogger.logContextWindow({ llm });
 
 	const responseMessage = await sendContextToLLM({
 		llm,
 		openai,
 	});
 
-	llm.llm.interactionLogger.logModelResponse({ message: responseMessage });
+	llm.interactionLogger.logModelResponse({ message: responseMessage });
 
 	llm.chatMessageManager.addAssistantMessage({
 		content: responseMessage.text,

@@ -17,13 +17,13 @@ import { InteractiveTerminal } from '@InteractiveTerminal';
 // const tools = [helloWorldTool];
 // const systemPrompt = SystemPrompts.Default;
 
-const provider = Provider.Anthropic;
-const model = Model.Anthropic.Claude35Sonnet;
-const apiKey = process.env['ANTHROPIC_API_KEY'] as string;
+// const provider = Provider.Anthropic;
+// const model = Model.Anthropic.Claude35Sonnet;
+// const apiKey = process.env['ANTHROPIC_API_KEY'] as string;
 
-// const provider = Provider.OpenAI;
-// const model = Model.OpenAI.GPT4o;
-// const apiKey = process.env['OPENAI_API_KEY'] as string;
+const provider = Provider.OpenAI;
+const model = Model.OpenAI.GPT4o;
+const apiKey = process.env['OPENAI_API_KEY'] as string;
 // --------------------------------
 
 const agent = new Agent({
