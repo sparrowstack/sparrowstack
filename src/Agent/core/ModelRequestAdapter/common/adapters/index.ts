@@ -1,2 +1,2 @@
-export { adaptOpenAIRequest } from '@ModelRequestAdapter/common/adapters/adaptOpenAIRequest';
-export { adaptAnthropicRequest } from '@ModelRequestAdapter/common/adapters/adaptAnthropicRequest';
+export { adaptOpenAIRequest } from '@Agent/core/ModelRequestAdapter/common/adapters/adaptOpenAIRequest';
+export { adaptAnthropicRequest } from '@Agent/core/ModelRequestAdapter/common/adapters/adaptAnthropicRequest';

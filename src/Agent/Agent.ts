@@ -1,5 +1,5 @@
 import { Provider } from '@Agent';
-import { BaseLLM } from '@BaseLLM';
+import { BaseLLM } from '@Agent/core/BaseLLM';
 import { SystemPrompt } from '@SystemPrompt';
 import { Tool, type IToolParams } from '@Tool';
 import type { ISystemPromptParams } from '@SystemPrompt';

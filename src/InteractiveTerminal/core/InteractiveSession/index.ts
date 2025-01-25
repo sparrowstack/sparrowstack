@@ -1,1 +1,1 @@
-export { InteractiveSession } from '@InteractiveSession/InteractiveSession';
+export { InteractiveSession } from '@InteractiveTerminal/core/InteractiveSession/InteractiveSession';

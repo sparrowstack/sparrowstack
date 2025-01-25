@@ -1,1 +1,1 @@
-export { instantiateAgentWithCommandLineArgs } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs';
+export { instantiateAgentWithCommandLineArgs } from '@InteractiveTerminal/core/InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs';

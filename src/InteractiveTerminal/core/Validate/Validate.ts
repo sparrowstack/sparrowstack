@@ -1,6 +1,6 @@
 import { Logger } from '@Logger/Logger';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
-import { validateCommandLineArgs } from '@Validate/classMethods';
+import { validateCommandLineArgs } from '@InteractiveTerminal/core/Validate/classMethods';
 
 export class Validate {
 	static commandLineArgs({

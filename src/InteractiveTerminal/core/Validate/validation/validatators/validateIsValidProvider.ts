@@ -1,6 +1,6 @@
 import { ProviderName } from '@Agent';
 import { Logger } from '@Logger';
-import { isValidProviderErrorTemplate } from '@Validate/validation/errorTemplates';
+import { isValidProviderErrorTemplate } from '@InteractiveTerminal/core/Validate/validation/errorTemplates';
 
 interface IParams {
 	logger: Logger;

@@ -4,12 +4,12 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import { Tool, type IToolParams } from '@Tool';
 import { Provider, ProviderName } from '@Agent';
 import { defaultPrompt } from '@SystemPrompts/default';
-import { InteractionLogger } from '@InteractionLogger';
-import { ChatMessageManager } from '@ChatMessageManager';
-import { ModelRequestAdapter } from '@ModelRequestAdapter';
-import { ModelResponseAdapter } from '@ModelResponseAdapter';
+import { InteractionLogger } from '@Agent/core/InteractionLogger';
+import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
+import { ModelRequestAdapter } from '@Agent/core/ModelRequestAdapter';
+import { ModelResponseAdapter } from '@Agent/core/ModelResponseAdapter';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
-import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 
 interface IConstructorParams {
 	model: string;

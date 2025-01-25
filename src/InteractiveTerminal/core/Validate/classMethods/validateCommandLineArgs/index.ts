@@ -1,1 +1,1 @@
-export { validateCommandLineArgs } from '@Validate/classMethods/validateCommandLineArgs/validateCommandLineArgs';
+export { validateCommandLineArgs } from '@InteractiveTerminal/core/Validate/classMethods/validateCommandLineArgs/validateCommandLineArgs';

@@ -1,2 +1,2 @@
-export { adaptAnthropicResponse } from '@ModelResponseAdapter/common/adapters/adaptAnthropicResponse/adaptAnthropicResponse';
-export { adaptOpenAIResponse } from '@ModelResponseAdapter/common/adapters/adaptOpenAIResponse/adaptOpenAIResponse';
+export { adaptAnthropicResponse } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/adaptAnthropicResponse';
+export { adaptOpenAIResponse } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptOpenAIResponse/adaptOpenAIResponse';

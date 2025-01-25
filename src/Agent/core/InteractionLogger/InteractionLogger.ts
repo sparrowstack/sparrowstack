@@ -1,12 +1,12 @@
 import { Logger } from '@Logger';
-import type { BaseLLM } from '@BaseLLM';
-import type { IChatMessage } from '@ChatMessage';
-import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
+import type { BaseLLM } from '@Agent/core/BaseLLM';
+import type { IChatMessage } from '@Agent/core/ChatMessage';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 import {
 	messagesTemplate,
 	contextWindowTemplate,
 	modelResponseTemplate,
-} from '@InteractionLogger/common/templates';
+} from '@Agent/core/InteractionLogger/common/templates';
 
 interface IConstructorParams {
 	logger: Logger;

@@ -1,1 +1,1 @@
-export { adaptOpenAIResponse } from '@ModelResponseAdapter/common/adapters/adaptOpenAIResponse/adaptOpenAIResponse';
+export { adaptOpenAIResponse } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptOpenAIResponse/adaptOpenAIResponse';

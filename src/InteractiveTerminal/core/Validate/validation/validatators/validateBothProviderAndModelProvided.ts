@@ -1,5 +1,5 @@
 import { Logger } from '@Logger';
-import { bothProviderAndModelProvidedErrorTemplate } from '@Validate/validation/errorTemplates';
+import { bothProviderAndModelProvidedErrorTemplate } from '@InteractiveTerminal/core/Validate/validation/errorTemplates';
 
 interface IParams {
 	modelName: string;

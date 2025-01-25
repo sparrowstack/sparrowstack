@@ -1,1 +1,1 @@
-export { Validate } from '@Validate/Validate';
+export { Validate } from '@InteractiveTerminal/core/Validate/Validate';

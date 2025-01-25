@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { Role } from '@Agent';
-import { BaseLLM } from '@BaseLLM';
+import { BaseLLM } from '@Agent/core/BaseLLM';
 
 interface IParams {
 	llm: BaseLLM;

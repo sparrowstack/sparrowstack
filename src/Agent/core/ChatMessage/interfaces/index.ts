@@ -1,1 +1,1 @@
-export type { IChatMessage } from '@ChatMessage/interfaces/IChatMessage';
+export type { IChatMessage } from '@Agent/core/ChatMessage/interfaces/IChatMessage';

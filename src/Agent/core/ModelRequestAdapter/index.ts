@@ -1,1 +1,1 @@
-export { ModelRequestAdapter } from '@ModelRequestAdapter/ModelRequestAdapter';
+export { ModelRequestAdapter } from '@Agent/core/ModelRequestAdapter/ModelRequestAdapter';

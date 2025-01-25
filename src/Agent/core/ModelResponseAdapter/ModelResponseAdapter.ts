@@ -1,8 +1,11 @@
 import { OpenAI } from 'openai';
 import { Provider } from '@Agent';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { type IModelResponse } from '@ModelResponseAdapter/common/interfaces/IModelResponse';
-import { adaptOpenAIResponse, adaptAnthropicResponse } from '@ModelResponseAdapter/common/adapters';
+import { type IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces/IModelResponse';
+import {
+	adaptOpenAIResponse,
+	adaptAnthropicResponse,
+} from '@Agent/core/ModelResponseAdapter/common/adapters';
 
 export class ModelResponseAdapter {
 	public static adapt({

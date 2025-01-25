@@ -1,5 +1,5 @@
 import { Role, Provider } from '@Agent';
-import type { IChatMessage } from '@ChatMessage';
+import type { IChatMessage } from '@Agent/core/ChatMessage';
 
 interface IConstructorParams {
 	provider: Provider;

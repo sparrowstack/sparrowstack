@@ -1,1 +1,1 @@
-export type { IModelResponse } from '@ModelResponseAdapter/common/interfaces/IModelResponse';
+export type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces/IModelResponse';

@@ -1,4 +1,4 @@
-import { BaseLLM } from '@BaseLLM';
+import { BaseLLM } from '@Agent/core/BaseLLM';
 import { Anthropic } from '@anthropic-ai/sdk';
 
 interface IParams {

@@ -32,49 +32,18 @@
 			"@src/*": ["./src/*"],
 			"@Agent": ["./src/Agent"],
 			"@Agent/*": ["./src/Agent/*"],
-			"@BaseLLM": ["./src/Agent/core/BaseLLM"],
-			"@BaseLLM/*": ["./src/Agent/core/BaseLLM/*"],
 			"@Logger": ["./src/Logger"],
 			"@Logger/*": ["./src/Logger/*"],
 			"@Tool": ["./src/Tool"],
 			"@Tool/*": ["./src/Tool/*"],
 			"@Tools": ["./src/Tools"],
 			"@Tools/*": ["./src/Tools/*"],
-			"@ChatMessage": ["./src/Agent/core/ChatMessage"],
-			"@ChatMessage/*": ["./src/Agent/core/ChatMessage/*"],
-			"@ModelRequestAdapter": ["./src/Agent/core/ModelRequestAdapter"],
-			"@ModelRequestAdapter/*": [
-				"./src/Agent/core/ModelRequestAdapter/*"
-			],
-			"@ModelResponseAdapter": ["./src/Agent/core/ModelResponseAdapter"],
-			"@ModelResponseAdapter/*": [
-				"./src/Agent/core/ModelResponseAdapter/*"
-			],
-			"@ChatMessageManager": ["./src/Agent/core/ChatMessageManager"],
-			"@ChatMessageManager/*": ["./src/Agent/core/ChatMessageManager/*"],
-			"@InteractionLogger": ["./src/Agent/core/InteractionLogger"],
-			"@InteractionLogger/*": ["./src/Agent/core/InteractionLogger/*"],
 			"@SystemPrompt": ["./src/SystemPrompt"],
 			"@SystemPrompt/*": ["./src/SystemPrompt/*"],
 			"@SystemPrompts": ["./src/SystemPrompts"],
 			"@SystemPrompts/*": ["./src/SystemPrompts/*"],
 			"@InteractiveTerminal": ["./src/InteractiveTerminal"],
-			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"],
-
-			"@InstantiateAgent": [
-				"./src/InteractiveTerminal/core/InstantiateAgent"
-			],
-			"@InstantiateAgent/*": [
-				"./src/InteractiveTerminal/core/InstantiateAgent/*"
-			],
-			"@InteractiveSession": [
-				"./src/InteractiveTerminal/core/InteractiveSession"
-			],
-			"@InteractiveSession/*": [
-				"./src/InteractiveTerminal/core/InteractiveSession/*"
-			],
-			"@Validate": ["./src/InteractiveTerminal/core/Validate"],
-			"@Validate/*": ["./src/InteractiveTerminal/core/Validate/*"]
+			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"]
 		}
 	}
 }

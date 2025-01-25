@@ -5,7 +5,7 @@ import {
 	validateIsValidProvider,
 	// validateValidSystemPrompt,
 	validateBothProviderAndModelProvided,
-} from '@Validate/validation/validatators';
+} from '@InteractiveTerminal/core/Validate/validation/validatators';
 
 interface IParams {
 	logger: Logger;

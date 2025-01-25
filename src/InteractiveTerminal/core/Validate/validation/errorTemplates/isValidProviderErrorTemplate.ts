@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { Provider } from '@Agent';
-import { getAvailableProviders } from '@Validate/validation/utils';
+import { getAvailableProviders } from '@InteractiveTerminal/core/Validate/validation/utils';
 
 interface IParams {
 	providerName: string;

@@ -1,2 +1,2 @@
-export { ChatMessage } from '@ChatMessage/ChatMessage';
-export type { IChatMessage } from '@ChatMessage/interfaces/IChatMessage';
+export { ChatMessage } from '@Agent/core/ChatMessage/ChatMessage';
+export type { IChatMessage } from '@Agent/core/ChatMessage/interfaces/IChatMessage';

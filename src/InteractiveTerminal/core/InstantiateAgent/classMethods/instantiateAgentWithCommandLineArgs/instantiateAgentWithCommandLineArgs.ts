@@ -2,9 +2,9 @@ import { Logger } from '@Logger';
 import { defaultPrompt } from '@SystemPrompts';
 import { Agent, Provider, Model } from '@Agent';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
-import { validateApiKey } from '@InstantiateAgent/validation/validators/validateApiKey';
-import { getApiKey } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getApiKey';
-import { getProvider } from '@InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getProvider';
+import { validateApiKey } from '@InteractiveTerminal/core/InstantiateAgent/validation/validators/validateApiKey';
+import { getApiKey } from '@InteractiveTerminal/core/InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getApiKey';
+import { getProvider } from '@InteractiveTerminal/core/InstantiateAgent/classMethods/instantiateAgentWithCommandLineArgs/common/utils/getProvider';
 
 interface IParams {
 	logger: Logger;

@@ -1,6 +1,6 @@
 // import { Logger } from '@Logger';
 // import { SystemPrompts } from '@SystemPrompts';
-// import { isValidSystemPromptErrorTemplate } from '@Validate/validation/errorTemplates';
+// import { isValidSystemPromptErrorTemplate } from '@InteractiveTerminal/core/Validate/validation/errorTemplates';
 
 // interface IParams {
 // 	systemPromptName: string;

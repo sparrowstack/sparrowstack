@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
-import { getChoiceParams } from '@ModelResponseAdapter/common/adapters/adaptOpenAIResponse/common/utils/getChoiceParams';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import { getChoiceParams } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptOpenAIResponse/common/utils/getChoiceParams';
 
 export const adaptOpenAIResponse = ({
 	response,

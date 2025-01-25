@@ -1,1 +1,1 @@
-export { ModelResponseAdapter } from '@ModelResponseAdapter/ModelResponseAdapter';
+export { ModelResponseAdapter } from '@Agent/core/ModelResponseAdapter/ModelResponseAdapter';

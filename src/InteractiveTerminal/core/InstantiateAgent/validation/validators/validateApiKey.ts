@@ -1,5 +1,5 @@
 import { Logger } from '@Logger';
-import { apiKeyErrorTemplate } from '@InstantiateAgent/validation/errorTemplates';
+import { apiKeyErrorTemplate } from '@InteractiveTerminal/core/InstantiateAgent/validation/errorTemplates';
 
 interface IParams {
 	apiKey: string | undefined;
