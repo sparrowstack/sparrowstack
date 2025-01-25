@@ -3,7 +3,7 @@ import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
 import {
 	// getToolCalls,
 	getTextContent,
-} from '@ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
+} from '@root/src/Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
 
 interface IParams {
 	response: Anthropic.Messages.Message;

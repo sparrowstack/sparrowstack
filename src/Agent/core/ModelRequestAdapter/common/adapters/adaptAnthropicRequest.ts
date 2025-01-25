@@ -5,10 +5,12 @@ interface IParams {
 	llm: BaseLLM;
 }
 
-export const adaptAnthropicRequest = async ({ llm }: IParams) => {
+export const adaptAnthropicRequest = async ({
+	llm,
+}: IParams): Promise<Anthropic.Messages.Message> => {
 	const sdk = llm.sdk as Anthropic;
 
-	const response = await sdk.messages.create({
+	const response = (await sdk.messages.create({
 		messages:
 			llm.chatMessageManager.getMessages() as Anthropic.MessageParam[],
 		model: llm.model,
@@ -18,7 +20,7 @@ export const adaptAnthropicRequest = async ({ llm }: IParams) => {
 		tools: llm.tools?.map((tool) =>
 			tool.getSchema({ provider: llm.provider }),
 		) as Anthropic.Tool[],
-	});
+	})) as Anthropic.Messages.Message;
 
 	return response;
 };

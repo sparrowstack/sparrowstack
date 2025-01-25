@@ -1,13 +1,13 @@
 import OpenAI from 'openai';
 import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
-import { getChoiceParams } from '@Agent/core/llms/OpenAILLM/common/utils/getChoiceParams';
+import { getChoiceParams } from '@ModelResponseAdapter/common/adapters/adaptOpenAIResponse/common/utils/getChoiceParams';
 
-export const convertOpenAIMessageToLLMResponseMessage = ({
-	message,
+export const adaptOpenAIResponse = ({
+	response,
 }: {
-	message: OpenAI.ChatCompletion;
+	response: OpenAI.ChatCompletion;
 }): IModelResponse => {
-	const { id, model, usage } = message;
+	const { id, model, usage } = response;
 	const { prompt_tokens: inputTokens, completion_tokens: outputTokens } =
 		usage || {};
 	const {
@@ -15,7 +15,7 @@ export const convertOpenAIMessageToLLMResponseMessage = ({
 		content: text,
 		finish_reason: stopReason,
 	} = getChoiceParams({
-		message,
+		response,
 		index: 0,
 	});
 
@@ -30,7 +30,7 @@ export const convertOpenAIMessageToLLMResponseMessage = ({
 			inputTokens: inputTokens ?? null,
 			outputTokens: outputTokens ?? null,
 		},
-		rawMessage: message,
+		rawMessage: response,
 	};
 
 	return modelResponse;

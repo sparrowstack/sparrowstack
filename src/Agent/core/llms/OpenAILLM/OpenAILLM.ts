@@ -17,7 +17,13 @@ export class OpenAILLM extends BaseLLM {
 	openai: OpenAI;
 
 	constructor({ model, apiKey, systemPrompt, tools }: IContructorParams) {
-		super({ model, provider: Provider.OpenAI, apiKey,tools, systemPrompt });
+		super({
+			model,
+			provider: Provider.OpenAI,
+			apiKey,
+			tools,
+			systemPrompt,
+		});
 
 		this.openai = new OpenAI({
 			apiKey,
@@ -32,7 +38,6 @@ export class OpenAILLM extends BaseLLM {
 		return await sendMessage({
 			message,
 			llm: this,
-			openai: this.openai,
 		});
 	}
 }

@@ -1,21 +1,22 @@
-import OpenAI from 'openai';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-import { sendContextToLLM } from '@Agent/core/llms/OpenAILLM/common/utils';
+import { ModelResponseAdapter } from '@ModelResponseAdapter';
+import { ModelRequestAdapter } from '@ModelRequestAdapter';
 
 interface IParams {
 	llm: BaseLLM;
 	message: string;
-	openai: OpenAI;
 }
 
-export const sendMessage = async ({ llm, message, openai }: IParams) => {
+export const sendMessage = async ({ llm, message }: IParams) => {
 	llm.chatMessageManager.addUserMessage({ content: message });
 
 	llm.interactionLogger.logContextWindow({ llm });
 
-	const responseMessage = await sendContextToLLM({
-		llm,
-		openai,
+	const rawResponse = await ModelRequestAdapter.execute({ llm });
+
+	const responseMessage = ModelResponseAdapter.adapt({
+		rawResponse,
+		provider: llm.provider,
 	});
 
 	llm.interactionLogger.logModelResponse({ message: responseMessage });

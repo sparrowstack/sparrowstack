@@ -2,7 +2,7 @@ import { OpenAI } from 'openai';
 import { Provider } from '@Agent';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { type IModelResponse } from '@ModelResponseAdapter/common/interfaces/IModelResponse';
-import { adaptAnthropicResponse } from '@ModelResponseAdapter/common/adapters';
+import { adaptOpenAIResponse, adaptAnthropicResponse } from '@ModelResponseAdapter/common/adapters';
 
 export class ModelResponseAdapter {
 	public static adapt({
@@ -15,6 +15,10 @@ export class ModelResponseAdapter {
 		if (provider === Provider.Anthropic) {
 			return adaptAnthropicResponse({
 				response: rawResponse as Anthropic.Messages.Message,
+			});
+		} else if (provider === Provider.OpenAI) {
+			return adaptOpenAIResponse({
+				response: rawResponse as OpenAI.ChatCompletion,
 			});
 		} else {
 			throw new Error('Provider not supportedd');

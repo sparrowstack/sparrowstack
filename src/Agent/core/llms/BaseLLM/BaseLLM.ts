@@ -6,6 +6,8 @@ import { Provider, ProviderName } from '@Agent';
 import { defaultPrompt } from '@SystemPrompts/default';
 import { InteractionLogger } from '@InteractionLogger';
 import { ChatMessageManager } from '@ChatMessageManager';
+import { ModelRequestAdapter } from '@ModelRequestAdapter';
+import { ModelResponseAdapter } from '@ModelResponseAdapter';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
 
@@ -102,29 +104,28 @@ export abstract class BaseLLM {
 		});
 	}
 
-	abstract sendMessage({
+	public async sendMessage({
 		message,
 	}: {
 		message: string;
-	}): Promise<IModelResponse>;
+	}): Promise<IModelResponse> {
+		this.chatMessageManager.addUserMessage({ content: message });
 
-	// public async sendMessage({
-	// 	message,
-	// }: {
-	// 	message: string;
-	// }): Promise<IModelResponse> {
-	// 	this.chatMessageManager.addUserMessage({ content: message });
+		this.interactionLogger.logContextWindow({ llm: this });
 
-	// 	this.logContextWindow();
+		const rawResponse = await ModelRequestAdapter.execute({ llm: this });
 
-	// 	const responseMessage = await this.sendContextToLLM();
+		const responseMessage = ModelResponseAdapter.adapt({
+			rawResponse,
+			provider: this.provider,
+		});
 
-	// 	this.logModelResponse({ message: responseMessage });
+		this.interactionLogger.logModelResponse({ message: responseMessage });
 
-	// 	this.chatMessageManager.addAssistantMessage({
-	// 		content: responseMessage.text,
-	// 	});
+		this.chatMessageManager.addAssistantMessage({
+			content: responseMessage.text,
+		});
 
-	// 	return responseMessage;
-	// }
+		return responseMessage;
+	}
 }

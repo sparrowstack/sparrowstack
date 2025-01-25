@@ -2,11 +2,11 @@ import { OpenAI } from 'openai';
 
 interface IParams {
 	index: number;
-	message: OpenAI.ChatCompletion;
+	response: OpenAI.ChatCompletion;
 }
 
-export const getChoiceParams = ({ message, index }: IParams) => {
-	const choice = message.choices[index];
+export const getChoiceParams = ({ response, index }: IParams) => {
+	const choice = response.choices[index];
 	const { message: choiceMessage, logprobs, finish_reason } = choice;
 	const { role, content, refusal } = choiceMessage;
 
