@@ -1,4 +1,4 @@
-import { Provider } from '@Agent';
+import { Provider } from '@Agent/common/enums';
 import { toOpenAISchema, toAnthropicSchema } from '@Tool/common/schemaAdapters';
 
 export const providerSchemas = {

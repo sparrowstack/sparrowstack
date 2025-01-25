@@ -1,4 +1,11 @@
 export { Agent } from '@Agent/Agent';
-export { BaseLLM } from '@Agent/core/llms';
-export { ProviderName } from '@Agent/common/constants';
-export { Role, Provider, Model } from '@Agent/common/enums';
+
+// Constants
+export { ProviderName } from '@Agent/common/constants/ProviderName';
+
+// Enums
+export { Role } from '@Agent/common/enums/Role';
+export { Model } from '@Agent/common/enums/Model';
+export { Provider } from '@Agent/common/enums/Provider';
+
+// Note: using full path for here to avoid circular dependencies

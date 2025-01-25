@@ -1,5 +1,5 @@
 import { Provider } from '@Agent';
-import type { BaseLLM } from '@Agent/core/llms/BaseLLM';
+import type { BaseLLM } from '@BaseLLM';
 import {
 	adaptOpenAIRequest,
 	adaptAnthropicRequest,

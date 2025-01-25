@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import wrapAnsi from 'wrap-ansi';
-import type { BaseLLM } from '@Agent';
+import type { BaseLLM } from '@BaseLLM';
 
 interface IParams {
 	llm: BaseLLM;

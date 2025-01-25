@@ -1,7 +1,6 @@
 import { Provider } from '@Agent';
-import { BaseLLM } from '@Agent/core/llms';
+import { BaseLLM } from '@BaseLLM';
 import { SystemPrompt } from '@SystemPrompt';
-import { getLLM } from '@Agent/common/utils';
 import { Tool, type IToolParams } from '@Tool';
 import type { ISystemPromptParams } from '@SystemPrompt';
 
@@ -23,8 +22,12 @@ export class Agent {
 		provider,
 		systemPrompt,
 	}: IConstructorParams) {
-		const llm = getLLM({ provider });
-
-		this.llm = new llm({ model, apiKey, systemPrompt, tools });
+		this.llm = new BaseLLM({
+			model,
+			apiKey,
+			tools,
+			provider,
+			systemPrompt,
+		});
 	}
 }

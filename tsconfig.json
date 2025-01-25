@@ -32,6 +32,8 @@
 			"@src/*": ["./src/*"],
 			"@Agent": ["./src/Agent"],
 			"@Agent/*": ["./src/Agent/*"],
+			"@BaseLLM": ["./src/Agent/core/BaseLLM"],
+			"@BaseLLM/*": ["./src/Agent/core/BaseLLM/*"],
 			"@Logger": ["./src/Logger"],
 			"@Logger/*": ["./src/Logger/*"],
 			"@Tool": ["./src/Tool"],

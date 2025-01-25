@@ -19,7 +19,7 @@ interface IConstructorParams {
 	systemPrompt?: SystemPrompt | ISystemPromptParams;
 }
 
-export abstract class BaseLLM {
+export class BaseLLM {
 	// Base
 	readonly model: string;
 	readonly apiKey: string;
