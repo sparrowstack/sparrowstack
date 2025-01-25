@@ -3,7 +3,7 @@ import { Provider } from '@Agent';
 import { Tool, type IToolParams } from '@Tool';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/OpenAILLM/classMethods';
 
 interface IContructorParams {
@@ -14,13 +14,10 @@ interface IContructorParams {
 }
 
 export class OpenAILLM extends BaseLLM {
-	maxTokens: number;
 	openai: OpenAI;
 
 	constructor({ model, apiKey, systemPrompt, tools }: IContructorParams) {
-		super({ model, provider: Provider.OpenAI, tools, systemPrompt });
-
-		this.maxTokens = 1024;
+		super({ model, provider: Provider.OpenAI, apiKey,tools, systemPrompt });
 
 		this.openai = new OpenAI({
 			apiKey,

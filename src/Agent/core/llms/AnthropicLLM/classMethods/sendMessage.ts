@@ -1,7 +1,7 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-// import { executeToolCalls } from '@Agent/core/llms/common/utils';
-import { sendContextToLLM } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
+import { ModelRequestAdapter } from '@ModelRequestAdapter';
+import { ModelResponseAdapter } from '@ModelResponseAdapter';
 
 interface IParams {
 	llm: BaseLLM;
@@ -9,20 +9,22 @@ interface IParams {
 	anthropic: Anthropic;
 }
 
-export const sendMessage = async ({ llm, message, anthropic }: IParams) => {
+export const sendMessage = async ({ llm, message }: IParams) => {
 	llm.chatMessageManager.addUserMessage({ content: message });
 	llm.interactionLogger.logContextWindow({ llm });
 
-	const responseMessage = await sendContextToLLM({
-		llm,
-		anthropic,
+	const rawResponse = await ModelRequestAdapter.execute({ llm });
+
+	const modelResponse = ModelResponseAdapter.adapt({
+		rawResponse,
+		provider: llm.provider,
 	});
 
-	llm.interactionLogger.logModelResponse({ message: responseMessage });
+	llm.interactionLogger.logModelResponse({ message: modelResponse });
 
 	llm.chatMessageManager.addAssistantMessage({
-		content: responseMessage.text,
+		content: modelResponse.text,
 	});
 
-	return responseMessage;
+	return modelResponse;
 };

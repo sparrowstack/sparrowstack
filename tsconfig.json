@@ -40,6 +40,14 @@
 			"@Tools/*": ["./src/Tools/*"],
 			"@ChatMessage": ["./src/Agent/core/ChatMessage"],
 			"@ChatMessage/*": ["./src/Agent/core/ChatMessage/*"],
+			"@ModelRequestAdapter": ["./src/Agent/core/ModelRequestAdapter"],
+			"@ModelRequestAdapter/*": [
+				"./src/Agent/core/ModelRequestAdapter/*"
+			],
+			"@ModelResponseAdapter": ["./src/Agent/core/ModelResponseAdapter"],
+			"@ModelResponseAdapter/*": [
+				"./src/Agent/core/ModelResponseAdapter/*"
+			],
 			"@ChatMessageManager": ["./src/Agent/core/ChatMessageManager"],
 			"@ChatMessageManager/*": ["./src/Agent/core/ChatMessageManager/*"],
 			"@InteractionLogger": ["./src/Agent/core/InteractionLogger"],

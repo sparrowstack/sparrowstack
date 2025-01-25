@@ -4,7 +4,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import { Provider } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 import { sendMessage } from '@Agent/core/llms/AnthropicLLM/classMethods';
-import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
 
 interface IContructorParams {
 	model: string;
@@ -14,13 +14,16 @@ interface IContructorParams {
 }
 
 export class AnthropicLLM extends BaseLLM {
-	maxTokens: number;
 	anthropic: Anthropic;
 
 	constructor({ model, apiKey, systemPrompt, tools }: IContructorParams) {
-		super({ model, provider: Provider.Anthropic, tools, systemPrompt });
-
-		this.maxTokens = 1024;
+		super({
+			apiKey,
+			tools,
+			model,
+			systemPrompt,
+			provider: Provider.Anthropic,
+		});
 
 		this.anthropic = new Anthropic({
 			apiKey,

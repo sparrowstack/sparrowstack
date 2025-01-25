@@ -1,14 +1,17 @@
+import { OpenAI } from 'openai';
 import { Logger } from '@Logger';
+import { Anthropic } from '@anthropic-ai/sdk';
 import { Tool, type IToolParams } from '@Tool';
 import { Provider, ProviderName } from '@Agent';
 import { defaultPrompt } from '@SystemPrompts/default';
 import { InteractionLogger } from '@InteractionLogger';
 import { ChatMessageManager } from '@ChatMessageManager';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
-import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import type { IModelResponse } from '@ModelResponseAdapter/common/interfaces';
 
 interface IConstructorParams {
 	model: string;
+	apiKey: string;
 	provider: Provider;
 	tools?: Tool[] | IToolParams[];
 	systemPrompt?: SystemPrompt | ISystemPromptParams;
@@ -17,9 +20,13 @@ interface IConstructorParams {
 export abstract class BaseLLM {
 	// Base
 	readonly model: string;
+	readonly apiKey: string;
 	readonly provider: Provider;
 	readonly providerName: string;
 	readonly systemPrompt: SystemPrompt;
+
+	// Provider API
+	readonly sdk: OpenAI | Anthropic;
 
 	// Utilities
 	readonly logger: Logger;
@@ -30,28 +37,36 @@ export abstract class BaseLLM {
 	readonly tools?: Tool[];
 	readonly functions?: Record<IToolParams['name'], IToolParams['function']>;
 
-	// LLM Specific
-	abstract readonly maxTokens: number;
+	// Settings
+	readonly maxTokens: number;
 
 	constructor({
 		model,
 		tools,
+		apiKey,
 		provider,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
 		// Base Properties
 		// --------------------------------
 		this.model = model; // e.g. 'gpt-4o'
+		this.apiKey = apiKey;
 		this.provider = provider; // e.g. 'openai'
 		this.providerName = ProviderName[provider]; // e.g. 'OpenAI'
 
-		// Utilities
+		// Provider SDK
 		// --------------------------------
-		this.logger = new Logger(this.providerName);
-		this.interactionLogger = new InteractionLogger({ logger: this.logger });
-		this.chatMessageManager = new ChatMessageManager({
-			provider: this.provider,
-		});
+		if (provider === Provider.OpenAI) {
+			this.sdk = new OpenAI({
+				apiKey: this.apiKey,
+			});
+		} else if (provider === Provider.Anthropic) {
+			this.sdk = new Anthropic({
+				apiKey: this.apiKey,
+			});
+		} else {
+			throw new Error(`Provider ${provider} not supported`);
+		}
 
 		// System Prompt
 		// --------------------------------
@@ -73,7 +88,18 @@ export abstract class BaseLLM {
 			}),
 			{} as Record<Tool['name'], Tool['function']>,
 		);
+
+		// Settings
 		// --------------------------------
+		this.maxTokens = 1024;
+
+		// Utilities
+		// --------------------------------
+		this.logger = new Logger(this.providerName);
+		this.interactionLogger = new InteractionLogger({ logger: this.logger });
+		this.chatMessageManager = new ChatMessageManager({
+			provider: this.provider,
+		});
 	}
 
 	abstract sendMessage({

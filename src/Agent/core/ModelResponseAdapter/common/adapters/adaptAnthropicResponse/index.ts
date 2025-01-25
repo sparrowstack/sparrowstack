@@ -1,1 +1,1 @@
-export { adaptAnthropicResponse } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/adaptAnthropicResponse';
+export { adaptAnthropicResponse } from '@ModelResponseAdapter/common/adapters/adaptAnthropicResponse/adaptAnthropicResponse';
