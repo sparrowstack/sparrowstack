@@ -1,2 +1,6 @@
-export { SystemPrompts } from '@SystemPrompts/SystemPrompts';
-export { SystemPromptName } from '@SystemPrompts/SystemPromptNames';
+export { defaultPrompt, defaultPromptParams } from '@SystemPrompts/default';
+
+export {
+	softwareEngineerTypeScriptPrompt,
+	softwareEngineerTypeScriptPromptParams,
+} from '@SystemPrompts/softwareEngineerTypescript';

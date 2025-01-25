@@ -1,14 +1,16 @@
-import type { IToolParams } from '@Tool';
+import { Provider } from '@Agent';
 import { BaseLLM } from '@Agent/core/llms';
+import { SystemPrompt } from '@SystemPrompt';
 import { getLLM } from '@Agent/common/utils';
-import { Provider } from '@Agent/common/enums/Provider';
+import { Tool, type IToolParams } from '@Tool';
+import type { ISystemPromptParams } from '@SystemPrompt';
 
 interface IConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: Provider;
-	systemPrompt?: string;
-	tools?: IToolParams[];
+	tools?: Tool[] | IToolParams[];
+	systemPrompt?: SystemPrompt | ISystemPromptParams;
 }
 
 export class Agent {

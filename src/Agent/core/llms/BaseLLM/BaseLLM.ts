@@ -1,17 +1,17 @@
-import { Tool } from '@Tool';
 import { Logger } from '@Logger';
-import type { IToolParams } from '@Tool';
+import { Tool, type IToolParams } from '@Tool';
 import { Provider, ProviderName } from '@Agent';
+import { defaultPrompt } from '@SystemPrompts/default';
 import { InteractionLogger } from '@InteractionLogger';
 import { ChatMessageManager } from '@ChatMessageManager';
-import { SystemPrompts, SystemPromptName } from '@SystemPrompts';
-import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 
 interface IConstructorParams {
 	model: string;
 	provider: Provider;
-	systemPrompt?: string;
-	tools?: IToolParams[];
+	tools?: Tool[] | IToolParams[];
+	systemPrompt?: SystemPrompt | ISystemPromptParams;
 }
 
 export abstract class BaseLLM {
@@ -19,8 +19,7 @@ export abstract class BaseLLM {
 	readonly model: string;
 	readonly provider: Provider;
 	readonly providerName: string;
-	readonly systemPrompt: string;
-	readonly systemPromptName: string;
+	readonly systemPrompt: SystemPrompt;
 
 	// Utilities
 	readonly logger: Logger;
@@ -36,17 +35,15 @@ export abstract class BaseLLM {
 
 	constructor({
 		model,
+		tools,
 		provider,
-		systemPrompt,
-		tools: toolsParams,
+		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
 		// Base Properties
 		// --------------------------------
 		this.model = model; // e.g. 'gpt-4o'
 		this.provider = provider; // e.g. 'openai'
 		this.providerName = ProviderName[provider]; // e.g. 'OpenAI'
-		this.systemPrompt = systemPrompt || SystemPrompts.Default; // e.g. 'You are a helpful assistant.'
-		this.systemPromptName = SystemPromptName[this.systemPrompt]; // e.g. 'Default | SoftwareEngineerTypeScript'
 
 		// Utilities
 		// --------------------------------
@@ -56,16 +53,25 @@ export abstract class BaseLLM {
 			provider: this.provider,
 		});
 
+		// System Prompt
+		// --------------------------------
+		this.systemPrompt =
+			systemPrompt instanceof SystemPrompt
+				? systemPrompt
+				: new SystemPrompt(systemPrompt);
+
 		// Tool Calling
 		// --------------------------------
-		this.tools = toolsParams?.map((toolParams) => new Tool(toolParams));
+		this.tools = tools?.map((tool) => {
+			return tool instanceof Tool ? tool : new Tool(tool);
+		});
 
-		this.functions = toolsParams?.reduce(
-			(accumulator, toolParams) => ({
+		this.functions = this.tools?.reduce(
+			(accumulator, tool) => ({
 				...accumulator,
-				[toolParams.name]: toolParams.function,
+				[tool.name]: tool.function,
 			}),
-			{} as Record<IToolParams['name'], IToolParams['function']>,
+			{} as Record<Tool['name'], Tool['function']>,
 		);
 		// --------------------------------
 	}

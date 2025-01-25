@@ -1,7 +1,7 @@
 import { Logger } from '@Logger';
 import type { IChatMessage } from '@ChatMessage';
 import type { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 import {
 	messagesTemplate,
 	contextWindowTemplate,
@@ -32,7 +32,7 @@ export class InteractionLogger {
 
 	public logContextWindow({ llm }: { llm: BaseLLM }) {
 		const contextWindow = contextWindowTemplate({
-			systemPrompt: llm.systemPrompt,
+			systemPrompt: llm.systemPrompt.getPrompt(),
 			messages: llm.chatMessageManager.getMessages(),
 		});
 

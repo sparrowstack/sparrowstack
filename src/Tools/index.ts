@@ -1,5 +1,4 @@
-import { toolParams } from '@Tools/getDirectoryStucture';
-
-export const tools = {
-	getDirectoryStructure: toolParams,
-};
+export {
+	getDirectoryStructureTool,
+	getDirectoryStructureToolParams,
+} from '@Tools/getDirectoryStucture/tool';

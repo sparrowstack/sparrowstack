@@ -1,22 +1,23 @@
-import type { IToolParams } from '@Tool';
+import { Tool, type IToolParams } from '@Tool';
+import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { Provider } from '@Agent/common/enums';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 import { sendMessage } from '@Agent/core/llms/AnthropicLLM/classMethods';
-import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 
-interface IContructorOptions {
+interface IContructorParams {
 	model: string;
 	apiKey: string;
-	tools?: IToolParams[];
-	systemPrompt?: string;
+	tools?: Tool[] | IToolParams[];
+	systemPrompt?: SystemPrompt | ISystemPromptParams;
 }
 
 export class AnthropicLLM extends BaseLLM {
 	maxTokens: number;
 	anthropic: Anthropic;
 
-	constructor({ model, apiKey, systemPrompt, tools }: IContructorOptions) {
+	constructor({ model, apiKey, systemPrompt, tools }: IContructorParams) {
 		super({ model, provider: Provider.Anthropic, tools, systemPrompt });
 
 		this.maxTokens = 1024;

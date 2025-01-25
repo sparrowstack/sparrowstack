@@ -1,7 +1,7 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
 // import { executeToolCalls } from '@Agent/core/llms/common/utils';
-import { sendContextToLLM } from '@Agent/core/llms/AnthropicLLM/common/utils';
+import { sendContextToLLM } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
 
 interface IParams {
 	llm: BaseLLM;

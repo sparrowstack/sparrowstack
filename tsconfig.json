@@ -44,6 +44,8 @@
 			"@ChatMessageManager/*": ["./src/Agent/core/ChatMessageManager/*"],
 			"@InteractionLogger": ["./src/Agent/core/InteractionLogger"],
 			"@InteractionLogger/*": ["./src/Agent/core/InteractionLogger/*"],
+			"@SystemPrompt": ["./src/SystemPrompt"],
+			"@SystemPrompt/*": ["./src/SystemPrompt/*"],
 			"@SystemPrompts": ["./src/SystemPrompts"],
 			"@SystemPrompts/*": ["./src/SystemPrompts/*"],
 			"@InteractiveTerminal": ["./src/InteractiveTerminal"],

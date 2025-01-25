@@ -3,7 +3,7 @@ import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 
 import {
 	validateIsValidProvider,
-	validateValidSystemPrompt,
+	// validateValidSystemPrompt,
 	validateBothProviderAndModelProvided,
 } from '@Validate/validation/validatators';
 
@@ -16,11 +16,7 @@ export const validateCommandLineArgs = ({
 	logger,
 	commandLineArgs,
 }: IParams) => {
-	const {
-		model: modelName,
-		provider: providerName,
-		systemPrompt: systemPromptName,
-	} = commandLineArgs;
+	const { model: modelName, provider: providerName } = commandLineArgs;
 
 	validateBothProviderAndModelProvided({
 		logger,
@@ -35,12 +31,12 @@ export const validateCommandLineArgs = ({
 		});
 	}
 
-	if (systemPromptName) {
-		validateValidSystemPrompt({
-			logger,
-			systemPromptName,
-		});
-	}
+	// if (systemPromptName) {
+	// 	validateValidSystemPrompt({
+	// 		logger,
+	// 		systemPromptName,
+	// 	});
+	// }
 
 	return commandLineArgs;
 };

@@ -1,14 +1,14 @@
 import { Provider } from '@Agent';
 import { providerSchemas } from '@Tool/common/constants';
-import type { IParameterDefinition } from '@Tool/common/interfaces';
+import type {
+	IToolParams,
+	IParameterDefinition,
+} from '@Tool/common/interfaces';
 
-export interface IConstructorParams {
-	name: string;
-	description: string;
-	function: (...args: unknown[]) => Promise<unknown>;
-	parameters?: Record<string, IParameterDefinition>;
-}
-
+// TODO: Add
+// args
+// validate
+// maxCount
 export class Tool {
 	public name: string;
 	public description: string;
@@ -20,7 +20,7 @@ export class Tool {
 		description,
 		function: func,
 		parameters = {},
-	}: IConstructorParams) {
+	}: IToolParams) {
 		this.name = name;
 		this.function = func;
 		this.description = description;

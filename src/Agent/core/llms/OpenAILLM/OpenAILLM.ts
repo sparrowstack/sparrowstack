@@ -1,22 +1,23 @@
 import OpenAI from 'openai';
-import type { IToolParams } from '@Tool';
-import { Provider } from '@Agent/common/enums';
+import { Provider } from '@Agent';
+import { Tool, type IToolParams } from '@Tool';
+import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import { BaseLLM } from '@Agent/core/llms/BaseLLM/BaseLLM';
-import type { IModelResponse } from '@Agent/core/llms/BaseLLM/common/interfaces';
+import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 import { sendMessage } from '@Agent/core/llms/OpenAILLM/classMethods';
 
-interface IContructorOptions {
+interface IContructorParams {
 	model: string;
 	apiKey: string;
-	tools?: IToolParams[];
-	systemPrompt?: string;
+	tools?: Tool[] | IToolParams[];
+	systemPrompt?: SystemPrompt | ISystemPromptParams;
 }
 
 export class OpenAILLM extends BaseLLM {
 	maxTokens: number;
 	openai: OpenAI;
 
-	constructor({ model, apiKey, systemPrompt, tools }: IContructorOptions) {
+	constructor({ model, apiKey, systemPrompt, tools }: IContructorParams) {
 		super({ model, provider: Provider.OpenAI, tools, systemPrompt });
 
 		this.maxTokens = 1024;

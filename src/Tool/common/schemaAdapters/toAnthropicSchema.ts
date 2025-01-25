@@ -1,19 +1,20 @@
-import { ParameterType } from '@Tool/common/enums';
-import type { IToSchemaOptions } from '@Tool/common/interfaces';
+import { Anthropic } from '@anthropic-ai/sdk';
+import type { IToolSchemaParams } from '@Tool';
+import { PropertyType } from '@Tool/common/enums';
 import { processParameters, getRequiredParameters } from '@Tool/common/utils';
 
 export const toAnthropicSchema = ({
 	name,
 	description,
 	parameters,
-}: IToSchemaOptions) => {
+}: IToolSchemaParams) => {
 	return {
 		name: name,
 		description: description,
 		input_schema: {
-			type: ParameterType.Object,
+			type: PropertyType.Object,
 			properties: parameters ? processParameters({ parameters }) : {},
 			required: parameters ? getRequiredParameters({ parameters }) : [],
 		},
-	};
+	} as Anthropic.Tool;
 };

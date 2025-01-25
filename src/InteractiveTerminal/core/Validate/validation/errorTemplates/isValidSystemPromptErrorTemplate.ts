@@ -1,27 +1,27 @@
-import chalk from 'chalk';
-import { getAvailableSystemPrompts } from '@Validate/validation/utils';
+// import chalk from 'chalk';
+// import { getAvailableSystemPrompts } from '@Validate/validation/utils';
 
-interface IParams {
-	systemPromptName: string;
-}
+// interface IParams {
+// 	systemPromptName: string;
+// }
 
-export const isValidSystemPromptErrorTemplate = ({
-	systemPromptName,
-}: IParams) => {
-	const availableSystemPrompts = getAvailableSystemPrompts();
-	const errorTemplate = chalk.red(`
-			
-The System Prompt '${systemPromptName}' is not available.
+// export const isValidSystemPromptErrorTemplate = ({
+// 	systemPromptName,
+// }: IParams) => {
+// 	const availableSystemPrompts = getAvailableSystemPrompts();
+// 	const errorTemplate = chalk.red(`
 
-Available System Prompts:
-${availableSystemPrompts}
+// The System Prompt '${systemPromptName}' is not available.
 
-Example:
-bun start:interactiveTerminal --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
+// Available System Prompts:
+// ${availableSystemPrompts}
 
-Note: If the System Prompt is not provided, the default System Prompt will be used.
+// Example:
+// bun start:interactiveTerminal --provider=anthropic --model=claude-3-5-sonnet-20241022 --systemPrompt=SoftwareEngineerTypeScript
 
-`);
+// Note: If the System Prompt is not provided, the default System Prompt will be used.
 
-	return errorTemplate;
-};
+// `);
+
+// 	return errorTemplate;
+// };

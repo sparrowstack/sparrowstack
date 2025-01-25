@@ -1,5 +1,5 @@
 import { Logger } from '@Logger';
-import { SystemPrompts } from '@SystemPrompts';
+import { defaultPrompt } from '@SystemPrompts';
 import { Agent, Provider, Model } from '@Agent';
 import type { ICommandLineArgs } from '@InteractiveTerminal/common/interfaces';
 import { validateApiKey } from '@InstantiateAgent/validation/validators/validateApiKey';
@@ -15,11 +15,7 @@ export const instantiateAgentWithCommandLineArgs = ({
 	logger,
 	commandLineArgs,
 }: IParams) => {
-	const {
-		model: modelName,
-		provider: providerName,
-		systemPrompt: systemPromptName,
-	} = commandLineArgs;
+	const { model: modelName, provider: providerName } = commandLineArgs;
 
 	// Provides Model
 	const defaultModel = Model.Anthropic.Claude35Sonnet;
@@ -32,9 +28,7 @@ export const instantiateAgentWithCommandLineArgs = ({
 	const provider = providerFromArg || defaultProvider;
 
 	// Provides System Prompt
-	const defaultSystemPrompt = SystemPrompts.Default;
-	const systemPromptFromArg = SystemPrompts[systemPromptName];
-	const systemPrompt = systemPromptFromArg || defaultSystemPrompt;
+	const systemPrompt = defaultPrompt;
 
 	// Provides API Key
 	const apiKey = getApiKey({ provider }) as string;
