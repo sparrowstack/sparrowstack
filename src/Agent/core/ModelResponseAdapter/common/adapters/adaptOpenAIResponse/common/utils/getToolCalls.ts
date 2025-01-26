@@ -9,11 +9,11 @@ interface IParams {
 }
 
 export const getToolCalls = ({ message }: IParams) => {
-	const toolCalls = message.tool_calls?.filter(
+	const toolCalls = message?.tool_calls?.filter(
 		(toolCall) => toolCall.type === ToolCallType.Function,
 	) as OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];
 
-	const adaptedToolCalls = toolCalls.map((toolCall) => {
+	const adaptedToolCalls = toolCalls?.map((toolCall) => {
 		return {
 			id: toolCall.id,
 			name: toolCall.function.name,
@@ -22,5 +22,5 @@ export const getToolCalls = ({ message }: IParams) => {
 		};
 	});
 
-	return adaptedToolCalls;
+	return adaptedToolCalls || [];
 };

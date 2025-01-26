@@ -1,18 +1,10 @@
 import OpenAI from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
+import { type IToolCall } from '@Agent/core/ModelResponseAdapter/common/interfaces/IToolCall';
 
 export interface IUsage {
 	inputTokens: number | null;
 	outputTokens: number | null;
-}
-
-interface IToolCall {
-	id: string;
-	name: string;
-	parameters: unknown; // TODO: Normalize
-	rawToolCall:
-		| Anthropic.Messages.ToolUseBlock
-		| OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
 }
 
 export interface IModelResponse {
@@ -30,8 +22,7 @@ export interface IModelResponse {
 	// Usage statistics
 	usage: IUsage;
 
-	// Tool usage (function calling)
-	// TODO: Normalize..
+	// Tool Calling
 	toolCalls?: IToolCall[];
 
 	// Additional metadata
