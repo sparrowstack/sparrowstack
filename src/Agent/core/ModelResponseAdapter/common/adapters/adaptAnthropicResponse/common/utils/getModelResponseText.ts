@@ -1,12 +1,14 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import { ContentType } from '@Agent/common/enums';
 
 interface IParams {
 	response: Anthropic.Messages.Message;
 }
 
-// TODO: getTextFromModelResponse
-export const getTextContent = ({ response }: IParams) => {
+export enum ContentType {
+	Text = 'text',
+}
+
+export const getModelResponseText = ({ response }: IParams) => {
 	let text = '';
 	let type = '';
 

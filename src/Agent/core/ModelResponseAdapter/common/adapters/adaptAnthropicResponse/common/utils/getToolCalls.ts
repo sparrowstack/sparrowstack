@@ -1,14 +1,26 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import { ContentType } from '@Agent/common/enums';
 
 interface IParams {
-	message: Anthropic.Messages.Message;
+	response: Anthropic.Messages.Message;
 }
 
-export const getToolCalls = ({ message }: IParams) => {
-	const toolCalls = message.content.filter(
+export enum ContentType {
+	ToolUse = 'tool_use',
+}
+
+export const getToolCalls = ({ response }: IParams) => {
+	const toolCalls = response.content.filter(
 		(content) => content.type === ContentType.ToolUse,
 	) as Anthropic.Messages.ToolUseBlock[];
 
-	return toolCalls;
+	const adaptedToolCalls = toolCalls.map((toolCall) => {
+		return {
+			id: toolCall.id,
+			name: toolCall.name,
+			parameters: toolCall.input,
+			rawToolCall: toolCall,
+		};
+	});
+
+	return adaptedToolCalls;
 };

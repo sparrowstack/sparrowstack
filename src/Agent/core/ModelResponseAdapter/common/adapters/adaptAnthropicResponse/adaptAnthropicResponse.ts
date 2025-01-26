@@ -1,9 +1,9 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 import {
-	// getToolCalls,
-	getTextContent,
-} from '@root/src/Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
+	getToolCalls,
+	getModelResponseText,
+} from '@Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
 
 interface IParams {
 	response: Anthropic.Messages.Message;
@@ -22,14 +22,12 @@ export const adaptAnthropicResponse = ({
 		usage,
 	} = response;
 	const { input_tokens: inputTokens, output_tokens: outputTokens } = usage;
-	// TODO: Only supports fetching single text content, the first found..
-	// call getModelResponseText
-	const { text } = getTextContent({
+	const { text } = getModelResponseText({
 		response,
 	});
-	// const toolCalls = getToolCalls({
-	// 	response,
-	// });
+	const toolCalls = getToolCalls({
+		response,
+	});
 
 	const llmResponseMessage: IModelResponse = {
 		id,
@@ -43,7 +41,7 @@ export const adaptAnthropicResponse = ({
 			inputTokens,
 			outputTokens,
 		},
-		// toolCalls,
+		toolCalls,
 		rawMessage: response,
 	};
 

@@ -1,23 +1,21 @@
 import OpenAI from 'openai';
 import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
-import { getChoiceParams } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptOpenAIResponse/common/utils/getChoiceParams';
+import { getToolCalls } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptOpenAIResponse/common/utils';
 
 export const adaptOpenAIResponse = ({
 	response,
 }: {
 	response: OpenAI.ChatCompletion;
 }): IModelResponse => {
-	const { id, model, usage } = response;
+	const { id, model, usage, choices } = response;
 	const { prompt_tokens: inputTokens, completion_tokens: outputTokens } =
 		usage || {};
-	const {
-		role,
-		content: text,
-		finish_reason: stopReason,
-	} = getChoiceParams({
-		response,
-		index: 0,
-	});
+	// redo common method
+	const choice = choices[0];
+	const { message, finish_reason: stopReason } = choice;
+	const { role, content: text } = message;
+
+	const toolCalls = getToolCalls({ message });
 
 	const modelResponse: IModelResponse = {
 		id,
@@ -26,6 +24,7 @@ export const adaptOpenAIResponse = ({
 		type: 'message', // TODO: Find way to dynamically update
 		text: text || '',
 		stopReason,
+		toolCalls,
 		usage: {
 			inputTokens: inputTokens ?? null,
 			outputTokens: outputTokens ?? null,

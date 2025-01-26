@@ -1,1 +1,1 @@
-export { BaseLLM } from '@root/src/Agent/core/BaseLLM/BaseLLM';
+export { BaseLLM } from '@Agent/core/BaseLLM/BaseLLM';

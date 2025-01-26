@@ -6,6 +6,15 @@ export interface IUsage {
 	outputTokens: number | null;
 }
 
+interface IToolCall {
+	id: string;
+	name: string;
+	parameters: unknown; // TODO: Normalize
+	rawToolCall:
+		| Anthropic.Messages.ToolUseBlock
+		| OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
+}
+
 export interface IModelResponse {
 	// Message metadata
 	id: string;
@@ -23,7 +32,7 @@ export interface IModelResponse {
 
 	// Tool usage (function calling)
 	// TODO: Normalize..
-	// toolCalls?: Anthropic.Messages.ToolUseBlock[];
+	toolCalls?: IToolCall[];
 
 	// Additional metadata
 	created?: number; // Unix timestamp
