@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import type { IChatMessage } from '@Agent/core/ChatMessageFactory';
+import type { IChatMessage } from '@Agent/core/ChatMessage';
 
 interface IParams {
 	systemPrompt: string;

@@ -16,6 +16,7 @@ export interface IModelResponse {
 	text: string;
 
 	// Sequence information
+	// TODO: Normalize Stop Reason
 	stopReason: string | null;
 	stopSequence?: string | null;
 

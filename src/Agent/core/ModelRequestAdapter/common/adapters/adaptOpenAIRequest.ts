@@ -19,7 +19,7 @@ export const adaptOpenAIRequest = async ({
 	const response = (await sdk.chat.completions.create({
 		messages: [
 			systemPromptMessage,
-			...llm.chatMessageManager.getMessages(),
+			...(llm.chatMessageManager.getMessages() as OpenAI.ChatCompletionMessageParam[]),
 		],
 		model: llm.model,
 		max_tokens: llm.maxTokens,

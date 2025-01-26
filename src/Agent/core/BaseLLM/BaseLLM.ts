@@ -85,9 +85,7 @@ export class BaseLLM {
 		// --------------------------------
 		this.logger = new Logger(this.providerName);
 		this.interactionLogger = new InteractionLogger({ logger: this.logger });
-		this.chatMessageManager = new ChatMessageManager({
-			provider: this.provider,
-		});
+		this.chatMessageManager = new ChatMessageManager();
 	}
 
 	public async sendMessage({
@@ -95,7 +93,7 @@ export class BaseLLM {
 	}: {
 		message: string;
 	}): Promise<IModelResponse> {
-		this.chatMessageManager.addUserMessage({ content: message });
+		this.chatMessageManager.addUserMessage({ text: message });
 
 		this.interactionLogger.logContextWindow({ llm: this });
 
@@ -106,10 +104,20 @@ export class BaseLLM {
 			provider: this.provider,
 		});
 
+		if (
+			Array.isArray(responseMessage.toolCalls) &&
+			responseMessage.toolCalls.length > 0
+		) {
+			this.chatMessageManager.addAssistantMessage({
+				text: responseMessage.text,
+				toolCalls: responseMessage.toolCalls,
+			});
+		}
+
 		this.interactionLogger.logModelResponse({ message: responseMessage });
 
 		this.chatMessageManager.addAssistantMessage({
-			content: responseMessage.text,
+			text: responseMessage.text,
 		});
 
 		return responseMessage;
