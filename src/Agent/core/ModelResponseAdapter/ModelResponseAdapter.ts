@@ -1,11 +1,8 @@
 import { OpenAI } from 'openai';
 import { Provider } from '@Agent';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { type IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces/IModelResponse';
-import {
-	adaptOpenAIResponse,
-	adaptAnthropicResponse,
-} from '@Agent/core/ModelResponseAdapter/common/adapters';
+import { type IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import { modelResponseAdapters } from '@Agent/core/ModelResponseAdapter/common/constants';
 
 export class ModelResponseAdapter {
 	public static adapt({
@@ -15,16 +12,8 @@ export class ModelResponseAdapter {
 		provider: Provider;
 		rawResponse: Anthropic.Messages.Message | OpenAI.ChatCompletion;
 	}): IModelResponse {
-		if (provider === Provider.Anthropic) {
-			return adaptAnthropicResponse({
-				response: rawResponse as Anthropic.Messages.Message,
-			});
-		} else if (provider === Provider.OpenAI) {
-			return adaptOpenAIResponse({
-				response: rawResponse as OpenAI.ChatCompletion,
-			});
-		} else {
-			throw new Error('Provider not supportedd');
-		}
+		const adapter = modelResponseAdapters[provider];
+
+		return adapter({ response: rawResponse });
 	}
 }

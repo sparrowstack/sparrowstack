@@ -1,20 +1,11 @@
-import { Provider } from '@Agent';
 import type { BaseLLM } from '@Agent/core/BaseLLM';
-import {
-	adaptOpenAIRequest,
-	adaptAnthropicRequest,
-} from '@Agent/core/ModelRequestAdapter/common/adapters';
+import { modelRequestAdapters } from '@Agent/core/ModelRequestAdapter/common/constants';
 
 export class ModelRequestAdapter {
 	public static async execute({ llm }: { llm: BaseLLM }) {
 		const { provider } = llm;
+		const adapter = modelRequestAdapters[provider];
 
-		if (provider === Provider.Anthropic) {
-			return adaptAnthropicRequest({ llm });
-		} else if (provider === Provider.OpenAI) {
-			return adaptOpenAIRequest({ llm });
-		} else {
-			throw new Error('Provider not supportedd');
-		}
+		return adapter({ llm });
 	}
 }
