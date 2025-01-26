@@ -9,7 +9,7 @@ interface IParams {
 export const adaptOpenAIRequest = async ({
 	llm,
 }: IParams): Promise<OpenAI.Chat.Completions.ChatCompletion> => {
-	const sdk = llm.sdk as OpenAI;
+	const sdk = llm.providerSDK as OpenAI;
 
 	const systemPromptMessage = {
 		role: Role.System,

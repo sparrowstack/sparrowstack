@@ -1,7 +1,12 @@
-import { Role, Provider } from '@Agent';
-import type { IChatMessage } from '@Agent/core/ChatMessage';
+import { Provider } from '@Agent';
+import {
+	type IChatMessage,
+	ChatMessageFactory,
+} from '@Agent/core/ChatMessageFactory';
 
 interface IConstructorParams {
+	// ChatMessageFactory might need Provider to adapt the message
+	// Keep around for now
 	provider: Provider;
 }
 
@@ -14,13 +19,23 @@ export class ChatMessageManager {
 	}
 
 	public addUserMessage({ content }: { content: string }): void {
-		this.chatMessages.push({ role: Role.User, content });
+		const message = ChatMessageFactory.createUserMessage({ content });
+
+		this.chatMessages.push(message);
 	}
 
 	public addAssistantMessage({ content }: { content: string }): void {
 		// if (Array.isArray(toolCalls) && toolCalls.length > 0) {
 		// 	const content = [{ type: 'text', text: message }, ...toolCalls];
-		this.chatMessages.push({ role: Role.Assistant, content });
+		const message = ChatMessageFactory.createAssistantMessage({ content });
+
+		this.chatMessages.push(message);
+	}
+
+	public addSystemMessage({ content }: { content: string }): void {
+		const message = ChatMessageFactory.createSystemMessage({ content });
+
+		this.chatMessages.push(message);
 	}
 
 	public addToMessages({ message }: { message: IChatMessage }): void {

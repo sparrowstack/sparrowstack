@@ -4,11 +4,14 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import { Tool, type IToolParams } from '@Tool';
 import { Provider, ProviderName } from '@Agent';
 import { defaultPrompt } from '@SystemPrompts/default';
+import { ToolsFactory } from '@Agent/core/ToolsFactory';
 import { InteractionLogger } from '@Agent/core/InteractionLogger';
+import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { ModelRequestAdapter } from '@Agent/core/ModelRequestAdapter';
-import { ModelResponseAdapter } from '@Agent/core/ModelResponseAdapter';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
+import { ModelResponseAdapter } from '@Agent/core/ModelResponseAdapter';
+import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 
 interface IConstructorParams {
@@ -27,8 +30,8 @@ export class BaseLLM {
 	readonly providerName: string;
 	readonly systemPrompt: SystemPrompt;
 
-	// Provider API
-	readonly sdk: OpenAI | Anthropic;
+	// Provider SDK
+	readonly providerSDK: OpenAI | Anthropic;
 
 	// Utilities
 	readonly logger: Logger;
@@ -58,38 +61,21 @@ export class BaseLLM {
 
 		// Provider SDK
 		// --------------------------------
-		if (provider === Provider.OpenAI) {
-			this.sdk = new OpenAI({
-				apiKey: this.apiKey,
-			});
-		} else if (provider === Provider.Anthropic) {
-			this.sdk = new Anthropic({
-				apiKey: this.apiKey,
-			});
-		} else {
-			throw new Error(`Provider ${provider} not supported`);
-		}
+		this.providerSDK = ProviderSDKFactory.create({
+			apiKey: this.apiKey,
+			provider: this.provider,
+		});
 
 		// System Prompt
 		// --------------------------------
-		this.systemPrompt =
-			systemPrompt instanceof SystemPrompt
-				? systemPrompt
-				: new SystemPrompt(systemPrompt);
+		this.systemPrompt = SystemPromptFactory.create({ systemPrompt });
 
 		// Tool Calling
 		// --------------------------------
-		this.tools = tools?.map((tool) => {
-			return tool instanceof Tool ? tool : new Tool(tool);
-		});
+		const toolsRegistry = ToolsFactory.create({ tools });
 
-		this.functions = this.tools?.reduce(
-			(accumulator, tool) => ({
-				...accumulator,
-				[tool.name]: tool.function,
-			}),
-			{} as Record<Tool['name'], Tool['function']>,
-		);
+		this.tools = toolsRegistry?.tools;
+		this.functions = toolsRegistry?.functions;
 
 		// Settings
 		// --------------------------------

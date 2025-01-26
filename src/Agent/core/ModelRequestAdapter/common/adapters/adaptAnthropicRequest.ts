@@ -8,7 +8,7 @@ interface IParams {
 export const adaptAnthropicRequest = async ({
 	llm,
 }: IParams): Promise<Anthropic.Messages.Message> => {
-	const sdk = llm.sdk as Anthropic;
+	const sdk = llm.providerSDK as Anthropic;
 
 	const response = (await sdk.messages.create({
 		messages:

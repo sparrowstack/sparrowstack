@@ -1,5 +1,6 @@
+import { Agent } from '@Agent';
+import { BaseLLM } from '@Agent/core/BaseLLM';
 import * as readline from 'readline';
-import { Agent, BaseLLM } from '@Agent';
 import {
 	printHeader,
 	validateInput,
