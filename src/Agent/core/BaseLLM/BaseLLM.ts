@@ -2,7 +2,7 @@ import { OpenAI } from 'openai';
 import { Logger } from '@Logger';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { Tool, type IToolParams } from '@Tool';
-import { Provider, ProviderName } from '@Agent';
+import { Role, Provider, ProviderName } from '@Agent';
 import { defaultPrompt } from '@SystemPrompts/default';
 import { ToolsFactory } from '@Agent/core/ToolsFactory';
 import { InteractionLogger } from '@Agent/core/InteractionLogger';
@@ -13,6 +13,85 @@ import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import { ModelResponseAdapter } from '@Agent/core/ModelResponseAdapter';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+
+// OpenAI
+//--------------------------------
+const addaptOpenAIToolCallRequestMessage = ({
+	responseMessage,
+}: {
+	responseMessage: IModelResponse;
+}) => {
+	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
+		return toolCall.rawToolCall;
+	}) as OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];
+
+	return {
+		role: Role.Assistant,
+		tool_calls: toolCalls,
+	};
+};
+
+// {
+// 	"role": "assistant",
+// 	"tool_calls": [
+// 	{
+// 		"id": "call_1",
+// 		"type": "function",
+// 		"function": {
+// 		"name": "getUserDetails",
+// 		"arguments": "{ \"userId\": \"123\" }"
+// 		}
+// 	},
+// 	{
+// 		"id": "call_2",
+// 		"type": "function",
+// 		"function": {
+// 		"name": "getDirectoryStructure",
+// 		"arguments": "{}"
+// 		}
+// 	}
+// 	]
+// },
+
+const addaptOpenAIToolCallResponseMessages = ({
+	toolCallResults,
+}: {
+	toolCallResults: {
+		id: string;
+		result: unknown;
+	}[];
+}) => {
+	const toolResultMessages = toolCallResults.map((toolCallResults) => {
+		return {
+			role: 'tool',
+			tool_call_id: toolCallResults.id,
+			content: JSON.stringify(toolCallResults.result),
+		};
+	});
+	// {
+	//   "role": "tool",
+	//   "tool_call_id": "call_1",
+	//   "content": "{\"name\":\"John Doe\",\"email\":\"john.doe@example.com\"}"
+	// },
+	// {
+	//   "role": "tool",
+	//   "tool_call_id": "call_2",
+	//   "content": "{\"name\":\"project-folder\",\"type\":\"directory\",\"children\": [...]}"
+	// }
+	const assistantToolCallResponseMessage = {
+		role: 'assistant',
+		content: JSON.stringify(
+			toolCallResults.map((toolCallResult) => toolCallResult.result),
+		),
+	};
+	// 	{
+	//   "role": "assistant",
+	//   "content": "Here is the information I found:\n\n- **User Details**:\n  - Name: John Doe\n  - Email: john.doe@example.com\n\n- **Directory Structure**:\n  - project-folder/"
+	// }
+
+	return [...toolResultMessages, assistantToolCallResponseMessage];
+};
+//--------------------------------
 
 interface IConstructorParams {
 	model: string;
@@ -93,6 +172,8 @@ export class BaseLLM {
 	}: {
 		message: string;
 	}): Promise<IModelResponse> {
+		let toolCallResponseMessage: IModelResponse | null = null;
+
 		this.chatMessageManager.addUserMessage({ text: message });
 
 		this.interactionLogger.logContextWindow({ llm: this });
@@ -108,18 +189,70 @@ export class BaseLLM {
 			Array.isArray(responseMessage.toolCalls) &&
 			responseMessage.toolCalls.length > 0
 		) {
-			this.chatMessageManager.addAssistantMessage({
-				text: responseMessage.text,
-				toolCalls: responseMessage.toolCalls,
-			});
+			if (this.provider === Provider.OpenAI) {
+				// ToolCallMessageRequestAdapter.adapt()
+				const assistantToolCallRequestMessage =
+					addaptOpenAIToolCallRequestMessage({
+						responseMessage,
+					});
+
+				// ToolCallMessageRequestManager.add()
+				this.chatMessageManager.addToMessages({
+					message: assistantToolCallRequestMessage,
+				});
+
+				// Execute tool calls
+				const toolCallResults = await Promise.all(
+					responseMessage.toolCalls.map(async (toolCall) => {
+						const { id, name, parameters } = toolCall;
+						const toolCallFunction = this.functions![name];
+						// TODO: JSON.parse(toolCall.function.arguments);
+						const result = await toolCallFunction(parameters);
+
+						return { id, result };
+					}),
+				);
+
+				// ToolCallMessageResponseAdapter.adapt()
+				const assistantToolCallResponseMessages =
+					addaptOpenAIToolCallResponseMessages({ toolCallResults });
+
+				// ToolCallMessageResponseManager.add()
+				assistantToolCallResponseMessages.forEach((message) => {
+					this.chatMessageManager.addToMessages({
+						message,
+					});
+				});
+
+				// Log latest messages
+				this.interactionLogger.logMessages({
+					messages: this.chatMessageManager.getMessages(),
+				});
+
+				const toolCallRawResponse = await ModelRequestAdapter.execute({
+					llm: this,
+				});
+
+				toolCallResponseMessage = ModelResponseAdapter.adapt({
+					rawResponse: toolCallRawResponse,
+					provider: this.provider,
+				});
+
+				this.interactionLogger.logModelResponse({
+					message: toolCallResponseMessage,
+				});
+			}
+
+			// Keep this for Anthropic
+			if (this.provider === Provider.Anthropic) {
+				console.log('Anthropic Tool Calls');
+			}
 		}
 
-		this.interactionLogger.logModelResponse({ message: responseMessage });
-
 		this.chatMessageManager.addAssistantMessage({
-			text: responseMessage.text,
+			text: toolCallResponseMessage?.text || responseMessage.text,
 		});
 
-		return responseMessage;
+		return toolCallResponseMessage || responseMessage;
 	}
 }

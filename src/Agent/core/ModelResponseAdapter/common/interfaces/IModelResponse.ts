@@ -2,6 +2,8 @@ import OpenAI from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { type IToolCall } from '@Agent/core/ModelResponseAdapter/common/interfaces/IToolCall';
 
+type RawMessageResponse = Anthropic.Messages.Message | OpenAI.ChatCompletion;
+
 export interface IUsage {
 	inputTokens: number | null;
 	outputTokens: number | null;
@@ -29,5 +31,5 @@ export interface IModelResponse {
 	// Additional metadata
 	created?: number; // Unix timestamp
 	systemFingerprint?: string; // OpenAI specific , but useful for tracking
-	rawMessage: Anthropic.Messages.Message | OpenAI.ChatCompletion;
+	rawMessage: RawMessageResponse;
 }

@@ -1,5 +1,4 @@
 import { type IChatMessage, ChatMessage } from '@Agent/core/ChatMessage';
-import { type IToolCall } from '@Agent/core/ModelResponseAdapter/common/interfaces';
 
 export class ChatMessageManager {
 	protected chatMessages: IChatMessage[] = [];
@@ -10,29 +9,8 @@ export class ChatMessageManager {
 		this.chatMessages.push(message);
 	}
 
-	public addAssistantMessage({
-		text,
-		toolCalls,
-	}: {
-		text: string;
-		toolCalls?: IToolCall[];
-	}): void {
-		// Default to text:string
-		let content: IChatMessage['content'] = text;
-
-		// If ToolCalls update the content
-		// to include the toolCalls
-		// ---------------------------------
-		const rawToolCalls = toolCalls?.map((toolCall: IToolCall) => {
-			return toolCall.rawToolCall;
-		});
-
-		if (Array.isArray(rawToolCalls) && rawToolCalls.length > 0) {
-			content = [{ type: 'text', text }, ...rawToolCalls];
-		}
-		// ---------------------------------
-
-		const message = ChatMessage.createAssistantMessage({ content });
+	public addAssistantMessage({ text }: { text: string }): void {
+		const message = ChatMessage.createAssistantMessage({ content: text });
 
 		this.chatMessages.push(message);
 	}

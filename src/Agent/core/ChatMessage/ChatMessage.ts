@@ -2,11 +2,7 @@ import { Role } from '@Agent';
 import { type IChatMessage } from '@Agent/core/ChatMessage/interfaces/IChatMessage';
 
 export class ChatMessage {
-	static createUserMessage({
-		content,
-	}: {
-		content: IChatMessage['content'];
-	}): IChatMessage {
+	static createUserMessage({ content }: { content: string }): IChatMessage {
 		return {
 			role: Role.User,
 			content,
@@ -16,7 +12,7 @@ export class ChatMessage {
 	static createAssistantMessage({
 		content,
 	}: {
-		content: IChatMessage['content'];
+		content: string;
 	}): IChatMessage {
 		return {
 			role: Role.Assistant,
