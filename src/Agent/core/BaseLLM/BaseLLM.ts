@@ -78,18 +78,8 @@ const addaptOpenAIToolCallResponseMessages = ({
 	//   "tool_call_id": "call_2",
 	//   "content": "{\"name\":\"project-folder\",\"type\":\"directory\",\"children\": [...]}"
 	// }
-	const assistantToolCallResponseMessage = {
-		role: 'assistant',
-		content: JSON.stringify(
-			toolCallResults.map((toolCallResult) => toolCallResult.result),
-		),
-	};
-	// 	{
-	//   "role": "assistant",
-	//   "content": "Here is the information I found:\n\n- **User Details**:\n  - Name: John Doe\n  - Email: john.doe@example.com\n\n- **Directory Structure**:\n  - project-folder/"
-	// }
 
-	return [...toolResultMessages, assistantToolCallResponseMessage];
+	return [...toolResultMessages];
 };
 //--------------------------------
 
@@ -245,7 +235,57 @@ export class BaseLLM {
 
 			// Keep this for Anthropic
 			if (this.provider === Provider.Anthropic) {
-				console.log('Anthropic Tool Calls');
+				// ToolCallMessageRequestAdapter.adapt()
+				const assistantToolCallRequestMessage =
+					addaptOpenAIToolCallRequestMessage({
+						responseMessage,
+					});
+
+				// ToolCallMessageRequestManager.add()
+				// this.chatMessageManager.addToMessages({
+				// 	message: assistantToolCallRequestMessage,
+				// });
+
+				// Execute tool calls
+				// const toolCallResults = await Promise.all(
+				// 	responseMessage.toolCalls.map(async (toolCall) => {
+				// 		const { id, name, parameters } = toolCall;
+				// 		const toolCallFunction = this.functions![name];
+				// 		// TODO: JSON.parse(toolCall.function.arguments);
+				// 		const result = await toolCallFunction(parameters);
+
+				// 		return { id, result };
+				// 	}),
+				// );
+
+				// ToolCallMessageResponseAdapter.adapt()
+				// const assistantToolCallResponseMessages =
+				// 	addaptOpenAIToolCallResponseMessages({ toolCallResults });
+
+				// ToolCallMessageResponseManager.add()
+				// assistantToolCallResponseMessages.forEach((message) => {
+				// 	this.chatMessageManager.addToMessages({
+				// 		message,
+				// 	});
+				// });
+
+				// Log latest messages
+				// this.interactionLogger.logMessages({
+				// 	messages: this.chatMessageManager.getMessages(),
+				// });
+
+				// const toolCallRawResponse = await ModelRequestAdapter.execute({
+				// 	llm: this,
+				// });
+
+				// toolCallResponseMessage = ModelResponseAdapter.adapt({
+				// 	rawResponse: toolCallRawResponse,
+				// 	provider: this.provider,
+				// });
+
+				// this.interactionLogger.logModelResponse({
+				// 	message: toolCallResponseMessage,
+				// });
 			}
 		}
 
