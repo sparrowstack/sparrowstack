@@ -83,6 +83,59 @@ const addaptOpenAIToolCallResponseMessages = ({
 };
 //--------------------------------
 
+// Anthropic
+//--------------------------------
+const addaptAnthropicToolCallRequestMessage = ({
+	responseMessage,
+}: {
+	responseMessage: IModelResponse;
+}) => {
+	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
+		return toolCall.rawToolCall;
+	}) as Anthropic.Messages.ToolUseBlock[];
+
+	return {
+		role: Role.Assistant,
+		content: toolCalls,
+	};
+};
+// Keep this for Anthropic
+// {
+// 	"role": "assistant",
+// 	"content": [
+// 		{
+// 			"type": "tool_use",
+// 			"id": "toolu_01",
+// 			"name": "getDirectoryStructure",
+// 			"input": {}
+// 		},
+// 	]
+// },
+const addaptAnthropicToolCallResponseMessages = ({
+	toolCallResults,
+}: {
+	toolCallResults: {
+		id: string;
+		result: unknown;
+	}[];
+}) => {
+	const toolResultMessages = toolCallResults.map((toolCallResult) => {
+		return {
+			role: 'user',
+			content: [
+				{
+					type: 'tool_result',
+					tool_use_id: toolCallResult.id,
+					content: JSON.stringify(toolCallResult.result),
+				},
+			],
+		};
+	});
+
+	return [...toolResultMessages];
+};
+//--------------------------------
+
 interface IConstructorParams {
 	model: string;
 	apiKey: string;
@@ -179,6 +232,10 @@ export class BaseLLM {
 			Array.isArray(responseMessage.toolCalls) &&
 			responseMessage.toolCalls.length > 0
 		) {
+			this.interactionLogger.logModelResponse({
+				message: responseMessage,
+			});
+
 			if (this.provider === Provider.OpenAI) {
 				// ToolCallMessageRequestAdapter.adapt()
 				const assistantToolCallRequestMessage =
@@ -237,55 +294,74 @@ export class BaseLLM {
 			if (this.provider === Provider.Anthropic) {
 				// ToolCallMessageRequestAdapter.adapt()
 				const assistantToolCallRequestMessage =
-					addaptOpenAIToolCallRequestMessage({
+					addaptAnthropicToolCallRequestMessage({
 						responseMessage,
 					});
 
+				console.log(
+					'assistantToolCallRequestMessage',
+					assistantToolCallRequestMessage,
+				);
+
 				// ToolCallMessageRequestManager.add()
-				// this.chatMessageManager.addToMessages({
-				// 	message: assistantToolCallRequestMessage,
-				// });
+				this.chatMessageManager.addToMessages({
+					message: assistantToolCallRequestMessage,
+				});
+
+				console.log(
+					'updated messages',
+					this.chatMessageManager.getMessages(),
+				);
 
 				// Execute tool calls
-				// const toolCallResults = await Promise.all(
-				// 	responseMessage.toolCalls.map(async (toolCall) => {
-				// 		const { id, name, parameters } = toolCall;
-				// 		const toolCallFunction = this.functions![name];
-				// 		// TODO: JSON.parse(toolCall.function.arguments);
-				// 		const result = await toolCallFunction(parameters);
+				const toolCallResults = await Promise.all(
+					responseMessage.toolCalls.map(async (toolCall) => {
+						const { id, name, parameters } = toolCall;
+						const toolCallFunction = this.functions![name];
+						// TODO: JSON.parse(toolCall.function.arguments);
+						const result = await toolCallFunction(parameters);
 
-				// 		return { id, result };
-				// 	}),
-				// );
+						return { id, result };
+					}),
+				);
+
+				console.log('toolCallResults', toolCallResults);
 
 				// ToolCallMessageResponseAdapter.adapt()
-				// const assistantToolCallResponseMessages =
-				// 	addaptOpenAIToolCallResponseMessages({ toolCallResults });
+				const assistantToolCallResponseMessages =
+					addaptAnthropicToolCallResponseMessages({
+						toolCallResults,
+					});
+
+				console.log(
+					'assistantToolCallResponseMessages',
+					assistantToolCallResponseMessages,
+				);
 
 				// ToolCallMessageResponseManager.add()
-				// assistantToolCallResponseMessages.forEach((message) => {
-				// 	this.chatMessageManager.addToMessages({
-				// 		message,
-				// 	});
-				// });
+				assistantToolCallResponseMessages.forEach((message) => {
+					this.chatMessageManager.addToMessages({
+						message,
+					});
+				});
 
 				// Log latest messages
-				// this.interactionLogger.logMessages({
-				// 	messages: this.chatMessageManager.getMessages(),
-				// });
+				this.interactionLogger.logMessages({
+					messages: this.chatMessageManager.getMessages(),
+				});
 
-				// const toolCallRawResponse = await ModelRequestAdapter.execute({
-				// 	llm: this,
-				// });
+				const toolCallRawResponse = await ModelRequestAdapter.execute({
+					llm: this,
+				});
 
-				// toolCallResponseMessage = ModelResponseAdapter.adapt({
-				// 	rawResponse: toolCallRawResponse,
-				// 	provider: this.provider,
-				// });
+				toolCallResponseMessage = ModelResponseAdapter.adapt({
+					rawResponse: toolCallRawResponse,
+					provider: this.provider,
+				});
 
-				// this.interactionLogger.logModelResponse({
-				// 	message: toolCallResponseMessage,
-				// });
+				this.interactionLogger.logModelResponse({
+					message: toolCallResponseMessage,
+				});
 			}
 		}
 
