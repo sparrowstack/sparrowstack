@@ -1,22 +1,21 @@
 import { BaseLLM } from '@Agent/core/BaseLLM';
 import { Anthropic } from '@anthropic-ai/sdk';
 
-interface IParams {
+export interface IParams {
 	llm: BaseLLM;
 }
 
-export const adaptAnthropicRequest = async ({
+export const sendPrompt = async ({
 	llm,
 }: IParams): Promise<Anthropic.Messages.Message> => {
 	const sdk = llm.providerSDK as Anthropic;
 
 	const response = (await sdk.messages.create({
 		messages:
-			llm.chatMessageManager.getMessages() as Anthropic.MessageParam[],
+			llm.chatMessageManager.getMessages() as unknown as Anthropic.MessageParam[],
 		model: llm.model,
 		max_tokens: llm.maxTokens,
 		system: llm.systemPrompt.getPrompt(),
-		// ToolManager.getTools({ provider: llm.provider })
 		tools: llm.tools?.map((tool) =>
 			tool.getSchema({ provider: llm.provider }),
 		) as Anthropic.Tool[],

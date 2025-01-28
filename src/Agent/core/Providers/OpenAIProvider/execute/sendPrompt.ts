@@ -2,11 +2,11 @@ import OpenAI from 'openai';
 import { Role } from '@Agent';
 import { BaseLLM } from '@Agent/core/BaseLLM';
 
-interface IParams {
+export interface IParams {
 	llm: BaseLLM;
 }
 
-export const adaptOpenAIRequest = async ({
+export const sendPrompt = async ({
 	llm,
 }: IParams): Promise<OpenAI.Chat.Completions.ChatCompletion> => {
 	const sdk = llm.providerSDK as OpenAI;

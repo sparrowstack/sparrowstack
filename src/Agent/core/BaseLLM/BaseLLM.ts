@@ -2,139 +2,102 @@ import { OpenAI } from 'openai';
 import { Logger } from '@Logger';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { Tool, type IToolParams } from '@Tool';
-import { Role, Provider, ProviderName } from '@Agent';
+import { Provider, ProviderName } from '@Agent';
 import { defaultPrompt } from '@SystemPrompts/default';
 import { ToolsFactory } from '@Agent/core/ToolsFactory';
 import { InteractionLogger } from '@Agent/core/InteractionLogger';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
-import { ModelRequestAdapter } from '@Agent/core/ModelRequestAdapter';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import { ModelResponseAdapter } from '@Agent/core/ModelResponseAdapter';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import { ProviderFactory } from '@Agent/core/ProviderFactory';
+import { OpenAIProvider } from '@Agent/core/Providers/OpenAIProvider';
+import { AnthropicProvider } from '@Agent/core/Providers/AnthropicProvider';
 
-// OpenAI
-//--------------------------------
-const addaptOpenAIToolCallRequestMessage = ({
-	responseMessage,
-}: {
-	responseMessage: IModelResponse;
-}) => {
-	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
-		return toolCall.rawToolCall;
-	}) as OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];
+class ModelRequest {
+	static async execute({ llm }: { llm: BaseLLM }) {
+		const rawResponse = await llm.providerStrategy.execute.sendPrompt({
+			llm,
+		});
 
-	return {
-		role: Role.Assistant,
-		tool_calls: toolCalls,
-	};
-};
+		const responseMessage = ModelResponseAdapter.adapt({
+			rawResponse,
+			provider: llm.provider,
+		});
 
-// {
-// 	"role": "assistant",
-// 	"tool_calls": [
-// 	{
-// 		"id": "call_1",
-// 		"type": "function",
-// 		"function": {
-// 		"name": "getUserDetails",
-// 		"arguments": "{ \"userId\": \"123\" }"
-// 		}
-// 	},
-// 	{
-// 		"id": "call_2",
-// 		"type": "function",
-// 		"function": {
-// 		"name": "getDirectoryStructure",
-// 		"arguments": "{}"
-// 		}
-// 	}
-// 	]
-// },
+		return responseMessage;
+	}
+}
 
-const addaptOpenAIToolCallResponseMessages = ({
-	toolCallResults,
-}: {
-	toolCallResults: {
-		id: string;
-		result: unknown;
-	}[];
-}) => {
-	const toolResultMessages = toolCallResults.map((toolCallResults) => {
-		return {
-			role: 'tool',
-			tool_call_id: toolCallResults.id,
-			content: JSON.stringify(toolCallResults.result),
-		};
-	});
-	// {
-	//   "role": "tool",
-	//   "tool_call_id": "call_1",
-	//   "content": "{\"name\":\"John Doe\",\"email\":\"john.doe@example.com\"}"
-	// },
-	// {
-	//   "role": "tool",
-	//   "tool_call_id": "call_2",
-	//   "content": "{\"name\":\"project-folder\",\"type\":\"directory\",\"children\": [...]}"
-	// }
+class ToolCallManager {
+	static async handleToolCalls({
+		llm,
+		responseMessage,
+	}: {
+		llm: BaseLLM;
+		responseMessage: IModelResponse;
+	}) {
+		let toolCallResponseMessage: IModelResponse | null = null;
 
-	return [...toolResultMessages];
-};
-//--------------------------------
+		if (
+			Array.isArray(responseMessage.toolCalls) &&
+			responseMessage.toolCalls.length > 0
+		) {
+			llm.interactionLogger.logModelResponse({
+				message: responseMessage,
+			});
 
-// Anthropic
-//--------------------------------
-const addaptAnthropicToolCallRequestMessage = ({
-	responseMessage,
-}: {
-	responseMessage: IModelResponse;
-}) => {
-	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
-		return toolCall.rawToolCall;
-	}) as Anthropic.Messages.ToolUseBlock[];
+			const assistantToolCallRequestMessage =
+				llm.providerStrategy.adapters.toToolCallRequestMessage({
+					responseMessage,
+				});
 
-	return {
-		role: Role.Assistant,
-		content: toolCalls,
-	};
-};
-// Keep this for Anthropic
-// {
-// 	"role": "assistant",
-// 	"content": [
-// 		{
-// 			"type": "tool_use",
-// 			"id": "toolu_01",
-// 			"name": "getDirectoryStructure",
-// 			"input": {}
-// 		},
-// 	]
-// },
-const addaptAnthropicToolCallResponseMessages = ({
-	toolCallResults,
-}: {
-	toolCallResults: {
-		id: string;
-		result: unknown;
-	}[];
-}) => {
-	const toolResultMessages = toolCallResults.map((toolCallResult) => {
-		return {
-			role: 'user',
-			content: [
-				{
-					type: 'tool_result',
-					tool_use_id: toolCallResult.id,
-					content: JSON.stringify(toolCallResult.result),
-				},
-			],
-		};
-	});
+			// ToolCallMessageRequestManager.add()
+			llm.chatMessageManager.addToMessages({
+				message: assistantToolCallRequestMessage,
+			});
 
-	return [...toolResultMessages];
-};
-//--------------------------------
+			// Execute tool calls
+			const toolCallResults = await Promise.all(
+				responseMessage.toolCalls.map(async (toolCall) => {
+					const { id, name, parameters } = toolCall;
+					const toolCallFunction = llm.functions![name];
+					// TODO: JSON.parse(toolCall.function.arguments);
+					const result = await toolCallFunction(parameters);
+
+					return { id, result };
+				}),
+			);
+
+			const assistantToolCallResponseMessages =
+				llm.providerStrategy.adapters.toToolCallResponseMessages({
+					toolCallResults,
+				});
+
+			// ToolCallMessageResponseManager.add()
+			assistantToolCallResponseMessages.forEach((message) => {
+				llm.chatMessageManager.addToMessages({
+					message,
+				});
+			});
+
+			// Log latest messages
+			llm.interactionLogger.logMessages({
+				messages: llm.chatMessageManager.getMessages(),
+			});
+
+			toolCallResponseMessage = await ModelRequest.execute({ llm });
+
+			llm.interactionLogger.logModelResponse({
+				message: toolCallResponseMessage,
+			});
+		}
+
+		return toolCallResponseMessage;
+	}
+}
 
 interface IConstructorParams {
 	model: string;
@@ -145,6 +108,9 @@ interface IConstructorParams {
 }
 
 export class BaseLLM {
+	// Provider Strategies
+	readonly providerStrategy: OpenAIProvider | AnthropicProvider;
+
 	// Base
 	readonly model: string;
 	readonly apiKey: string;
@@ -174,6 +140,10 @@ export class BaseLLM {
 		provider,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
+		// Provider Strategy
+		// --------------------------------
+		this.providerStrategy = ProviderFactory.create({ provider });
+
 		// Base Properties
 		// --------------------------------
 		this.model = model; // e.g. 'gpt-4o'
@@ -215,160 +185,23 @@ export class BaseLLM {
 	}: {
 		message: string;
 	}): Promise<IModelResponse> {
-		let toolCallResponseMessage: IModelResponse | null = null;
-
 		this.chatMessageManager.addUserMessage({ text: message });
 
 		this.interactionLogger.logContextWindow({ llm: this });
 
-		const rawResponse = await ModelRequestAdapter.execute({ llm: this });
+		const modelResponseMessage = await ModelRequest.execute({ llm: this });
 
-		const responseMessage = ModelResponseAdapter.adapt({
-			rawResponse,
-			provider: this.provider,
+		const toolCallResponseMessage = await ToolCallManager.handleToolCalls({
+			llm: this,
+			responseMessage: modelResponseMessage,
 		});
 
-		if (
-			Array.isArray(responseMessage.toolCalls) &&
-			responseMessage.toolCalls.length > 0
-		) {
-			this.interactionLogger.logModelResponse({
-				message: responseMessage,
-			});
-
-			if (this.provider === Provider.OpenAI) {
-				// ToolCallMessageRequestAdapter.adapt()
-				const assistantToolCallRequestMessage =
-					addaptOpenAIToolCallRequestMessage({
-						responseMessage,
-					});
-
-				// ToolCallMessageRequestManager.add()
-				this.chatMessageManager.addToMessages({
-					message: assistantToolCallRequestMessage,
-				});
-
-				// Execute tool calls
-				const toolCallResults = await Promise.all(
-					responseMessage.toolCalls.map(async (toolCall) => {
-						const { id, name, parameters } = toolCall;
-						const toolCallFunction = this.functions![name];
-						// TODO: JSON.parse(toolCall.function.arguments);
-						const result = await toolCallFunction(parameters);
-
-						return { id, result };
-					}),
-				);
-
-				// ToolCallMessageResponseAdapter.adapt()
-				const assistantToolCallResponseMessages =
-					addaptOpenAIToolCallResponseMessages({ toolCallResults });
-
-				// ToolCallMessageResponseManager.add()
-				assistantToolCallResponseMessages.forEach((message) => {
-					this.chatMessageManager.addToMessages({
-						message,
-					});
-				});
-
-				// Log latest messages
-				this.interactionLogger.logMessages({
-					messages: this.chatMessageManager.getMessages(),
-				});
-
-				const toolCallRawResponse = await ModelRequestAdapter.execute({
-					llm: this,
-				});
-
-				toolCallResponseMessage = ModelResponseAdapter.adapt({
-					rawResponse: toolCallRawResponse,
-					provider: this.provider,
-				});
-
-				this.interactionLogger.logModelResponse({
-					message: toolCallResponseMessage,
-				});
-			}
-
-			// Keep this for Anthropic
-			if (this.provider === Provider.Anthropic) {
-				// ToolCallMessageRequestAdapter.adapt()
-				const assistantToolCallRequestMessage =
-					addaptAnthropicToolCallRequestMessage({
-						responseMessage,
-					});
-
-				console.log(
-					'assistantToolCallRequestMessage',
-					assistantToolCallRequestMessage,
-				);
-
-				// ToolCallMessageRequestManager.add()
-				this.chatMessageManager.addToMessages({
-					message: assistantToolCallRequestMessage,
-				});
-
-				console.log(
-					'updated messages',
-					this.chatMessageManager.getMessages(),
-				);
-
-				// Execute tool calls
-				const toolCallResults = await Promise.all(
-					responseMessage.toolCalls.map(async (toolCall) => {
-						const { id, name, parameters } = toolCall;
-						const toolCallFunction = this.functions![name];
-						// TODO: JSON.parse(toolCall.function.arguments);
-						const result = await toolCallFunction(parameters);
-
-						return { id, result };
-					}),
-				);
-
-				console.log('toolCallResults', toolCallResults);
-
-				// ToolCallMessageResponseAdapter.adapt()
-				const assistantToolCallResponseMessages =
-					addaptAnthropicToolCallResponseMessages({
-						toolCallResults,
-					});
-
-				console.log(
-					'assistantToolCallResponseMessages',
-					assistantToolCallResponseMessages,
-				);
-
-				// ToolCallMessageResponseManager.add()
-				assistantToolCallResponseMessages.forEach((message) => {
-					this.chatMessageManager.addToMessages({
-						message,
-					});
-				});
-
-				// Log latest messages
-				this.interactionLogger.logMessages({
-					messages: this.chatMessageManager.getMessages(),
-				});
-
-				const toolCallRawResponse = await ModelRequestAdapter.execute({
-					llm: this,
-				});
-
-				toolCallResponseMessage = ModelResponseAdapter.adapt({
-					rawResponse: toolCallRawResponse,
-					provider: this.provider,
-				});
-
-				this.interactionLogger.logModelResponse({
-					message: toolCallResponseMessage,
-				});
-			}
-		}
+		const responseMessage = toolCallResponseMessage || modelResponseMessage;
 
 		this.chatMessageManager.addAssistantMessage({
-			text: toolCallResponseMessage?.text || responseMessage.text,
+			text: responseMessage.text,
 		});
 
-		return toolCallResponseMessage || responseMessage;
+		return responseMessage;
 	}
 }
