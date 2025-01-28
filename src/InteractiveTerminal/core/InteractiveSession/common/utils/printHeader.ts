@@ -16,7 +16,7 @@ export const printHeader = ({ agent }: IParams) => {
 ═════════════════════════════════════════
 `),
 	);
-	console.log(`${chalk.bold('Provider:')} ${provider.properName}`);
+	console.log(`${chalk.bold('Provider:')} ${provider.displayName}`);
 	console.log(`${chalk.bold('Model:')} ${provider.model}`);
 	console.log('');
 	console.log(`${chalk.bold('System Prompt Name:')} ${systemPrompt.name}`);

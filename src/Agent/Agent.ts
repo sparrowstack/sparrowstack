@@ -22,20 +22,23 @@ interface IConstructorParams {
 }
 
 export class Agent {
-	// Provider
-	readonly provider: OpenAIProvider | AnthropicProvider;
+	// Constants
+	readonly providerDisplayName: string;
+
+	// System Prompt
+	readonly systemPrompt: SystemPrompt;
 
 	// Tool Calling
 	readonly tools?: Tool[];
 	readonly functions?: Record<IToolParams['name'], IToolParams['function']>;
 
-	// System Prompt
-	readonly systemPrompt: SystemPrompt;
-
 	// Utilities
 	readonly logger: Logger;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
+
+	// Provider
+	readonly provider: OpenAIProvider | AnthropicProvider;
 
 	constructor({
 		model,
@@ -44,33 +47,41 @@ export class Agent {
 		provider,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
+		// Constants
+		// --------------------------------
+		this.providerDisplayName =
+			Object.keys(Provider).find(
+				(key) => Provider[key as keyof typeof Provider] === provider,
+			) || provider;
+
+		// Classes with no dependencies
+		// --------------------------------
+		this.systemPrompt = SystemPromptFactory.create({
+			systemPrompt,
+		});
+
+		const toolsRegistry = ToolsFactory.create({ tools });
+
+		this.tools = toolsRegistry?.tools;
+		this.functions = toolsRegistry?.functions;
+
+		// Classes with dependencies
+		// --------------------------------
+		this.logger = new Logger(this.providerDisplayName);
+		this.chatMessageManager = new ChatMessageManager();
+		this.interactionLogger = new InteractionLogger({
+			logger: this.logger,
+			systemPrompt: this.systemPrompt,
+			chatMessageManager: this.chatMessageManager,
+		});
+
 		// Provider
 		// --------------------------------
 		this.provider = ProviderFactory.create({
 			model,
 			apiKey,
 			provider,
-		});
-
-		// System Prompt
-		// --------------------------------
-		this.systemPrompt = SystemPromptFactory.create({ systemPrompt });
-
-		// Tool Calling
-		// --------------------------------
-		const toolsRegistry = ToolsFactory.create({ tools });
-
-		this.tools = toolsRegistry?.tools;
-		this.functions = toolsRegistry?.functions;
-
-		// Utilities
-		// --------------------------------
-		this.logger = new Logger(this.provider.properName);
-		this.chatMessageManager = new ChatMessageManager();
-		this.interactionLogger = new InteractionLogger({
-			logger: this.logger,
-			systemPrompt: this.systemPrompt,
-			chatMessageManager: this.chatMessageManager,
+			displayName: this.providerDisplayName,
 		});
 	}
 

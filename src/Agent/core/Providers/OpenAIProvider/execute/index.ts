@@ -1,1 +1,1 @@
-export { sendPrompt } from '@Agent/core/providers/OpenAIProvider/execute/sendPrompt';
+export { executeSendPrompt } from '@root/src/Agent/core/providers/OpenAIProvider/execute/executeSendPrompt';

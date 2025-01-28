@@ -8,7 +8,9 @@ export interface IParams {
 	agent: Agent;
 }
 
-export const sendPrompt = async ({ agent }: IParams): Promise<IModelResponse> => {
+export const executeSendPrompt = async ({
+	agent,
+}: IParams): Promise<IModelResponse> => {
 	const sdk = agent.provider.sdk as OpenAI;
 
 	const systemPromptMessage = {

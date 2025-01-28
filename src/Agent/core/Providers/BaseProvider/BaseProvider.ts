@@ -1,9 +1,8 @@
 import { OpenAI } from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
 
-import { Role, Provider } from '@Agent/common/enums';
-import { ProviderName } from '@Agent/common/constants';
 import type { Agent } from '@Agent';
+import { Role, Provider } from '@Agent/common/enums';
 import type { IModelResponse } from '@Agent/common/interfaces';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 
@@ -11,6 +10,7 @@ interface IConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: Provider;
+	displayName: string;
 }
 
 export abstract class BaseProvider {
@@ -18,13 +18,13 @@ export abstract class BaseProvider {
 	readonly model: string;
 	readonly apiKey: string;
 	readonly name: Provider;
-	readonly properName: string;
+	readonly displayName: string;
 	readonly sdk: OpenAI | Anthropic;
 
 	// Settings
 	readonly maxTokens: number;
 
-	constructor({ apiKey, provider, model }: IConstructorParams) {
+	constructor({ apiKey, provider, model, displayName }: IConstructorParams) {
 		this.sdk = ProviderSDKFactory.create({
 			apiKey,
 			provider,
@@ -35,7 +35,7 @@ export abstract class BaseProvider {
 		this.model = model; // e.g. 'gpt-4o'
 		this.apiKey = apiKey;
 		this.name = provider; // e.g. 'openai'
-		this.properName = ProviderName[provider]; // e.g. 'OpenAI'
+		this.displayName = displayName; // e.g. 'OpenAI'
 
 		// Settings
 		// --------------------------------

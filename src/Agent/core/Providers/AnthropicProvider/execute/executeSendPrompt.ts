@@ -7,7 +7,7 @@ export interface IParams {
 	agent: Agent;
 }
 
-export const sendPrompt = async ({
+export const executeSendPrompt = async ({
 	agent,
 }: IParams): Promise<IModelResponse> => {
 	const sdk = agent.provider.sdk as Anthropic;

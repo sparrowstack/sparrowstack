@@ -1,7 +1,7 @@
 import { Provider } from '@Agent/common/enums';
 import type { Agent } from '@Agent';
 import { BaseProvider } from '@Agent/core/providers/BaseProvider';
-import { sendPrompt } from '@Agent/core/providers/OpenAIProvider/execute';
+import { executeSendPrompt } from '@Agent/core/providers/OpenAIProvider/execute';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
@@ -11,16 +11,12 @@ interface IConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: Provider;
+	displayName: string;
 }
 
 export class OpenAIProvider extends BaseProvider {
-	public adapters: {
-		toToolCallRequestMessage: typeof toToolCallRequestMessage;
-		toToolCallResponseMessages: typeof toToolCallResponseMessages;
-	};
-
-	constructor({ apiKey, provider, model }: IConstructorParams) {
-		super({ apiKey, provider, model });
+	constructor({ apiKey, provider, model, displayName }: IConstructorParams) {
+		super({ apiKey, provider, model, displayName });
 
 		this.adapters = {
 			toToolCallRequestMessage,
@@ -28,7 +24,12 @@ export class OpenAIProvider extends BaseProvider {
 		};
 	}
 
+	public adapters: {
+		toToolCallRequestMessage: typeof toToolCallRequestMessage;
+		toToolCallResponseMessages: typeof toToolCallResponseMessages;
+	};
+
 	public sendPrompt({ agent }: { agent: Agent }) {
-		return sendPrompt({ agent });
+		return executeSendPrompt({ agent });
 	}
 }

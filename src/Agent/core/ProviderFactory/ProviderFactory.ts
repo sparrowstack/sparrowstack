@@ -6,15 +6,18 @@ export class ProviderFactory {
 		model,
 		apiKey,
 		provider: providerName,
+		displayName,
 	}: {
 		model: string;
 		apiKey: string;
 		provider: Provider;
+		displayName: string;
 	}) {
 		const Provider = providers[providerName as keyof typeof providers];
 		const provider = new Provider({
 			model,
 			apiKey,
+			displayName,
 			provider: providerName,
 		});
 
