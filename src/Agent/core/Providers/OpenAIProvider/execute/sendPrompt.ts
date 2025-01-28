@@ -1,30 +1,30 @@
 import OpenAI from 'openai';
 import { Role } from '@Agent';
-import { BaseLLM } from '@Agent/core/BaseLLM';
+import { Agent } from '@Agent';
 import type { IModelResponse } from '@Agent/common/interfaces';
 import { toModelResponse } from '@Agent/core/providers/OpenAIProvider/adapters/toModelResponse';
 
 export interface IParams {
-	llm: BaseLLM;
+	agent: Agent;
 }
 
-export const sendPrompt = async ({ llm }: IParams): Promise<IModelResponse> => {
-	const sdk = llm.provider.sdk as OpenAI;
+export const sendPrompt = async ({ agent }: IParams): Promise<IModelResponse> => {
+	const sdk = agent.provider.sdk as OpenAI;
 
 	const systemPromptMessage = {
 		role: Role.System,
-		content: llm.systemPrompt.getPrompt(),
+		content: agent.systemPrompt.getPrompt(),
 	};
 
 	const rawResponse = (await sdk.chat.completions.create({
 		messages: [
 			systemPromptMessage,
-			...(llm.chatMessageManager.getMessages() as OpenAI.ChatCompletionMessageParam[]),
+			...(agent.chatMessageManager.getMessages() as OpenAI.ChatCompletionMessageParam[]),
 		],
-		model: llm.provider.model,
-		max_tokens: llm.maxTokens,
-		tools: llm.tools?.map((tool) =>
-			tool.getSchema({ provider: llm.provider.name }),
+		model: agent.provider.model,
+		max_tokens: agent.provider.maxTokens,
+		tools: agent.tools?.map((tool) =>
+			tool.getSchema({ provider: agent.provider.name }),
 		) as OpenAI.ChatCompletionTool[],
 	})) as OpenAI.Chat.Completions.ChatCompletion;
 

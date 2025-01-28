@@ -1,5 +1,4 @@
 import { Agent } from '@Agent';
-import { BaseLLM } from '@Agent/core/BaseLLM';
 import * as readline from 'readline';
 import {
 	printHeader,
@@ -13,10 +12,10 @@ interface IParams {
 }
 
 export class InteractiveSession {
-	llm: BaseLLM;
+	agent: Agent;
 
 	constructor({ agent }: IParams) {
-		this.llm = agent.llm;
+		this.agent = agent;
 	}
 
 	public start() {
@@ -39,7 +38,7 @@ export class InteractiveSession {
 
 				exitProcessIfApplicable({ input: message });
 
-				const { text } = await this.llm.sendMessage({
+				const { text } = await this.agent.sendMessage({
 					message,
 				});
 
@@ -50,7 +49,7 @@ export class InteractiveSession {
 		};
 
 		console.clear();
-		printHeader({ llm: this.llm });
+		printHeader({ agent: this.agent });
 		prompt();
 	}
 }

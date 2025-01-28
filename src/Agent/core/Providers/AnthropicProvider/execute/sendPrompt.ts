@@ -1,23 +1,25 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import { BaseLLM } from '@Agent/core/BaseLLM';
+import { Agent } from '@Agent';
 import type { IModelResponse } from '@Agent/common/interfaces';
 import { toModelResponse } from '@Agent/core/providers/AnthropicProvider/adapters/toModelResponse';
 
 export interface IParams {
-	llm: BaseLLM;
+	agent: Agent;
 }
 
-export const sendPrompt = async ({ llm }: IParams): Promise<IModelResponse> => {
-	const sdk = llm.provider.sdk as Anthropic;
+export const sendPrompt = async ({
+	agent,
+}: IParams): Promise<IModelResponse> => {
+	const sdk = agent.provider.sdk as Anthropic;
 
 	const rawResponse = (await sdk.messages.create({
 		messages:
-			llm.chatMessageManager.getMessages() as unknown as Anthropic.MessageParam[],
-		model: llm.provider.model,
-		max_tokens: llm.maxTokens,
-		system: llm.systemPrompt.getPrompt(),
-		tools: llm.tools?.map((tool) =>
-			tool.getSchema({ provider: llm.provider.name }),
+			agent.chatMessageManager.getMessages() as unknown as Anthropic.MessageParam[],
+		model: agent.provider.model,
+		max_tokens: agent.provider.maxTokens,
+		system: agent.systemPrompt.getPrompt(),
+		tools: agent.tools?.map((tool) =>
+			tool.getSchema({ provider: agent.provider.name }),
 		) as Anthropic.Tool[],
 	})) as Anthropic.Messages.Message;
 

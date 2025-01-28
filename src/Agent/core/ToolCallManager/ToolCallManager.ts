@@ -1,12 +1,12 @@
-import type { BaseLLM } from '@Agent/core/BaseLLM';
+import type { Agent } from '@Agent';
 import type { IModelResponse } from '@Agent/common/interfaces';
 
 export class ToolCallManager {
 	static async handleToolCalls({
-		llm,
+		agent,
 		responseMessage,
 	}: {
-		llm: BaseLLM;
+		agent: Agent;
 		responseMessage: IModelResponse;
 	}) {
 		let toolCallResponseMessage: IModelResponse | null = null;
@@ -15,17 +15,17 @@ export class ToolCallManager {
 			Array.isArray(responseMessage.toolCalls) &&
 			responseMessage.toolCalls.length > 0
 		) {
-			llm.interactionLogger.logModelResponse({
+			agent.interactionLogger.logModelResponse({
 				message: responseMessage,
 			});
 
 			const assistantToolCallRequestMessage =
-				llm.provider.adapters.toToolCallRequestMessage({
+				agent.provider.adapters.toToolCallRequestMessage({
 					responseMessage,
 				});
 
 			// ToolCallMessageRequestManager.add()
-			llm.chatMessageManager.addToMessages({
+			agent.chatMessageManager.addToMessages({
 				message: assistantToolCallRequestMessage,
 			});
 
@@ -33,7 +33,7 @@ export class ToolCallManager {
 			const toolCallResults = await Promise.all(
 				responseMessage.toolCalls.map(async (toolCall) => {
 					const { id, name, parameters } = toolCall;
-					const toolCallFunction = llm.functions![name];
+					const toolCallFunction = agent.functions![name];
 					// TODO: JSON.parse(toolCall.function.arguments);
 					const result = await toolCallFunction(parameters);
 
@@ -42,27 +42,27 @@ export class ToolCallManager {
 			);
 
 			const assistantToolCallResponseMessages =
-				llm.provider.adapters.toToolCallResponseMessages({
+				agent.provider.adapters.toToolCallResponseMessages({
 					toolCallResults,
 				});
 
 			// ToolCallMessageResponseManager.add()
 			assistantToolCallResponseMessages.forEach((message) => {
-				llm.chatMessageManager.addToMessages({
+				agent.chatMessageManager.addToMessages({
 					message,
 				});
 			});
 
 			// Log latest messages
-			llm.interactionLogger.logMessages({
-				messages: llm.chatMessageManager.getMessages(),
+			agent.interactionLogger.logMessages({
+				messages: agent.chatMessageManager.getMessages(),
 			});
 
-			toolCallResponseMessage = await llm.provider.sendPrompt({
-				llm,
+			toolCallResponseMessage = await agent.provider.sendPrompt({
+				agent,
 			});
 
-			llm.interactionLogger.logModelResponse({
+			agent.interactionLogger.logModelResponse({
 				message: toolCallResponseMessage,
 			});
 		}

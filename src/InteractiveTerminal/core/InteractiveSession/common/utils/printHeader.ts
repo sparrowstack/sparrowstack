@@ -1,13 +1,13 @@
 import chalk from 'chalk';
 import wrapAnsi from 'wrap-ansi';
-import type { BaseLLM } from '@Agent/core/BaseLLM';
+import type { Agent } from '@Agent';
 
 interface IParams {
-	llm: BaseLLM;
+	agent: Agent;
 }
 
-export const printHeader = ({ llm }: IParams) => {
-	const { provider, systemPrompt, tools } = llm;
+export const printHeader = ({ agent }: IParams) => {
+	const { provider, systemPrompt, tools } = agent;
 
 	console.log(
 		chalk.greenBright(`

@@ -1,8 +1,17 @@
 import { Provider } from '@Agent';
-import { BaseLLM } from '@Agent/core/BaseLLM';
-import { SystemPrompt } from '@SystemPrompt';
+import { Logger } from '@Logger';
 import { Tool, type IToolParams } from '@Tool';
-import type { ISystemPromptParams } from '@SystemPrompt';
+import { defaultPrompt } from '@SystemPrompts/default';
+import { ToolsFactory } from '@Agent/core/ToolsFactory';
+import { ToolCallManager } from '@Agent/core/ToolCallManager';
+import { ProviderFactory } from '@Agent/core/ProviderFactory';
+import type { IModelResponse } from '@Agent/common/interfaces';
+import { InteractionLogger } from '@Agent/core/InteractionLogger';
+import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
+import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
+import { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider';
+import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
+import { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider';
 
 interface IConstructorParams {
 	model: string;
@@ -13,21 +22,78 @@ interface IConstructorParams {
 }
 
 export class Agent {
-	llm: BaseLLM;
+	// Provider
+	readonly provider: OpenAIProvider | AnthropicProvider;
+
+	// Tool Calling
+	readonly tools?: Tool[];
+	readonly functions?: Record<IToolParams['name'], IToolParams['function']>;
+
+	// System Prompt
+	readonly systemPrompt: SystemPrompt;
+
+	// Utilities
+	readonly logger: Logger;
+	readonly interactionLogger: InteractionLogger;
+	readonly chatMessageManager: ChatMessageManager;
 
 	constructor({
 		model,
 		tools,
 		apiKey,
 		provider,
-		systemPrompt,
+		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
-		this.llm = new BaseLLM({
+		// Provider 
+		// --------------------------------
+		this.provider = ProviderFactory.create({
 			model,
 			apiKey,
-			tools,
 			provider,
-			systemPrompt,
 		});
+
+		// System Prompt
+		// --------------------------------
+		this.systemPrompt = SystemPromptFactory.create({ systemPrompt });
+
+		// Tool Calling
+		// --------------------------------
+		const toolsRegistry = ToolsFactory.create({ tools });
+
+		this.tools = toolsRegistry?.tools;
+		this.functions = toolsRegistry?.functions;
+
+		// Utilities
+		// --------------------------------
+		this.logger = new Logger(this.provider.properName);
+		this.interactionLogger = new InteractionLogger({ logger: this.logger });
+		this.chatMessageManager = new ChatMessageManager();
+	}
+
+	public async sendMessage({
+		message,
+	}: {
+		message: string;
+	}): Promise<IModelResponse> {
+		this.chatMessageManager.addUserMessage({ text: message });
+
+		this.interactionLogger.logContextWindow({ agent: this });
+
+		const modelResponseMessage = await this.provider.sendPrompt({
+			agent: this,
+		});
+
+		const toolCallResponseMessage = await ToolCallManager.handleToolCalls({
+			agent: this,
+			responseMessage: modelResponseMessage,
+		});
+
+		const responseMessage = toolCallResponseMessage || modelResponseMessage;
+
+		this.chatMessageManager.addAssistantMessage({
+			text: responseMessage.text,
+		});
+
+		return responseMessage;
 	}
 }

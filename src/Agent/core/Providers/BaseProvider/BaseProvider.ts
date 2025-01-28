@@ -3,7 +3,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 
 import { Role, Provider } from '@Agent/common/enums';
 import { ProviderName } from '@Agent/common/constants';
-import type { BaseLLM } from '@Agent/core/BaseLLM';
+import type { Agent } from '@Agent';
 import type { IModelResponse } from '@Agent/common/interfaces';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 
@@ -14,11 +14,15 @@ interface IConstructorParams {
 }
 
 export abstract class BaseProvider {
-	readonly sdk: OpenAI | Anthropic;
+	// Base
 	readonly model: string;
 	readonly apiKey: string;
 	readonly name: Provider;
 	readonly properName: string;
+	readonly sdk: OpenAI | Anthropic;
+
+	// Settings
+	readonly maxTokens: number;
 
 	constructor({ apiKey, provider, model }: IConstructorParams) {
 		this.sdk = ProviderSDKFactory.create({
@@ -32,6 +36,10 @@ export abstract class BaseProvider {
 		this.apiKey = apiKey;
 		this.name = provider; // e.g. 'openai'
 		this.properName = ProviderName[provider]; // e.g. 'OpenAI'
+
+		// Settings
+		// --------------------------------
+		this.maxTokens = 1024;
 	}
 
 	abstract adapters: {
@@ -71,5 +79,5 @@ export abstract class BaseProvider {
 			  }[];
 	};
 
-	abstract sendPrompt({ llm }: { llm: BaseLLM }): Promise<IModelResponse>;
+	abstract sendPrompt({ agent }: { agent: Agent }): Promise<IModelResponse>;
 }

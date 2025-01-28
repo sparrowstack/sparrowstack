@@ -1,5 +1,5 @@
 import { Provider } from '@Agent/common/enums';
-import type { BaseLLM } from '@Agent/core/BaseLLM';
+import type { Agent } from '@Agent';
 import { BaseProvider } from '@Agent/core/providers/BaseProvider';
 import { sendPrompt } from '@Agent/core/providers/AnthropicProvider/execute';
 import {
@@ -28,7 +28,7 @@ export class AnthropicProvider extends BaseProvider {
 		};
 	}
 
-	public sendPrompt({ llm }: { llm: BaseLLM }) {
-		return sendPrompt({ llm });
+	public sendPrompt({ agent }: { agent: Agent }) {
+		return sendPrompt({ agent });
 	}
 }
