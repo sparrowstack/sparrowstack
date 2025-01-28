@@ -5,12 +5,14 @@ import type { Agent } from '@Agent';
 import { Role, Provider } from '@Agent/common/enums';
 import type { IModelResponse } from '@Agent/common/interfaces';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
+import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 
 interface IConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: Provider;
 	displayName: string;
+	chatMessageManager: ChatMessageManager;
 }
 
 export abstract class BaseProvider {
@@ -20,11 +22,18 @@ export abstract class BaseProvider {
 	readonly name: Provider;
 	readonly displayName: string;
 	readonly sdk: OpenAI | Anthropic;
+	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
 	readonly maxTokens: number;
 
-	constructor({ apiKey, provider, model, displayName }: IConstructorParams) {
+	constructor({
+		apiKey,
+		provider,
+		model,
+		displayName,
+		chatMessageManager,
+	}: IConstructorParams) {
 		this.sdk = ProviderSDKFactory.create({
 			apiKey,
 			provider,
@@ -36,7 +45,7 @@ export abstract class BaseProvider {
 		this.apiKey = apiKey;
 		this.name = provider; // e.g. 'openai'
 		this.displayName = displayName; // e.g. 'OpenAI'
-
+		this.chatMessageManager = chatMessageManager;
 		// Settings
 		// --------------------------------
 		this.maxTokens = 1024;

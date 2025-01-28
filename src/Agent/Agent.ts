@@ -82,6 +82,7 @@ export class Agent {
 			apiKey,
 			provider,
 			displayName: this.providerDisplayName,
+			chatMessageManager: this.chatMessageManager,
 		});
 	}
 

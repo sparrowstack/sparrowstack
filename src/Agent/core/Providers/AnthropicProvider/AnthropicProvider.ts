@@ -1,6 +1,7 @@
-import { Provider } from '@Agent/common/enums';
 import type { Agent } from '@Agent';
+import { Provider } from '@Agent/common/enums';
 import { BaseProvider } from '@Agent/core/providers/BaseProvider';
+import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { executeSendPrompt } from '@Agent/core/providers/AnthropicProvider/execute/executeSendPrompt';
 import {
 	toToolCallRequestMessage,
@@ -12,11 +13,18 @@ interface IConstructorParams {
 	apiKey: string;
 	provider: Provider;
 	displayName: string;
+	chatMessageManager: ChatMessageManager;
 }
 
 export class AnthropicProvider extends BaseProvider {
-	constructor({ apiKey, provider, model, displayName }: IConstructorParams) {
-		super({ apiKey, provider, model, displayName });
+	constructor({
+		apiKey,
+		provider,
+		model,
+		displayName,
+		chatMessageManager,
+	}: IConstructorParams) {
+		super({ apiKey, provider, model, displayName, chatMessageManager });
 
 		this.adapters = {
 			toToolCallRequestMessage,
@@ -30,6 +38,9 @@ export class AnthropicProvider extends BaseProvider {
 	};
 
 	public sendPrompt({ agent }: { agent: Agent }) {
-		return executeSendPrompt({ agent });
+		return executeSendPrompt({
+			agent,
+			chatMessageManager: this.chatMessageManager,
+		});
 	}
 }
