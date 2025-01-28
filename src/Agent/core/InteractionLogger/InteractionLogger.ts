@@ -1,7 +1,7 @@
 import { Logger } from '@Logger';
-import type { Agent } from '@Agent';
-import type { IChatMessage } from '@Agent/core/ChatMessage';
+import { SystemPrompt } from '@SystemPrompt';
 import type { IModelResponse } from '@Agent/common/interfaces';
+import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import {
 	messagesTemplate,
 	contextWindowTemplate,
@@ -10,30 +10,37 @@ import {
 
 interface IConstructorParams {
 	logger: Logger;
+	systemPrompt: SystemPrompt;
+	chatMessageManager: ChatMessageManager;
 }
 
 export class InteractionLogger {
 	private readonly logger: Logger;
+	private readonly systemPrompt: SystemPrompt;
+	private readonly chatMessageManager: ChatMessageManager;
 
-	constructor({ logger }: IConstructorParams) {
+	constructor({
+		logger,
+		systemPrompt,
+		chatMessageManager,
+	}: IConstructorParams) {
 		this.logger = logger;
+		this.systemPrompt = systemPrompt;
+		this.chatMessageManager = chatMessageManager;
 	}
 
-	public logMessages({
-		messages: chatMessages,
-	}: {
-		messages: IChatMessage[];
-	}) {
+	public logChatMessages() {
+		const chatMessages = this.chatMessageManager.getMessages();
 		const messages = messagesTemplate({ messages: chatMessages });
 
 		console.log('');
 		this.logger.info(messages);
 	}
 
-	public logContextWindow({ agent }: { agent: Agent }) {
+	public logContextWindow() {
 		const contextWindow = contextWindowTemplate({
-			systemPrompt: agent.systemPrompt.getPrompt(),
-			messages: agent.chatMessageManager.getMessages(),
+			systemPrompt: this.systemPrompt.getPrompt(),
+			messages: this.chatMessageManager.getMessages(),
 		});
 
 		console.log('');

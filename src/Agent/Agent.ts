@@ -44,7 +44,7 @@ export class Agent {
 		provider,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
-		// Provider 
+		// Provider
 		// --------------------------------
 		this.provider = ProviderFactory.create({
 			model,
@@ -66,8 +66,12 @@ export class Agent {
 		// Utilities
 		// --------------------------------
 		this.logger = new Logger(this.provider.properName);
-		this.interactionLogger = new InteractionLogger({ logger: this.logger });
 		this.chatMessageManager = new ChatMessageManager();
+		this.interactionLogger = new InteractionLogger({
+			logger: this.logger,
+			systemPrompt: this.systemPrompt,
+			chatMessageManager: this.chatMessageManager,
+		});
 	}
 
 	public async sendMessage({
@@ -77,7 +81,7 @@ export class Agent {
 	}): Promise<IModelResponse> {
 		this.chatMessageManager.addUserMessage({ text: message });
 
-		this.interactionLogger.logContextWindow({ agent: this });
+		this.interactionLogger.logContextWindow();
 
 		const modelResponseMessage = await this.provider.sendPrompt({
 			agent: this,

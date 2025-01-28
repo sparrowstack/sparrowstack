@@ -54,9 +54,7 @@ export class ToolCallManager {
 			});
 
 			// Log latest messages
-			agent.interactionLogger.logMessages({
-				messages: agent.chatMessageManager.getMessages(),
-			});
+			agent.interactionLogger.logChatMessages();
 
 			toolCallResponseMessage = await agent.provider.sendPrompt({
 				agent,
