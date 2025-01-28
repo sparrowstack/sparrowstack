@@ -7,7 +7,7 @@ interface IParams {
 }
 
 export const printHeader = ({ llm }: IParams) => {
-	const { providerName, model, systemPrompt, tools } = llm;
+	const { provider, systemPrompt, tools } = llm;
 
 	console.log(
 		chalk.greenBright(`
@@ -16,8 +16,8 @@ export const printHeader = ({ llm }: IParams) => {
 ═════════════════════════════════════════
 `),
 	);
-	console.log(`${chalk.bold('Provider:')} ${providerName}`);
-	console.log(`${chalk.bold('Model:')} ${model}`);
+	console.log(`${chalk.bold('Provider:')} ${provider.properName}`);
+	console.log(`${chalk.bold('Model:')} ${provider.model}`);
 	console.log('');
 	console.log(`${chalk.bold('System Prompt Name:')} ${systemPrompt.name}`);
 	console.log(

@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
-import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
-import { getToolCalls } from '@Agent/core/ModelResponseAdapter/common/adapters/adaptOpenAIResponse/common/utils';
+import type { IModelResponse } from '@Agent/common/interfaces';
+import { getToolCalls } from '@Agent/core/providers/OpenAIProvider/adapters/toModelResponse/common/utils';
 
-export const adaptOpenAIResponse = ({
+export const toModelResponse = ({
 	response,
 }: {
 	response: OpenAI.ChatCompletion;

@@ -1,12 +1,23 @@
 import { Provider } from '@Agent';
-import { providerStrategies } from '@Agent/core/ProviderFactory/common/constants';
+import { providers } from '@Agent/core/ProviderFactory/common/constants';
 
 export class ProviderFactory {
-	public static create({ provider }: { provider: Provider }) {
-		const ProviderStrategy =
-			providerStrategies[provider as keyof typeof providerStrategies];
-		const providerStrategy = new ProviderStrategy();
+	public static create({
+		model,
+		apiKey,
+		provider: providerName,
+	}: {
+		model: string;
+		apiKey: string;
+		provider: Provider;
+	}) {
+		const Provider = providers[providerName as keyof typeof providers];
+		const provider = new Provider({
+			model,
+			apiKey,
+			provider: providerName,
+		});
 
-		return providerStrategy;
+		return provider;
 	}
 }

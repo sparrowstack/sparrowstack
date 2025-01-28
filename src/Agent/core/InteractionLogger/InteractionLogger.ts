@@ -1,7 +1,7 @@
 import { Logger } from '@Logger';
 import type { BaseLLM } from '@Agent/core/BaseLLM';
 import type { IChatMessage } from '@Agent/core/ChatMessage';
-import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import type { IModelResponse } from '@Agent/common/interfaces';
 import {
 	messagesTemplate,
 	contextWindowTemplate,

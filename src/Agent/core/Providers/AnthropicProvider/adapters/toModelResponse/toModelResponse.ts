@@ -1,17 +1,15 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import type { IModelResponse } from '@Agent/core/ModelResponseAdapter/common/interfaces';
+import type { IModelResponse } from '@Agent/common/interfaces';
 import {
 	getToolCalls,
 	getModelResponseText,
-} from '@Agent/core/ModelResponseAdapter/common/adapters/adaptAnthropicResponse/common/utils';
+} from '@Agent/core/providers/AnthropicProvider/adapters/toModelResponse/common/utils';
 
 interface IParams {
 	response: Anthropic.Messages.Message;
 }
 
-export const adaptAnthropicResponse = ({
-	response,
-}: IParams): IModelResponse => {
+export const toModelResponse = ({ response }: IParams): IModelResponse => {
 	const {
 		id,
 		role,

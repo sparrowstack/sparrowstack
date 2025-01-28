@@ -1,1 +1,1 @@
-export { AnthropicProvider } from '@Agent/core/Providers/AnthropicProvider/AnthropicProvider';
+export { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider/AnthropicProvider';

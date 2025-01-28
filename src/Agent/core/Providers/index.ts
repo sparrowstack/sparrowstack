@@ -1,2 +1,2 @@
-export { OpenAIProvider } from '@Agent/core/Providers/OpenAIProvider';
-export { AnthropicProvider } from '@Agent/core/Providers/AnthropicProvider';
+export { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider';
+export { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider';
