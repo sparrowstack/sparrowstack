@@ -1,11 +1,12 @@
-import { Agent } from '@Agent';
-import { Model } from '@Agent/core/providers/BaseProvider/common/enums/Model';
-import { ApiKey } from '@Agent/core/providers/BaseProvider/common/enums/ApiKey';
-import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
-
-import { getDirectoryStructureTool } from '@Tools';
-import { InteractiveTerminal } from '@InteractiveTerminal';
-import { softwareEngineerTypeScriptPrompt } from '@SystemPrompts';
+import {
+	Agent,
+	Model,
+	ApiKey,
+	ProviderName,
+	InteractiveTerminal,
+} from '@Sparrow';
+import { getDirectoryStructureTool } from '@Tools'; // community tools
+import { softwareEngineerTypeScriptPrompt } from '@SystemPrompts'; // community prompts
 
 // Configuration
 // --------------------------------
