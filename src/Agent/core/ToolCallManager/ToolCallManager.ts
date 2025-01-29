@@ -1,5 +1,6 @@
 import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
 import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
+import { executeToolCalls } from '@Agent/core/ToolCallManager/execute/executeToolCalls';
 import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
@@ -29,6 +30,10 @@ export class ToolCallManager {
 		this.functions = functions;
 	}
 
+	// Note: Could probably do some cleaning up here
+	// as this is a large method. But still working
+	// out all features needed for tool calls so keeping
+	// as is for now to have all code in one place.
 	public async handleToolCalls({
 		responseMessage,
 	}: {
@@ -54,16 +59,10 @@ export class ToolCallManager {
 			});
 
 			// Execute tool calls
-			const toolCallResults = await Promise.all(
-				responseMessage.toolCalls.map(async (toolCall) => {
-					const { id, name, parameters } = toolCall;
-					const toolCallFunction = this.functions![name];
-					// TODO: JSON.parse(toolCall.function.arguments);
-					const result = await toolCallFunction(parameters);
-
-					return { id, result };
-				}),
-			);
+			const toolCallResults = await executeToolCalls({
+				functions: this.functions,
+				toolCalls: responseMessage.toolCalls,
+			});
 
 			const assistantToolCallResponseMessages =
 				this.provider.adapters.toToolCallResponseMessages({
