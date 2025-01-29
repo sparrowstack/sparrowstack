@@ -1,5 +1,5 @@
 import { Tool } from '@Tool';
-import { ProviderName } from '@Agent';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 import { SystemPrompt } from '@SystemPrompt';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';

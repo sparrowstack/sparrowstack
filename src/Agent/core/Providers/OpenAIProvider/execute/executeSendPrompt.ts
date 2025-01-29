@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { Tool } from '@Tool';
-import { ProviderName } from '@Agent';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 import { SystemPrompt } from '@SystemPrompt';
 import { Role } from '@Agent/core/ChatMessage/common/enums';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';

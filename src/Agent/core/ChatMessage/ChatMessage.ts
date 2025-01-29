@@ -1,4 +1,4 @@
-import { Role } from '@Agent';
+import { Role } from '@Agent/core/ChatMessage/common/enums/Role';
 import { type IChatMessage } from '@Agent/core/ChatMessage/common/interfaces/IChatMessage';
 
 export class ChatMessage {

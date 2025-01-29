@@ -1,25 +1,25 @@
 import { Tool } from '@Tool';
-import { ProviderName } from '@Agent';
 import { SystemPrompt } from '@SystemPrompt';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { providers } from '@Agent/core/ProviderFactory/common/constants';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 
 export class ProviderFactory {
 	public static create({
 		model,
 		tools,
 		apiKey,
-		displayName,
-		providerName,
 		systemPrompt,
+		providerName,
 		chatMessageManager,
+		providerDisplayName,
 	}: {
 		model: string;
 		tools: Tool[];
 		apiKey: string;
-		displayName: string;
-		providerName: ProviderName;
 		systemPrompt: SystemPrompt;
+		providerName: ProviderName;
+		providerDisplayName: string;
 		chatMessageManager: ChatMessageManager;
 	}) {
 		const Provider = providers[providerName as keyof typeof providers];
@@ -27,10 +27,10 @@ export class ProviderFactory {
 			model,
 			tools,
 			apiKey,
-			displayName,
-			providerName,
 			systemPrompt,
 			chatMessageManager,
+			name: providerName,
+			displayName: providerDisplayName,
 		});
 
 		return provider;

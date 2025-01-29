@@ -1,4 +1,4 @@
-import { ProviderName } from '@Agent';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 import { providerSchemas } from '@Tool/common/constants';
 import type {
 	IToolParams,

@@ -9,20 +9,20 @@ import {
 
 export class OpenAIProvider extends BaseProvider {
 	constructor({
+		name,
 		model,
 		tools,
 		apiKey,
 		displayName,
-		providerName,
 		systemPrompt,
 		chatMessageManager,
 	}: IConstructorParams) {
 		super({
+			name,
 			model,
 			tools,
 			apiKey,
 			displayName,
-			providerName,
 			systemPrompt,
 			chatMessageManager,
 		});

@@ -1,14 +1,14 @@
-import { ProviderName } from '@Agent';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 
 interface IParams {
-	provider: ProviderName;
+	providerName: ProviderName;
 }
 
-export const getProviderDisplayName = ({ provider }: IParams) => {
+export const getProviderDisplayName = ({ providerName }: IParams) => {
 	return (
 		Object.keys(ProviderName).find(
 			(key) =>
-				ProviderName[key as keyof typeof ProviderName] === provider,
-		) || provider
+				ProviderName[key as keyof typeof ProviderName] === providerName,
+		) || providerName
 	);
 };

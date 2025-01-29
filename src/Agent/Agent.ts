@@ -1,5 +1,4 @@
 import { Logger } from '@Logger';
-import { ProviderName } from '@Agent';
 import { Tool, type IToolParams } from '@Tool';
 import { defaultPrompt } from '@SystemPrompts/default';
 import { ToolsFactory } from '@Agent/core/ToolsFactory';
@@ -10,10 +9,11 @@ import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import { executeSendMessage } from '@Agent/execute/executeSendMessage';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
+import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
 import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@Agent/core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
-import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 
 interface IConstructorParams {
 	model: string;
@@ -50,13 +50,13 @@ export class Agent {
 		model,
 		tools,
 		apiKey,
-		provider,
+		provider: providerName,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
 		// Values
 		// --------------------------------
-		this.providerName = provider;
-		this.providerDisplayName = getProviderDisplayName({ provider });
+		this.providerName = providerName;
+		this.providerDisplayName = getProviderDisplayName({ providerName });
 
 		// System Prompt
 		// --------------------------------
@@ -88,7 +88,7 @@ export class Agent {
 			tools: this.tools,
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
-			displayName: this.providerDisplayName,
+			providerDisplayName: this.providerDisplayName,
 			chatMessageManager: this.chatMessageManager,
 		});
 

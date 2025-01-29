@@ -1,6 +1,6 @@
 import type { Tool } from '@Tool';
 import { SystemPrompt } from '@SystemPrompt';
-import { ProviderName } from '@Agent/common/enums';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
@@ -32,19 +32,19 @@ export abstract class BaseProvider {
 	readonly maxTokens: number;
 
 	constructor({
+		name,
 		model,
 		tools,
 		apiKey,
 		displayName,
-		providerName,
 		systemPrompt,
 		chatMessageManager,
 	}: IConstructorParams) {
 		// Base Properties
 		// --------------------------------
+		this.name = name; // e.g. 'openai'
 		this.model = model; // e.g. 'gpt-4o'
 		this.apiKey = apiKey;
-		this.name = providerName; // e.g. 'openai'
 		this.displayName = displayName; // e.g. 'OpenAI'
 
 		// Utilities

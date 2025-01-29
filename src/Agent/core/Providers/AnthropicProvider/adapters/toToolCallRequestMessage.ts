@@ -1,5 +1,5 @@
-import { Role } from '@Agent';
 import { Anthropic } from '@anthropic-ai/sdk';
+import { Role } from '@Agent/core/ChatMessage/common/enums/Role';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallRequestMessage = ({

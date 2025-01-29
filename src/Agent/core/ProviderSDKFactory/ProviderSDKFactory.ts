@@ -1,4 +1,4 @@
-import { ProviderName } from '@Agent';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 import { providerSDKs } from '@Agent/core/ProviderSDKFactory/common/constants';
 import type { ProviderSDK } from '@Agent/core/ProviderSDKFactory/common/types';
 
