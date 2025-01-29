@@ -2,8 +2,8 @@ import OpenAI from 'openai';
 import { Tool } from '@Tool';
 import { Provider, Role } from '@Agent';
 import { SystemPrompt } from '@SystemPrompt';
-import type { IModelResponse } from '@Agent/common/interfaces';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@Agent/core/providers/OpenAIProvider/adapters/toModelResponse';
 
 export interface IParams {

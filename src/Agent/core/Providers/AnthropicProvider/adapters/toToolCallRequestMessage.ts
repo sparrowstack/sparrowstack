@@ -1,6 +1,6 @@
 import { Role } from '@Agent';
 import { Anthropic } from '@anthropic-ai/sdk';
-import type { IModelResponse } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallRequestMessage = ({
 	responseMessage,

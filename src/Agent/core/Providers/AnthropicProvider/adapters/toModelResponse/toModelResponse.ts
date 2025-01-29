@@ -1,5 +1,5 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import type { IModelResponse } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import {
 	getToolCalls,
 	getModelResponseText,

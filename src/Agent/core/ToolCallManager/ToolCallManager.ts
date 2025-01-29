@@ -1,8 +1,8 @@
-import type { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider/OpenAIProvider';
-import type { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider/AnthropicProvider';
-import type { IModelResponse } from '@Agent/common/interfaces';
 import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
+import type { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider/OpenAIProvider';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
+import type { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider/AnthropicProvider';
 
 interface IConstructorParams {
 	// TODO: Abstract interface

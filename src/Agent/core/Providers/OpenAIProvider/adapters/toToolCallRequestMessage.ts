@@ -1,6 +1,6 @@
 import { OpenAI } from 'openai';
 import { Role } from '@Agent';
-import type { IModelResponse } from '@Agent/common/interfaces';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallRequestMessage = ({
 	responseMessage,

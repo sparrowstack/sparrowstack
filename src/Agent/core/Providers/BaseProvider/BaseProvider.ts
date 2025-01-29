@@ -1,9 +1,9 @@
 import type { Tool } from '@Tool';
 import { SystemPrompt } from '@SystemPrompt';
 import { Provider } from '@Agent/common/enums';
-import type { IModelResponse } from '@Agent/common/interfaces';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,
 	IToToolCallRequestMessageParams,

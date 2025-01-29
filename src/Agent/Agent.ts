@@ -5,7 +5,6 @@ import { defaultPrompt } from '@SystemPrompts/default';
 import { ToolsFactory } from '@Agent/core/ToolsFactory';
 import { ToolCallManager } from '@Agent/core/ToolCallManager';
 import { ProviderFactory } from '@Agent/core/ProviderFactory';
-import type { IModelResponse } from '@Agent/common/interfaces';
 import { InteractionLogger } from '@Agent/core/InteractionLogger';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
@@ -14,6 +13,7 @@ import { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
 import { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider';
 import { getProviderDisplayName } from '@Agent/core/providers/BaseProvider/common/utils';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 
 interface IConstructorParams {
 	model: string;

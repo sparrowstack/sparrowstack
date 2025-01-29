@@ -1,7 +1,7 @@
 import { Logger } from '@Logger';
 import { SystemPrompt } from '@SystemPrompt';
-import type { IModelResponse } from '@Agent/common/interfaces';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
+import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import {
 	messagesTemplate,
 	contextWindowTemplate,

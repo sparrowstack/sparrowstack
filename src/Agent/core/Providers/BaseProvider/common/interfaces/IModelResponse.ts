@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { type IToolCall } from '@Agent/common/interfaces/IToolCall';
+import { type IModelResponseToolCall } from '@Agent/core/providers/BaseProvider/common/interfaces/IModelResponseToolCall';
 
 type RawMessageResponse = Anthropic.Messages.Message | OpenAI.ChatCompletion;
 
@@ -26,7 +26,7 @@ export interface IModelResponse {
 	usage: IUsage;
 
 	// Tool Calling
-	toolCalls?: IToolCall[];
+	toolCalls?: IModelResponseToolCall[];
 
 	// Additional metadata
 	created?: number; // Unix timestamp
