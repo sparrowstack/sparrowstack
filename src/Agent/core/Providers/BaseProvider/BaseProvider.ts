@@ -1,22 +1,19 @@
-import { OpenAI } from 'openai';
-import { Anthropic } from '@anthropic-ai/sdk';
-
 import type { Tool } from '@Tool';
 import { SystemPrompt } from '@SystemPrompt';
-import { Role, Provider } from '@Agent/common/enums';
+import { Provider } from '@Agent/common/enums';
 import type { IModelResponse } from '@Agent/common/interfaces';
-import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
-
-interface IConstructorParams {
-	model: string;
-	tools: Tool[];
-	apiKey: string;
-	displayName: string;
-	providerName: Provider;
-	systemPrompt: SystemPrompt;
-	chatMessageManager: ChatMessageManager;
-}
+import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
+import type {
+	IConstructorParams,
+	IToToolCallRequestMessageParams,
+	IToToolCallResponseMessagesParams,
+} from '@Agent/core/providers/BaseProvider/common/interfaces';
+import type {
+	Sdk,
+	ToolCallRequestMessage,
+	ToolCallResponseMessages,
+} from '@Agent/core/providers/BaseProvider/common/types';
 
 export abstract class BaseProvider {
 	// Base
@@ -26,8 +23,8 @@ export abstract class BaseProvider {
 	readonly displayName: string;
 
 	// Utilities
+	readonly sdk: Sdk;
 	readonly tools: Tool[];
-	readonly sdk: OpenAI | Anthropic;
 	readonly systemPrompt: SystemPrompt;
 	readonly chatMessageManager: ChatMessageManager;
 
@@ -68,38 +65,11 @@ export abstract class BaseProvider {
 	abstract adapters: {
 		toToolCallRequestMessage: ({
 			responseMessage,
-		}: {
-			responseMessage: IModelResponse;
-		}) => {
-			role: Role;
-			content?:
-				| OpenAI.Chat.Completions.ChatCompletionMessageToolCall[]
-				| Anthropic.Messages.ToolUseBlock[];
-			tool_calls?: OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];
-		};
+		}: IToToolCallRequestMessageParams) => ToolCallRequestMessage;
 
 		toToolCallResponseMessages: ({
 			toolCallResults,
-		}: {
-			toolCallResults: {
-				id: string;
-				result: unknown;
-			}[];
-		}) => // OpenAI
-		| {
-					role: string;
-					tool_call_id: string;
-					content: string;
-			  }[]
-			// Anthropic
-			| {
-					role: string;
-					content: {
-						type: string;
-						tool_use_id: string;
-						content: string;
-					}[];
-			  }[];
+		}: IToToolCallResponseMessagesParams) => ToolCallResponseMessages;
 	};
 
 	abstract sendPrompt(): Promise<IModelResponse>;

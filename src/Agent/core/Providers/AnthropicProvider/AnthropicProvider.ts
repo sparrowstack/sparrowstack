@@ -1,24 +1,11 @@
-import type { Tool } from '@Tool';
 import Anthropic from '@anthropic-ai/sdk';
-import { SystemPrompt } from '@SystemPrompt';
-import { Provider } from '@Agent/common/enums';
 import { BaseProvider } from '@Agent/core/providers/BaseProvider';
-import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { executeSendPrompt } from '@Agent/core/providers/AnthropicProvider/execute/executeSendPrompt';
+import type { IConstructorParams } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
 } from '@Agent/core/providers/AnthropicProvider/adapters';
-
-interface IConstructorParams {
-	model: string;
-	tools: Tool[];
-	apiKey: string;
-	displayName: string;
-	providerName: Provider;
-	systemPrompt: SystemPrompt;
-	chatMessageManager: ChatMessageManager;
-}
 
 export class AnthropicProvider extends BaseProvider {
 	constructor({
