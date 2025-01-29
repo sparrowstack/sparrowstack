@@ -3,7 +3,7 @@ import { Logger } from '@Logger';
 import { Tool, type IToolParams } from '@Tool';
 import { defaultPrompt } from '@SystemPrompts/default';
 import { ToolsFactory } from '@Agent/core/ToolsFactory';
-import { getProviderDisplayName } from '@Agent/common/utils';
+import { getProviderDisplayName } from '@Agent/core/providers/BaseProvider/common/utils';
 import { ToolCallManager } from '@Agent/core/ToolCallManager';
 import { ProviderFactory } from '@Agent/core/ProviderFactory';
 import type { IModelResponse } from '@Agent/common/interfaces';
