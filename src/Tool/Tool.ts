@@ -27,8 +27,8 @@ export class Tool {
 		this.parameters = parameters;
 	}
 
-	public getSchema({ provider }: { provider: Provider }) {
-		const toSchema = providerSchemas[provider];
+	public getSchema({ providerName }: { providerName: Provider }) {
+		const toSchema = providerSchemas[providerName];
 
 		return toSchema({
 			name: this.name,

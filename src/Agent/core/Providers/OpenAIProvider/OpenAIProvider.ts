@@ -1,4 +1,6 @@
-import type { Agent } from '@Agent';
+import type OpenAI from 'openai';
+import type { Tool } from '@Tool';
+import { SystemPrompt } from '@SystemPrompt';
 import { Provider } from '@Agent/common/enums';
 import { BaseProvider } from '@Agent/core/providers/BaseProvider';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
@@ -10,21 +12,33 @@ import {
 
 interface IConstructorParams {
 	model: string;
+	tools: Tool[];
 	apiKey: string;
-	provider: Provider;
 	displayName: string;
+	providerName: Provider;
+	systemPrompt: SystemPrompt;
 	chatMessageManager: ChatMessageManager;
 }
 
 export class OpenAIProvider extends BaseProvider {
 	constructor({
-		apiKey,
-		provider,
 		model,
+		tools,
+		apiKey,
 		displayName,
+		providerName,
+		systemPrompt,
 		chatMessageManager,
 	}: IConstructorParams) {
-		super({ apiKey, provider, model, displayName, chatMessageManager });
+		super({
+			model,
+			tools,
+			apiKey,
+			displayName,
+			providerName,
+			systemPrompt,
+			chatMessageManager,
+		});
 
 		this.adapters = {
 			toToolCallRequestMessage,
@@ -37,9 +51,14 @@ export class OpenAIProvider extends BaseProvider {
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt({ agent }: { agent: Agent }) {
+	public sendPrompt() {
 		return executeSendPrompt({
-			agent,
+			name: this.name,
+			model: this.model,
+			tools: this.tools,
+			sdk: this.sdk as OpenAI,
+			maxTokens: this.maxTokens,
+			systemPrompt: this.systemPrompt,
 			chatMessageManager: this.chatMessageManager,
 		});
 	}

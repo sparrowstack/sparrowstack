@@ -5,12 +5,12 @@ import type { ProviderSDK } from '@Agent/core/ProviderSDKFactory/common/types';
 export class ProviderSDKFactory {
 	static create({
 		apiKey,
-		provider,
+		providerName,
 	}: {
 		apiKey: string;
-		provider: Provider;
+		providerName: Provider;
 	}): ProviderSDK {
-		const ProviderSdk = providerSDKs[provider];
+		const ProviderSdk = providerSDKs[providerName];
 		const providerSDK = new ProviderSdk({ apiKey });
 
 		return providerSDK;

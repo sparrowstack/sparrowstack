@@ -1,12 +1,43 @@
-import type { Agent } from '@Agent';
+import type { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider/OpenAIProvider';
+import type { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider/AnthropicProvider';
 import type { IModelResponse } from '@Agent/common/interfaces';
+import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
+import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
+
+interface IConstructorParams {
+	// TODO: Abstract interface
+	provider: OpenAIProvider | AnthropicProvider;
+	// TODO: Abstract interface
+	functions:
+		| Record<string, (...args: unknown[]) => Promise<unknown>>
+		| undefined;
+	interactionLogger: InteractionLogger;
+	chatMessageManager: ChatMessageManager;
+}
 
 export class ToolCallManager {
-	static async handleToolCalls({
-		agent,
+	readonly functions:
+		| Record<string, (...args: unknown[]) => Promise<unknown>>
+		| undefined;
+	readonly provider: OpenAIProvider | AnthropicProvider;
+	readonly interactionLogger: InteractionLogger;
+	readonly chatMessageManager: ChatMessageManager;
+
+	constructor({
+		provider,
+		functions,
+		interactionLogger,
+		chatMessageManager,
+	}: IConstructorParams) {
+		this.provider = provider;
+		this.interactionLogger = interactionLogger;
+		this.chatMessageManager = chatMessageManager;
+		this.functions = functions;
+	}
+
+	public async handleToolCalls({
 		responseMessage,
 	}: {
-		agent: Agent;
 		responseMessage: IModelResponse;
 	}) {
 		let toolCallResponseMessage: IModelResponse | null = null;
@@ -15,17 +46,16 @@ export class ToolCallManager {
 			Array.isArray(responseMessage.toolCalls) &&
 			responseMessage.toolCalls.length > 0
 		) {
-			agent.interactionLogger.logModelResponse({
+			this.interactionLogger.logModelResponse({
 				message: responseMessage,
 			});
 
 			const assistantToolCallRequestMessage =
-				agent.provider.adapters.toToolCallRequestMessage({
+				this.provider.adapters.toToolCallRequestMessage({
 					responseMessage,
 				});
 
-			// ToolCallMessageRequestManager.add()
-			agent.chatMessageManager.addToMessages({
+			this.chatMessageManager.addToMessages({
 				message: assistantToolCallRequestMessage,
 			});
 
@@ -33,7 +63,7 @@ export class ToolCallManager {
 			const toolCallResults = await Promise.all(
 				responseMessage.toolCalls.map(async (toolCall) => {
 					const { id, name, parameters } = toolCall;
-					const toolCallFunction = agent.functions![name];
+					const toolCallFunction = this.functions![name];
 					// TODO: JSON.parse(toolCall.function.arguments);
 					const result = await toolCallFunction(parameters);
 
@@ -42,25 +72,21 @@ export class ToolCallManager {
 			);
 
 			const assistantToolCallResponseMessages =
-				agent.provider.adapters.toToolCallResponseMessages({
+				this.provider.adapters.toToolCallResponseMessages({
 					toolCallResults,
 				});
 
-			// ToolCallMessageResponseManager.add()
 			assistantToolCallResponseMessages.forEach((message) => {
-				agent.chatMessageManager.addToMessages({
+				this.chatMessageManager.addToMessages({
 					message,
 				});
 			});
 
-			// Log latest messages
-			agent.interactionLogger.logChatMessages();
+			this.interactionLogger.logChatMessages();
 
-			toolCallResponseMessage = await agent.provider.sendPrompt({
-				agent,
-			});
+			toolCallResponseMessage = await this.provider.sendPrompt();
 
-			agent.interactionLogger.logModelResponse({
+			this.interactionLogger.logModelResponse({
 				message: toolCallResponseMessage,
 			});
 		}

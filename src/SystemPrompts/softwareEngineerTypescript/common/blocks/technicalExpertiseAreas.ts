@@ -12,4 +12,8 @@ export const technicalExpertiseAreas: IBlock = {
 		'Performance optimization and debugging',
 		'Modern development workflows and tools',
 	],
+	itemOptions: {
+		maxCount: 5,
+		randomize: true,
+	},
 };

@@ -1,7 +1,8 @@
 import { OpenAI } from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
 
-import type { Agent } from '@Agent';
+import type { Tool } from '@Tool';
+import { SystemPrompt } from '@SystemPrompt';
 import { Role, Provider } from '@Agent/common/enums';
 import type { IModelResponse } from '@Agent/common/interfaces';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
@@ -9,9 +10,11 @@ import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 
 interface IConstructorParams {
 	model: string;
+	tools: Tool[];
 	apiKey: string;
-	provider: Provider;
 	displayName: string;
+	providerName: Provider;
+	systemPrompt: SystemPrompt;
 	chatMessageManager: ChatMessageManager;
 }
 
@@ -21,31 +24,42 @@ export abstract class BaseProvider {
 	readonly apiKey: string;
 	readonly name: Provider;
 	readonly displayName: string;
+
+	// Utilities
+	readonly tools: Tool[];
 	readonly sdk: OpenAI | Anthropic;
+	readonly systemPrompt: SystemPrompt;
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
 	readonly maxTokens: number;
 
 	constructor({
-		apiKey,
-		provider,
 		model,
+		tools,
+		apiKey,
 		displayName,
+		providerName,
+		systemPrompt,
 		chatMessageManager,
 	}: IConstructorParams) {
-		this.sdk = ProviderSDKFactory.create({
-			apiKey,
-			provider,
-		});
-
 		// Base Properties
 		// --------------------------------
 		this.model = model; // e.g. 'gpt-4o'
 		this.apiKey = apiKey;
-		this.name = provider; // e.g. 'openai'
+		this.name = providerName; // e.g. 'openai'
 		this.displayName = displayName; // e.g. 'OpenAI'
+
+		// Utilities
+		// --------------------------------
+		this.tools = tools;
+		this.systemPrompt = systemPrompt;
 		this.chatMessageManager = chatMessageManager;
+		this.sdk = ProviderSDKFactory.create({
+			apiKey,
+			providerName: this.name,
+		});
+
 		// Settings
 		// --------------------------------
 		this.maxTokens = 1024;
@@ -88,5 +102,5 @@ export abstract class BaseProvider {
 			  }[];
 	};
 
-	abstract sendPrompt({ agent }: { agent: Agent }): Promise<IModelResponse>;
+	abstract sendPrompt(): Promise<IModelResponse>;
 }

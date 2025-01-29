@@ -8,7 +8,7 @@ interface IConstructorParams {
 
 export class InteractiveTerminal {
 	agent: Agent;
-	logger = new Logger('InteractiveTerminal');
+	logger = new Logger({ context: 'InteractiveTerminal' });
 
 	constructor({ agent }: IConstructorParams) {
 		this.agent = agent;

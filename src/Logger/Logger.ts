@@ -5,7 +5,7 @@ export class Logger {
 	private context?: string;
 	private logLevel: LogLevel;
 
-	constructor(context?: string) {
+	constructor({ context }: { context?: string }) {
 		this.context = context;
 		this.logLevel = getLogLevel({
 			level: process.env.LOG_LEVEL,
