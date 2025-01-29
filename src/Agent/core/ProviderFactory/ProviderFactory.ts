@@ -1,5 +1,5 @@
 import { Tool } from '@Tool';
-import { Provider } from '@Agent';
+import { ProviderName } from '@Agent';
 import { SystemPrompt } from '@SystemPrompt';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { providers } from '@Agent/core/ProviderFactory/common/constants';
@@ -18,7 +18,7 @@ export class ProviderFactory {
 		tools: Tool[];
 		apiKey: string;
 		displayName: string;
-		providerName: Provider;
+		providerName: ProviderName;
 		systemPrompt: SystemPrompt;
 		chatMessageManager: ChatMessageManager;
 	}) {

@@ -1,13 +1,14 @@
-import { Provider } from '@Agent';
+import { ProviderName } from '@Agent';
 
 interface IParams {
-	provider: Provider;
+	provider: ProviderName;
 }
 
 export const getProviderDisplayName = ({ provider }: IParams) => {
 	return (
-		Object.keys(Provider).find(
-			(key) => Provider[key as keyof typeof Provider] === provider,
+		Object.keys(ProviderName).find(
+			(key) =>
+				ProviderName[key as keyof typeof ProviderName] === provider,
 		) || provider
 	);
 };

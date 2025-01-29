@@ -1,4 +1,4 @@
-import { Agent, Provider, Model } from '@Agent';
+import { Agent, ProviderName, Model } from '@Agent';
 import { getDirectoryStructureTool } from '@Tools';
 import { InteractiveTerminal } from '@InteractiveTerminal';
 import { softwareEngineerTypeScriptPrompt } from '@SystemPrompts';
@@ -8,7 +8,7 @@ import { softwareEngineerTypeScriptPrompt } from '@SystemPrompts';
 const tools = [getDirectoryStructureTool];
 const systemPrompt = softwareEngineerTypeScriptPrompt;
 
-const provider = Provider.OpenAI;
+const provider = ProviderName.OpenAI;
 const model = Model.OpenAI.GPT4o;
 const apiKey = process.env['OPENAI_API_KEY'] as string;
 // --------------------------------

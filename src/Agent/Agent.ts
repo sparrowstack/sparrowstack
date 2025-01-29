@@ -1,4 +1,4 @@
-import { Provider } from '@Agent';
+import { ProviderName } from '@Agent';
 import { Logger } from '@Logger';
 import { Tool, type IToolParams } from '@Tool';
 import { defaultPrompt } from '@SystemPrompts/default';
@@ -18,14 +18,14 @@ import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/i
 interface IConstructorParams {
 	model: string;
 	apiKey: string;
-	provider: Provider;
+	provider: ProviderName;
 	tools?: Tool[] | IToolParams[];
 	systemPrompt?: SystemPrompt | ISystemPromptParams;
 }
 
 export class Agent {
 	// Values
-	readonly providerName: Provider;
+	readonly providerName: ProviderName;
 	readonly providerDisplayName: string;
 
 	// System Prompt
@@ -41,6 +41,7 @@ export class Agent {
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Provider
+	// TODO: Provider Type
 	readonly provider: OpenAIProvider | AnthropicProvider;
 
 	// Tool Calling

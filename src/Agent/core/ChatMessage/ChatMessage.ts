@@ -1,5 +1,5 @@
 import { Role } from '@Agent';
-import { type IChatMessage } from '@Agent/core/ChatMessage/interfaces/IChatMessage';
+import { type IChatMessage } from '@Agent/core/ChatMessage/common/interfaces/IChatMessage';
 
 export class ChatMessage {
 	static createUserMessage({ content }: { content: string }): IChatMessage {

@@ -1,7 +1,8 @@
 import OpenAI from 'openai';
 import { Tool } from '@Tool';
-import { Provider, Role } from '@Agent';
+import { ProviderName } from '@Agent';
 import { SystemPrompt } from '@SystemPrompt';
+import { Role } from '@Agent/core/ChatMessage/common/enums';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@Agent/core/providers/OpenAIProvider/adapters/toModelResponse';
@@ -10,7 +11,7 @@ export interface IParams {
 	sdk: OpenAI;
 	model: string;
 	tools: Tool[];
-	name: Provider;
+	name: ProviderName;
 	maxTokens: number;
 	systemPrompt: SystemPrompt;
 	chatMessageManager: ChatMessageManager;

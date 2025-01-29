@@ -1,4 +1,4 @@
-import { Provider } from '@Agent';
+import { ProviderName } from '@Agent';
 import { providerSchemas } from '@Tool/common/constants';
 import type {
 	IToolParams,
@@ -27,7 +27,7 @@ export class Tool {
 		this.parameters = parameters;
 	}
 
-	public getSchema({ providerName }: { providerName: Provider }) {
+	public getSchema({ providerName }: { providerName: ProviderName }) {
 		const toSchema = providerSchemas[providerName];
 
 		return toSchema({

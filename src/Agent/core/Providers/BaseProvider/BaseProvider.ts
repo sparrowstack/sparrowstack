@@ -1,6 +1,6 @@
 import type { Tool } from '@Tool';
 import { SystemPrompt } from '@SystemPrompt';
-import { Provider } from '@Agent/common/enums';
+import { ProviderName } from '@Agent/common/enums';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
@@ -19,7 +19,7 @@ export abstract class BaseProvider {
 	// Base
 	readonly model: string;
 	readonly apiKey: string;
-	readonly name: Provider;
+	readonly name: ProviderName;
 	readonly displayName: string;
 
 	// Utilities

@@ -1,5 +1,5 @@
 import { Tool } from '@Tool';
-import { Provider } from '@Agent';
+import { ProviderName } from '@Agent';
 import { SystemPrompt } from '@SystemPrompt';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
@@ -10,7 +10,7 @@ export interface IParams {
 	tools: Tool[];
 	model: string;
 	sdk: Anthropic;
-	name: Provider;
+	name: ProviderName;
 	maxTokens: number;
 	systemPrompt: SystemPrompt;
 	chatMessageManager: ChatMessageManager;

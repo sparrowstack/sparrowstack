@@ -1,6 +1,6 @@
 import type { Tool } from '@Tool';
 import { SystemPrompt } from '@SystemPrompt';
-import { Provider } from '@Agent/common/enums';
+import { ProviderName } from '@Agent/common/enums';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 
 export interface IConstructorParams {
@@ -8,7 +8,7 @@ export interface IConstructorParams {
 	tools: Tool[];
 	apiKey: string;
 	displayName: string;
-	providerName: Provider;
+	providerName: ProviderName;
 	systemPrompt: SystemPrompt;
 	chatMessageManager: ChatMessageManager;
 }
