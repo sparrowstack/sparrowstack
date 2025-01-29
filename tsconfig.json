@@ -30,8 +30,8 @@
 		"paths": {
 			"@root/*": ["./*"],
 			"@src/*": ["./src/*"],
-			"@Sparrow": ["./src/Sparrow"],
-			"@Sparrow/*": ["./src/Sparrow/*"],
+			"@sparrow": ["./src/Sparrow"],
+			"@sparrow/*": ["./src/Sparrow/*"],
 			"@Agent": ["./src/Agent"],
 			"@Agent/*": ["./src/Agent/*"],
 			"@Logger": ["./src/Logger"],

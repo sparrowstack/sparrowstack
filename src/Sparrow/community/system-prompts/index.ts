@@ -1,0 +1,1 @@
+export { softwareEngineerTypeScriptPrompt } from '@SystemPrompts';

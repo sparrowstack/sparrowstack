@@ -4,9 +4,9 @@ import {
 	ApiKey,
 	ProviderName,
 	InteractiveTerminal,
-} from '@Sparrow';
-import { getDirectoryStructureTool } from '@Tools'; // will become community tools
-import { softwareEngineerTypeScriptPrompt } from '@SystemPrompts'; // will become community prompts
+} from '@sparrow/core';
+import { getDirectoryStructureTool } from '@sparrow/community/tools';
+import { softwareEngineerTypeScriptPrompt } from '@sparrow/community/system-prompts';
 
 // Configuration
 // --------------------------------

@@ -4,9 +4,9 @@ import {
 	ApiKey,
 	ProviderName,
 	InteractiveTerminal,
-} from '@Sparrow';
-import { getDirectoryStructureTool } from '@Tools'; // community tools
-import { softwareEngineerTypeScriptPrompt } from '@SystemPrompts'; // community prompts
+} from '@sparrow/core';
+import { getDirectoryStructureTool } from '@sparrow/community/tools';
+import { softwareEngineerTypeScriptPrompt } from '@sparrow/community/system-prompts';
 
 // Configuration
 // --------------------------------
@@ -18,6 +18,9 @@ const provider = ProviderName.OpenAI;
 const apiKey = process.env[ApiKey.OpenAI] as string;
 // --------------------------------
 
+// Ask GPT about naming here:
+// modelName
+// providerName,
 const agent = new Agent({
 	model,
 	tools,

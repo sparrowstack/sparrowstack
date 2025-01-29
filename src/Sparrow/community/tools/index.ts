@@ -1,0 +1,1 @@
+export { getDirectoryStructureTool } from '@Tools';
