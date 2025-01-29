@@ -9,11 +9,11 @@ import { InteractionLogger } from '@Agent/core/InteractionLogger';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import { executeSendMessage } from '@Agent/execute/executeSendMessage';
-import { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
-import { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider';
+import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@Agent/core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
+import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
 
 interface IConstructorParams {
 	model: string;
@@ -33,7 +33,7 @@ export class Agent {
 
 	// Tools
 	readonly tools?: Tool[];
-	readonly functions?: Record<IToolParams['name'], IToolParams['function']>;
+	readonly functions?: ToolFunctions;
 
 	// Utilities
 	readonly logger: Logger;
@@ -41,8 +41,7 @@ export class Agent {
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Provider
-	// TODO: Provider Type
-	readonly provider: OpenAIProvider | AnthropicProvider;
+	readonly provider: AIProvider;
 
 	// Tool Calling
 	readonly toolCallManager: ToolCallManager;

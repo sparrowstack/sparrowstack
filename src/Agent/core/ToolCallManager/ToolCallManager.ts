@@ -1,25 +1,19 @@
+import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
+import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
-import type { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider/OpenAIProvider';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
-import type { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider/AnthropicProvider';
 
 interface IConstructorParams {
-	// TODO: Abstract interface
-	provider: OpenAIProvider | AnthropicProvider;
-	// TODO: Abstract interface
-	functions:
-		| Record<string, (...args: unknown[]) => Promise<unknown>>
-		| undefined;
+	provider: AIProvider;
+	functions: ToolFunctions;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
 }
 
 export class ToolCallManager {
-	readonly functions:
-		| Record<string, (...args: unknown[]) => Promise<unknown>>
-		| undefined;
-	readonly provider: OpenAIProvider | AnthropicProvider;
+	readonly provider: AIProvider;
+	readonly functions: ToolFunctions;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
 

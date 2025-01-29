@@ -1,4 +1,5 @@
 export type { Sdk } from '@Agent/core/providers/BaseProvider/common/types/Sdk';
+export type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types/AIProvider';
 export type { ToolCallRequestMessage } from '@Agent/core/providers/BaseProvider/common/types/ToolCallRequestMessage';
 export type { ToolCallResponseMessages } from '@Agent/core/providers/BaseProvider/common/types/ToolCallResponseMessages';
 export type { ToolCallRequestMessageContent } from '@Agent/core/providers/BaseProvider/common/types/ToolCallRequestMessageContent';

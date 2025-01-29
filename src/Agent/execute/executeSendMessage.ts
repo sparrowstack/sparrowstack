@@ -1,15 +1,14 @@
 import type { ToolCallManager } from '@Agent/core/ToolCallManager/ToolCallManager';
 import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
-import type { OpenAIProvider } from '@Agent/core/providers/OpenAIProvider/OpenAIProvider';
 import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
-import type { AnthropicProvider } from '@Agent/core/providers/AnthropicProvider/AnthropicProvider';
+import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 
 interface IParams {
 	message: string;
+	provider: AIProvider;
 	toolCallManager: ToolCallManager;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
-	provider: OpenAIProvider | AnthropicProvider;
 }
 
 export const executeSendMessage = async ({
