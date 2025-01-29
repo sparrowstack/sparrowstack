@@ -2,7 +2,7 @@ import {
 	Agent,
 	Model,
 	ApiKey,
-	ProviderName,
+	Provider,
 	InteractiveTerminal,
 } from '@sparrow/core';
 import { getDirectoryStructureTool } from '@sparrow/community/tools';
@@ -13,7 +13,7 @@ import { softwareEngineerTypeScriptPrompt } from '@sparrow/community/system-prom
 const tools = [getDirectoryStructureTool];
 const systemPrompt = softwareEngineerTypeScriptPrompt;
 
-const provider = ProviderName.Anthropic;
+const provider = Provider.Anthropic;
 const model = Model.Anthropic.Claude35Sonnet;
 const apiKey = process.env[ApiKey.Anthropic] as string;
 // --------------------------------

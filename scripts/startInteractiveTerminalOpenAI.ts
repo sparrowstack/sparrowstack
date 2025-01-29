@@ -2,7 +2,7 @@ import {
 	Agent,
 	Model,
 	ApiKey,
-	ProviderName,
+	Provider,
 	InteractiveTerminal,
 } from '@sparrow/core';
 import { getDirectoryStructureTool } from '@sparrow/community/tools';
@@ -14,13 +14,10 @@ const tools = [getDirectoryStructureTool];
 const systemPrompt = softwareEngineerTypeScriptPrompt;
 
 const model = Model.OpenAI.GPT4o;
-const provider = ProviderName.OpenAI;
+const provider = Provider.OpenAI;
 const apiKey = process.env[ApiKey.OpenAI] as string;
 // --------------------------------
 
-// Ask GPT about naming here:
-// modelName
-// providerName,
 const agent = new Agent({
 	model,
 	tools,
