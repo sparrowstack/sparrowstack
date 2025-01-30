@@ -1,12 +1,7 @@
-import {
-	Agent,
-	Model,
-	ApiKey,
-	Provider,
-	InteractiveTerminal,
-} from '@sparrow/core';
-import { getDirectoryStructureTool } from '@sparrow/community/tools';
-import { softwareEngineerTypeScriptPrompt } from '@sparrow/community/system-prompts';
+import { Agent, Model, ApiKey, Provider } from '@sparrowstack/sparrow';
+import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
+import { getDirectoryStructureTool } from '@sparrowstack/community/tools';
+import { softwareEngineerTypeScriptPrompt } from '@sparrowstack/community/system-prompts';
 
 // Configuration
 // --------------------------------
