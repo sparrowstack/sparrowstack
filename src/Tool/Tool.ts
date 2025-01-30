@@ -1,30 +1,34 @@
-import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
+import type { Validate } from '@Tool/common/types';
 import { providerSchemas } from '@Tool/common/constants';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
 import type {
 	IToolParams,
 	IParameterDefinition,
 } from '@Tool/common/interfaces';
 
-// TODO: Add
-// args
-// validate
-// maxCount
 export class Tool {
 	public name: string;
+	public callCount: number;
 	public description: string;
+	public validate?: Validate;
 	public function: (...args: unknown[]) => Promise<unknown>;
 	public parameters: Record<string, IParameterDefinition>;
 
 	constructor({
 		name,
+		validate,
 		description,
 		function: func,
 		parameters = {},
 	}: IToolParams) {
 		this.name = name;
+		this.callCount = 0;
 		this.function = func;
+		this.validate = validate;
 		this.description = description;
 		this.parameters = parameters;
+		// synonyms
+		// antonyms
 	}
 
 	public getSchema({ providerName }: { providerName: ProviderName }) {
@@ -32,8 +36,8 @@ export class Tool {
 
 		return toSchema({
 			name: this.name,
-			description: this.description,
 			parameters: this.parameters,
+			description: this.description,
 		});
 	}
 }

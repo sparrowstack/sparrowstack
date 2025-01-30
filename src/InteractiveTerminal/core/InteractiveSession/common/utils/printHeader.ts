@@ -7,7 +7,7 @@ interface IParams {
 }
 
 export const printHeader = ({ agent }: IParams) => {
-	const { provider, systemPrompt, tools } = agent;
+	const { provider, systemPrompt, toolRegistry } = agent;
 
 	console.log(
 		chalk.greenBright(`
@@ -28,7 +28,11 @@ export const printHeader = ({ agent }: IParams) => {
 	);
 	console.log('');
 	console.log(`${chalk.bold('Tools:')} [`);
-	console.log(tools?.map((tool) => `${tool.name}`).join(',\n'));
+	console.log(
+		Object.keys(toolRegistry)
+			?.map((toolName) => `${toolName}`)
+			.join(',\n'),
+	);
 	console.log(`]`);
 	console.log('');
 	console.log(chalk.dim('- Type "q" to quit'));

@@ -1,8 +1,8 @@
-import type { Tool } from '@Tool';
 import { SystemPrompt } from '@SystemPrompt';
-import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
+import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums';
+import type { IToolRegistry } from '@Agent/core/ToolRegistryFactory/common/interfaces';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,
@@ -24,8 +24,8 @@ export abstract class BaseProvider {
 
 	// Utilities
 	readonly sdk: Sdk;
-	readonly tools: Tool[];
 	readonly systemPrompt: SystemPrompt;
+	readonly toolRegistry: IToolRegistry;
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
@@ -34,10 +34,10 @@ export abstract class BaseProvider {
 	constructor({
 		name,
 		model,
-		tools,
 		apiKey,
 		displayName,
 		systemPrompt,
+		toolRegistry,
 		chatMessageManager,
 	}: IConstructorParams) {
 		// Base Properties
@@ -47,9 +47,12 @@ export abstract class BaseProvider {
 		this.apiKey = apiKey;
 		this.displayName = displayName; // e.g. 'OpenAI'
 
+		// Tools
+		// --------------------------------
+		this.toolRegistry = toolRegistry;
+
 		// Utilities
 		// --------------------------------
-		this.tools = tools;
 		this.systemPrompt = systemPrompt;
 		this.chatMessageManager = chatMessageManager;
 		this.sdk = ProviderSDKFactory.create({

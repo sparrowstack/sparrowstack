@@ -1,7 +1,7 @@
 import { Logger } from '@Logger';
 import { Tool, type IToolParams } from '@Tool';
 import { defaultPrompt } from '@SystemPrompts/default';
-import { ToolsFactory } from '@Agent/core/ToolsFactory';
+import { ToolRegistryFactory } from '@Agent/core/ToolRegistryFactory';
 import { ToolCallManager } from '@Agent/core/ToolCallManager';
 import { ProviderFactory } from '@Agent/core/ProviderFactory';
 import { InteractionLogger } from '@Agent/core/InteractionLogger';
@@ -9,8 +9,8 @@ import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import { executeSendMessage } from '@Agent/execute/executeSendMessage';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
-import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
 import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
+import type { IToolRegistry } from '@Agent/core/ToolRegistryFactory/common/interfaces';
 import { getProviderDisplayName } from '@Agent/core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
@@ -32,8 +32,7 @@ export class Agent {
 	readonly systemPrompt: SystemPrompt;
 
 	// Tools
-	readonly tools?: Tool[];
-	readonly functions?: ToolFunctions;
+	readonly toolRegistry: IToolRegistry;
 
 	// Utilities
 	readonly logger: Logger;
@@ -66,9 +65,7 @@ export class Agent {
 
 		// Tools
 		// --------------------------------
-		const toolsRegistry = ToolsFactory.create({ tools });
-		this.tools = toolsRegistry.tools;
-		this.functions = toolsRegistry.functions;
+		this.toolRegistry = ToolRegistryFactory.create({ tools });
 
 		// Utilities
 		// --------------------------------
@@ -85,7 +82,7 @@ export class Agent {
 		this.provider = ProviderFactory.create({
 			model,
 			apiKey,
-			tools: this.tools,
+			toolRegistry: this.toolRegistry,
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
 			providerDisplayName: this.providerDisplayName,
@@ -96,7 +93,7 @@ export class Agent {
 		// --------------------------------
 		this.toolCallManager = new ToolCallManager({
 			provider: this.provider,
-			functions: this.functions,
+			toolRegistry: this.toolRegistry,
 			interactionLogger: this.interactionLogger,
 			chatMessageManager: this.chatMessageManager,
 		});

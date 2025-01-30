@@ -11,19 +11,19 @@ export class OpenAIProvider extends BaseProvider {
 	constructor({
 		name,
 		model,
-		tools,
 		apiKey,
 		displayName,
+		toolRegistry,
 		systemPrompt,
 		chatMessageManager,
 	}: IConstructorParams) {
 		super({
 			name,
 			model,
-			tools,
 			apiKey,
 			displayName,
 			systemPrompt,
+			toolRegistry,
 			chatMessageManager,
 		});
 
@@ -42,9 +42,9 @@ export class OpenAIProvider extends BaseProvider {
 		return executeSendPrompt({
 			name: this.name,
 			model: this.model,
-			tools: this.tools,
 			sdk: this.sdk as OpenAI,
 			maxTokens: this.maxTokens,
+			toolRegistry: this.toolRegistry,
 			systemPrompt: this.systemPrompt,
 			chatMessageManager: this.chatMessageManager,
 		});

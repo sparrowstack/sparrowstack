@@ -19,6 +19,8 @@ const agent = new Agent({
 	apiKey,
 	provider,
 	systemPrompt,
+	// databaseUrl, - coming soon..
+	// vectorDatabaseUrl, - coming soon..
 });
 const interactiveTerminal = new InteractiveTerminal({ agent });
 

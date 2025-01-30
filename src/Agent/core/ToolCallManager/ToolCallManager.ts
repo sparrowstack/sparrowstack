@@ -1,5 +1,5 @@
-import type { ToolFunctions } from '@Agent/core/ToolCallManager/common/types';
 import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
+import type { IToolRegistry } from '@Agent/core/ToolRegistryFactory/common/interfaces';
 import { executeToolCalls } from '@Agent/core/ToolCallManager/execute/executeToolCalls';
 import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
@@ -7,27 +7,27 @@ import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMess
 
 interface IConstructorParams {
 	provider: AIProvider;
-	functions: ToolFunctions;
+	toolRegistry: IToolRegistry;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
 }
 
 export class ToolCallManager {
 	readonly provider: AIProvider;
-	readonly functions: ToolFunctions;
+	readonly toolRegistry: IToolRegistry;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
 
 	constructor({
 		provider,
-		functions,
+		toolRegistry,
 		interactionLogger,
 		chatMessageManager,
 	}: IConstructorParams) {
 		this.provider = provider;
+		this.toolRegistry = toolRegistry;
 		this.interactionLogger = interactionLogger;
 		this.chatMessageManager = chatMessageManager;
-		this.functions = functions;
 	}
 
 	// Note: Could probably do some cleaning up here
@@ -60,7 +60,7 @@ export class ToolCallManager {
 
 			// Execute tool calls
 			const toolCallResults = await executeToolCalls({
-				functions: this.functions,
+				toolRegistry: this.toolRegistry,
 				toolCalls: responseMessage.toolCalls,
 			});
 
