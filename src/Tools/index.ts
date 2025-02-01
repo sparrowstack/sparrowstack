@@ -1,4 +1,10 @@
 export {
 	getDirectoryStructureTool,
 	getDirectoryStructureToolParams,
-} from '@Tools/getDirectoryStucture/tool';
+} from '@Tools/getDirectoryStucture';
+
+export {
+	getWeatherDataTool,
+	getWeatherDataToolParams,
+	validateGetWeatherDataToolCall,
+} from '@Tools/getWeatherData';

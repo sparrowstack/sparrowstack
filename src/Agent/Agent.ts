@@ -1,11 +1,11 @@
 import { Logger } from '@Logger';
 import { Tool, type IToolParams } from '@Tool';
 import { defaultPrompt } from '@SystemPrompts/default';
-import { ToolRegistryFactory } from '@Agent/core/ToolRegistryFactory';
 import { ToolCallManager } from '@Agent/core/ToolCallManager';
 import { ProviderFactory } from '@Agent/core/ProviderFactory';
 import { InteractionLogger } from '@Agent/core/InteractionLogger';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
+import { ToolRegistryFactory } from '@Agent/core/ToolRegistryFactory';
 import { SystemPromptFactory } from '@Agent/core/SystemPromptFactory';
 import { executeSendMessage } from '@Agent/execute/executeSendMessage';
 import { SystemPrompt, type ISystemPromptParams } from '@SystemPrompt';
@@ -82,11 +82,11 @@ export class Agent {
 		this.provider = ProviderFactory.create({
 			model,
 			apiKey,
-			toolRegistry: this.toolRegistry,
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
-			providerDisplayName: this.providerDisplayName,
+			toolRegistry: this.toolRegistry,
 			chatMessageManager: this.chatMessageManager,
+			providerDisplayName: this.providerDisplayName,
 		});
 
 		// Tool Calling

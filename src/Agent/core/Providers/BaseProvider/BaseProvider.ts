@@ -1,6 +1,7 @@
 import { SystemPrompt } from '@SystemPrompt';
 import { ChatMessageManager } from '@Agent/core/ChatMessageManager';
 import { ProviderSDKFactory } from '@Agent/core/ProviderSDKFactory';
+import { State } from '@Agent/core/providers/BaseProvider/common/enums';
 import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums';
 import type { IToolRegistry } from '@Agent/core/ToolRegistryFactory/common/interfaces';
 import type { IModelResponse } from '@Agent/core/providers/BaseProvider/common/interfaces';
@@ -22,10 +23,12 @@ export abstract class BaseProvider {
 	readonly name: ProviderName;
 	readonly displayName: string;
 
+	// Tools
+	readonly toolRegistry: IToolRegistry;
+
 	// Utilities
 	readonly sdk: Sdk;
 	readonly systemPrompt: SystemPrompt;
-	readonly toolRegistry: IToolRegistry;
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
@@ -75,5 +78,5 @@ export abstract class BaseProvider {
 		}: IToToolCallResponseMessagesParams) => ToolCallResponseMessages;
 	};
 
-	abstract sendPrompt(): Promise<IModelResponse>;
+	abstract sendPrompt({ state }: { state?: State }): Promise<IModelResponse>;
 }

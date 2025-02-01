@@ -1,7 +1,7 @@
+import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 import type { ToolCallManager } from '@Agent/core/ToolCallManager/ToolCallManager';
 import type { InteractionLogger } from '@Agent/core/InteractionLogger/InteractionLogger';
 import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
-import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 
 interface IParams {
 	message: string;
@@ -20,13 +20,13 @@ export const executeSendMessage = async ({
 }: IParams) => {
 	chatMessageManager.addUserMessage({ text: message });
 
-	interactionLogger.logContextWindow();
-
 	const modelResponseMessage = await provider.sendPrompt();
 
 	const toolCallResponseMessage = await toolCallManager.handleToolCalls({
 		responseMessage: modelResponseMessage,
 	});
+
+	interactionLogger.logContextWindow();
 
 	const responseMessage = toolCallResponseMessage || modelResponseMessage;
 

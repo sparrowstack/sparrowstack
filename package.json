@@ -19,6 +19,7 @@
 		"start": "bun run src/index.ts",
 		"start:interactiveTerminal:openai": "bun run scripts/startInteractiveTerminalOpenAI.ts",
 		"start:interactiveTerminal:anthropic": "bun run scripts/startInteractiveTerminalAnthropic.ts",
+		"start:examples:getWeather": "bun run scripts/examples/getWeather.ts",
 		"dev": "bun --watch run src/index.ts",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
@@ -40,6 +41,7 @@
 	},
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.33.1",
+		"axios": "^1.7.9",
 		"chalk": "^5.4.1",
 		"ignore": "^7.0.3",
 		"openai": "^4.79.1",

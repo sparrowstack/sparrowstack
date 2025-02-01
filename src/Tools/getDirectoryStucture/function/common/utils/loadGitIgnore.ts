@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import ignore from 'ignore';
-import { findGitRoot } from '@Tools/getDirectoryStucture/method/common/utils';
+import { findGitRoot } from '@Tools/getDirectoryStucture/function/common/utils';
 
 export const loadGitignore = ({
 	startPath,

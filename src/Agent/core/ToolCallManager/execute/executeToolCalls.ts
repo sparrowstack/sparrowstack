@@ -15,10 +15,15 @@ export const executeToolCalls = async ({
 			const { id, name, parameters } = toolCall;
 			const tool = toolRegistry[name];
 			const toolCallFunction = tool?.function;
-			// TODO: JSON.parse(toolCall.function.arguments);
-			const result = await toolCallFunction(parameters);
+			const params =
+				typeof parameters === 'string'
+					? JSON.parse(parameters)
+					: parameters;
+
+			const result = await toolCallFunction(params);
 
 			tool.callCount += 1;
+			tool.addCachedResult({ result: { id, result } });
 
 			return { id, result };
 		}),

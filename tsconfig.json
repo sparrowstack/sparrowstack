@@ -28,7 +28,7 @@
 
 		// Paths
 		"paths": {
-			"@root/*": ["./*"],
+			"@/*": ["./*"],
 			"@src/*": ["./src/*"],
 			"@sparrowstack": ["./src/sparrowstack"],
 			"@sparrowstack/*": ["./src/sparrowstack/*"],

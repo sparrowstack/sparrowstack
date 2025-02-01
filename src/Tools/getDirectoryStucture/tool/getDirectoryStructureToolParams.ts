@@ -1,6 +1,6 @@
 import type { IToolParams } from '@Tool';
 import type { IValidateParams } from '@Tool/common/interfaces';
-import { getDirectoryStructure as getDirectoryStructureMethod } from '@Tools/getDirectoryStucture/method/getDirectoryStructure';
+import { getDirectoryStructure as getDirectoryStructureMethod } from '@Tools/getDirectoryStucture/function/getDirectoryStructure';
 
 export const getDirectoryStructureToolParams: IToolParams = {
 	name: 'getDirectoryStructure',
@@ -29,9 +29,4 @@ export const getDirectoryStructureToolParams: IToolParams = {
 
 		return addToolToPrompt;
 	},
-	// TODO:
-	// validate
-	// cachedResults
-	// lastCachedResult
-	// callCount
 };

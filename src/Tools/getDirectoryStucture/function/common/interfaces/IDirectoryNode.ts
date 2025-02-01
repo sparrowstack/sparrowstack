@@ -1,4 +1,4 @@
-import { DirectoryNodeType } from '@Tools/getDirectoryStucture/method/common/enums';
+import { DirectoryNodeType } from '@Tools/getDirectoryStucture/function/common/enums';
 
 export interface IDirectoryNode {
 	name: string;

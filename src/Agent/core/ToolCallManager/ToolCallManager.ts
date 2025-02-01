@@ -1,3 +1,4 @@
+import { State } from '@Agent/core/providers/BaseProvider/common/enums';
 import type { AIProvider } from '@Agent/core/providers/BaseProvider/common/types';
 import type { IToolRegistry } from '@Agent/core/ToolRegistryFactory/common/interfaces';
 import { executeToolCalls } from '@Agent/core/ToolCallManager/execute/executeToolCalls';
@@ -45,9 +46,9 @@ export class ToolCallManager {
 			Array.isArray(responseMessage.toolCalls) &&
 			responseMessage.toolCalls.length > 0
 		) {
-			this.interactionLogger.logModelResponse({
-				message: responseMessage,
-			});
+			// this.interactionLogger.logModelResponse({
+			// 	message: responseMessage,
+			// });
 
 			const assistantToolCallRequestMessage =
 				this.provider.adapters.toToolCallRequestMessage({
@@ -75,13 +76,15 @@ export class ToolCallManager {
 				});
 			});
 
-			this.interactionLogger.logChatMessages();
+			// this.interactionLogger.logChatMessages();
 
-			toolCallResponseMessage = await this.provider.sendPrompt();
-
-			this.interactionLogger.logModelResponse({
-				message: toolCallResponseMessage,
+			toolCallResponseMessage = await this.provider.sendPrompt({
+				state: State.ReturningToolCallResults,
 			});
+
+			// this.interactionLogger.logModelResponse({
+			// 	message: toolCallResponseMessage,
+			// });
 		}
 
 		return toolCallResponseMessage;

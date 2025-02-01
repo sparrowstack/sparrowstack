@@ -1,4 +1,4 @@
-import type { IDirectoryNode } from '@Tools/getDirectoryStucture/method/common/interfaces';
+import type { IDirectoryNode } from '@Tools/getDirectoryStucture/function/common/interfaces';
 
 export const formatForMarkdown = (
 	node: IDirectoryNode,

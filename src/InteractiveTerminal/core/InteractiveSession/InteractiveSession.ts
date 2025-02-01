@@ -1,5 +1,6 @@
 import { Agent } from '@Agent';
 import * as readline from 'readline';
+import { userPrompt } from '@InteractiveTerminal/core/InteractiveSession/common/constants/userPrompt';
 import {
 	printHeader,
 	validateInput,
@@ -25,7 +26,7 @@ export class InteractiveSession {
 		});
 
 		const prompt = () => {
-			rl.question('You: ', async (input) => {
+			rl.question(userPrompt, async (input) => {
 				const message = input.trim();
 				const isValid = validateInput({
 					input: message,

@@ -1,5 +1,3 @@
-// TODO: IToolCallResult[]
-
 export const toToolCallResponseMessages = ({
 	toolCallResults,
 }: {
