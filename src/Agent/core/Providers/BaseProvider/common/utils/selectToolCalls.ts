@@ -35,12 +35,18 @@ export const selectToolCalls = async ({
 			// Wait for the previous iteration's promise to resolve
 			const accumulator = await accumulatorPromise;
 			const shouldRunValidate = state !== State.ReturningToolCallResults;
+			const hasExceededMaxCallCount =
+				tool.maxCallCount && tool.getCallCount() >= tool.maxCallCount;
 			let isValid = true;
 
-			if (shouldRunValidate && tool.validate) {
+			if (hasExceededMaxCallCount) {
+				isValid = false;
+			} else if (shouldRunValidate && tool.validate) {
 				isValid = await tool.validate({
-					context,
-					callCount: tool.callCount,
+					...context,
+					callCount: tool.getCallCount(),
+					cachedResults: tool.getCachedResults(),
+					lastCachedResult: tool.getLastCachedResult(),
 				});
 			}
 

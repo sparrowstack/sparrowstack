@@ -22,7 +22,7 @@ export const executeToolCalls = async ({
 
 			const result = await toolCallFunction(params);
 
-			tool.callCount += 1;
+			tool.incrementCallCount();
 			tool.addCachedResult({ result: { id, result } });
 
 			return { id, result };

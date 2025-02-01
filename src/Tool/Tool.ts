@@ -5,15 +5,16 @@ import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/Pr
 
 export class Tool {
 	// TODO: make any private / readonly?
-	public name: string;
-	public callCount: number;
-	public description: string;
-	public validate?: Validate;
-	public function: ToolFunction;
-	public maxCallCount?: number;
-	public parameters: Parameters;
-	public cachedResults: any[];
-	public lastCachedResult: any;
+	readonly name: string;
+	readonly description: string;
+	readonly validate?: Validate;
+	readonly function: ToolFunction;
+	readonly maxCallCount?: number;
+	readonly parameters: Parameters;
+
+	private callCount: number;
+	private lastCachedResult: any;
+	private cachedResults: any[];
 
 	constructor({
 		name,
@@ -46,8 +47,26 @@ export class Tool {
 		});
 	}
 
+	// Setters
+	public incrementCallCount() {
+		this.callCount += 1;
+	}
+
 	public addCachedResult({ result }: { result: any }) {
 		this.cachedResults.push(result);
 		this.lastCachedResult = result;
+	}
+
+	// Getters
+	public getCallCount() {
+		return this.callCount;
+	}
+
+	public getLastCachedResult() {
+		return this.lastCachedResult;
+	}
+
+	public getCachedResults() {
+		return this.cachedResults;
 	}
 }

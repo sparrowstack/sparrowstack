@@ -1,7 +1,7 @@
 import {
 	PropertyType,
 	type IToolParams,
-	type IValidateParams,
+	// type IValidateParams,
 } from '@sparrowstack/tool';
 import { getWeatherData } from '@Tools/getWeatherData/function/getWeatherData';
 import { validateGetWeatherDataToolCall } from '@Tools/getWeatherData/validate';
@@ -10,15 +10,12 @@ import type { IGetWeatherDataParams } from '@Tools/getWeatherData/function/commo
 export const getWeatherDataToolParams: IToolParams = {
 	name: 'getWeather',
 	description: 'Get the weather for a given location',
-	function: async ({
-		city,
-		stateCode,
-		countryCode,
-	}: IGetWeatherDataParams) => {
-		return await getWeatherData({ city, stateCode, countryCode });
+	function: async (weatherDataParams: IGetWeatherDataParams) => {
+		return await getWeatherData(weatherDataParams);
 	},
-	validate: async ({ callCount, context }: IValidateParams) => {
-		return await validateGetWeatherDataToolCall({ callCount, context });
+	maxCallCount: 2,
+	validate: async (/*validateParams: IValidateParams*/) => {
+		return await validateGetWeatherDataToolCall(/*validateParams*/);
 	},
 	parameters: {
 		city: {
