@@ -1,4 +1,7 @@
-import type { ICurrentWeather } from '@Tools/getWeatherData/function/common/interfaces';
+import type {
+	IApiResponseCurrent,
+	IFormattedWeatherData,
+} from '@Tools/getWeatherData/function/common/interfaces';
 import {
 	Unit,
 	MeasurementUnit,
@@ -12,14 +15,14 @@ import {
 interface IParams {
 	units: Unit;
 	timeZone: string;
-	current: ICurrentWeather;
+	current: IApiResponseCurrent;
 }
 
 export const getFormattedWeatherData = ({
 	units,
 	current,
 	timeZone,
-}: IParams) => {
+}: IParams): IFormattedWeatherData => {
 	const formattedWeatherData = {
 		sunrise: formatEventTime({
 			timeZone,

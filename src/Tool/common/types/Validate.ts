@@ -1,6 +1,3 @@
-import type { IValidateParams } from '@Tool/common/interfaces';
+import type { IRuntimeParams } from '@Tool/common/interfaces';
 
-export type Validate = ({
-	context,
-	callCount,
-}: IValidateParams) => Promise<boolean>;
+export type Validate = (runtimeParams: IRuntimeParams) => Promise<boolean>;

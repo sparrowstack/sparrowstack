@@ -2,6 +2,6 @@ export { Tool } from '@Tool/Tool';
 export { PropertyType } from '@Tool/common/enums';
 export type {
 	IToolParams,
-	IValidateParams,
+	IRuntimeParams,
 	IToolSchemaParams,
 } from '@Tool/common/interfaces';

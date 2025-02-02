@@ -1,6 +1,6 @@
 import { Unit } from '@Tools/getWeatherData/function/common/enums';
 import { formatEventTime } from '@Tools/getWeatherData/function/common/utils';
-import type { IGetWeatherDataParams } from '@Tools/getWeatherData/function/common/interfaces';
+import type { IWeatherData, IGetWeatherDataParams } from '@Tools/getWeatherData/function/common/interfaces';
 import {
 	getGeoDataFromApi,
 	getWeatherDataFromApi,
@@ -11,7 +11,7 @@ export const getWeatherData = async ({
 	stateCode,
 	countryCode,
 	units = Unit.Imperial,
-}: IGetWeatherDataParams) => {
+}: IGetWeatherDataParams): Promise<IWeatherData> => {
 	const apiKey = process.env.OPEN_WEATHER_MAP_API_KEY as string;
 	const { latitude, longitude } = await getGeoDataFromApi({
 		city,

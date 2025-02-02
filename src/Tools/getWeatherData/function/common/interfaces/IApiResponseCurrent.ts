@@ -1,4 +1,4 @@
-export interface ICurrentWeather {
+export interface IApiResponseCurrent {
 	dt: number;
 	sunrise: number;
 	sunset: number;

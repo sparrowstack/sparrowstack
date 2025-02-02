@@ -1,10 +1,15 @@
 import { providerSchemas } from '@Tool/common/constants';
 import type { IToolParams } from '@Tool/common/interfaces';
-import type { Validate, ToolFunction, Parameters } from '@Tool/common/types';
 import { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums/ProviderName';
+import type { ICachedResult } from '@Tool/common/interfaces/ICachedResult';
+import type {
+	Validate,
+	ToolFunction,
+	Parameters,
+	CallableFunctionResponseMessage,
+} from '@Tool/common/types';
 
 export class Tool {
-	// TODO: make any private / readonly?
 	readonly name: string;
 	readonly description: string;
 	readonly validate?: Validate;
@@ -12,9 +17,16 @@ export class Tool {
 	readonly maxCallCount?: number;
 	readonly parameters: Parameters;
 
+	readonly validationFailedResponse?:
+		| string
+		| CallableFunctionResponseMessage;
+	readonly maxCallCountExceededResponse?:
+		| string
+		| CallableFunctionResponseMessage;
+
 	private callCount: number;
-	private lastCachedResult: any;
-	private cachedResults: any[];
+	private lastCachedResult: ICachedResult | null;
+	private cachedResults: ICachedResult[];
 
 	constructor({
 		name,
@@ -23,16 +35,20 @@ export class Tool {
 		maxCallCount,
 		parameters = {},
 		function: toolFunction,
+		validationFailedResponse,
+		maxCallCountExceededResponse,
 	}: IToolParams) {
 		this.name = name;
 		this.callCount = 0;
+		this.cachedResults = [];
 		this.validate = validate;
 		this.function = toolFunction;
+		this.lastCachedResult = null;
 		this.parameters = parameters;
 		this.description = description;
 		this.maxCallCount = maxCallCount;
-		this.cachedResults = [];
-		this.lastCachedResult = null;
+		this.validationFailedResponse = validationFailedResponse;
+		this.maxCallCountExceededResponse = maxCallCountExceededResponse;
 		// synonyms
 		// antonyms
 	}
@@ -52,7 +68,7 @@ export class Tool {
 		this.callCount += 1;
 	}
 
-	public addCachedResult({ result }: { result: any }) {
+	public addCachedResult({ result }: { result: ICachedResult }) {
 		this.cachedResults.push(result);
 		this.lastCachedResult = result;
 	}

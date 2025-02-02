@@ -1,4 +1,9 @@
-import type { Validate, ToolFunction, Parameters } from '@Tool/common/types';
+import type {
+	Validate,
+	ToolFunction,
+	Parameters,
+	CallableFunctionResponseMessage,
+} from '@Tool/common/types';
 
 export interface IToolParams {
 	name: string;
@@ -7,4 +12,6 @@ export interface IToolParams {
 	maxCallCount?: number;
 	function: ToolFunction;
 	parameters?: Parameters;
+	validationFailedResponse?: string | CallableFunctionResponseMessage;
+	maxCallCountExceededResponse?: string | CallableFunctionResponseMessage;
 }

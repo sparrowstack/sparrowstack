@@ -1,6 +1,7 @@
-import type { ICurrentWeather } from '@Tools/getWeatherData/function/common/interfaces';
+import { type IEventTime } from '@Tools/getWeatherData/function/common/interfaces/IEventTime';
+import { type IFormattedWeatherData } from '@Tools/getWeatherData/function/common/interfaces/IFormattedWeatherData';
 
 export interface IWeatherData {
-	timezone: string;
-	current: ICurrentWeather;
+	requestTime: IEventTime;
+	weatherData: IFormattedWeatherData;
 }

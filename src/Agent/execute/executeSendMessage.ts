@@ -26,13 +26,14 @@ export const executeSendMessage = async ({
 		responseMessage: modelResponseMessage,
 	});
 
-	interactionLogger.logContextWindow();
-
 	const responseMessage = toolCallResponseMessage || modelResponseMessage;
 
 	chatMessageManager.addAssistantMessage({
 		text: responseMessage.text,
 	});
+
+	// Info log the context window sent to the LLM
+	interactionLogger.logContextWindow();
 
 	return responseMessage;
 };

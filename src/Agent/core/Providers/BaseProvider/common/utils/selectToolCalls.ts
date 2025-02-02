@@ -30,6 +30,7 @@ export const selectToolCalls = async ({
 		messages: chatMessageManager.getMessages(),
 	};
 
+	// Select the tools that are valid to run
 	const validTools = await Object.values(toolRegistry).reduce(
 		async (accumulatorPromise, tool) => {
 			// Wait for the previous iteration's promise to resolve
@@ -39,7 +40,7 @@ export const selectToolCalls = async ({
 				tool.maxCallCount && tool.getCallCount() >= tool.maxCallCount;
 			let isValid = true;
 
-			if (hasExceededMaxCallCount) {
+			if (shouldRunValidate && hasExceededMaxCallCount) {
 				isValid = false;
 			} else if (shouldRunValidate && tool.validate) {
 				isValid = await tool.validate({

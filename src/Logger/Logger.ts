@@ -71,4 +71,89 @@ export class Logger {
 			...args,
 		);
 	}
+
+	static error(
+		context: string | undefined,
+		message: any,
+		...args: any[]
+	): void {
+		console.log('');
+		log(
+			{
+				message,
+				context,
+				level: LogLevel.ERROR,
+				logLevel: getLogLevel({ level: process.env.LOG_LEVEL }),
+			},
+			...args,
+		);
+	}
+
+	static warn(
+		context: string | undefined,
+		message: any,
+		...args: any[]
+	): void {
+		console.log('');
+		log(
+			{
+				message,
+				context,
+				level: LogLevel.WARN,
+				logLevel: getLogLevel({ level: process.env.LOG_LEVEL }),
+			},
+			...args,
+		);
+	}
+
+	static info(
+		context: string | undefined,
+		message: any,
+		...args: any[]
+	): void {
+		console.log('');
+		log(
+			{
+				message,
+				context,
+				level: LogLevel.INFO,
+				logLevel: getLogLevel({ level: process.env.LOG_LEVEL }),
+			},
+			...args,
+		);
+	}
+
+	static debug(
+		context: string | undefined,
+		message: any,
+		...args: any[]
+	): void {
+		console.log('');
+		log(
+			{
+				message,
+				context,
+				level: LogLevel.DEBUG,
+				logLevel: getLogLevel({ level: process.env.LOG_LEVEL }),
+			},
+			...args,
+		);
+	}
+
+	static verbose(
+		context: string | undefined,
+		message: any,
+		...args: any[]
+	): void {
+		console.log('');
+		log(
+			{
+				message,
+				context,
+				level: LogLevel.VERBOSE,
+				logLevel: getLogLevel({ level: process.env.LOG_LEVEL }),
+			},
+			...args,
+		);
+	}
 }

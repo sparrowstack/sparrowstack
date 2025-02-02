@@ -1,27 +1,25 @@
 import { Agent, Model, ApiKey, Provider } from '@sparrowstack/sparrow';
 import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
-import { getDirectoryStructureTool } from '@sparrowstack/community/tools';
-import { softwareEngineerTypeScriptPrompt } from '@sparrowstack/community/system-prompts';
+import {
+	getWeatherDataToolParams,
+	getDirectoryStructureToolParams,
+} from '@sparrowstack/community/tools';
 
 // Configuration
-// --------------------------------
-const tools = [getDirectoryStructureTool];
-const systemPrompt = softwareEngineerTypeScriptPrompt;
-
 const provider = Provider.Anthropic;
 const model = Model.Anthropic.Claude35Sonnet;
 const apiKey = process.env[ApiKey.Anthropic] as string;
-// --------------------------------
 
+// Instantiate Agent
 const agent = new Agent({
 	model,
-	tools,
 	apiKey,
 	provider,
-	systemPrompt,
+	tools: [getWeatherDataToolParams, getDirectoryStructureToolParams],
 	// databaseUrl, - coming soon..
 	// vectorDatabaseUrl, - coming soon..
 });
-const interactiveTerminal = new InteractiveTerminal({ agent });
 
+// Start Interactive Terminal
+const interactiveTerminal = new InteractiveTerminal({ agent });
 await interactiveTerminal.start();

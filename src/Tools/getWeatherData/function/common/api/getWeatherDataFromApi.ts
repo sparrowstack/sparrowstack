@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Unit } from '@Tools/getWeatherData/function/common/enums';
 import { getFormattedWeatherData } from '@Tools/getWeatherData/function/common/utils';
-
+import { type IApiResponseWeatherData } from '@Tools/getWeatherData/function/common/interfaces';
 interface IParams {
 	units: Unit;
 	apiKey: string;
@@ -16,7 +16,7 @@ export const getWeatherDataFromApi = async ({
 	longitude,
 }: IParams) => {
 	const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
-	const response = await axios.get(url);
+	const response = await axios.get<IApiResponseWeatherData>(url);
 	const { current, timezone: timeZone } = response.data;
 	const requestTimestamp = current.dt;
 	const weatherData = getFormattedWeatherData({

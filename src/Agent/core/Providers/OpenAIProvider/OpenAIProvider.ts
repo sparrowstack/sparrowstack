@@ -1,6 +1,5 @@
 import type OpenAI from 'openai';
 import { BaseProvider } from '@Agent/core/providers/BaseProvider';
-import { State } from '@Agent/core/providers/BaseProvider/common/enums';
 import { executeSendPrompt } from '@Agent/core/providers/OpenAIProvider/execute';
 import type { IConstructorParams } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import {
@@ -39,13 +38,8 @@ export class OpenAIProvider extends BaseProvider {
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt({
-		state,
-	}: {
-		state?: State;
-	} = {}) {
+	public sendPrompt() {
 		return executeSendPrompt({
-			state,
 			model: this.model,
 			providerName: this.name,
 			sdk: this.sdk as OpenAI,

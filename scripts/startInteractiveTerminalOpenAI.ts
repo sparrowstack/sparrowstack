@@ -1,11 +1,13 @@
 import { Agent, Model, ApiKey, Provider } from '@sparrowstack/sparrow';
 import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
-import { getDirectoryStructureTool } from '@sparrowstack/community/tools';
 import { softwareEngineerTypeScriptPrompt } from '@sparrowstack/community/system-prompts';
-
+import {
+	getWeatherDataToolParams,
+	getDirectoryStructureToolParams,
+} from '@sparrowstack/community/tools';
 // Configuration
 // --------------------------------
-const tools = [getDirectoryStructureTool];
+const tools = [getWeatherDataToolParams, getDirectoryStructureToolParams];
 const systemPrompt = softwareEngineerTypeScriptPrompt;
 
 const model = Model.OpenAI.GPT4o;
