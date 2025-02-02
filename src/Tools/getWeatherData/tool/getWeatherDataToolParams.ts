@@ -1,11 +1,12 @@
+import { getWeatherData } from '@Tools/getWeatherData/function/getWeatherData';
+import { validateGetWeatherDataToolCall } from '@Tools/getWeatherData/validate';
+// import { validationFailedMessage } from '@Tools/getWeatherData/validationFailedMessage';
+import type { IGetWeatherDataParams } from '@Tools/getWeatherData/function/common/interfaces';
 import {
 	PropertyType,
 	type IToolParams,
 	type IRuntimeParams,
 } from '@sparrowstack/tool';
-import { getWeatherData } from '@Tools/getWeatherData/function/getWeatherData';
-import { validateGetWeatherDataToolCall } from '@Tools/getWeatherData/validate';
-import type { IGetWeatherDataParams } from '@Tools/getWeatherData/function/common/interfaces';
 
 export const getWeatherDataToolParams: IToolParams = {
 	name: 'getWeather',
@@ -16,7 +17,14 @@ export const getWeatherDataToolParams: IToolParams = {
 	validate: async (runtimeParams: IRuntimeParams) => {
 		return await validateGetWeatherDataToolCall(runtimeParams);
 	},
-	validationFailedResponse: 'Validation failed',
+	// 	validationFailedMessage: `
+	// TOOL_CALL_VALIDATION_CHECK_FAILED:
+	// The user has exceeded the rate limit for the 'getWeather' tool (1 request per minute).
+	// Please use the 'getWeather' result you provided in an earlier message.
+	// `,
+	// validationFailedMessage: async (runtimeParams: IRuntimeParams) => {
+	// 	return await validationFailedMessage(runtimeParams);
+	// },
 	parameters: {
 		city: {
 			required: true,

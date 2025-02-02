@@ -28,9 +28,6 @@ export const executeSendPrompt = async ({
 	const system = systemPrompt.getPrompt();
 	const messages =
 		chatMessageManager.getMessages() as unknown as Anthropic.MessageParam[];
-	// Re-evaluate tool calls on each 'executeSendPrompt' call,
-	// if tool call doesn't pass validation won't be included
-	// in the tools array
 	// TODO: toolRegistry.getTools();
 	// TODO: toolRegistry.getToolByName();
 	const tools = Object.keys(toolRegistry).map((toolName) => {

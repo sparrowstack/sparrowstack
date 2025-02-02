@@ -1,8 +1,8 @@
 import type { SystemPrompt } from '@SystemPrompt';
 import type { ProviderName } from '@Agent/core/providers/BaseProvider/common/enums';
 import type { IToolRegistry } from '@Agent/core/ToolRegistryFactory/common/interfaces';
-import type { IModelResponseToolCall } from '@Agent/core/providers/BaseProvider/common/interfaces';
 import type { ChatMessageManager } from '@Agent/core/ChatMessageManager/ChatMessageManager';
+import type { IModelResponseToolCall } from '@Agent/core/providers/BaseProvider/common/interfaces';
 
 interface IParams {
 	model: string;
@@ -23,7 +23,7 @@ export const executeToolCalls = async ({
 }: IParams) => {
 	const toolCallResults = await Promise.all(
 		toolCalls.map(async (toolCall) => {
-			let result: any;
+			let result: unknown;
 			let isValid = true;
 			const { id, name, parameters } = toolCall;
 			const tool = toolRegistry[name];
@@ -44,11 +44,19 @@ export const executeToolCalls = async ({
 
 			if (tool.validate && isValid) {
 				const defaultMessage = `TOOL_CALL_VALIDATION_CHECK_FAILED`;
+				let validationFailedMessage = null;
+
+				if (tool.validationFailedMessage) {
+					validationFailedMessage =
+						typeof tool.validationFailedMessage === 'string'
+							? tool.validationFailedMessage
+							: await tool.validationFailedMessage(runtimeParams);
+				}
 
 				isValid = await tool.validate(runtimeParams);
 
 				if (!isValid) {
-					result = defaultMessage;
+					result = validationFailedMessage || defaultMessage;
 				}
 			}
 
@@ -62,7 +70,9 @@ export const executeToolCalls = async ({
 				result = await toolCallFunction(params);
 
 				tool.incrementCallCount();
-				tool.addCachedResult({ result: { id, result } });
+				tool.addCachedResult({
+					result: { id, result },
+				});
 			}
 
 			return { id, result };

@@ -12,6 +12,6 @@ export interface IToolParams {
 	maxCallCount?: number;
 	function: ToolFunction;
 	parameters?: Parameters;
-	validationFailedResponse?: string | CallableFunctionResponseMessage;
+	validationFailedMessage?: string | CallableFunctionResponseMessage;
 	maxCallCountExceededResponse?: string | CallableFunctionResponseMessage;
 }

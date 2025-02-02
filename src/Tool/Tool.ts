@@ -17,9 +17,7 @@ export class Tool {
 	readonly maxCallCount?: number;
 	readonly parameters: Parameters;
 
-	readonly validationFailedResponse?:
-		| string
-		| CallableFunctionResponseMessage;
+	readonly validationFailedMessage?: string | CallableFunctionResponseMessage;
 	readonly maxCallCountExceededResponse?:
 		| string
 		| CallableFunctionResponseMessage;
@@ -35,7 +33,7 @@ export class Tool {
 		maxCallCount,
 		parameters = {},
 		function: toolFunction,
-		validationFailedResponse,
+		validationFailedMessage,
 		maxCallCountExceededResponse,
 	}: IToolParams) {
 		this.name = name;
@@ -46,7 +44,7 @@ export class Tool {
 		this.parameters = parameters;
 		this.description = description;
 		this.maxCallCount = maxCallCount;
-		this.validationFailedResponse = validationFailedResponse;
+		this.validationFailedMessage = validationFailedMessage;
 		this.maxCallCountExceededResponse = maxCallCountExceededResponse;
 		// synonyms
 		// antonyms
