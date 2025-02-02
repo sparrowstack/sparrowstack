@@ -25,7 +25,7 @@ export class Tool {
 		| CallableFunctionResponseMessage;
 
 	private callCount: number;
-	private lastCachedResult: ICachedResult | null;
+	private lastCachedResult?: ICachedResult;
 	private cachedResults: ICachedResult[];
 
 	constructor({
@@ -43,7 +43,6 @@ export class Tool {
 		this.cachedResults = [];
 		this.validate = validate;
 		this.function = toolFunction;
-		this.lastCachedResult = null;
 		this.parameters = parameters;
 		this.description = description;
 		this.maxCallCount = maxCallCount;

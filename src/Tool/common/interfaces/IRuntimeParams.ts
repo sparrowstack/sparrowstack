@@ -9,5 +9,5 @@ export interface IRuntimeParams {
 	messages: IChatMessage[];
 	callCount: number;
 	cachedResults: ICachedResult[];
-	lastCachedResult: ICachedResult;
+	lastCachedResult?: ICachedResult;
 }
