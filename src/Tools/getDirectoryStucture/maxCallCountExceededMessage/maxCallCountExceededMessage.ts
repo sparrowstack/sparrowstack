@@ -16,5 +16,5 @@ export const maxCallCountExceededMessage = async (
 	// ${result}
 	// `;
 
-	return result;
+	return JSON.stringify(result);
 };
