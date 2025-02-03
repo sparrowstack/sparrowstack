@@ -1,11 +1,11 @@
 import { getWeatherData } from '@Tools/getWeatherData/function/getWeatherData';
-import { validateGetWeatherDataToolCall } from '@Tools/getWeatherData/validate';
+// import { validateGetWeatherDataToolCall } from '@Tools/getWeatherData/validate';
 // import { validationFailedMessage } from '@Tools/getWeatherData/validationFailedMessage';
 import type { IGetWeatherDataParams } from '@Tools/getWeatherData/function/common/interfaces';
 import {
 	PropertyType,
 	type IToolParams,
-	type IRuntimeParams,
+	/* type IRuntimeParams, */
 } from '@sparrowstack/tool';
 
 export const getWeatherDataToolParams: IToolParams = {
@@ -14,9 +14,9 @@ export const getWeatherDataToolParams: IToolParams = {
 	function: async (weatherDataParams: IGetWeatherDataParams) => {
 		return await getWeatherData(weatherDataParams);
 	},
-	validate: async (runtimeParams: IRuntimeParams) => {
-		return await validateGetWeatherDataToolCall(runtimeParams);
-	},
+	// validate: async (runtimeParams: IRuntimeParams) => {
+	// 	return await validateGetWeatherDataToolCall(runtimeParams);
+	// },
 	// 	validationFailedMessage: `
 	// TOOL_CALL_VALIDATION_CHECK_FAILED:
 	// The user has exceeded the rate limit for the 'getWeather' tool (1 request per minute).

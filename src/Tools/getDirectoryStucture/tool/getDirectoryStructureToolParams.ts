@@ -1,4 +1,5 @@
-import { type IToolParams } from '@Tool';
+import { type IToolParams, type IRuntimeParams } from '@Tool';
+import { maxCallCountExceededMessage } from '@Tools/getDirectoryStucture/maxCallCountExceededMessage';
 import { getDirectoryStructure as getDirectoryStructureMethod } from '@Tools/getDirectoryStucture/function/getDirectoryStructure';
 import type { IGetDirectoryStructureParams } from '@Tools/getDirectoryStucture/function/common/interfaces/IGetDirectoryStructureParams';
 
@@ -17,6 +18,17 @@ export const getDirectoryStructureToolParams: IToolParams = {
 
 		return JSON.stringify(directoryStructure);
 	},
+	validate: async () => {
+		return true;
+	},
+	validationFailedMessage: `VAIDATION FAILED - User cannot call this tool`,
 	maxCallCount: 1,
-	maxCallCountExceededResponse: 'Max call count exceeded',
+	// maxCallCountExceededMessage: `
+	// TOOL_CALL_MAX_CALL_COUNT_EXCEEDED:
+	// The user has exceeded the rate limit for the 'getDirectoryStructure' tool (only 1 tool call allowed).
+	// Please use the 'getDirectoryStructure' result you provided in an earlier message.
+	// `,
+	maxCallCountExceededMessage: async (runtimeParams: IRuntimeParams) => {
+		return await maxCallCountExceededMessage(runtimeParams);
+	},
 };

@@ -42,7 +42,12 @@ export const executeToolCalls = async ({
 				lastCachedResult: tool.getLastCachedResult(),
 			};
 
-			if (tool.validate && isValid) {
+			const hasNotExceededMaxCallCount =
+				tool.maxCallCount && tool.getCallCount() < tool.maxCallCount;
+			const hasExceededMaxCallCount =
+				tool.maxCallCount && tool.getCallCount() >= tool.maxCallCount;
+
+			if (tool.validate) {
 				const defaultMessage = `TOOL_CALL_VALIDATION_CHECK_FAILED`;
 				let validationFailedMessage = null;
 
@@ -60,13 +65,25 @@ export const executeToolCalls = async ({
 				}
 			}
 
-			// if (tool.maxCallCount && tool.getCallCount() >= tool.maxCallCount) {
-			// 	const defaultMessage = `The tool "${name}" has exceeded its maximum call count.`;
-			// 	result =
-			// 		defaultMessage + JSON.stringify(tool.getLastCachedResult());
-			// }
+			if (isValid && hasExceededMaxCallCount) {
+				const defaultMessage = `TOOL_CALL_MAX_CALL_COUNT_EXCEEDED`;
+				let maxCallCountExceededMessage = null;
 
-			if (isValid) {
+				if (tool.maxCallCountExceededMessage) {
+					maxCallCountExceededMessage =
+						typeof tool.maxCallCountExceededMessage === 'string'
+							? tool.maxCallCountExceededMessage
+							: await tool.maxCallCountExceededMessage(
+									runtimeParams,
+								);
+				}
+
+				result = maxCallCountExceededMessage || defaultMessage;
+
+				console.log('maxCallCountExceededMessage', result);
+			}
+
+			if (isValid && hasNotExceededMaxCallCount) {
 				result = await toolCallFunction(params);
 
 				tool.incrementCallCount();
