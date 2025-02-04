@@ -1,15 +1,10 @@
-import {
-	Agent,
-	Model,
-	ApiKey,
-	Provider,
-} from '@/packages/sparrowstack/sparrow';
-import { InteractiveTerminal } from '@/packages/sparrowstack/interactive-terminal';
+import { Agent, Model, ApiKey, Provider } from '@sparrowstack/sparrow';
+import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
 // import { softwareEngineerTypeScriptPrompt } from '@sparrowstack/community/system-prompts';
 import {
 	getWeatherDataToolParams,
 	getDirectoryStructureToolParams,
-} from '@/packages/sparrowstack/community/tools';
+} from '@sparrowstack/community/tools';
 
 // Configuration
 // --------------------------------
