@@ -29,23 +29,23 @@
 		// Paths
 		"paths": {
 			"@/*": ["./*"],
-			"@src/*": ["./src/*"],
-			"@sparrowstack": ["./src/sparrowstack"],
-			"@sparrowstack/*": ["./src/sparrowstack/*"],
-			"@Agent": ["./src/Agent"],
-			"@Agent/*": ["./src/Agent/*"],
-			"@Logger": ["./src/Logger"],
-			"@Logger/*": ["./src/Logger/*"],
-			"@Tool": ["./src/Tool"],
-			"@Tool/*": ["./src/Tool/*"],
-			"@Tools": ["./src/Tools"],
-			"@Tools/*": ["./src/Tools/*"],
-			"@SystemPrompt": ["./src/SystemPrompt"],
-			"@SystemPrompt/*": ["./src/SystemPrompt/*"],
-			"@SystemPrompts": ["./src/SystemPrompts"],
-			"@SystemPrompts/*": ["./src/SystemPrompts/*"],
-			"@InteractiveTerminal": ["./src/InteractiveTerminal"],
-			"@InteractiveTerminal/*": ["./src/InteractiveTerminal/*"]
+			"@src/*": ["packages/*"],
+			"@sparrowstack": ["packages/sparrowstack"],
+			"@sparrowstack/*": ["packages/sparrowstack/*"],
+			"@Agent": ["packages/agent"],
+			"@Agent/*": ["packages/agent/*"],
+			"@Logger": ["packages/logger"],
+			"@Logger/*": ["packages/logger/*"],
+			"@Tool": ["packages/tool"],
+			"@Tool/*": ["packages/tool/*"],
+			"@Tools": ["packages/tools"],
+			"@Tools/*": ["packages/tools/*"],
+			"@SystemPrompt": ["packages/system-prompt"],
+			"@SystemPrompt/*": ["packages/system-prompt/*"],
+			"@SystemPrompts": ["packages/system-prompts"],
+			"@SystemPrompts/*": ["packages/system-prompts/*"],
+			"@InteractiveTerminal": ["packages/interactive-terminal"],
+			"@InteractiveTerminal/*": ["packages/interactive-terminal/*"]
 		}
 	}
 }

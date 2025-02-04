@@ -1,9 +1,14 @@
-import { Agent, Model, ApiKey, Provider } from '@sparrowstack/sparrow';
-import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
+import {
+	Agent,
+	Model,
+	ApiKey,
+	Provider,
+} from '@/packages/sparrowstack/sparrow';
+import { InteractiveTerminal } from '@/packages/sparrowstack/interactive-terminal';
 import {
 	getWeatherDataToolParams,
 	getDirectoryStructureToolParams,
-} from '@sparrowstack/community/tools';
+} from '@/packages/sparrowstack/community/tools';
 
 // Configuration
 // --------------------------------
