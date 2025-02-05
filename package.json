@@ -3,6 +3,9 @@
 	"description": "Stater template for building your own AI agents",
 	"type": "module",
 	"module": "dist/index.js",
+	"workspaces": [
+		"packages/*"
+	],
 	"files": [
 		"dist"
 	],
@@ -16,9 +19,9 @@
 		"typescript"
 	],
 	"scripts": {
-		"start": "bun run src/index.ts",
 		"start:interactiveTerminal:openai": "bun run scripts/startInteractiveTerminalOpenAI.ts",
 		"start:interactiveTerminal:anthropic": "bun run scripts/startInteractiveTerminalAnthropic.ts",
+		"start": "bun run src/index.ts",
 		"dev": "bun --watch run src/index.ts",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
@@ -45,6 +48,7 @@
 		"ignore": "^7.0.3",
 		"openai": "^4.79.1",
 		"ora": "^8.1.1",
+		"@sparrowstack/logger": "workspace:*",
 		"wrap-ansi": "^9.0.0"
 	}
 }

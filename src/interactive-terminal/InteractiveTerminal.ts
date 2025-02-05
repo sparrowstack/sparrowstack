@@ -1,5 +1,5 @@
 import { Agent } from '@agent/Agent';
-import { Logger } from '@logger/Logger';
+import { Logger } from '@sparrowstack/logger';
 import { InteractiveSession } from '@interactive-terminal/core';
 
 interface IConstructorParams {

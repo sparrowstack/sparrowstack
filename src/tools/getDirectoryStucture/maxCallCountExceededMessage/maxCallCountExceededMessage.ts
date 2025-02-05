@@ -1,4 +1,4 @@
-import type { IRuntimeParams } from '@sparrowstack/tool';
+import type { IRuntimeParams } from '@tool';
 import type { IDirectoryNode } from '@tools/getDirectoryStucture/function/common/interfaces/IDirectoryNode';
 
 export const maxCallCountExceededMessage = async (

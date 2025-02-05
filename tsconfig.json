@@ -30,12 +30,8 @@
 		"paths": {
 			"@/*": ["./*"],
 			"@src/*": ["./src/*"],
-			"@sparrowstack": ["./src/sparrowstack"],
-			"@sparrowstack/*": ["./src/sparrowstack/*"],
 			"@agent": ["./src/agent"],
 			"@agent/*": ["./src/agent/*"],
-			"@logger": ["./src/logger"],
-			"@logger/*": ["./src/logger/*"],
 			"@tool": ["./src/tool"],
 			"@tool/*": ["./src/tool/*"],
 			"@tools": ["./src/tools"],

@@ -1,4 +1,4 @@
-import { Logger } from '@logger';
+import { Logger } from '@sparrowstack/logger';
 import { Tool, type IToolParams } from '@tool';
 import { defaultPrompt } from '@system-prompts';
 import { ToolRegistry } from '@agent/core/ToolRegistry';
