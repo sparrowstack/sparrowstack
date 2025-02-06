@@ -1,4 +1,4 @@
-import { Tool, type IToolParams } from '@tool';
+import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { getInstantiatedTools } from '@agent/core/ToolRegistry/common/utils';
 import { type IToolRegistry } from '@agent/core/ToolRegistry/common/interfaces';
 

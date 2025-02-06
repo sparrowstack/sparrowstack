@@ -1,4 +1,4 @@
-import type { Tool } from '@tool';
+import type { Tool } from '@sparrowstack/tool';
 import type { IModelResponseToolCall } from '@sparrow/core/providers/BaseProvider/common/interfaces';
 
 export const executeToolCall = async ({

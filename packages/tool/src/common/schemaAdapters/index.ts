@@ -1,2 +1,2 @@
-export { toOpenAISchema } from '@sparrowstack/tool/common/schemaAdapters/toOpenAISchema';
-export { toAnthropicSchema } from '@sparrowstack/tool/common/schemaAdapters/toAnthropicSchema';
+export { toOpenAISchema } from '@tool/common/schemaAdapters/toOpenAISchema';
+export { toAnthropicSchema } from '@tool/common/schemaAdapters/toAnthropicSchema';

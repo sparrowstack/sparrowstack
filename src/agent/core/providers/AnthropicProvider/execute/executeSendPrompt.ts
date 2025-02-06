@@ -9,7 +9,7 @@ import { toModelResponse } from '@agent/core/providers/AnthropicProvider/adapter
 export interface IParams {
 	model: string;
 	sdk: Anthropic;
-	maxTokens: number;
+	maxTokens?: number;
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
@@ -37,7 +37,7 @@ export const executeSendPrompt = async ({
 		tools,
 		system,
 		messages,
-		max_tokens: maxTokens,
+		max_tokens: maxTokens ?? 4096,
 	})) as Anthropic.Messages.Message;
 
 	const response = toModelResponse({ response: rawResponse });

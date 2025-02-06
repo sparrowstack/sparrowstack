@@ -1,5 +1,5 @@
 import { Logger } from '@sparrowstack/logger';
-import { Tool, type IToolParams } from '@tool';
+import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { defaultPrompt } from '@system-prompts';
 import { ToolRegistry } from '@agent/core/ToolRegistry';
 import { ToolCallManager } from '@agent/core/ToolCallManager';

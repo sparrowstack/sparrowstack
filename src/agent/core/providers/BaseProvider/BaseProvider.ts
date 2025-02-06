@@ -31,7 +31,7 @@ export abstract class BaseProvider {
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
-	readonly maxTokens: number;
+	readonly maxTokens?: number;
 
 	constructor({
 		name,
@@ -64,7 +64,7 @@ export abstract class BaseProvider {
 
 		// Settings
 		// --------------------------------
-		this.maxTokens = 1024;
+		// this.maxTokens = 1024;
 	}
 
 	abstract adapters: {

@@ -1,5 +1,5 @@
-import { PropertyType } from '@sparrowstack/tool/common/enums';
-import type { IParameterDefinition } from '@sparrowstack/tool/common/interfaces';
+import { PropertyType } from '@tool/common/enums';
+import type { IParameterDefinition } from '@tool/common/interfaces';
 
 interface IParams {
 	parameters: Record<string, IParameterDefinition>;

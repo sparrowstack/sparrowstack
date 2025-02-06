@@ -1,4 +1,4 @@
-import { Tool, type IToolParams } from '@tool';
+import { Tool, type IToolParams } from '@sparrowstack/tool';
 
 export const getInstantiatedTools = ({
 	tools,

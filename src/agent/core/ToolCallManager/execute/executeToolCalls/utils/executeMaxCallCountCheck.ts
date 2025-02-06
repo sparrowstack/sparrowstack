@@ -1,5 +1,5 @@
-import type { Tool } from '@tool';
-import type { IRuntimeParams } from '@tool';
+import type { Tool } from '@sparrowstack/tool';
+import type { IRuntimeParams } from '@sparrowstack/tool';
 
 export const executeMaxCallCountCheck = async ({
 	isValid,

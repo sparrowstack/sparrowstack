@@ -6,7 +6,7 @@ import {
 	PropertyType,
 	type IToolParams,
 	/* type IRuntimeParams, */
-} from '@tool';
+} from '@sparrowstack/tool';
 
 export const getWeatherDataToolParams: IToolParams = {
 	name: 'getWeather',

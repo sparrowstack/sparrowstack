@@ -1,2 +1,2 @@
-export { processParameters } from '@sparrowstack/tool/common/utils/processParameters';
-export { getRequiredParameters } from '@sparrowstack/tool/common/utils/getRequiredParameters';
+export { processParameters } from '@tool/common/utils/processParameters';
+export { getRequiredParameters } from '@tool/common/utils/getRequiredParameters';

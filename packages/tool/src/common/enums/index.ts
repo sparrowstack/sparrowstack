@@ -1,1 +1,1 @@
-export { PropertyType } from '@sparrowstack/tool/common/enums/PropertyType';
+export { PropertyType } from '@tool/common/enums/PropertyType';

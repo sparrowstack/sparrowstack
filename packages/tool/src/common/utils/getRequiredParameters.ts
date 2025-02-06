@@ -1,4 +1,4 @@
-import type { IParameterDefinition } from '@sparrowstack/tool/common/interfaces';
+import type { IParameterDefinition } from '@tool/common/interfaces';
 
 interface IParams {
 	parameters: Record<string, IParameterDefinition>;

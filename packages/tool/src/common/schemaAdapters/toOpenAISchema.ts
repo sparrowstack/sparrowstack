@@ -1,9 +1,6 @@
 import type { IToolSchemaParams } from '@tool';
-import { PropertyType } from '@sparrowstack/tool/common/enums';
-import {
-	processParameters,
-	getRequiredParameters,
-} from '@sparrowstack/tool/common/utils';
+import { PropertyType } from '@tool/common/enums';
+import { processParameters, getRequiredParameters } from '@tool/common/utils';
 
 export const toOpenAISchema = ({
 	name,

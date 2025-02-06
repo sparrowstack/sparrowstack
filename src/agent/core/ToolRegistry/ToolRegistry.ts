@@ -1,4 +1,4 @@
-import { Tool, type IToolParams } from '@tool';
+import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { createToolRegistryMap } from '@agent/core/ToolRegistry/common/utils';
 import { type IToolRegistry } from '@agent/core/ToolRegistry/common/interfaces';
 import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';

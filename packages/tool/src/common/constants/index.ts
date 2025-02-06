@@ -1,1 +1,1 @@
-export { providerSchemas } from '@sparrowstack/tool/common/constants/providerSchemas';
+export { providerSchemas } from '@tool/common/constants/providerSchemas';

@@ -1,8 +1,5 @@
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums';
-import {
-	toOpenAISchema,
-	toAnthropicSchema,
-} from '@sparrowstack/tool/common/schemaAdapters';
+import { ProviderName } from '../../../../../src/agent/core/providers/BaseProvider/common/enums/ProviderName';
+import { toOpenAISchema, toAnthropicSchema } from '@tool/common/schemaAdapters';
 
 export const providerSchemas = {
 	[ProviderName.OpenAI]: toOpenAISchema,
