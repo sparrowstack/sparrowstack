@@ -1,3 +1,3 @@
-# ai-agent-starter-template
+# sparrowstack
 
 Starter template for building your own AI Agents.

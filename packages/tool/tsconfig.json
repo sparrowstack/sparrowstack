@@ -12,9 +12,7 @@
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
 		"verbatimModuleSyntax": true,
-		"declaration": true,
-		"emitDeclarationOnly": true,
-		"outDir": "./dist",
+		"noEmit": true,
 
 		// Best practices
 		"strict": true,
@@ -28,18 +26,9 @@
 
 		// Paths
 		"paths": {
-			"@/*": ["./*"],
-			"@src/*": ["./src/*"],
-			"@agent": ["./src/agent"],
-			"@agent/*": ["./src/agent/*"],
-			"@tools": ["./src/tools"],
-			"@tools/*": ["./src/tools/*"],
-			"@system-prompt": ["./src/system-prompt"],
-			"@system-prompt/*": ["./src/system-prompt/*"],
-			"@system-prompts": ["./src/system-prompts"],
-			"@system-prompts/*": ["./src/system-prompts/*"],
-			"@interactive-terminal": ["./src/interactive-terminal"],
-			"@interactive-terminal/*": ["./src/interactive-terminal/*"]
+			"@tool": ["./src"],
+			"@tool/*": ["./src/*"]
 		}
-	}
+	},
+	"include": ["index.ts", "src/**/*.ts"]
 }

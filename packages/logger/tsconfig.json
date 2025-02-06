@@ -29,5 +29,6 @@
 			"@logger": ["./src"],
 			"@logger/*": ["./src/*"]
 		}
-	}
+	},
+	"include": ["index.ts", "src/**/*.ts"]
 }

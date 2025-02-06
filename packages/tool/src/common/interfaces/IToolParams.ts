@@ -3,7 +3,7 @@ import type {
 	ToolFunction,
 	Parameters,
 	CallableFunctionResponseMessage,
-} from '@tool/common/types';
+} from '@sparrowstack/tool/common/types';
 
 export interface IToolParams {
 	name: string;

@@ -1,3 +1,3 @@
-import type { IRuntimeParams } from '@tool/common/interfaces';
+import type { IRuntimeParams } from '@sparrowstack/tool/common/interfaces';
 
 export type Validate = (runtimeParams: IRuntimeParams) => Promise<boolean>;

@@ -2,7 +2,7 @@ import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums';
 import {
 	toOpenAISchema,
 	toAnthropicSchema,
-} from '@tool/common/schemaAdapters';
+} from '@sparrowstack/tool/common/schemaAdapters';
 
 export const providerSchemas = {
 	[ProviderName.OpenAI]: toOpenAISchema,
