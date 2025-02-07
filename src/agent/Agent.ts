@@ -1,18 +1,21 @@
 import { Logger } from '@sparrowstack/logger';
-import { Tool, type IToolParams } from '@sparrowstack/tool';
-import { defaultPrompt } from '@system-prompts';
 import { ToolRegistry } from '@agent/core/ToolRegistry';
+import { Tool, type IToolParams } from '@sparrowstack/tool';
+import { defaultPrompt } from '@sparrowstack/system-prompts';
 import { ToolCallManager } from '@agent/core/ToolCallManager';
 import { ProviderFactory } from '@agent/core/ProviderFactory';
 import { InteractionLogger } from '@agent/core/InteractionLogger';
 import { ChatMessageManager } from '@agent/core/ChatMessageManager';
 import { SystemPromptFactory } from '@agent/core/SystemPromptFactory';
 import { executeSendMessage } from '@agent/execute/executeSendMessage';
-import { SystemPrompt, type ISystemPromptParams } from '@system-prompt';
 import type { AIProvider } from '@agent/core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@agent/core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
 import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';
+import {
+	SystemPrompt,
+	type ISystemPromptParams,
+} from '@sparrowstack/system-prompt';
 
 interface IConstructorParams {
 	model: string;

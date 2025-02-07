@@ -46,6 +46,7 @@
 		"@sparrowstack/interactive-terminal": "workspace:*",
 		"@sparrowstack/logger": "workspace:*",
 		"@sparrowstack/system-prompt": "workspace:*",
+		"@sparrowstack/system-prompts": "workspace:*",
 		"@sparrowstack/tool": "workspace:*",
 		"@sparrowstack/tools": "workspace:*",
 		"axios": "^1.7.9",
