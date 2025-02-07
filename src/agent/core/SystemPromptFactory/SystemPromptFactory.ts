@@ -1,4 +1,7 @@
-import { SystemPrompt, type ISystemPromptParams } from '@system-prompt';
+import {
+	SystemPrompt,
+	type ISystemPromptParams,
+} from '@sparrowstack/system-prompt';
 
 export class SystemPromptFactory {
 	public static create({
