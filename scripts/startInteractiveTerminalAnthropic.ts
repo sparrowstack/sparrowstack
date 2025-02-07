@@ -1,4 +1,4 @@
-import { Agent, Model, ApiKey, Provider } from '@agent';
+import { Agent, Model, ApiKey, Provider } from '@sparrowstack/agent';
 import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
 import {
 	getWeatherDataToolParams,

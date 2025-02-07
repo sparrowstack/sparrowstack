@@ -1,4 +1,4 @@
-import { ProviderName } from '../../../../../src/agent/core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '../../../../agent/src/core/providers/BaseProvider/common/enums/ProviderName';
 import { toOpenAISchema, toAnthropicSchema } from '@tool/common/schemaAdapters';
 
 export const providerSchemas = {

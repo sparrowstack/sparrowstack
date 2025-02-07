@@ -1,4 +1,4 @@
-import { Agent } from '../../../../../src/agent/Agent';
+import { Agent } from '../../../../agent/src/Agent';
 import * as readline from 'readline';
 import { userPrompt } from '@interactive-terminal/core/InteractiveSession/common/constants/userPrompt';
 import {

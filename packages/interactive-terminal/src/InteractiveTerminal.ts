@@ -1,4 +1,4 @@
-import { Agent } from '../../../src/agent/Agent';
+import { Agent } from '../../agent/src/Agent';
 import { Logger } from '@sparrowstack/logger';
 import { InteractiveSession } from '@interactive-terminal/core';
 

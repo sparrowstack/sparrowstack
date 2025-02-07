@@ -1,6 +1,6 @@
 import { providerSchemas } from '@tool/common/constants';
 import type { IToolParams } from '@tool/common/interfaces';
-import { ProviderName } from '../../../src/agent/core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '../../agent/src/core/providers/BaseProvider/common/enums/ProviderName';
 import type { ICachedResult } from '@tool/common/interfaces/ICachedResult';
 import type {
 	Validate,
