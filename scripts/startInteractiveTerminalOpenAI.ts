@@ -1,9 +1,9 @@
 import { Agent, Model, ApiKey, Provider } from '@agent';
-import { InteractiveTerminal } from '@interactive-terminal';
+import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
 import {
 	getWeatherDataToolParams,
 	getDirectoryStructureToolParams,
-} from '@tools';
+} from '@sparrowstack/tools';
 
 // Configuration
 // --------------------------------

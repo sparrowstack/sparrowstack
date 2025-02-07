@@ -50,6 +50,8 @@
 		"ora": "^8.1.1",
 		"@sparrowstack/logger": "workspace:*",
 		"@sparrowstack/tool": "workspace:*",
+		"@sparrowstack/tools": "workspace:*",
+		"@sparrowstack/interactive-terminal": "workspace:*",
 		"wrap-ansi": "^9.0.0"
 	}
 }
