@@ -57,8 +57,3 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Scratch
 scratch
-
-
-
-.nx/cache
-.nx/workspace-data

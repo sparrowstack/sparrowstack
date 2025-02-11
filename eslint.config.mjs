@@ -1,14 +1,14 @@
-// eslint.config.mjs
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import globals from 'globals';
-import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
+import path from 'node:path';
+import globals from 'globals';
+import { fileURLToPath } from 'node:url';
 import { FlatCompat } from '@eslint/eslintrc';
+import tsParser from '@typescript-eslint/parser';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const gitignorePath = path.resolve(__dirname, '.gitignore');
 const compat = new FlatCompat({
 	baseDirectory: __dirname,
 	recommendedConfig: js.configs.recommended,
@@ -21,6 +21,7 @@ export default [
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	),
+	includeIgnoreFile(gitignorePath),
 	{
 		plugins: {
 			'@typescript-eslint': typescriptEslint,

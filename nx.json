@@ -1,0 +1,45 @@
+{
+	"$schema": "./node_modules/nx/schemas/nx-schema.json",
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "nx/tasks-runners/default",
+			"options": {
+				"useBun": true
+			}
+		}
+	},
+	"targetDefaults": {
+		"format": {
+			"dependsOn": ["^format"],
+			"cache": true
+		},
+		"format:check": {
+			"dependsOn": ["^format:check"],
+			"cache": true
+		},
+		"lint": {
+			"dependsOn": ["^lint"],
+			"cache": true
+		},
+		"lint:fix": {
+			"dependsOn": ["^lint:fix"],
+			"cache": true
+		},
+		"build:js": {
+			"dependsOn": ["^build:js"],
+			"outputs": ["{projectRoot}/dist"],
+			"cache": true
+		},
+		"build:types": {
+			"dependsOn": ["^build:types"],
+			"outputs": ["{projectRoot}/dist"],
+			"cache": true
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["{projectRoot}/dist"],
+			"cache": true
+		}
+	},
+	"defaultBase": "main"
+}

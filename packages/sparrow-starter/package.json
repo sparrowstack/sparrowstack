@@ -1,10 +1,11 @@
 {
-	"name": "@sparrowstack/tools",
+	"name": "@sparrowstack/sparrow-starter",
 	"version": "0.1.0",
-	"description": "Tools module for SparrowStack",
+	"description": "SparrowStack Starter Project",
 	"private": true,
-	"module": "index.ts",
 	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"author": {
 		"name": "SparrowStack",
 		"email": "sparrowstack@protonmail.com",
@@ -12,6 +13,8 @@
 	},
 	"license": "MIT",
 	"scripts": {
+		"start:interactiveTerminal:openai": "bun run src/examples/interactiveTerminal/openai.ts",
+		"start:interactiveTerminal:anthropic": "bun run src/examples/interactiveTerminal/anthropic.ts",
 		"format": "bunx prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "bunx prettier --check \"src/**/*.{js,ts,json,md}\"",
 		"lint": "bunx eslint \"src/**/*.{js,ts}\"",

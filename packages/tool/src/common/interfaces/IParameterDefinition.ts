@@ -1,4 +1,4 @@
-import { PropertyType } from '@sparrowstack/tool/common/enums';
+import { PropertyType } from '@tool/common/enums';
 
 export interface IParameterDefinition {
 	type: PropertyType;
