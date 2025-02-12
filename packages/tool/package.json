@@ -22,7 +22,6 @@
 		"build": "bun build:js && bun build:types"
 	},
 	"dependencies": {
-		"@sparrowstack/agent": "workspace:*",
 		"@sparrowstack/core": "workspace:*"
 	},
 	"peerDependencies": {

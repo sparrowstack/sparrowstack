@@ -1,9 +1,9 @@
-import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ToolRegistry } from '@core/ToolRegistry';
+import { ProviderName } from '@sparrowstack/core';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@core/ChatMessageManager';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
 import { toModelResponse } from '@core/providers/AnthropicProvider/adapters/toModelResponse';
 
 export interface IParams {

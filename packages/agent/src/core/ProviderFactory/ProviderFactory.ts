@@ -1,8 +1,8 @@
-import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@core/ChatMessageManager';
 import { providers } from '@core/ProviderFactory/common/constants';
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
 
 export class ProviderFactory {
 	public static create({

@@ -1,6 +1,6 @@
 import { OpenAI } from 'openai';
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
 import { Anthropic } from '@anthropic-ai/sdk';
+import { ProviderName } from '@sparrowstack/core';
 
 export const providerSDKs = {
 	[ProviderName.OpenAI]: OpenAI,

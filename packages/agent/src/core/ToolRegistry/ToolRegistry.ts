@@ -1,7 +1,7 @@
+import { ProviderName } from '@sparrowstack/core';
 import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { createToolRegistryMap } from '@core/ToolRegistry/common/utils';
 import { type IToolRegistry } from '@core/ToolRegistry/common/interfaces';
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
 
 export class ToolRegistry {
 	private readonly toolRegistry: IToolRegistry;

@@ -1,8 +1,8 @@
-import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@core/ChatMessageManager';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
-import { ProviderName } from '@core/providers/BaseProvider/common/enums';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,

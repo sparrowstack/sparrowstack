@@ -1,4 +1,4 @@
-import { ProviderName } from '@sparrowstack/agent';
+import { ProviderName } from '@sparrowstack/core';
 import { toOpenAISchema, toAnthropicSchema } from '@tool/common/schemaAdapters';
 
 export const providerSchemas = {

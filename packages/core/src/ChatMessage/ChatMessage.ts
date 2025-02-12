@@ -1,4 +1,4 @@
-import { Role } from '@chat-message/common/enums';
+import { Role } from '@common/enums';
 import { type IChatMessage } from '@chat-message/common/interfaces';
 
 export class ChatMessage {

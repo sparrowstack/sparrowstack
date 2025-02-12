@@ -1,4 +1,4 @@
-import { Provider } from '@sparrowstack/agent';
+import { Provider } from '@sparrowstack/core';
 import { getWeatherDataTool } from '@tools/getWeatherData/tool/getWeatherDataTool';
 
 console.log('Anthropic');

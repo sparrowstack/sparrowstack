@@ -5,9 +5,11 @@
 		"baseUrl": ".",
 		"paths": {
 			"@chat-message": ["src/ChatMessage"],
-			"@chat-message/*": ["src/ChatMessage/*"]
+			"@chat-message/*": ["src/ChatMessage/*"],
+			"@common": ["src/common"],
+			"@common/*": ["src/common/*"]
 		}
 	},
-	"include": ["src/**/*", "../agent/src/core/providers"],
+	"include": ["src/**/*"],
 	"exclude": ["dist", "node_modules", "**/*.test.ts"]
 }

@@ -10,6 +10,6 @@
 			"@core/*": ["src/core/*"]
 		}
 	},
-	"include": ["src/**/*"],
+	"include": ["src/**/*", "../core/src/common/enums/ProviderName.ts", "../core/src/common/enums/Model.ts", "../core/src/common/enums/ApiKey.ts"],
 	"exclude": ["dist", "node_modules", "**/*.test.ts"]
 }

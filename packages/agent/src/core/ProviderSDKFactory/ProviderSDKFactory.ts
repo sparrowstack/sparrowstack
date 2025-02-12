@@ -1,4 +1,4 @@
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '@sparrowstack/core';
 import { providerSDKs } from '@core/ProviderSDKFactory/common/constants';
 import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
 

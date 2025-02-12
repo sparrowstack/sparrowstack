@@ -1,4 +1,4 @@
-import { ProviderName } from '@sparrowstack/agent';
+import { ProviderName } from '@sparrowstack/core';
 
 import { getDirectoryStructureTool } from '@tools/getDirectoryStucture/tool/getDirectoryStructureTool';
 

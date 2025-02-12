@@ -11,7 +11,7 @@ import { executeSendMessage } from '@agent/methods';
 import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '@sparrowstack/core';
 import {
 	SystemPrompt,
 	type ISystemPromptParams,

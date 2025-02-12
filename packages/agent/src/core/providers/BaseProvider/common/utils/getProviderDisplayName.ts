@@ -1,4 +1,4 @@
-import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '@sparrowstack/core';
 
 interface IParams {
 	providerName: ProviderName;

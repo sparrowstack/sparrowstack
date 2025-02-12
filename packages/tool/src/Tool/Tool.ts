@@ -1,4 +1,4 @@
-import { ProviderName } from '@sparrowstack/agent';
+import { ProviderName } from '@sparrowstack/core';
 import { providerSchemas } from '@tool/common/constants';
 import type { IToolParams } from '@tool/common/interfaces';
 import type { ICachedResult } from '@tool/common/interfaces/ICachedResult';

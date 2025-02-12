@@ -86,7 +86,6 @@
       "name": "@sparrowstack/tool",
       "version": "0.1.0",
       "dependencies": {
-        "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/core": "workspace:*",
       },
       "peerDependencies": {
