@@ -29,6 +29,7 @@
         "@sparrowstack/logger": "workspace:*",
         "@sparrowstack/system-prompt": "workspace:*",
         "@sparrowstack/system-prompts": "workspace:*",
+        "@sparrowstack/tool": "workspace:*",
         "chalk": "5.4.1",
         "openai": "4.83.0",
       },
@@ -85,6 +86,7 @@
       "name": "@sparrowstack/tool",
       "version": "0.1.0",
       "dependencies": {
+        "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/core": "workspace:*",
       },
       "peerDependencies": {

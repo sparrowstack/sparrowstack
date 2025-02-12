@@ -24,6 +24,7 @@
 	"dependencies": {
 		"@anthropic-ai/sdk": "0.36.3",
 		"@sparrowstack/core": "workspace:*",
+		"@sparrowstack/tool": "workspace:*",
 		"@sparrowstack/logger": "workspace:*",
 		"@sparrowstack/system-prompt": "workspace:*",
 		"@sparrowstack/system-prompts": "workspace:*",
