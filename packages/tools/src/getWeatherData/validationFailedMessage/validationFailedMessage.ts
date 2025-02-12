@@ -1,5 +1,5 @@
 import { type IRuntimeParams } from '@sparrowstack/tool';
-import { type IWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
+import { type IWeatherData } from '@tools/getWeatherData/function/common/interfaces';
 
 export const validationFailedMessage = async (
 	runtimeParams: IRuntimeParams,

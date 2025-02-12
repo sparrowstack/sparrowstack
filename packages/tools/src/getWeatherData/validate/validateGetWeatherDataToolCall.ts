@@ -1,6 +1,6 @@
 import { type IRuntimeParams } from '@sparrowstack/tool';
-import { type IWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
-import { checkHasExceededRateLimit } from '@sparrowstack/tools/src/getWeatherData/validate/common/utils';
+import { type IWeatherData } from '@tools/getWeatherData/function/common/interfaces';
+import { checkHasExceededRateLimit } from '@tools/getWeatherData/validate/common/utils';
 
 export const validateGetWeatherDataToolCall = async (
 	runtimeParams: IRuntimeParams,

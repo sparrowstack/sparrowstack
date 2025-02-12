@@ -1,7 +1,7 @@
-export { getWeatherData } from '@sparrowstack/tools/src/getWeatherData/function';
-export { validationFailedMessage } from '@sparrowstack/tools/src/getWeatherData/validationFailedMessage';
-export { validateGetWeatherDataToolCall } from '@sparrowstack/tools/src/getWeatherData/validate/validateGetWeatherDataToolCall';
+export { getWeatherData } from '@tools/getWeatherData/function';
+export { validationFailedMessage } from '@tools/getWeatherData/validationFailedMessage';
+export { validateGetWeatherDataToolCall } from '@tools/getWeatherData/validate/validateGetWeatherDataToolCall';
 export {
 	getWeatherDataTool,
 	getWeatherDataToolParams,
-} from '@sparrowstack/tools/src/getWeatherData/tool';
+} from '@tools/getWeatherData/tool';

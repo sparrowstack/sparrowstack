@@ -1,4 +1,4 @@
-import type { IApiResponseCurrent } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
+import type { IApiResponseCurrent } from '@tools/getWeatherData/function/common/interfaces';
 
 export interface IApiResponseWeatherData {
 	timezone: string;

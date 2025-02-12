@@ -1,16 +1,16 @@
 import type {
 	IApiResponseCurrent,
 	IFormattedWeatherData,
-} from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
+} from '@tools/getWeatherData/function/common/interfaces';
 import {
 	Unit,
 	MeasurementUnit,
-} from '@sparrowstack/tools/src/getWeatherData/function/common/enums';
+} from '@tools/getWeatherData/function/common/enums';
 import {
 	formatEventTime,
 	getSpeedScaleName,
 	getTemperatureScaleName,
-} from '@sparrowstack/tools/src/getWeatherData/function/common/utils';
+} from '@tools/getWeatherData/function/common/utils';
 
 interface IParams {
 	units: Unit;

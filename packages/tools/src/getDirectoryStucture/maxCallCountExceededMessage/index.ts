@@ -1,1 +1,1 @@
-export { maxCallCountExceededMessage } from '@sparrowstack/tools/src/getDirectoryStucture/maxCallCountExceededMessage/maxCallCountExceededMessage';
+export { maxCallCountExceededMessage } from '@tools/getDirectoryStucture/maxCallCountExceededMessage/maxCallCountExceededMessage';

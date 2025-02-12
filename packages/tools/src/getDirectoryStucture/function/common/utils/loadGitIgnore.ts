@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import ignore from 'ignore';
-import { findGitRoot } from '@sparrowstack/tools/src/getDirectoryStucture/function/common/utils';
+import { findGitRoot } from '@tools/getDirectoryStucture/function/common/utils';
 
 export const loadGitignore = ({
 	startPath,

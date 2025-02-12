@@ -1,4 +1,4 @@
-import type { IEventTime } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
+import type { IEventTime } from '@tools/getWeatherData/function/common/interfaces';
 
 export interface IFormattedWeatherData {
 	sunrise: IEventTime;

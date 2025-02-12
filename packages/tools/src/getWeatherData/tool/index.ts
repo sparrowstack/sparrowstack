@@ -1,2 +1,2 @@
-export { getWeatherDataTool } from '@sparrowstack/tools/src/getWeatherData/tool/getWeatherDataTool';
-export { getWeatherDataToolParams } from '@sparrowstack/tools/src/getWeatherData/tool/getWeatherDataToolParams';
+export { getWeatherDataTool } from '@tools/getWeatherData/tool/getWeatherDataTool';
+export { getWeatherDataToolParams } from '@tools/getWeatherData/tool/getWeatherDataToolParams';

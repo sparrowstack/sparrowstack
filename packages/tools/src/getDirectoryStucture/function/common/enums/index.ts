@@ -1,1 +1,1 @@
-export { DirectoryNodeType } from '@sparrowstack/tools/src/getDirectoryStucture/function/common/enums/DirectoryNodeType';
+export { DirectoryNodeType } from '@tools/getDirectoryStucture/function/common/enums/DirectoryNodeType';

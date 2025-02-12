@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { IGeoData } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
+import type { IGeoData } from '@tools/getWeatherData/function/common/interfaces';
 
 interface IParams {
 	city: string;

@@ -1,4 +1,4 @@
-import type { IDirectoryNode } from '@sparrowstack/tools/src/getDirectoryStucture/function/common/interfaces';
+import type { IDirectoryNode } from '@tools/getDirectoryStucture/function/common/interfaces';
 
 export const formatForMarkdown = (
 	node: IDirectoryNode,

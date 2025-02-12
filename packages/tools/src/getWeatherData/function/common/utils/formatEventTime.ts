@@ -1,8 +1,8 @@
 import {
 	toISOString,
 	toLocaleString,
-} from '@sparrowstack/tools/src/getWeatherData/function/common/utils';
-import { type IEventTime } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
+} from '@tools/getWeatherData/function/common/utils';
+import { type IEventTime } from '@tools/getWeatherData/function/common/interfaces';
 interface IParams {
 	timeZone: string;
 	timestampSeconds: number;

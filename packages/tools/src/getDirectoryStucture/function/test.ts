@@ -1,5 +1,5 @@
-import { formatForMarkdown } from '@sparrowstack/tools/src/getDirectoryStucture/function/common/utils/formatForMarkdown';
-import { getDirectoryStructure } from '@sparrowstack/tools/src/getDirectoryStucture/function/getDirectoryStructure';
+import { formatForMarkdown } from '@tools/getDirectoryStucture/function/common/utils/formatForMarkdown';
+import { getDirectoryStructure } from '@tools/getDirectoryStucture/function/getDirectoryStructure';
 
 const directoryStructure = getDirectoryStructure({
 	directoryPath: process.cwd(),

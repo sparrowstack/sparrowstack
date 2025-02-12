@@ -1,4 +1,4 @@
-import { DirectoryNodeType } from '@sparrowstack/tools/src/getDirectoryStucture/function/common/enums';
+import { DirectoryNodeType } from '@tools/getDirectoryStucture/function/common/enums';
 
 export interface IDirectoryNode {
 	name: string;

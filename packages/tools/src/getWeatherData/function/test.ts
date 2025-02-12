@@ -1,5 +1,5 @@
-import { getWeatherData } from '@sparrowstack/tools/src/getWeatherData/function';
-import { Unit } from '@sparrowstack/tools/src/getWeatherData/function/common/enums';
+import { getWeatherData } from '@tools/getWeatherData/function';
+import { Unit } from '@tools/getWeatherData/function/common/enums';
 
 const weatherData = await getWeatherData({
 	stateCode: 'CA',

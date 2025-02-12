@@ -1,5 +1,5 @@
 import { Provider } from '@sparrowstack/agent';
-import { getWeatherDataTool } from '@sparrowstack/tools/src/getWeatherData/tool/getWeatherDataTool';
+import { getWeatherDataTool } from '@tools/getWeatherData/tool/getWeatherDataTool';
 
 console.log('Anthropic');
 console.log(getWeatherDataTool.getSchema({ providerName: Provider.Anthropic }));
