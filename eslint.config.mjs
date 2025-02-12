@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { FlatCompat } from '@eslint/eslintrc';
 import tsParser from '@typescript-eslint/parser';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,6 +14,16 @@ const compat = new FlatCompat({
 	baseDirectory: __dirname,
 	recommendedConfig: js.configs.recommended,
 	allConfig: js.configs.all,
+});
+
+// Add this function to handle gitignore patterns
+const includeIgnoreFile = (filePath) => ({
+	ignores: [
+		...fs
+			.readFileSync(filePath, 'utf8')
+			.split(/\r?\n/)
+			.filter((line) => line && !line.startsWith('#')),
+	],
 });
 
 export default [
@@ -37,7 +48,7 @@ export default [
 			sourceType: 'module',
 
 			parserOptions: {
-				project: './tsconfig.json',
+				project: ['./packages/*/tsconfig.json'],
 			},
 		},
 

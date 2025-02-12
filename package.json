@@ -15,17 +15,17 @@
 	"devDependencies": {
 		"@eslint/compat": "1.2.6",
 		"@eslint/eslintrc": "3.2.0",
-		"@eslint/js": "9.19.0",
-		"@nx/eslint": "20.4.1",
+		"@eslint/js": "9.20.0",
+		"@nx/eslint": "20.4.2",
 		"@types/bun": "latest",
 		"@types/figlet": "1.7.0",
-		"@typescript-eslint/eslint-plugin": "6.21.0",
-		"@typescript-eslint/parser": "6.21.0",
-		"eslint": "9.19.0",
+		"@typescript-eslint/eslint-plugin": "8.24.0",
+		"@typescript-eslint/parser": "8.24.0",
+		"eslint": "9.20.1",
 		"eslint-config-prettier": "10.0.1",
 		"globals": "15.14.0",
-		"nx": "20.4.1",
-		"prettier": "3.2.0",
+		"nx": "20.4.2",
+		"prettier": "3.5.0",
 		"typescript": "5.7.3"
 	}
 }
