@@ -1,7 +1,7 @@
 import {
 	Unit,
 	TemperatureMeasurementUnit,
-} from '@tools/getWeatherData/function/common/enums';
+} from '@sparrowstack/tools/src/getWeatherData/function/common/enums';
 
 interface IParams {
 	units: string;

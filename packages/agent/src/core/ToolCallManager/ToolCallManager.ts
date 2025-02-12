@@ -1,9 +1,9 @@
-import { ToolRegistry } from '@agent/core/ToolRegistry';
-import type { AIProvider } from '@agent/core/providers/BaseProvider/common/types';
-import { executeToolCalls } from '@agent/core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
-import type { InteractionLogger } from '@agent/core/InteractionLogger/InteractionLogger';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
-import type { ChatMessageManager } from '@agent/core/ChatMessageManager/ChatMessageManager';
+import { ToolRegistry } from '@core/ToolRegistry';
+import type { AIProvider } from '@core/providers/BaseProvider/common/types';
+import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
+import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ChatMessageManager } from '@core/ChatMessageManager';
 
 interface IConstructorParams {
 	provider: AIProvider;

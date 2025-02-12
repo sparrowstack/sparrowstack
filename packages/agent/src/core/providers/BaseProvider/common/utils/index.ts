@@ -1,1 +1,1 @@
-export { getProviderDisplayName } from '@agent/core/providers/BaseProvider/common/utils/getProviderDisplayName';
+export { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils/getProviderDisplayName';

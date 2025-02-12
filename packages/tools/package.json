@@ -3,8 +3,9 @@
 	"version": "0.1.0",
 	"description": "Tools module for SparrowStack",
 	"private": true,
-	"module": "index.ts",
 	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"author": {
 		"name": "SparrowStack",
 		"email": "sparrowstack@protonmail.com",
@@ -19,6 +20,12 @@
 		"build:js": "bun build src/index.ts --outdir dist --target bun",
 		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
 		"build": "bun build:js && bun build:types"
+	},
+	"dependencies": {
+		"@sparrowstack/agent": "workspace:*",
+		"@sparrowstack/tool": "workspace:*",
+		"axios": "1.7.9",
+		"ignore": "7.0.3"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"

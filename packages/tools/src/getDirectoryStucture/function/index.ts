@@ -1,1 +1,1 @@
-export { getDirectoryStructure } from '@tools/getDirectoryStucture/function/getDirectoryStructure';
+export { getDirectoryStructure } from '@sparrowstack/tools/src/getDirectoryStucture/function/getDirectoryStructure';

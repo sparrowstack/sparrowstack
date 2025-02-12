@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { type IModelResponseToolCall } from '@agent/core/providers/BaseProvider/common/interfaces/IModelResponseToolCall';
+import { type IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/IModelResponseToolCall';
 
 type RawMessageResponse = Anthropic.Messages.Message | OpenAI.ChatCompletion;
 

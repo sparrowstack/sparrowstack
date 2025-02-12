@@ -1,4 +1,4 @@
 import { Tool } from '@sparrowstack/tool';
-import { getWeatherDataToolParams } from '@tools/getWeatherData/tool/getWeatherDataToolParams';
+import { getWeatherDataToolParams } from '@sparrowstack/tools/src/getWeatherData/tool/getWeatherDataToolParams';
 
 export const getWeatherDataTool = new Tool(getWeatherDataToolParams);

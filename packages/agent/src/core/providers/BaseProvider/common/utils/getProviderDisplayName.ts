@@ -1,4 +1,4 @@
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
 
 interface IParams {
 	providerName: ProviderName;

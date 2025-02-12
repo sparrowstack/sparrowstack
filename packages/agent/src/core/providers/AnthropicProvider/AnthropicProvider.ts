@@ -1,11 +1,11 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { BaseProvider } from '@agent/core/providers/BaseProvider';
-import { executeSendPrompt } from '@agent/core/providers/AnthropicProvider/execute/executeSendPrompt';
-import type { IConstructorParams } from '@agent/core/providers/BaseProvider/common/interfaces';
+import { BaseProvider } from '@core/providers/BaseProvider';
+import { executeSendPrompt } from '@core/providers/AnthropicProvider/execute/executeSendPrompt';
+import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
-} from '@agent/core/providers/AnthropicProvider/adapters';
+} from '@core/providers/AnthropicProvider/adapters';
 
 export class AnthropicProvider extends BaseProvider {
 	constructor({

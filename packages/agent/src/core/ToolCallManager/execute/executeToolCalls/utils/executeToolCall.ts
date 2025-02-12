@@ -1,5 +1,5 @@
 import type { Tool } from '@sparrowstack/tool';
-import type { IModelResponseToolCall } from '@agent/core/providers/BaseProvider/common/interfaces';
+import type { IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
 
 export const executeToolCall = async ({
 	tool,

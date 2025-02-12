@@ -1,1 +1,1 @@
-export { checkHasExceededRateLimit } from '@tools/getWeatherData/validate/common/utils/checkHasExceededRateLimit';
+export { checkHasExceededRateLimit } from '@sparrowstack/tools/src/getWeatherData/validate/common/utils/checkHasExceededRateLimit';

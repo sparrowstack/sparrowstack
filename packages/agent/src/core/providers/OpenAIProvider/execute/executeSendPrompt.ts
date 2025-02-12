@@ -1,11 +1,11 @@
 import OpenAI from 'openai';
-import { SystemPrompt } from '@system-prompt';
-import { ToolRegistry } from '@agent/core/ToolRegistry';
-import { Role } from '@agent/core/ChatMessage/common/enums';
-import { ChatMessageManager } from '@agent/core/ChatMessageManager';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';
-import { toModelResponse } from '@agent/core/providers/OpenAIProvider/adapters/toModelResponse';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistry } from '@core/ToolRegistry';
+import { Role } from '@sparrowstack/core';
+import { ChatMessageManager } from '@core/ChatMessageManager';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
+import { toModelResponse } from '@core/providers/OpenAIProvider/adapters/toModelResponse';
 
 export interface IParams {
 	sdk: OpenAI;

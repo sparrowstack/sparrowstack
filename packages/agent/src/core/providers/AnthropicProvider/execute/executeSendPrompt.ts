@@ -1,15 +1,15 @@
-import { SystemPrompt } from '@system-prompt';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { ToolRegistry } from '@agent/core/ToolRegistry';
-import { ChatMessageManager } from '@agent/core/ChatMessageManager';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';
-import { toModelResponse } from '@agent/core/providers/AnthropicProvider/adapters/toModelResponse';
+import { ToolRegistry } from '@core/ToolRegistry';
+import { ChatMessageManager } from '@core/ChatMessageManager';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
+import { toModelResponse } from '@core/providers/AnthropicProvider/adapters/toModelResponse';
 
 export interface IParams {
 	model: string;
 	sdk: Anthropic;
-	maxTokens?: number;
+	maxTokens: number;
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
@@ -37,7 +37,7 @@ export const executeSendPrompt = async ({
 		tools,
 		system,
 		messages,
-		max_tokens: maxTokens ?? 4096,
+		max_tokens: maxTokens,
 	})) as Anthropic.Messages.Message;
 
 	const response = toModelResponse({ response: rawResponse });

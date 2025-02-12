@@ -1,1 +1,1 @@
-export { executeSendPrompt } from '@agent/core/providers/AnthropicProvider/execute/executeSendPrompt';
+export { executeSendPrompt } from '@core/providers/AnthropicProvider/execute/executeSendPrompt';

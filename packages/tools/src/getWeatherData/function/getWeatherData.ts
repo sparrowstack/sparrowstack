@@ -1,13 +1,13 @@
-import { Unit } from '@tools/getWeatherData/function/common/enums';
-import { formatEventTime } from '@tools/getWeatherData/function/common/utils';
+import { Unit } from '@sparrowstack/tools/src/getWeatherData/function/common/enums';
+import { formatEventTime } from '@sparrowstack/tools/src/getWeatherData/function/common/utils';
 import type {
 	IWeatherData,
 	IGetWeatherDataParams,
-} from '@tools/getWeatherData/function/common/interfaces';
+} from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
 import {
 	getGeoDataFromApi,
 	getWeatherDataFromApi,
-} from '@tools/getWeatherData/function/common/api';
+} from '@sparrowstack/tools/src/getWeatherData/function/common/api';
 
 export const getWeatherData = async ({
 	city,

@@ -1,2 +1,2 @@
-export { getGeoDataFromApi } from '@tools/getWeatherData/function/common/api/getGeoDataFromApi';
-export { getWeatherDataFromApi } from '@tools/getWeatherData/function/common/api/getWeatherDataFromApi';
+export { getGeoDataFromApi } from '@sparrowstack/tools/src/getWeatherData/function/common/api/getGeoDataFromApi';
+export { getWeatherDataFromApi } from '@sparrowstack/tools/src/getWeatherData/function/common/api/getWeatherDataFromApi';

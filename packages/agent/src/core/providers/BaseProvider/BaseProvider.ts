@@ -1,19 +1,19 @@
-import { SystemPrompt } from '@system-prompt';
-import { ToolRegistry } from '@agent/core/ToolRegistry';
-import { ChatMessageManager } from '@agent/core/ChatMessageManager';
-import { ProviderSDKFactory } from '@agent/core/ProviderSDKFactory';
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistry } from '@core/ToolRegistry';
+import { ChatMessageManager } from '@core/ChatMessageManager';
+import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
+import { ProviderName } from '@core/providers/BaseProvider/common/enums';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,
 	IToToolCallRequestMessageParams,
 	IToToolCallResponseMessagesParams,
-} from '@agent/core/providers/BaseProvider/common/interfaces';
+} from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	Sdk,
 	ToolCallRequestMessage,
 	ToolCallResponseMessages,
-} from '@agent/core/providers/BaseProvider/common/types';
+} from '@core/providers/BaseProvider/common/types';
 
 export abstract class BaseProvider {
 	// Base
@@ -31,7 +31,7 @@ export abstract class BaseProvider {
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
-	readonly maxTokens?: number;
+	readonly maxTokens: number;
 
 	constructor({
 		name,
@@ -64,7 +64,7 @@ export abstract class BaseProvider {
 
 		// Settings
 		// --------------------------------
-		// this.maxTokens = 1024;
+		this.maxTokens = 4096;
 	}
 
 	abstract adapters: {

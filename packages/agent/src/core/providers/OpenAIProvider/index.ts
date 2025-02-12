@@ -1,1 +1,1 @@
-export { OpenAIProvider } from '@agent/core/providers/OpenAIProvider/OpenAIProvider';
+export { OpenAIProvider } from '@core/providers/OpenAIProvider/OpenAIProvider';

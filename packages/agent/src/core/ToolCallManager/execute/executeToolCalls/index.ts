@@ -1,1 +1,1 @@
-export { executeToolCalls } from '@agent/core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
+export { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';

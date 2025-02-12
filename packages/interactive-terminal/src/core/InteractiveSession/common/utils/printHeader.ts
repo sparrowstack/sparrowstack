@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import wrapAnsi from 'wrap-ansi';
-import type { Agent } from '../../../../../../agent/src/Agent';
+import type { Agent } from '@sparrowstack/agent';
 
 interface IParams {
 	agent: Agent;

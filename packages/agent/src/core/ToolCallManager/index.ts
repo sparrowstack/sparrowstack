@@ -1,1 +1,1 @@
-export { ToolCallManager } from '@agent/core/ToolCallManager/ToolCallManager';
+export { ToolCallManager } from '@core/ToolCallManager/ToolCallManager';

@@ -1,6 +1,6 @@
-import { Role } from '@agent/core/ChatMessage/common/enums/Role';
-import type { ToolCallRequestMessageContent } from '@agent/core/providers/BaseProvider/common/types/ToolCallRequestMessageContent';
-import type { ToolCallRequestMessageToolCalls } from '@agent/core/providers/BaseProvider/common/types/ToolCallRequestMessageToolCalls';
+import { Role } from '@sparrowstack/core';
+import type { ToolCallRequestMessageContent } from '@core/providers/BaseProvider/common/types/ToolCallRequestMessageContent';
+import type { ToolCallRequestMessageToolCalls } from '@core/providers/BaseProvider/common/types/ToolCallRequestMessageToolCalls';
 
 export type ToolCallRequestMessage = {
 	role: Role;

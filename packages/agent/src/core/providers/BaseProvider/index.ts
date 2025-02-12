@@ -1,1 +1,1 @@
-export { BaseProvider } from '@agent/core/providers/BaseProvider/BaseProvider';
+export { BaseProvider } from '@core/providers/BaseProvider/BaseProvider';

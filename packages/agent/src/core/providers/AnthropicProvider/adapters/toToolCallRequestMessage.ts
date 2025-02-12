@@ -1,6 +1,6 @@
+import { Role } from '@sparrowstack/core';
 import { Anthropic } from '@anthropic-ai/sdk';
-import { Role } from '@agent/core/ChatMessage/common/enums/Role';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallRequestMessage = ({
 	responseMessage,

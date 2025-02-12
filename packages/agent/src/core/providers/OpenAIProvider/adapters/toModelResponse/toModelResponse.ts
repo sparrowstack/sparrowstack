@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
-import { getToolCalls } from '@agent/core/providers/OpenAIProvider/adapters/toModelResponse/common/utils';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import { getToolCalls } from '@core/providers/OpenAIProvider/adapters/toModelResponse/common/utils';
 
 export const toModelResponse = ({
 	response,

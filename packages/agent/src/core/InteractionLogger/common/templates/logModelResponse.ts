@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 interface IParams {
 	message: IModelResponse;

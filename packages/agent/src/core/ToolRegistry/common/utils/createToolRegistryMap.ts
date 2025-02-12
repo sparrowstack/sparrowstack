@@ -1,6 +1,6 @@
 import { Tool, type IToolParams } from '@sparrowstack/tool';
-import { getInstantiatedTools } from '@agent/core/ToolRegistry/common/utils';
-import { type IToolRegistry } from '@agent/core/ToolRegistry/common/interfaces';
+import { getInstantiatedTools } from '@core/ToolRegistry/common/utils';
+import { type IToolRegistry } from '@core/ToolRegistry/common/interfaces';
 
 interface IParams {
 	tools?: Tool[] | IToolParams[];

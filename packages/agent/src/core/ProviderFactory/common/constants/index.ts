@@ -1,1 +1,1 @@
-export { providers } from '@agent/core/ProviderFactory/common/constants/providers';
+export { providers } from '@core/ProviderFactory/common/constants/providers';

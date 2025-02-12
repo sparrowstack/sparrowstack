@@ -1,1 +1,1 @@
-export { ProviderFactory } from '@agent/core/ProviderFactory/ProviderFactory';
+export { ProviderFactory } from '@core/ProviderFactory/ProviderFactory';

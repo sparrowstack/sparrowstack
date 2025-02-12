@@ -1,4 +1,4 @@
-import type { IBlock } from '@system-prompt';
+import type { IBlock } from '@sparrowstack/system-prompt';
 
 export const remember: IBlock = {
 	title: 'Remember',

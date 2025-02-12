@@ -1,12 +1,12 @@
-import { Agent } from '../../../../agent/src/Agent';
 import * as readline from 'readline';
-import { userPrompt } from '@interactive-terminal/core/InteractiveSession/common/constants/userPrompt';
+import { Agent } from '@sparrowstack/agent';
+import { userPrompt } from '@core/InteractiveSession/common/constants/userPrompt';
 import {
 	printHeader,
 	validateInput,
 	printAgentResponse,
 	exitProcessIfApplicable,
-} from '@interactive-terminal/core/InteractiveSession/common/utils';
+} from '@core/InteractiveSession/common/utils';
 
 interface IParams {
 	agent: Agent;

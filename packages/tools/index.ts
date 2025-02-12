@@ -1,10 +1,10 @@
 export {
 	getDirectoryStructureTool,
 	getDirectoryStructureToolParams,
-} from '@tools/getDirectoryStucture';
+} from '@sparrowstack/tools/src/getDirectoryStucture';
 
 export {
 	getWeatherDataTool,
 	getWeatherDataToolParams,
 	validateGetWeatherDataToolCall,
-} from '@tools/getWeatherData';
+} from '@sparrowstack/tools/src/getWeatherData';

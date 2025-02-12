@@ -1,4 +1,4 @@
 export {
 	getDirectoryStructureTool,
 	getDirectoryStructureToolParams,
-} from '@tools/getDirectoryStucture/tool';
+} from '@sparrowstack/tools/src/getDirectoryStucture/tool';

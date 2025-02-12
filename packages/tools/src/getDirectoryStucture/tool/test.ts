@@ -1,6 +1,6 @@
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';
+import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
 
-import { getDirectoryStructureTool } from '@tools/getDirectoryStucture/tool/getDirectoryStructureTool';
+import { getDirectoryStructureTool } from '@sparrowstack/tools/src/getDirectoryStucture/tool/getDirectoryStructureTool';
 
 console.log(
 	'getSchema',

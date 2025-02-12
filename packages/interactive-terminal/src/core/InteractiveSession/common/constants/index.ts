@@ -1,1 +1,1 @@
-export { userPrompt } from '@interactive-terminal/core/InteractiveSession/common/constants/userPrompt';
+export { userPrompt } from '@core/InteractiveSession/common/constants/userPrompt';

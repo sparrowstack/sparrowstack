@@ -1,1 +1,1 @@
-export { InteractionLogger } from '@agent/core/InteractionLogger/InteractionLogger';
+export { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';

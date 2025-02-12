@@ -1,1 +1,1 @@
-export { providerSDKs } from '@agent/core/ProviderSDKFactory/common/constants/providerSDKs';
+export { providerSDKs } from '@core/ProviderSDKFactory/common/constants/providerSDKs';

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { Unit } from '@tools/getWeatherData/function/common/enums';
-import { getFormattedWeatherData } from '@tools/getWeatherData/function/common/utils';
-import { type IApiResponseWeatherData } from '@tools/getWeatherData/function/common/interfaces';
+import { Unit } from '@sparrowstack/tools/src/getWeatherData/function/common/enums';
+import { getFormattedWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/common/utils';
+import { type IApiResponseWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
 interface IParams {
 	units: Unit;
 	apiKey: string;

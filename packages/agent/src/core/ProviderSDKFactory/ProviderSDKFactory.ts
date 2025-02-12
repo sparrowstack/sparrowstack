@@ -1,6 +1,6 @@
-import { ProviderName } from '@agent/core/providers/BaseProvider/common/enums/ProviderName';
-import { providerSDKs } from '@agent/core/ProviderSDKFactory/common/constants';
-import type { ProviderSDK } from '@agent/core/ProviderSDKFactory/common/types';
+import { ProviderName } from '@core/providers/BaseProvider/common/enums/ProviderName';
+import { providerSDKs } from '@core/ProviderSDKFactory/common/constants';
+import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
 
 export class ProviderSDKFactory {
 	static create({

@@ -1,1 +1,1 @@
-export { SystemPromptFactory } from '@agent/core/SystemPromptFactory/SystemPromptFactory';
+export { SystemPromptFactory } from '@core/SystemPromptFactory/SystemPromptFactory';

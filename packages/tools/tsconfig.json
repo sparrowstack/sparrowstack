@@ -1,12 +1,7 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
-		// Paths
-		"paths": {
-			"@tools": ["./src"],
-			"@tools/*": ["./src/*"]
-		}
+		"outDir": "./dist"
 	},
 	"include": ["index.ts", "src/**/*.ts"],
 	"exclude": ["node_modules", "dist", "tests"]

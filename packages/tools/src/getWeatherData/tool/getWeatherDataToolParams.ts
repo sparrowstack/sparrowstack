@@ -1,7 +1,7 @@
-import { getWeatherData } from '@tools/getWeatherData/function/getWeatherData';
-// import { validateGetWeatherDataToolCall } from '@Tools/getWeatherData/validate';
-// import { validationFailedMessage } from '@Tools/getWeatherData/validationFailedMessage';
-import type { IGetWeatherDataParams } from '@tools/getWeatherData/function/common/interfaces';
+import { getWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/getWeatherData';
+// import { validateGetWeatherDataToolCall } from '@sparrowstack/tools/src/getWeatherData/validate';
+// import { validationFailedMessage } from '@sparrowstack/tools/src/getWeatherData/validationFailedMessage';
+import type { IGetWeatherDataParams } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';
 import {
 	PropertyType,
 	type IToolParams,

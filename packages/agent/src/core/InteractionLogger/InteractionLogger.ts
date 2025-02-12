@@ -1,12 +1,12 @@
-import { Logger } from '@logger';
-import { SystemPrompt } from '@system-prompt';
-import { ChatMessageManager } from '@agent/core/ChatMessageManager';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
+import { Logger } from '@sparrowstack/logger';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ChatMessageManager } from '@core/ChatMessageManager';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	messagesTemplate,
 	contextWindowTemplate,
 	modelResponseTemplate,
-} from '@agent/core/InteractionLogger/common/templates';
+} from '@core/InteractionLogger/common/templates';
 
 interface IConstructorParams {
 	logger: Logger;

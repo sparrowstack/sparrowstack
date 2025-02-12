@@ -1,6 +1,6 @@
 import { OpenAI } from 'openai';
-import { Role } from '@agent/core/ChatMessage/common/enums/Role';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
+import { Role } from '@sparrowstack/core';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallRequestMessage = ({
 	responseMessage,

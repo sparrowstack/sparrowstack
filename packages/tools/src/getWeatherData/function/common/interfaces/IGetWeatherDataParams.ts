@@ -1,4 +1,4 @@
-import { Unit } from '@tools/getWeatherData/function/common/enums';
+import { Unit } from '@sparrowstack/tools/src/getWeatherData/function/common/enums';
 
 export interface IGetWeatherDataParams {
 	city: string;

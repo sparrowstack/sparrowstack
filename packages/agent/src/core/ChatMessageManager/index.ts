@@ -1,1 +1,1 @@
-export { ChatMessageManager } from '@agent/core/ChatMessageManager/ChatMessageManager';
+export { ChatMessageManager } from '@core/ChatMessageManager/ChatMessageManager';

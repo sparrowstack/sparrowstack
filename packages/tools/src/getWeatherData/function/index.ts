@@ -1,2 +1,2 @@
-export { getWeatherData } from '@tools/getWeatherData/function/getWeatherData';
-export type { IGetWeatherDataParams } from '@tools/getWeatherData/function/common/interfaces';
+export { getWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/getWeatherData';
+export type { IGetWeatherDataParams } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces';

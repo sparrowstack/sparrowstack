@@ -1,5 +1,5 @@
-import { type IEventTime } from '@tools/getWeatherData/function/common/interfaces/IEventTime';
-import { type IFormattedWeatherData } from '@tools/getWeatherData/function/common/interfaces/IFormattedWeatherData';
+import { type IEventTime } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces/IEventTime';
+import { type IFormattedWeatherData } from '@sparrowstack/tools/src/getWeatherData/function/common/interfaces/IFormattedWeatherData';
 
 export interface IWeatherData {
 	requestTime: IEventTime;

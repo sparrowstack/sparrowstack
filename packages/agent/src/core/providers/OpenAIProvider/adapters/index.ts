@@ -1,2 +1,2 @@
-export { toToolCallRequestMessage } from '@agent/core/providers/OpenAIProvider/adapters/toToolCallRequestMessage';
-export { toToolCallResponseMessages } from '@agent/core/providers/OpenAIProvider/adapters/toToolCallResponseMessages';
+export { toToolCallRequestMessage } from '@core/providers/OpenAIProvider/adapters/toToolCallRequestMessage';
+export { toToolCallResponseMessages } from '@core/providers/OpenAIProvider/adapters/toToolCallResponseMessages';

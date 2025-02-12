@@ -1,1 +1,1 @@
-export { validateGetWeatherDataToolCall } from '@tools/getWeatherData/validate/validateGetWeatherDataToolCall';
+export { validateGetWeatherDataToolCall } from '@sparrowstack/tools/src/getWeatherData/validate/validateGetWeatherDataToolCall';

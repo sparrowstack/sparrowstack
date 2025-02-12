@@ -1,2 +1,2 @@
-export { ToolRegistry } from '@agent/core/ToolRegistry/ToolRegistry';
-export type { IToolRegistry } from '@agent/core/ToolRegistry/common/interfaces';
+export { ToolRegistry } from '@core/ToolRegistry/ToolRegistry';
+export type { IToolRegistry } from '@core/ToolRegistry/common/interfaces';

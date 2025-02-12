@@ -1,1 +1,1 @@
-export type { ProviderSDK } from '@agent/core/ProviderSDKFactory/common/types/ProviderSDK';
+export type { ProviderSDK } from '@core/ProviderSDKFactory/common/types/ProviderSDK';

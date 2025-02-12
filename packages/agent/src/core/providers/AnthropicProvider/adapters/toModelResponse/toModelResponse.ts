@@ -1,9 +1,9 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import type { IModelResponse } from '@agent/core/providers/BaseProvider/common/interfaces';
+import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	getToolCalls,
 	getModelResponseText,
-} from '@agent/core/providers/AnthropicProvider/adapters/toModelResponse/common/utils';
+} from '@core/providers/AnthropicProvider/adapters/toModelResponse/common/utils';
 
 interface IParams {
 	response: Anthropic.Messages.Message;

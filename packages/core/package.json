@@ -1,0 +1,17 @@
+{
+	"name": "@sparrowstack/core",
+	"version": "0.1.0",
+	"description": "Core types and shared functionality for SparrowStack",
+	"private": true,
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build:js": "bun build src/index.ts --outdir dist --target bun",
+		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
+		"build": "bun build:js && bun build:types"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	}
+}

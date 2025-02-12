@@ -1,13 +1,13 @@
-import type { SystemPrompt } from '@system-prompt';
-import { ToolRegistry } from '@agent/core/ToolRegistry';
-import type { ProviderName } from '@agent/core/providers/BaseProvider/common/enums';
-import type { ChatMessageManager } from '@agent/core/ChatMessageManager/ChatMessageManager';
-import type { IModelResponseToolCall } from '@agent/core/providers/BaseProvider/common/interfaces';
+import type { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistry } from '@core/ToolRegistry';
+import type { ProviderName } from '@core/providers/BaseProvider/common/enums';
+import type { ChatMessageManager } from '@core/ChatMessageManager';
+import type { IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	executeToolCall,
 	executeValidationCheck,
 	executeMaxCallCountCheck,
-} from '@agent/core/ToolCallManager/execute/executeToolCalls/utils';
+} from '@core/ToolCallManager/execute/executeToolCalls/utils';
 
 interface IParams {
 	model: string;

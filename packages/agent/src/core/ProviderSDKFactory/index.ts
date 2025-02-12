@@ -1,1 +1,1 @@
-export { ProviderSDKFactory } from './ProviderSDKFactory';
+export { ProviderSDKFactory } from '@core/ProviderSDKFactory/ProviderSDKFactory';
