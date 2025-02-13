@@ -1,4 +1,4 @@
-import { Tool, type IToolParams } from '@sparrowstack/tool';
+import { Tool, Type, type IToolParams } from '@sparrowstack/tool';
 
 export const getInstantiatedTools = ({
 	tools,
@@ -7,7 +7,7 @@ export const getInstantiatedTools = ({
 }) => {
 	return (
 		tools?.map((tool) => {
-			const isToolInstance = tool instanceof Tool;
+			const isToolInstance = 'type' in tool && tool.type === Type.Tool;
 
 			return isToolInstance ? tool : new Tool(tool);
 		}) ?? []

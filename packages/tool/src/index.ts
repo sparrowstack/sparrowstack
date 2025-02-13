@@ -4,6 +4,7 @@
 export { Tool } from './Tool/Tool';
 
 // Enums
+export { Type } from './Tool/common/enums/Type';
 export { PropertyType } from './Tool/common/enums/PropertyType';
 
 // Interfaces

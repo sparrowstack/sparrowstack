@@ -1,3 +1,4 @@
+import { Type } from '@tool/common/enums';
 import { ProviderName } from '@sparrowstack/core';
 import { providerSchemas } from '@tool/common/constants';
 import type { IToolParams } from '@tool/common/interfaces';
@@ -16,6 +17,7 @@ export class Tool {
 	readonly function: ToolFunction;
 	readonly maxCallCount?: number;
 	readonly parameters: Parameters;
+	readonly type = Type.Tool as const;
 
 	readonly validationFailedMessage?: string | CallableFunctionResponseMessage;
 	readonly maxCallCountExceededMessage?:
