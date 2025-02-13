@@ -1,7 +1,6 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
 		"paths": {
 			"@system-prompts": ["./src"],
 			"@system-prompts/*": ["./src/*"]

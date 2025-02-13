@@ -1,14 +1,5 @@
 {
 	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"outDir": "./dist",
-		"paths": {
-			"@agent": ["./src/Agent"],
-			"@agent/*": ["./src/Agent/*"],
-			"@core": ["./src/core"],
-			"@core/*": ["./src/core/*"]
-		}
-	},
 	"include": ["src/**/*"],
 	"exclude": ["dist", "node_modules", "**/*.test.ts"]
 }

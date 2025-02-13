@@ -1,7 +1,6 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
 		"paths": {
 			"@agent": ["./src/Agent"],
 			"@agent/*": ["./src/Agent/*"],

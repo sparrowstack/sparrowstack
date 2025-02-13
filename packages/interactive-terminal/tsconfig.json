@@ -1,7 +1,6 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
 		"paths": {
 			"@interactive-terminal": ["./src/InteractiveTerminal"],
 			"@interactive-terminal/*": ["./src/InteractiveTerminal/*"],

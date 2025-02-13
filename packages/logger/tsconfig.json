@@ -1,7 +1,6 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
 		"paths": {
 			"@logger": ["./src/Logger"],
 			"@logger/*": ["./src/Logger/*"]
