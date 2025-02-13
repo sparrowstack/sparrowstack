@@ -10,7 +10,8 @@
 		"start:openai": "bun scripts/openai.ts",
 		"start:anthropic": "bun scripts/anthropic.ts",
 		"lint:all": "bunx nx run-many --target=lint --all --parallel",
-		"build:all": "bunx nx run-many --target=build --all --parallel"
+		"build:all": "bunx nx run-many --target=build --all --parallel",
+		"link:all": "bunx nx run-many --target=link --all --parallel"
 	},
 	"devDependencies": {
 		"@eslint/compat": "1.2.6",
