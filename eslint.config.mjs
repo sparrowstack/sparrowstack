@@ -34,6 +34,7 @@ export default [
 	),
 	includeIgnoreFile(gitignorePath),
 	{
+		files: ['**/*.ts'], // Only apply TypeScript rules to .ts files
 		plugins: {
 			'@typescript-eslint': typescriptEslint,
 		},

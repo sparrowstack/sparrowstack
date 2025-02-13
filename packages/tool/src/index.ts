@@ -1,7 +1,12 @@
-export { Tool } from '@tool/Tool';
-export { PropertyType } from '@tool/common/enums';
-export type {
-	IToolParams,
-	IRuntimeParams,
-	IToolSchemaParams,
-} from '@tool/common/interfaces';
+// Always use relative paths for exports in entry point index.ts
+
+// Classes
+export { Tool } from './Tool/Tool';
+
+// Enums
+export { PropertyType } from './Tool/common/enums/PropertyType';
+
+// Interfaces
+export type { IToolParams } from './Tool/common/interfaces/IToolParams';
+export type { IRuntimeParams } from './Tool/common/interfaces/IRuntimeParams';
+export type { IToolSchemaParams } from './Tool/common/interfaces/IToolSchemaParams';

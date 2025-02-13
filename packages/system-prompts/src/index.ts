@@ -1,6 +1,8 @@
-export { defaultPrompt, defaultPromptParams } from '@system-prompts/default';
+// Always use relative paths for exports in entry point index.ts
 
-export {
-	softwareEngineerTypeScriptPrompt,
-	softwareEngineerTypeScriptPromptParams,
-} from '@system-prompts/softwareEngineerTypescript';
+// System Prompts
+export { defaultPrompt } from './default/defaultPrompt';
+export { defaultPromptParams } from './default/defaultPromptParams';
+
+export { softwareEngineerTypeScriptPrompt } from './softwareEngineerTypescript/softwareEngineerTypeScriptPrompt';
+export { softwareEngineerTypeScriptPromptParams } from './softwareEngineerTypescript/softwareEngineerTypeScriptPromptParams';

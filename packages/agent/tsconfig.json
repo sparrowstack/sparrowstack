@@ -2,14 +2,13 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"outDir": "./dist",
-		"baseUrl": ".",
 		"paths": {
-			"@agent": ["src/agent"],
-			"@agent/*": ["src/agent/*"],
-			"@core": ["src/core"],
-			"@core/*": ["src/core/*"]
+			"@agent": ["./src/Agent"],
+			"@agent/*": ["./src/Agent/*"],
+			"@core": ["./src/core"],
+			"@core/*": ["./src/core/*"]
 		}
 	},
-	"include": ["src/**/*", "../core/src/common/enums/ProviderName.ts", "../core/src/common/enums/Model.ts", "../core/src/common/enums/ApiKey.ts"],
+	"include": ["src/**/*"],
 	"exclude": ["dist", "node_modules", "**/*.test.ts"]
 }

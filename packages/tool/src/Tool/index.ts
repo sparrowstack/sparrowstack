@@ -1,7 +1,10 @@
-export { Tool } from '@tool/Tool';
-export { PropertyType } from '@tool/common/enums';
-export type {
-	IToolParams,
-	IRuntimeParams,
-	IToolSchemaParams,
-} from '@tool/common/interfaces';
+// Classes
+export { Tool } from './Tool';
+
+// Enums
+export { PropertyType } from './common/enums/PropertyType';
+
+// Interfaces
+export type { IToolParams } from './common/interfaces/IToolParams';
+export type { IRuntimeParams } from './common/interfaces/IRuntimeParams';
+export type { IToolSchemaParams } from './common/interfaces/IToolSchemaParams';

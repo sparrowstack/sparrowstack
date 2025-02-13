@@ -1,1 +1,4 @@
-export { InteractiveTerminal } from '@interactive-terminal/InteractiveTerminal';
+// Always use relative paths for exports in entry point index.ts
+
+// Classes
+export { InteractiveTerminal } from './InteractiveTerminal/InteractiveTerminal';

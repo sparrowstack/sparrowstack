@@ -46,7 +46,6 @@ export class Agent {
 
 	// Tool Calling
 	readonly toolCallManager: ToolCallManager;
-
 	constructor({
 		model,
 		tools,
@@ -54,6 +53,8 @@ export class Agent {
 		provider: providerName,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
+		console.log('[AGENT] constructor', defaultPrompt);
+
 		// Values
 		// --------------------------------
 		this.providerName = providerName;

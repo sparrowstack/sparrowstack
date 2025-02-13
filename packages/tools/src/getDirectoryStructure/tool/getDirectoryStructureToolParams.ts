@@ -1,7 +1,7 @@
 import { type IToolParams, type IRuntimeParams } from '@sparrowstack/tool';
-import { maxCallCountExceededMessage } from '@tools/getDirectoryStucture/maxCallCountExceededMessage';
-import { getDirectoryStructure as getDirectoryStructureMethod } from '@tools/getDirectoryStucture/function/getDirectoryStructure';
-import type { IGetDirectoryStructureParams } from '@tools/getDirectoryStucture/function/common/interfaces/IGetDirectoryStructureParams';
+import { maxCallCountExceededMessage } from '@tools/getDirectoryStructure/maxCallCountExceededMessage';
+import { getDirectoryStructure as getDirectoryStructureMethod } from '@tools/getDirectoryStructure/function/getDirectoryStructure';
+import type { IGetDirectoryStructureParams } from '@tools/getDirectoryStructure/function/common/interfaces/IGetDirectoryStructureParams';
 
 export const getDirectoryStructureToolParams: IToolParams = {
 	name: 'getDirectoryStructure',

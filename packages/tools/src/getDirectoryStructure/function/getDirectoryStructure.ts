@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { DirectoryNodeType } from '@tools/getDirectoryStucture/function/common/enums';
-import type { IDirectoryNode } from '@tools/getDirectoryStucture/function/common/interfaces';
-import type { IGetDirectoryStructureParams } from '@tools/getDirectoryStucture/function/common/interfaces/IGetDirectoryStructureParams';
+import { DirectoryNodeType } from '@tools/getDirectoryStructure/function/common/enums';
+import type { IDirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces';
+import type { IGetDirectoryStructureParams } from '@tools/getDirectoryStructure/function/common/interfaces/IGetDirectoryStructureParams';
 import {
 	filterFiles,
 	loadGitignore,
-} from '@tools/getDirectoryStucture/function/common/utils';
+} from '@tools/getDirectoryStructure/function/common/utils';
 
 export const getDirectoryStructure = ({
 	directoryPath,

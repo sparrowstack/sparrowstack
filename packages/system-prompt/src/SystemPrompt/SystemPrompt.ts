@@ -1,3 +1,4 @@
+import { Type } from '@system-prompt/common/enums';
 import { toFormattedPrompt } from '@system-prompt/common/promptAdapters';
 import type {
 	IPrompt,
@@ -9,6 +10,7 @@ export class SystemPrompt {
 	public description: string;
 	public createdBy: string;
 	public prompt: IPrompt;
+	readonly type = Type.SystemPrompt as const;
 
 	constructor({ meta, prompt }: ISystemPromptParams) {
 		this.name = meta.name;
