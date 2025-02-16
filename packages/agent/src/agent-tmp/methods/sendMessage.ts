@@ -11,7 +11,7 @@ interface IParams {
 	chatMessageManager: ChatMessageManager;
 }
 
-export const executeSendMessage = async ({
+export const sendMessage = async ({
 	message,
 	provider,
 	toolCallManager,

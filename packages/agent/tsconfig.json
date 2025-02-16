@@ -2,8 +2,8 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"paths": {
-			"@agent": ["./src/Agent"],
-			"@agent/*": ["./src/Agent/*"],
+			"@agent": ["./src/agent-tmp"],
+			"@agent/*": ["./src/agent-tmp/*"],
 			"@core": ["./src/core"],
 			"@core/*": ["./src/core/*"]
 		}
