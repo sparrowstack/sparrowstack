@@ -26,11 +26,5 @@ jobs:
             - name: Lint
               run: bun lint:all
 
-            - name: LS agent/src
-              run: ls -a packages/agent/src
-
-            - name: LS agent/src/Agent
-              run: ls -a packages/agent/src/Agent
-
             - name: Build
               run: bun build:all
