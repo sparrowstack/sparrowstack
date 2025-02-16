@@ -22,7 +22,7 @@
     },
     "packages/agent": {
       "name": "@sparrowstack/agent",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "dependencies": {
         "@anthropic-ai/sdk": "0.36.3",
         "@sparrowstack/core": "workspace:*",
@@ -39,14 +39,14 @@
     },
     "packages/core": {
       "name": "@sparrowstack/core",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/interactive-terminal": {
       "name": "@sparrowstack/interactive-terminal",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
@@ -60,21 +60,21 @@
     },
     "packages/logger": {
       "name": "@sparrowstack/logger",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/system-prompt": {
       "name": "@sparrowstack/system-prompt",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/system-prompts": {
       "name": "@sparrowstack/system-prompts",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "dependencies": {
         "@sparrowstack/system-prompt": "workspace:*",
       },
@@ -84,7 +84,7 @@
     },
     "packages/tool": {
       "name": "@sparrowstack/tool",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
       },
@@ -94,7 +94,7 @@
     },
     "packages/tools": {
       "name": "@sparrowstack/tools",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/tool": "workspace:*",
