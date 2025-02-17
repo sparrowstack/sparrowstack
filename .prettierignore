@@ -4,6 +4,10 @@ node_modules
 .pnp.js
 .yarn
 
+# Project files
+.github
+.nx
+
 # Build outputs
 dist
 build
