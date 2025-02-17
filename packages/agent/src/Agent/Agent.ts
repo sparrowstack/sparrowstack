@@ -1,17 +1,17 @@
+import { sendMessage } from '@agent/methods';
 import { Logger } from '@sparrowstack/logger';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { Tool, type IToolParams } from '@sparrowstack/tool';
-import { defaultPrompt } from '@sparrowstack/system-prompts';
+import { ProviderName } from '@sparrowstack/core';
 import { ToolCallManager } from '@core/ToolCallManager';
 import { ProviderFactory } from '@core/ProviderFactory';
 import { InteractionLogger } from '@core/InteractionLogger';
+import { Tool, type IToolParams } from '@sparrowstack/tool';
+import { defaultPrompt } from '@sparrowstack/system-prompts';
 import { ChatMessageManager } from '@core/ChatMessageManager';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
-import { executeSendMessage } from '@agent/methods';
 import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { ProviderName } from '@sparrowstack/core';
 import {
 	SystemPrompt,
 	type ISystemPromptParams,
@@ -107,7 +107,7 @@ export class Agent {
 	}: {
 		message: string;
 	}): Promise<IModelResponse> {
-		return executeSendMessage({
+		return sendMessage({
 			message,
 			provider: this.provider,
 			toolCallManager: this.toolCallManager,
