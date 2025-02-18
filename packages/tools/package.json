@@ -22,8 +22,7 @@
 		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
 		"build": "bun build:js && bun build:types",
 		"link": "bun link",
-		"unlink": "bun unlink",
-		"publish": "bun publish"
+		"unlink": "bun unlink"
 	},
 	"dependencies": {
 		"@sparrowstack/agent": "workspace:*",
