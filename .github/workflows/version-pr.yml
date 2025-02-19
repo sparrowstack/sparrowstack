@@ -5,6 +5,12 @@ on:
         branches:
             - main
 
+# Grant write access to repository contents so that changesets can push and create PRs.
+permissions:
+    contents: write
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
     version:
         runs-on: ubuntu-latest
