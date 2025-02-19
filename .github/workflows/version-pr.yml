@@ -1,0 +1,37 @@
+name: Version PR
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    version:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Needed for Nx affected commands
+
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v1
+              with:
+                  bun-version: latest
+
+            - name: Install dependencies
+              run: bun install
+
+            - name: Create Version PR
+              uses: changesets/action@v1
+              with:
+                  version: bun run version-packages
+                  commit: 'chore: version packages'
+                  title: 'chore: version packages'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
