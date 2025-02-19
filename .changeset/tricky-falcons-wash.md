@@ -2,4 +2,4 @@
 '@sparrowstack/agent': patch
 ---
 
-Added console log
+Removed console log
