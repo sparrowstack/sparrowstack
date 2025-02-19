@@ -77,7 +77,7 @@ SparrowStack is a framework for building AI Agents
     ```
 3. Lint the project
     ```sh
-    bun lint:all
+    bun lint:all --fix
     ```
 
 4. Build the project
