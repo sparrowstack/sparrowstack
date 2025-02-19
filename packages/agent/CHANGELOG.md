@@ -1,5 +1,16 @@
 # @sparrowstack/agent
 
+## 0.0.7
+
+### Patch Changes
+
+- e8f2233: Removed console log
+    - @sparrowstack/core@0.0.7
+    - @sparrowstack/logger@0.0.7
+    - @sparrowstack/system-prompt@0.0.7
+    - @sparrowstack/system-prompts@0.0.7
+    - @sparrowstack/tool@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
