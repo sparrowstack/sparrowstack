@@ -48,6 +48,7 @@ SparrowStack is a framework for building AI Agents
 ### Built With
 
 -   [Bun](https://bun.sh/)
+-   [Nx](https://nx.dev/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Prettier](https://prettier.io/)
 -   [ESLint](https://eslint.org/)
@@ -74,7 +75,12 @@ SparrowStack is a framework for building AI Agents
     ```sh
     bun install
     ```
-3. Build the project
+3. Lint the project
+    ```sh
+    bun lint:all
+    ```
+
+4. Build the project
     ```sh
     bun build:all
     ```
