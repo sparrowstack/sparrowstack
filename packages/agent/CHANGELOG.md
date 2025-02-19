@@ -1,5 +1,16 @@
 # @sparrowstack/agent
 
+## 0.0.6
+
+### Patch Changes
+
+- 3f923c4: Added console log
+    - @sparrowstack/core@0.0.6
+    - @sparrowstack/logger@0.0.6
+    - @sparrowstack/system-prompt@0.0.6
+    - @sparrowstack/system-prompts@0.0.6
+    - @sparrowstack/tool@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

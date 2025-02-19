@@ -1,5 +1,13 @@
 # @sparrowstack/sparrow
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [3f923c4]
+    - @sparrowstack/agent@0.0.6
+    - @sparrowstack/core@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
