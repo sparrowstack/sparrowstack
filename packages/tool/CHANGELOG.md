@@ -1,5 +1,11 @@
 # @sparrowstack/tool
 
+## 0.0.5
+
+### Patch Changes
+
+- @sparrowstack/core@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
