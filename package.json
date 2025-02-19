@@ -6,15 +6,16 @@
 		"packages/*"
 	],
 	"scripts": {
-		"start:openai": "bun scripts/openai.ts",
-		"start:anthropic": "bun scripts/anthropic.ts",
 		"lint:all": "bunx nx run-many --target=lint --all --parallel",
 		"build:all": "bunx nx run-many --target=build --all --parallel",
 		"link:all": "bunx nx run-many --target=link --all --parallel",
 		"unlink:all": "bunx nx run-many --target=unlink --all --parallel",
-		"publish:all": "bunx nx run-many --target=publish --all --parallel",
+		"publish:all": "bunx nx run-many --target=publish-package --all --parallel",
 		"release:all": "bun lint:all && bun build:all && bun publish:all",
-		"release:all:local": "bun lint:all && bun build:all && bun link:all"
+		"release:all:local": "bun lint:all && bun build:all && bun link:all",
+		"changeset": "bunx changeset",
+		"changeset:status": "bunx changeset status",
+		"version-packages": "bunx changeset version"
 	},
 	"devDependencies": {
 		"@eslint/compat": "1.2.6",
@@ -31,5 +32,8 @@
 		"nx": "20.4.2",
 		"prettier": "3.5.0",
 		"typescript": "5.7.3"
+	},
+	"dependencies": {
+		"@changesets/cli": "^2.28.0"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/sparrow",
-	"version": "0.0.1",
+	"version": "0.0.4",
 	"description": "Sparrow - AI Agent Framework",
 	"type": "module",
 	"main": "./dist/index.js",
@@ -23,7 +23,7 @@
 		"build": "bun build:js && bun build:types",
 		"link": "bun link",
 		"unlink": "bun unlink",
-		"publish": "bun publish"
+		"publish-package": "bun publish"
 	},
 	"dependencies": {
 		"@sparrowstack/agent": "workspace:*",

@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/system-prompt",
-	"version": "0.0.1",
+	"version": "0.0.4",
 	"description": "System Prompt module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
@@ -23,7 +23,7 @@
 		"build": "bun build:js && bun build:types",
 		"link": "bun link",
 		"unlink": "bun unlink",
-		"publish": "bun publish"
+		"publish-package": "bun publish"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
