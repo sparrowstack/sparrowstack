@@ -3,55 +3,55 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <!-- <a href="https://github.com/DWC01/dapp-sandbox-contracts">
-    <img src="/images/logo.png" alt="Logo" width="419" height="128">
-  </a> -->
-  <h1>SparrowStack</h1>
-
-  <p align="center">
-	A framework for building AI Agents
-  </p>
+	<!-- <a href="https://github.com/DWC01/dapp-sandbox-contracts">
+		<img src="/images/logo.png" alt="Logo" width="419" height="128">
+	</a> -->
+	<h1>SparrowStack</h1>
+	<p>Craft modular, powerful AI agents with ease</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
 <br/>
 <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#quick-start">Quick Start</a></li>
-    <li><a href="#development">Development</a></li>
-  </ol>
+	<summary>Table of Contents</summary>
+	<ol>
+		<li>
+			<a href="#about-the-project">About The Project</a>
+			<ul>
+				<li><a href="#built-with">Built With</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#getting-started">Getting Started</a>
+			<ul>
+				<li><a href="#prerequisites">Prerequisites</a></li>
+				<li><a href="#installation">Installation</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#development">Development</a>
+			<ul>
+				<li><a href="#sparrowstack">SparrowStack</a></li>
+				<li><a href="#sparrow-starter">Sparrow Starter</a></li>
+			</ul>
+		</li>
+	</ol>
 </details>
 <br/>
 
-<!-- ABOUT THE PROJECT -->
+## About
 
-## About The Project
-
-SparrowStack is a framework for building AI Agents
+SparrowStack is a lightweight and modular framework designed to empower developers to easily craft powerful AI agents. By focusing on simplicity and flexibility, SparrowStack enables the creation of innovative AI solutions that can adapt to various needs and environments.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
 
--   [Bun](https://bun.sh/)
--   [Nx](https://nx.dev/)
--   [TypeScript](https://www.typescriptlang.org/)
--   [Prettier](https://prettier.io/)
--   [ESLint](https://eslint.org/)
+- [Bun](https://bun.sh/)
+- [Nx](https://nx.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Prettier](https://prettier.io/)
+- [ESLint](https://eslint.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -61,7 +61,7 @@ SparrowStack is a framework for building AI Agents
 
 ### Prerequisites
 
--   Bun [Install Instructions](https://bun.sh/docs/installation)
+- Bun [Install Instructions](https://bun.sh/docs/installation)
 
 ### Installation
 
@@ -72,16 +72,19 @@ SparrowStack is a framework for building AI Agents
     ```
 
 2. Navigate to the project directory
+
     ```sh
     cd sparrowstack
     ```
 
 3. Install packages
+
     ```sh
     bun install
     ```
 
 4. Lint the project
+
     ```sh
     bun lint:all
     ```
@@ -91,31 +94,55 @@ SparrowStack is a framework for building AI Agents
     bun build:all
     ```
 
-### Quick Start
-It's recommended to use the `sparrow-starter` project to get started.
+### Development
+
+For local development, it's recommended to use the `sparrow-starter` project to run your AI agents. Link local packages from the `sparrowstack` repository to facilitate easy development.
+
+## SparrowStack
+
+1. Build and link the local packages
+
+    ```sh
+    bun release:all:local
+    ```
+
+## Sparrow Starter
 
 1. Clone the repo
+
     ```sh
     git clone git@github.com:sparrowstack/sparrow-starter.git
     ```
 
-2. Navigate to the project directory  
+2. Navigate to the project directory
+
     ```sh
     cd sparrow-starter
     ```
 
-3. Install packages
+3. Link the local packages
+
     ```sh
-    bun install   
+    // package.json
+    "@sparrowstack/sparrow": "link:@sparrowstack/sparrow",
+    "@sparrowstack/interactive-terminal": "link:@sparrowstack/interactive-terminal",
+    "@sparrowstack/system-prompts": "link:@sparrowstack/system-prompts",
+    "@sparrowstack/tools": "link:@sparrowstack/tools"
     ```
 
-4. Run the project
+4. Install packages
+
     ```sh
-    bun dev
+    bun install
     ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Development
+5. Start the interactive terminal
+    ```sh
+    bun start:openai
+    ```
+    or
+    ```sh
+    bun start:anthropic
+    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>

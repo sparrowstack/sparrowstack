@@ -63,9 +63,7 @@ assets
 bunfig.toml
 
 # Documentation
-README.md
 LICENSE
-*.md
 
 # Docker
 **/docker-compose.*
