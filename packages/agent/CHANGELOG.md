@@ -1,5 +1,17 @@
 # @sparrowstack/agent
 
+## 0.0.8
+
+### Patch Changes
+
+- 4d74b6f: Added log
+- c65b4b1: Removed log
+    - @sparrowstack/core@0.0.8
+    - @sparrowstack/logger@0.0.8
+    - @sparrowstack/system-prompt@0.0.8
+    - @sparrowstack/system-prompts@0.0.8
+    - @sparrowstack/tool@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
