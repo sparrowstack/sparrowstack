@@ -53,6 +53,7 @@ export class Agent {
 		provider: providerName,
 		systemPrompt = defaultPrompt,
 	}: IConstructorParams) {
+		console.log('Agent constructor');
 		// Values
 		// --------------------------------
 		this.providerName = providerName;
