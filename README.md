@@ -124,10 +124,13 @@ For local development, it's recommended to use the `sparrow-starter` project to 
 
     ```sh
     // package.json
-    "@sparrowstack/sparrow": "link:@sparrowstack/sparrow",
-    "@sparrowstack/interactive-terminal": "link:@sparrowstack/interactive-terminal",
-    "@sparrowstack/system-prompts": "link:@sparrowstack/system-prompts",
-    "@sparrowstack/tools": "link:@sparrowstack/tools"
+
+    "dependencies": {
+        "@sparrowstack/sparrow": "link:@sparrowstack/sparrow",
+        "@sparrowstack/interactive-terminal": "link:@sparrowstack/interactive-terminal",
+        "@sparrowstack/system-prompts": "link:@sparrowstack/system-prompts",
+        "@sparrowstack/tools": "link:@sparrowstack/tools"
+    },
     ```
 
 4. Install packages
