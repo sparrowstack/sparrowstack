@@ -1,4 +1,4 @@
-name: Version PR
+name: Version Packages
 
 on:
     push:
@@ -8,7 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    version:
+    version-packages:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -16,7 +16,7 @@ jobs:
               with:
                   ref: main
                   fetch-depth: 0
-                  token: ${{ secrets.PAT_CLASSIC_VERSION_PR }}
+                  token: ${{ secrets.GH_TOKEN_CI }}
 
             - name: Setup Bun
               uses: oven-sh/setup-bun@v1
@@ -26,9 +26,16 @@ jobs:
             - name: Install dependencies
               run: bun install
 
+            - name: Lint
+              run: bun lint:all
+
+            - name: Build
+              run: bun build:all
+
             - name: Create Version PR
               uses: changesets/action@v1
               with:
+                  title: Version Packages
                   version: bun run version-packages
               env:
-                  GITHUB_TOKEN: ${{ secrets.PAT_CLASSIC_VERSION_PR }}
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
