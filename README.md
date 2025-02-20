@@ -71,21 +71,48 @@ SparrowStack is a framework for building AI Agents
     git clone git@github.com:sparrowstack/sparrowstack.git
     ```
 
-2. Install packages
+2. Navigate to the project directory
+    ```sh
+    cd sparrowstack
+    ```
+
+3. Install packages
     ```sh
     bun install
     ```
-3. Lint the project
+
+4. Lint the project
     ```sh
     bun lint:all
     ```
 
-4. Build the project
+5. Build the project
     ```sh
     bun build:all
     ```
 
 ### Quick Start
+It's recommended to use the `sparrow-starter` project to get started.
+
+1. Clone the repo
+    ```sh
+    git clone git@github.com:sparrowstack/sparrow-starter.git
+    ```
+
+2. Navigate to the project directory  
+    ```sh
+    cd sparrow-starter
+    ```
+
+3. Install packages
+    ```sh
+    bun install   
+    ```
+
+4. Run the project
+    ```sh
+    bun dev
+    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
