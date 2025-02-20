@@ -5,5 +5,14 @@
 	"semi": true,
 	"singleQuote": true,
 	"bracketSpacing": true,
-	"arrowParens": "always"
+	"arrowParens": "always",
+	"overrides": [
+		{
+			"files": "*.md",
+			"options": {
+				"useTabs": true,
+				"tabWidth": 4
+			}
+		}
+	]
 }
