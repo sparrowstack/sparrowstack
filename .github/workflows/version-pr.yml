@@ -5,10 +5,6 @@ on:
         branches:
             - main
 
-permissions:
-    contents: write
-    pull-requests: write
-
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
@@ -20,7 +16,7 @@ jobs:
               with:
                   ref: main
                   fetch-depth: 0
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_VERSION_PR }}
 
             - name: Setup Bun
               uses: oven-sh/setup-bun@v1
