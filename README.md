@@ -120,7 +120,7 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     cd sparrow-starter
     ```
 
-3. Link the local packages
+3. Link local packages from the `sparrowstack` repo
 
     ```sh
     // package.json
