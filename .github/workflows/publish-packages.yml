@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
     publish:
-        if: github.event.pull_request.merged == true && github.event.pull_request.title == 'Version PR'
+        if: github.event.pull_request.merged == true && github.event.pull_request.title == 'Version Packages'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
