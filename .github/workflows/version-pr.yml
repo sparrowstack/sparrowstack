@@ -16,7 +16,7 @@ jobs:
               with:
                   ref: main
                   fetch-depth: 0
-                  token: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_VERSION_PR }}
+                  token: ${{ secrets.PAT_CLASSIC_VERSION_PR }}
 
             - name: Setup Bun
               uses: oven-sh/setup-bun@v1
@@ -31,4 +31,4 @@ jobs:
               with:
                   version: bun run version-packages
               env:
-                  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_VERSION_PR }}
+                  GITHUB_TOKEN: ${{ secrets.PAT_CLASSIC_VERSION_PR }}
