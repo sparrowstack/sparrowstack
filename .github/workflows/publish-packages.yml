@@ -8,7 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    publish:
+    publish-packages:
         if: github.event.pull_request.merged == true && github.event.pull_request.title == 'Version Packages'
         runs-on: ubuntu-latest
         steps:
