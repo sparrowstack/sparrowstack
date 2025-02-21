@@ -45,6 +45,6 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
 
             - name: Tag Release
-              run: git tag v$(bun run version-packages) && git push origin --tags
+              run: git tag v$(bun get-package-version) && git push origin --tags
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
