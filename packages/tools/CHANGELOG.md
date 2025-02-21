@@ -1,5 +1,13 @@
 # @sparrowstack/tools
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies [dccc69d]
+    - @sparrowstack/agent@0.0.12
+    - @sparrowstack/tool@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes

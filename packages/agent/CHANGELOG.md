@@ -1,5 +1,16 @@
 # @sparrowstack/agent
 
+## 0.0.12
+
+### Patch Changes
+
+- dccc69d: Removed Log
+    - @sparrowstack/core@0.0.12
+    - @sparrowstack/logger@0.0.12
+    - @sparrowstack/system-prompt@0.0.12
+    - @sparrowstack/system-prompts@0.0.12
+    - @sparrowstack/tool@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes
