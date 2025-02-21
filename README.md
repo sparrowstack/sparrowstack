@@ -149,11 +149,11 @@ For local development, it's recommended to use the `sparrow-starter` project to 
 
 6.  Start the interactive terminal
     ```sh
-    bun start:openai
+    bun start:interactive-terminal:openai
     ```
     or
     ```sh
-    bun start:anthropic
+    bun start:interactive-terminal:anthropic
     ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
