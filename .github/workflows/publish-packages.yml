@@ -35,10 +35,7 @@ jobs:
               run: bun build:all
 
             - name: Publish Packages
-              id: changesets
-              uses: changesets/action@v1
-              with:
-                  publish: bun publish:all
+              run: bun publish:all
               env:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
