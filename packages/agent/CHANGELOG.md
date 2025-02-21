@@ -1,5 +1,17 @@
 # @sparrowstack/agent
 
+## 0.0.13
+
+### Patch Changes
+
+- fc5bf17: Removed log
+- ffda748: Removed log, again
+    - @sparrowstack/core@0.0.13
+    - @sparrowstack/logger@0.0.13
+    - @sparrowstack/system-prompt@0.0.13
+    - @sparrowstack/system-prompts@0.0.13
+    - @sparrowstack/tool@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes
