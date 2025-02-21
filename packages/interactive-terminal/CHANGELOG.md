@@ -1,5 +1,14 @@
 # @sparrowstack/interactive-terminal
 
+## 0.0.13
+
+### Patch Changes
+
+- Updated dependencies [fc5bf17]
+- Updated dependencies [ffda748]
+    - @sparrowstack/agent@0.0.13
+    - @sparrowstack/logger@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes
