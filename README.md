@@ -108,19 +108,19 @@ For local development, it's recommended to use the `sparrow-starter` project to 
 
 ## Sparrow Starter
 
-1. Clone the repo
+1.  Clone the repo
 
     ```sh
     git clone git@github.com:sparrowstack/sparrow-starter.git
     ```
 
-2. Navigate to the project directory
+2.  Navigate to the project directory
 
     ```sh
     cd sparrow-starter
     ```
 
-3. Link local packages from the `sparrowstack` repo
+3.  Link local packages from the `sparrowstack` repo
 
     ```sh
     // package.json
@@ -133,13 +133,20 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     },
     ```
 
-4. Install packages
+4.  Setup environment variables
+    Copy the `.env.template` file to `.env` and update the variables
+
+    ```sh
+    cp .env.template .env
+    ```
+
+5.  Install packages
 
     ```sh
     bun install
     ```
 
-5. Start the interactive terminal
+6.  Start the interactive terminal
     ```sh
     bun start:openai
     ```
