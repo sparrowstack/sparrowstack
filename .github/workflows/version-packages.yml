@@ -8,7 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    version-or-publish-packages:
+    version-packages:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -32,19 +32,11 @@ jobs:
             - name: Build
               run: bun build:all
 
-            - name: Create Version Packages Pull Request or Publish to npm
+            - name: Create Version Packages Pull Request
               id: changesets
               uses: changesets/action@v1
               with:
                   title: 'Version Packages'
                   version: bun run version-packages
               env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
-
-            - name: Publish Packages
-              if: steps.changesets.outputs.hasChangesets == 'false'
-              run: bun publish:all
-              env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
