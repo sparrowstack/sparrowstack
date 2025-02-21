@@ -134,19 +134,20 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     ```
 
 4.  Setup environment variables
-    Copy the `.env.template` file to `.env` and update the variables
+
+Copy the `.env.template` file to `.env` and update the variables
 
     ```sh
     cp .env.template .env
     ```
 
-5.  Install packages
+1.  Install packages
 
     ```sh
     bun install
     ```
 
-6.  Start the interactive terminal
+2.  Start the interactive terminal
     ```sh
     bun start:openai
     ```
