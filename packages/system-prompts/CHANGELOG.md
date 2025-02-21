@@ -1,5 +1,11 @@
 # @sparrowstack/system-prompts
 
+## 0.0.12
+
+### Patch Changes
+
+- @sparrowstack/system-prompt@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes
