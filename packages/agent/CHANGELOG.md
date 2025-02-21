@@ -1,5 +1,16 @@
 # @sparrowstack/agent
 
+## 0.0.11
+
+### Patch Changes
+
+- e6117a2: addedd log
+    - @sparrowstack/core@0.0.11
+    - @sparrowstack/logger@0.0.11
+    - @sparrowstack/system-prompt@0.0.11
+    - @sparrowstack/system-prompts@0.0.11
+    - @sparrowstack/tool@0.0.11
+
 ## 0.0.10
 
 ### Patch Changes
