@@ -2,17 +2,15 @@ name: Publish Packages
 
 on:
     pull_request:
-        types: [closed]
+        types:
+            - closed
         branches:
             - main
-
-    workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
     publish-packages:
-        if: github.event.pull_request.merged == true && github.event.pull_request.title == 'Version Packages'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -37,7 +35,10 @@ jobs:
               run: bun build:all
 
             - name: Publish Packages
-              run: bun publish:all
+              id: changesets
+              uses: changesets/action@v1
+              with:
+                  publish: bun publish:all
               env:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
