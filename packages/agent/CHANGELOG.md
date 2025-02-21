@@ -1,5 +1,16 @@
 # @sparrowstack/agent
 
+## 0.0.14
+
+### Patch Changes
+
+- 396eb70: Addedd log
+    - @sparrowstack/core@0.0.14
+    - @sparrowstack/logger@0.0.14
+    - @sparrowstack/system-prompt@0.0.14
+    - @sparrowstack/system-prompts@0.0.14
+    - @sparrowstack/tool@0.0.14
+
 ## 0.0.13
 
 ### Patch Changes

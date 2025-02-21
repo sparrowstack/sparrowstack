@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/logger",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"description": "Logging module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
