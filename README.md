@@ -134,6 +134,7 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     ```
 
 4.  Setup environment variables
+
     Copy the `.env.template` file to `.env` and update the variables
 
     ```sh
