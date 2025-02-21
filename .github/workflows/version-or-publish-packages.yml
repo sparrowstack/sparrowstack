@@ -8,7 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    version-packages:
+    version-or-publish-packages:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
