@@ -1,8 +1,12 @@
 import OpenAI from 'openai';
 import { Anthropic } from '@anthropic-ai/sdk';
+import { type GenerateContentResult } from '@google/generative-ai';
 import { type IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/IModelResponseToolCall';
 
-type RawMessageResponse = Anthropic.Messages.Message | OpenAI.ChatCompletion;
+type RawMessageResponse =
+	| Anthropic.Messages.Message
+	| OpenAI.ChatCompletion
+	| GenerateContentResult;
 
 export interface IUsage {
 	inputTokens: number | null;
@@ -19,11 +23,11 @@ export interface IModelResponse {
 
 	// Sequence information
 	// TODO: Normalize Stop Reason
-	stopReason: string | null;
+	stopReason?: string | null;
 	stopSequence?: string | null;
 
 	// Usage statistics
-	usage: IUsage;
+	usage?: IUsage;
 
 	// Tool Calling
 	toolCalls?: IModelResponseToolCall[];

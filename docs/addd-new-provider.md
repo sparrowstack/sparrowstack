@@ -79,27 +79,16 @@ bun run lint:all && bun run build:all
 
 6. From the root, commit changes
 
-## Update ProviderS
+## Add New Provder
 
-1. Update BaseProvider to support the new provider
+1. Copy existing Provider folder and update all files to support the new provider
 
-- packages/agent/src/core/providers/BaseProvider/common/types/AIProvider.ts
-- packages/agent/src/core/providers/BaseProvider/common/types/Sdk.ts
+```bash
+packages/agent/src/core/providers/<provider-name>Provider
+```
 
-2. Add new Provider
+2. Update ProviderFactory to support the new provider
 
-- packages/agent/src/core/providers/<provider-name>Provider
-
-3. Add new provider to the ProviderFactory
-
-- packages/agent/src/core/ProviderFactory/common/constants/providers.ts
-
-bun run lint:all && bun run build:all
-
-# Update Tool
-
-4. Add to the providerSchemas
-
-- packages/tool/src/Tool/common/constants/providerSchemas.ts
-
-bun run lint:all && bun run build:all
+```bash
+packages/agent/src/core/ProviderFactory/ProviderFactory.ts
+```
