@@ -25,9 +25,10 @@
     },
     "packages/agent": {
       "name": "@sparrowstack/agent",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "dependencies": {
         "@anthropic-ai/sdk": "0.36.3",
+        "@google/generative-ai": "^0.22.0",
         "@sparrowstack/core": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
         "@sparrowstack/system-prompt": "workspace:*",
@@ -42,14 +43,14 @@
     },
     "packages/core": {
       "name": "@sparrowstack/core",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/interactive-terminal": {
       "name": "@sparrowstack/interactive-terminal",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
@@ -63,14 +64,14 @@
     },
     "packages/logger": {
       "name": "@sparrowstack/logger",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/sparrow": {
       "name": "@sparrowstack/sparrow",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/core": "workspace:*",
@@ -81,14 +82,14 @@
     },
     "packages/system-prompt": {
       "name": "@sparrowstack/system-prompt",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/system-prompts": {
       "name": "@sparrowstack/system-prompts",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "dependencies": {
         "@sparrowstack/system-prompt": "workspace:*",
       },
@@ -98,7 +99,7 @@
     },
     "packages/tool": {
       "name": "@sparrowstack/tool",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
       },
@@ -108,7 +109,7 @@
     },
     "packages/tools": {
       "name": "@sparrowstack/tools",
-      "version": "0.0.1",
+      "version": "0.0.14",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/tool": "workspace:*",
@@ -374,6 +375,8 @@
     "@eslint/object-schema": ["@eslint/object-schema@2.1.6", "", {}, "sha512-RBMg5FRL0I0gs51M/guSAj5/e14VQ4tpZnQNWwuDT66P14I43ItmPfIZRhO9fUVIPOAQXU47atlywZ/czoqFPA=="],
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.2.5", "", { "dependencies": { "@eslint/core": "^0.10.0", "levn": "^0.4.1" } }, "sha512-lB05FkqEdUg2AA0xEbUz0SnkXT1LcCTa438W4IWTUh4hdOnVbQyOJ81OrDXsJk/LSiJHubgGEFoR5EHq1NsH1A=="],
+
+    "@google/generative-ai": ["@google/generative-ai@0.22.0", "", {}, "sha512-mLR3PDWCk5O/BWNyDvFDIiwKeXQmFGZ+kJFd9m73QrUPCFREttJyVbBPTW4y9CwTbaltLMDaLDfroCrRv5Bl8Q=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

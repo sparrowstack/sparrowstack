@@ -53,7 +53,8 @@ export class Tool {
 	}
 
 	public getSchema({ providerName }: { providerName: ProviderName }) {
-		const toSchema = providerSchemas[providerName];
+		const toSchema =
+			providerSchemas[providerName as keyof typeof providerSchemas];
 
 		return toSchema({
 			name: this.name,

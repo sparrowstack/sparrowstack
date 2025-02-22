@@ -10,7 +10,8 @@ export class ProviderSDKFactory {
 		apiKey: string;
 		providerName: ProviderName;
 	}): ProviderSDK {
-		const ProviderSdk = providerSDKs[providerName];
+		const ProviderSdk =
+			providerSDKs[providerName as keyof typeof providerSDKs];
 		const providerSDK = new ProviderSdk({ apiKey });
 
 		return providerSDK;
