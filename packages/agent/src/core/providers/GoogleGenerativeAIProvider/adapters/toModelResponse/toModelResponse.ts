@@ -20,12 +20,13 @@ export const toModelResponse = ({ response }: IParams): IModelResponse => {
 	const modedlText = responseData.text();
 	const candidate = getCandidate({ response, index: 0 });
 	const {
-		finishReason: stopReason,
-		role,
-		text: canditdateText,
 		type,
+		role,
+		text: candidateText,
+		finishReason: stopReason,
 	} = getCandidateData({ candidate });
-	const text = canditdateText || modedlText || '';
+	const text = candidateText || modedlText || '';
+	const { usageMetadata } = responseData;
 
 	const modelResponse: IModelResponse = {
 		id,
@@ -38,7 +39,6 @@ export const toModelResponse = ({ response }: IParams): IModelResponse => {
 		rawMessage: response,
 	};
 
-	const { usageMetadata } = responseData;
 	if (usageMetadata) {
 		const {
 			promptTokenCount: inputTokens,

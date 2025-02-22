@@ -27,25 +27,23 @@ export const executeSendPrompt = async ({
 	chatMessageManager,
 }: IParams): Promise<IModelResponse> => {
 	const sdkModel = sdk.getGenerativeModel({ model });
-	const systemInstruction = systemPrompt.getPrompt();
+	const systemPromptText = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages();
 	// const tools = toolRegistry.getToolSchemas({
 	// 	providerName,
 	// }) as Anthropic.Tool[];
 	const sdkChat = sdkModel.startChat({
 		history: [],
-		// systemInstruction,
+		systemInstruction: {
+			parts: [
+				{
+					text: systemPromptText,
+				},
+			],
+		},
 	});
 
 	const message = messages[messages.length - 1];
-	const googleMessage = {
-		role: message.role,
-		parts: [
-			{
-				text: message.content,
-			},
-		],
-	};
 
 	const rawResponse = await sdkChat.sendMessage(message.content);
 
