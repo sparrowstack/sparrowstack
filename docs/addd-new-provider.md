@@ -41,11 +41,43 @@ bun run lint:all && bun run build:all
 
 ## Update ProviderSDKFactory
 
-1. Add new model SDK to all interfaces / constants
+```bash
+packages/agent/src/core/ProviderSDKFactory
+```
 
-- packages/agent/src/core/ProviderSDKFactory
+1. Add new provider SDK constant to providerSDKs
 
+```bash
+packages/agent/src/core/ProviderSDKFactory/common/constants/providerSDKs.ts
+```
+
+2. Add new provider SDK type to ProviderSDK
+
+```bash
+packages/agent/src/core/ProviderSDKFactory/common/types/ProviderSDK.ts
+```
+
+3. Update ProviderSDKFactory to use the new provider SDK
+
+_Note:_ Some updates to the ProviderSDKFactory may be required to support instantiating the new provider SDK.
+
+```bash
+packages/agent/src/core/ProviderSDKFactory/ProviderSDKFactory.ts
+```
+
+4. Update BaseProvider to support the new provider SDK
+
+```bash
+packages/agent/src/core/providers/BaseProvider/common/types/Sdk.ts
+```
+
+5. From the root, run lint and build
+
+```bash
 bun run lint:all && bun run build:all
+```
+
+6. From the root, commit changes
 
 ## Update ProviderS
 
