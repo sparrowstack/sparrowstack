@@ -32,7 +32,7 @@
 			<a href="#development">Development</a>
 			<ul>
 				<li><a href="#sparrowstack">SparrowStack</a></li>
-				<li><a href="#sparrow-starter">Sparrow Starter</a></li>
+				<li><a href="#sparrow-starter">SparrowStarter</a></li>
 			</ul>
 		</li>
 	</ol>
@@ -106,7 +106,7 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     bun release:all:local
     ```
 
-## Sparrow Starter
+## SparrowStarter
 
 1.  Clone the repo
 
