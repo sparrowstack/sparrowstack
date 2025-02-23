@@ -1,11 +1,14 @@
-// @ts-nocheck
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@core/ChatMessageManager';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/adapters/toModelResponse';
+import {
+	toChatHistory,
+	toModelResponse,
+	toSystemInsruction,
+} from '@core/providers/GoogleGenerativeAIProvider/adapters';
 
 export interface IParams {
 	model: string;
@@ -22,30 +25,27 @@ export const executeSendPrompt = async ({
 	model,
 	// maxTokens,
 	systemPrompt,
-	toolRegistry,
-	providerName,
+	// toolRegistry,
+	// providerName,
 	chatMessageManager,
 }: IParams): Promise<IModelResponse> => {
-	const sdkModel = sdk.getGenerativeModel({ model });
-	const systemPromptText = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages();
+	const history = toChatHistory({ messages });
+	const systemInstruction = toSystemInsruction({ systemPrompt });
+
 	// const tools = toolRegistry.getToolSchemas({
 	// 	providerName,
 	// }) as Anthropic.Tool[];
+
+	const sdkModel = sdk.getGenerativeModel({ model });
 	const sdkChat = sdkModel.startChat({
-		history: [],
-		systemInstruction: {
-			parts: [
-				{
-					text: systemPromptText,
-				},
-			],
-		},
+		history,
+		systemInstruction,
 	});
 
-	const message = messages[messages.length - 1];
-
-	const rawResponse = await sdkChat.sendMessage(message.content);
+	const lastMessage = messages[messages.length - 1];
+	const userMessage = lastMessage.content as string;
+	const rawResponse = await sdkChat.sendMessage(userMessage);
 
 	const response = toModelResponse({ response: rawResponse });
 
