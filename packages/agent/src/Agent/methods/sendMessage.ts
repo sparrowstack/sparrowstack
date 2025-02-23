@@ -28,7 +28,7 @@ export const sendMessage = async ({
 
 	const responseMessage = toolCallResponseMessage || modelResponseMessage;
 
-	chatMessageManager.addAssistantMessage({
+	chatMessageManager.addModelMessage({
 		text: responseMessage.text,
 	});
 

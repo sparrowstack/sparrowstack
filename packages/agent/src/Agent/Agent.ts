@@ -68,9 +68,12 @@ export class Agent {
 		// --------------------------------
 		this.toolRegistry = new ToolRegistry({ tools });
 
+		// Chat Message Manager
+		// --------------------------------
+		this.chatMessageManager = new ChatMessageManager({ providerName });
+
 		// Utilities
 		// --------------------------------
-		this.chatMessageManager = new ChatMessageManager();
 		this.logger = new Logger({ context: this.providerDisplayName });
 		this.interactionLogger = new InteractionLogger({
 			logger: this.logger,

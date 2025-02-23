@@ -31,7 +31,10 @@ export const executeSendPrompt = async ({
 	};
 	const chatMessages =
 		chatMessageManager.getMessages() as OpenAI.ChatCompletionMessageParam[];
-	const messages = [systemPromptMessage, ...chatMessages];
+	const messages = [
+		systemPromptMessage,
+		...chatMessages,
+	] as OpenAI.ChatCompletionMessageParam[];
 	const tools = toolRegistry.getToolSchemas({
 		providerName,
 	}) as OpenAI.ChatCompletionTool[];
