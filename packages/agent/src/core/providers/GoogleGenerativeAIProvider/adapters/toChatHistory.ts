@@ -1,4 +1,5 @@
 import { Role } from '@sparrowstack/core';
+import { type Content } from '@google/generative-ai';
 import { type IChatMessage } from '@sparrowstack/core';
 
 interface IParams {
@@ -6,12 +7,12 @@ interface IParams {
 }
 
 export const toChatHistory = ({ messages }: IParams) => {
-	return messages.map((message) => {
-		return {
-			role: message.role === Role.User ? Role.User : 'model', // TODO: GooleGenerativeAI - Add model role
-			parts: [{ text: message.content }],
-		};
-	});
+	const chatHistory: Content[] = messages.map((message) => ({
+		role: message.role === Role.User ? Role.User : 'model',
+		parts: [{ text: message.content as string }],
+	}));
+
+	return chatHistory;
 };
 
 /**

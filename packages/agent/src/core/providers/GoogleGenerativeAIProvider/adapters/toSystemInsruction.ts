@@ -1,4 +1,5 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { Role } from '@sparrowstack/core';
+import { type Content } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 
 interface IParams {
@@ -6,7 +7,8 @@ interface IParams {
 }
 
 export const toSystemInsruction = ({ systemPrompt }: IParams) => {
-	const systemInstruction = {
+	const systemInstruction: Content = {
+		role: Role.System,
 		parts: [
 			{
 				text: systemPrompt.getPrompt(),
