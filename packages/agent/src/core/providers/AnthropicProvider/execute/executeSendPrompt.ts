@@ -26,8 +26,7 @@ export const executeSendPrompt = async ({
 	chatMessageManager,
 }: IParams): Promise<IModelResponse> => {
 	const system = systemPrompt.getPrompt();
-	const messages =
-		chatMessageManager.getMessages() as unknown as Anthropic.MessageParam[];
+	const messages = chatMessageManager.getMessages<Anthropic.MessageParam>();
 	const tools = toolRegistry.getToolSchemas({
 		providerName,
 	}) as Anthropic.Tool[];

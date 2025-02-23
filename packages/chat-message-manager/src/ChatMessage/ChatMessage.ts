@@ -1,5 +1,4 @@
 import { Role, ProviderName } from '@sparrowstack/core';
-import { type IChatMessage } from '@chat-message/common/interfaces';
 
 export class ChatMessage {
 	readonly providerName: ProviderName;
@@ -8,24 +7,47 @@ export class ChatMessage {
 		this.providerName = providerName;
 	}
 
-	public createUserMessage({ content }: { content: string }): IChatMessage {
-		// Adapt if Google Generative AI
-		return {
-			role: Role.User,
-			content,
-		};
+	public createUserMessage<MessageType>({
+		text,
+	}: {
+		text: string;
+	}): MessageType {
+		let message: MessageType;
+
+		if (this.providerName === ProviderName.GoogleGenerativeAI) {
+			message = {
+				role: Role.User,
+				parts: [{ text }],
+			} as MessageType;
+		} else {
+			message = {
+				role: Role.User,
+				content: text,
+			} as MessageType;
+		}
+
+		return message;
 	}
 
-	public createModelMessage({ content }: { content: string }): IChatMessage {
-		// Adapt if Google Generative AI
-		const role =
-			this.providerName === ProviderName.GoogleGenerativeAI
-				? Role.Model
-				: Role.Assistant;
+	public createModelMessage<MessageType>({
+		text,
+	}: {
+		text: string;
+	}): MessageType {
+		let message: MessageType;
 
-		return {
-			role,
-			content,
-		};
+		if (this.providerName === ProviderName.GoogleGenerativeAI) {
+			message = {
+				role: Role.Model,
+				parts: [{ text }],
+			} as MessageType;
+		} else {
+			message = {
+				role: Role.Assistant,
+				content: text,
+			} as MessageType;
+		}
+
+		return message;
 	}
 }

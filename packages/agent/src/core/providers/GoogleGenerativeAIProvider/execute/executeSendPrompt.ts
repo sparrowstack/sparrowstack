@@ -1,14 +1,11 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import type { Content } from '@google/generative-ai';
-import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import {
-	toChatHistory,
-	toModelResponse,
-} from '@core/providers/GoogleGenerativeAIProvider/adapters';
+import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/adapters';
 
 export interface IParams {
 	model: string;
@@ -29,8 +26,7 @@ export const executeSendPrompt = async ({
 	providerName,
 	chatMessageManager,
 }: IParams): Promise<IModelResponse> => {
-	const messages = chatMessageManager.getMessages();
-	const history = toChatHistory({ messages });
+	const messages = chatMessageManager.getMessages<Content>();
 	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
 
 	// const tools = toolRegistry.getToolSchemas({
@@ -39,12 +35,12 @@ export const executeSendPrompt = async ({
 
 	const sdkModel = sdk.getGenerativeModel({ model });
 	const sdkChat = sdkModel.startChat({
-		history,
+		history: messages,
 		systemInstruction,
 	});
 
 	const lastMessage = messages[messages.length - 1];
-	const userMessage = lastMessage.content as string;
+	const userMessage = lastMessage.parts[0].text as string;
 
 	const rawResponse = await sdkChat.sendMessage(userMessage);
 

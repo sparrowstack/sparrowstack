@@ -1,9 +1,8 @@
 import chalk from 'chalk';
-import type { IChatMessage } from '@sparrowstack/chat-message-manager';
 
 interface IParams {
 	systemPrompt: string;
-	messages: IChatMessage[];
+	messages: unknown[];
 }
 
 export const contextWindowTemplate = ({ messages, systemPrompt }: IParams) => {
