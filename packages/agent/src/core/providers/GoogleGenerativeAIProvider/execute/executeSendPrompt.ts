@@ -1,5 +1,6 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
+import type { Content } from '@google/generative-ai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@core/ChatMessageManager';
@@ -7,7 +8,6 @@ import type { IModelResponse } from '@core/providers/BaseProvider/common/interfa
 import {
 	toChatHistory,
 	toModelResponse,
-	toSystemInsruction,
 } from '@core/providers/GoogleGenerativeAIProvider/adapters';
 
 export interface IParams {
@@ -26,12 +26,12 @@ export const executeSendPrompt = async ({
 	// maxTokens,
 	systemPrompt,
 	// toolRegistry,
-	// providerName,
+	providerName,
 	chatMessageManager,
 }: IParams): Promise<IModelResponse> => {
 	const messages = chatMessageManager.getMessages();
 	const history = toChatHistory({ messages });
-	const systemInstruction = toSystemInsruction({ systemPrompt });
+	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
 
 	// const tools = toolRegistry.getToolSchemas({
 	// 	providerName,

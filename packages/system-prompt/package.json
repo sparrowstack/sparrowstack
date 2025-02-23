@@ -25,6 +25,9 @@
 		"unlink": "bun unlink",
 		"publish-package": "bun publish"
 	},
+	"dependencies": {
+		"@sparrowstack/core": "workspace:*"
+	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
 	}

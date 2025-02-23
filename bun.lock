@@ -83,6 +83,9 @@
     "packages/system-prompt": {
       "name": "@sparrowstack/system-prompt",
       "version": "0.0.14",
+      "dependencies": {
+        "@sparrowstack/core": "workspace:*",
+      },
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
