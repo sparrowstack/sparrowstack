@@ -1,7 +1,7 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import type { ProviderName } from '@sparrowstack/core';
 import type { SystemPrompt } from '@sparrowstack/system-prompt';
-import type { ChatMessageManager } from '@core/ChatMessageManager';
+import type { ChatMessageManager } from '@sparrowstack/core';
 import type { IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	executeToolCall,

@@ -1,7 +1,7 @@
 import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import type { ToolCallManager } from '@core/ToolCallManager/ToolCallManager';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
-import type { ChatMessageManager } from '@core/ChatMessageManager';
+import type { ChatMessageManager } from '@sparrowstack/core';
 
 interface IParams {
 	message: string;

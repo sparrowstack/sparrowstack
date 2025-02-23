@@ -1,4 +1,4 @@
-import { type IChatMessage, ChatMessage } from '@sparrowstack/core';
+import { type IChatMessage, ChatMessage } from '@chat-message';
 
 export class ChatMessageManager {
 	protected chatMessages: IChatMessage[] = [];

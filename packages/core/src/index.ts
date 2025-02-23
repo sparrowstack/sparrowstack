@@ -2,6 +2,7 @@
 
 // Classes
 export { ChatMessage } from './ChatMessage/ChatMessage';
+export { ChatMessageManager } from './ChatMessageManager/ChatMessageManager';
 
 // Enums
 export { Role } from './common/enums/Role';

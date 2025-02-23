@@ -3,7 +3,7 @@ import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import type { ChatMessageManager } from '@core/ChatMessageManager';
+import type { ChatMessageManager } from '@sparrowstack/core';
 
 interface IConstructorParams {
 	provider: AIProvider;
