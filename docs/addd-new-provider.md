@@ -79,7 +79,7 @@ bun run lint:all && bun run build:all
 
 6. From the root, commit changes
 
-## Add New Provder
+## Add New Provider
 
 1. Copy existing Provider folder and update all files to support the new provider
 
@@ -92,3 +92,27 @@ packages/agent/src/core/providers/<provider-name>Provider
 ```bash
 packages/agent/src/core/ProviderFactory/ProviderFactory.ts
 ```
+
+3. From the root, run lint and build
+
+```bash
+bun run lint:all && bun run build:all
+```
+
+4. From the root, commit changes
+
+## Update System Prompt
+
+1. Update the SystemPrompt to support the new provider
+
+```bash
+packages/system-prompt/src/SystemPrompt/SystemPrompt.ts
+```
+
+2. From the root, run lint and build
+
+```bash
+bun run lint:all && bun run build:all
+```
+
+3. From the root, commit changes

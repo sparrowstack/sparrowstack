@@ -45,6 +45,7 @@ export const executeSendPrompt = async ({
 
 	const lastMessage = messages[messages.length - 1];
 	const userMessage = lastMessage.content as string;
+
 	const rawResponse = await sdkChat.sendMessage(userMessage);
 
 	const response = toModelResponse({ response: rawResponse });
