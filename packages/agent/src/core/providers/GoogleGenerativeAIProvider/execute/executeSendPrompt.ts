@@ -1,7 +1,7 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import type { Content } from '@google/generative-ai';
-import { ChatMessageManager } from '@sparrowstack/core';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';

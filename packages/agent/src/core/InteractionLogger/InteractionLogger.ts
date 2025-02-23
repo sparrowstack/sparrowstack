@@ -1,5 +1,5 @@
 import { Logger } from '@sparrowstack/logger';
-import { ChatMessageManager } from '@sparrowstack/core';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {

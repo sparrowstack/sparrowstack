@@ -1,6 +1,6 @@
 import { Role } from '@sparrowstack/core';
 import { type Content } from '@google/generative-ai';
-import { type IChatMessage } from '@sparrowstack/core';
+import { type IChatMessage } from '@sparrowstack/chat-message-manager';
 
 interface IParams {
 	messages: IChatMessage[];

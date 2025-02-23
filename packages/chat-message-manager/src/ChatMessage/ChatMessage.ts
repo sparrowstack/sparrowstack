@@ -1,4 +1,4 @@
-import { Role } from '@common/enums';
+import { Role } from '@sparrowstack/core';
 import { type IChatMessage } from '@chat-message/common/interfaces';
 
 export class ChatMessage {

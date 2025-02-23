@@ -1,4 +1,5 @@
-import { ProviderName, type IChatMessage } from '@sparrowstack/core';
+import { ProviderName } from '@sparrowstack/core';
+import { type IChatMessage } from '@sparrowstack/chat-message-manager';
 import { type ICachedResult } from '@tool/common/interfaces/ICachedResult';
 
 export interface IRuntimeParams {

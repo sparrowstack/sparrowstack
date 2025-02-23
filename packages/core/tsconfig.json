@@ -2,10 +2,6 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"paths": {
-			"@chat-message-manager": ["./src/ChatMessageManager"],
-			"@chat-message-manager/*": ["./src/ChatMessageManager/*"],
-			"@chat-message": ["./src/ChatMessage"],
-			"@chat-message/*": ["./src/ChatMessage/*"],
 			"@common": ["./src/common"],
 			"@common/*": ["./src/common/*"]
 		}

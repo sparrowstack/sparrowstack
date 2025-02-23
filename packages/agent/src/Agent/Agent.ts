@@ -2,7 +2,7 @@ import { sendMessage } from '@agent/methods';
 import { Logger } from '@sparrowstack/logger';
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
-import { ChatMessageManager } from '@sparrowstack/core';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { ToolCallManager } from '@core/ToolCallManager';
 import { ProviderFactory } from '@core/ProviderFactory';
 import { InteractionLogger } from '@core/InteractionLogger';

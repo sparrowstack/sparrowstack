@@ -26,6 +26,7 @@
 		"publish-package": "bun publish"
 	},
 	"dependencies": {
+		"@sparrowstack/chat-message-manager": "workspace:*",
 		"@sparrowstack/core": "workspace:*"
 	},
 	"peerDependencies": {

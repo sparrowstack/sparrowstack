@@ -1,18 +1,10 @@
 {
-	"name": "@sparrowstack/agent",
+	"name": "@sparrowstack/chat-message-manager",
 	"version": "0.0.14",
-	"description": "Agent module for SparrowStack",
+	"description": "Chat Message Manager for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"license": "MIT",
-	"publishConfig": {
-		"access": "restricted"
-	},
-	"author": {
-		"name": "SparrowStack",
-		"url": "https://sparrowstack.ai"
-	},
 	"scripts": {
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
@@ -25,19 +17,10 @@
 		"unlink": "bun unlink",
 		"publish-package": "bun publish"
 	},
-	"dependencies": {
-		"@anthropic-ai/sdk": "0.36.3",
-		"@google/generative-ai": "^0.22.0",
-		"@sparrowstack/chat-message-manager": "workspace:*",
-		"@sparrowstack/core": "workspace:*",
-		"@sparrowstack/logger": "workspace:*",
-		"@sparrowstack/system-prompt": "workspace:*",
-		"@sparrowstack/system-prompts": "workspace:*",
-		"@sparrowstack/tool": "workspace:*",
-		"chalk": "5.4.1",
-		"openai": "4.83.0"
-	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@sparrowstack/core": "workspace:*"
 	}
 }

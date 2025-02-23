@@ -29,6 +29,7 @@
       "dependencies": {
         "@anthropic-ai/sdk": "0.36.3",
         "@google/generative-ai": "^0.22.0",
+        "@sparrowstack/chat-message-manager": "workspace:*",
         "@sparrowstack/core": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
         "@sparrowstack/system-prompt": "workspace:*",
@@ -36,6 +37,16 @@
         "@sparrowstack/tool": "workspace:*",
         "chalk": "5.4.1",
         "openai": "4.83.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5.0.0",
+      },
+    },
+    "packages/chat-message-manager": {
+      "name": "@sparrowstack/chat-message-manager",
+      "version": "0.0.14",
+      "dependencies": {
+        "@sparrowstack/core": "workspace:*",
       },
       "peerDependencies": {
         "typescript": "^5.0.0",
@@ -104,6 +115,7 @@
       "name": "@sparrowstack/tool",
       "version": "0.0.14",
       "dependencies": {
+        "@sparrowstack/chat-message-manager": "workspace:*",
         "@sparrowstack/core": "workspace:*",
       },
       "peerDependencies": {
@@ -444,6 +456,8 @@
     "@sinclair/typebox": ["@sinclair/typebox@0.27.8", "", {}, "sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA=="],
 
     "@sparrowstack/agent": ["@sparrowstack/agent@workspace:packages/agent"],
+
+    "@sparrowstack/chat-message-manager": ["@sparrowstack/chat-message-manager@workspace:packages/chat-message-manager"],
 
     "@sparrowstack/core": ["@sparrowstack/core@workspace:packages/core"],
 

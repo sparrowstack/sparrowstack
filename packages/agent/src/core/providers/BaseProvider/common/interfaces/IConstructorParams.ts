@@ -1,6 +1,6 @@
 import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { ChatMessageManager } from '@sparrowstack/core';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 
 export interface IConstructorParams {
