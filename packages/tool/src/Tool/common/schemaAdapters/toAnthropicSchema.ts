@@ -1,13 +1,12 @@
-import { Anthropic } from '@anthropic-ai/sdk';
 import type { IToolSchemaParams } from '@tool';
 import { PropertyType } from '@tool/common/enums';
 import { processParameters, getRequiredParameters } from '@tool/common/utils';
 
-export const toAnthropicSchema = ({
+export const toAnthropicSchema = <SchemaType>({
 	name,
 	description,
 	parameters,
-}: IToolSchemaParams) => {
+}: IToolSchemaParams): SchemaType => {
 	return {
 		name: name,
 		description: description,
@@ -16,5 +15,5 @@ export const toAnthropicSchema = ({
 			properties: parameters ? processParameters({ parameters }) : {},
 			required: parameters ? getRequiredParameters({ parameters }) : [],
 		},
-	} as Anthropic.Tool;
+	} as SchemaType;
 };

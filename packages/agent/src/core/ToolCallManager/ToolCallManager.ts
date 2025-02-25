@@ -39,6 +39,8 @@ export class ToolCallManager {
 	}: {
 		responseMessage: IModelResponse;
 	}): Promise<IModelResponse> {
+		console.log('[responseMessage.toolCalls]', responseMessage.toolCalls);
+
 		// If no tool calls, return the original response
 		if (
 			!Array.isArray(responseMessage.toolCalls) ||

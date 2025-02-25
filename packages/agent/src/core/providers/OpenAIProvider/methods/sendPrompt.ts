@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Role, ProviderName } from '@sparrowstack/core';
+import { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/OpenAIProvider/adapters/toModelResponse';
@@ -16,7 +16,7 @@ export interface IParams {
 	chatMessageManager: ChatMessageManager;
 }
 
-export const executeSendPrompt = async ({
+export const sendPrompt = async ({
 	sdk,
 	model,
 	maxTokens,
@@ -32,9 +32,9 @@ export const executeSendPrompt = async ({
 	const chatMessages =
 		chatMessageManager.getMessages<OpenAI.ChatCompletionMessageParam>();
 	const messages = [systemPromptMessage, ...chatMessages];
-	const tools = toolRegistry.getToolSchemas({
+	const tools = toolRegistry.getToolSchemas<OpenAI.ChatCompletionTool>({
 		providerName,
-	}) as OpenAI.ChatCompletionTool[];
+	});
 
 	const rawResponse = (await sdk.chat.completions.create({
 		model,

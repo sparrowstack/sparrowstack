@@ -1,6 +1,6 @@
 export interface IToToolCallResponseMessagesParams {
 	toolCallResults: {
-		id: string;
+		id?: string;
 		result: unknown;
 	}[];
 }

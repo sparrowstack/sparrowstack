@@ -16,7 +16,7 @@ export interface IParams {
 	chatMessageManager: ChatMessageManager;
 }
 
-export const executeSendPrompt = async ({
+export const sendPrompt = async ({
 	sdk,
 	model,
 	maxTokens,
@@ -27,9 +27,9 @@ export const executeSendPrompt = async ({
 }: IParams): Promise<IModelResponse> => {
 	const system = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages<Anthropic.MessageParam>();
-	const tools = toolRegistry.getToolSchemas({
+	const tools = toolRegistry.getToolSchemas<Anthropic.Tool>({
 		providerName,
-	}) as Anthropic.Tool[];
+	});
 
 	const rawResponse = (await sdk.messages.create({
 		model,

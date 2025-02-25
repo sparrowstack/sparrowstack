@@ -2,7 +2,7 @@ export const toToolCallResponseMessages = ({
 	toolCallResults,
 }: {
 	toolCallResults: {
-		id: string;
+		id?: string;
 		result: unknown;
 	}[];
 }) => {

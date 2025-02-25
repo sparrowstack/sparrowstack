@@ -1,23 +1,16 @@
-import { Anthropic } from '@anthropic-ai/sdk';
+import type { GenerateContentResult } from '@google/generative-ai';
 
 interface IParams {
-	response: Anthropic.Messages.Message;
-}
-
-export enum ContentType {
-	ToolUse = 'tool_use',
+	response: GenerateContentResult;
 }
 
 export const getToolCalls = ({ response }: IParams) => {
-	const toolCalls = response.content.filter(
-		(content) => content.type === ContentType.ToolUse,
-	) as Anthropic.Messages.ToolUseBlock[];
+	const toolCalls = response.response.functionCalls() || [];
 
 	const adaptedToolCalls = toolCalls.map((toolCall) => {
 		return {
-			id: toolCall.id,
 			name: toolCall.name,
-			parameters: toolCall.input,
+			parameters: toolCall.args,
 			rawToolCall: toolCall,
 		};
 	});

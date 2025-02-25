@@ -1,6 +1,6 @@
 import { Role } from '@sparrowstack/core';
-import { Anthropic } from '@anthropic-ai/sdk';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { FunctionCall } from '@google/generative-ai';
 
 export const toToolCallRequestMessage = ({
 	responseMessage,
@@ -9,10 +9,10 @@ export const toToolCallRequestMessage = ({
 }) => {
 	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
 		return toolCall.rawToolCall;
-	}) as Anthropic.Messages.ToolUseBlock[];
+	}) as FunctionCall[];
 
 	return {
-		role: Role.Assistant,
+		role: Role.Model,
 		content: toolCalls,
 	};
 };

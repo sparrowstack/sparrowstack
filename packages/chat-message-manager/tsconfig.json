@@ -8,6 +8,6 @@
 			"@chat-message-manager/*": ["./src/ChatMessageManager/*"]
 		}
 	},
-	"include": ["src/**/*"],
-	"exclude": ["dist", "node_modules", "**/*.test.ts"]
+	"include": ["src/**/*", "tests/**/*"],
+	"exclude": ["dist", "node_modules"]
 }

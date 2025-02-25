@@ -2,11 +2,11 @@ import type { IToolSchemaParams } from '@tool';
 import { PropertyType } from '@tool/common/enums';
 import { processParameters, getRequiredParameters } from '@tool/common/utils';
 
-export const toOpenAISchema = ({
+export const toOpenAISchema = <SchemaType>({
 	name,
 	parameters,
 	description,
-}: IToolSchemaParams) => {
+}: IToolSchemaParams): SchemaType => {
 	return {
 		type: PropertyType.Function,
 		function: {
@@ -21,5 +21,5 @@ export const toOpenAISchema = ({
 				additionalProperties: false,
 			},
 		},
-	};
+	} as SchemaType;
 };

@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { BaseProvider } from '@core/providers/BaseProvider';
-import { executeSendPrompt } from '@core/providers/AnthropicProvider/execute/executeSendPrompt';
+import { sendPrompt } from '@core/providers/AnthropicProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
@@ -39,7 +39,7 @@ export class AnthropicProvider extends BaseProvider {
 	};
 
 	public sendPrompt() {
-		return executeSendPrompt({
+		return sendPrompt({
 			model: this.model,
 			providerName: this.name,
 			maxTokens: this.maxTokens,

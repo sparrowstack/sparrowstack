@@ -5,6 +5,7 @@ import type {
 	GenerateContentResult,
 } from '@google/generative-ai';
 import {
+	getToolCalls,
 	getCandidate,
 	getCandidateData,
 } from '@core/providers/GoogleGenerativeAIProvider/adapters/toModelResponse/common/utils';
@@ -27,6 +28,7 @@ export const toModelResponse = ({ response }: IParams): IModelResponse => {
 	} = getCandidateData({ candidate });
 	const text = candidateText || modedlText || '';
 	const { usageMetadata } = responseData;
+	const toolCalls = getToolCalls({ response });
 
 	const modelResponse: IModelResponse = {
 		id,
@@ -35,7 +37,7 @@ export const toModelResponse = ({ response }: IParams): IModelResponse => {
 		type,
 		text,
 		stopReason,
-		toolCalls: [], // TODO: GoogleGenerativeAI - Add role
+		toolCalls,
 		rawMessage: response,
 	};
 

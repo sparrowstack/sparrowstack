@@ -116,3 +116,36 @@ bun run lint:all && bun run build:all
 ```
 
 3. From the root, commit changes
+
+## Update Chat Message Manager
+
+1. Update the ChatMessageManager to support the new provider
+
+```bash
+packages/chat-message-manager/src/ChatMessageManager/ChatMessageManager.ts
+```
+
+2. From the root, run lint and build
+
+```bash
+bun run lint:all && bun run build:all
+```
+
+3. From the root, commit changes
+
+## Update Tool
+
+1. Update the Tool to support the new provider
+
+```bash
+packages/tool/src/Tool/Tool.ts
+packages/tool/tests/Tool/common/schemaAdapters
+```
+
+2. From the root, run lint and build
+
+```bash
+bun run lint:all && bun run build:all
+```
+
+3. From the root, commit changes

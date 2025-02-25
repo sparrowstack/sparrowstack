@@ -6,6 +6,7 @@
 		"packages/*"
 	],
 	"scripts": {
+		"test:unit:all": "bunx nx run-many --target=test:unit --all --parallel",
 		"lint:all": "bunx nx run-many --target=lint --all --parallel",
 		"build:all": "bunx nx run-many --target=build --all --parallel",
 		"link:all": "bunx nx run-many --target=link --all --parallel",

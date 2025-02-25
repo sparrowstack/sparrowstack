@@ -6,6 +6,7 @@
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
+		"test:unit": "bun test --test-file-pattern \"\\.unit\\.test\\.ts$\" tests",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
 		"lint": "eslint \"src/**/*.{js,ts}\"",

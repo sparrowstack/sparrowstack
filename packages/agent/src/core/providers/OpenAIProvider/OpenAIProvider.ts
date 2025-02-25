@@ -1,6 +1,6 @@
 import type OpenAI from 'openai';
 import { BaseProvider } from '@core/providers/BaseProvider';
-import { executeSendPrompt } from '@core/providers/OpenAIProvider/execute';
+import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
@@ -39,7 +39,7 @@ export class OpenAIProvider extends BaseProvider {
 	};
 
 	public sendPrompt() {
-		return executeSendPrompt({
+		return sendPrompt({
 			model: this.model,
 			providerName: this.name,
 			sdk: this.sdk as OpenAI,

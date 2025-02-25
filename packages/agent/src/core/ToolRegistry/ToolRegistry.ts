@@ -22,8 +22,14 @@ export class ToolRegistry {
 		return Object.values(this.toolRegistry);
 	}
 
-	public getToolSchemas({ providerName }: { providerName: ProviderName }) {
-		return this.getTools().map((tool) => tool.getSchema({ providerName }));
+	public getToolSchemas<SchemaType>({
+		providerName,
+	}: {
+		providerName: ProviderName;
+	}): SchemaType[] {
+		return this.getTools().map((tool) =>
+			tool.getSchema<SchemaType>({ providerName }),
+		);
 	}
 
 	public getToolNames() {

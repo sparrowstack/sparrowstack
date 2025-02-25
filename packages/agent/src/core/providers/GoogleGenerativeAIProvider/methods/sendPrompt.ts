@@ -1,11 +1,14 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import type { Content } from '@google/generative-ai';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/adapters';
+import {
+	GoogleGenerativeAI,
+	type FunctionDeclarationsTool,
+} from '@google/generative-ai';
 
 export interface IParams {
 	model: string;
@@ -17,23 +20,26 @@ export interface IParams {
 	chatMessageManager: ChatMessageManager;
 }
 
-export const executeSendPrompt = async ({
+export const sendPrompt = async ({
 	sdk,
 	model,
 	// maxTokens,
 	systemPrompt,
-	// toolRegistry,
+	toolRegistry,
 	providerName,
 	chatMessageManager,
 }: IParams): Promise<IModelResponse> => {
 	const messages = chatMessageManager.getMessages<Content>();
 	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
 
-	// const tools = toolRegistry.getToolSchemas({
-	// 	providerName,
-	// }) as Anthropic.Tool[];
+	const tools = toolRegistry.getToolSchemas<FunctionDeclarationsTool>({
+		providerName,
+	});
 
-	const sdkModel = sdk.getGenerativeModel({ model });
+	const sdkModel = sdk.getGenerativeModel({
+		model,
+		tools,
+	});
 	const sdkChat = sdkModel.startChat({
 		history: messages,
 		systemInstruction,

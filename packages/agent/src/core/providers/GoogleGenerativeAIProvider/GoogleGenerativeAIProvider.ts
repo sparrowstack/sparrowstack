@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { BaseProvider } from '@core/providers/BaseProvider';
-import { executeSendPrompt } from '@core/providers/GoogleGenerativeAIProvider/execute/executeSendPrompt';
+import { sendPrompt } from '@core/providers/GoogleGenerativeAIProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
@@ -39,7 +39,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider {
 	};
 
 	public sendPrompt() {
-		return executeSendPrompt({
+		return sendPrompt({
 			model: this.model,
 			providerName: this.name,
 			maxTokens: this.maxTokens,
