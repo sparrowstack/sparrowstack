@@ -3,7 +3,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import type { FunctionCall } from '@google/generative-ai';
 
 export interface IModelResponseToolCall {
-	id?: string;
+	id: string;
 	name: string;
 	parameters: unknown;
 	rawToolCall:

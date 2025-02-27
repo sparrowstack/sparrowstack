@@ -60,12 +60,24 @@ export const executeToolCalls = async ({
 					toolCall,
 				});
 			} else if (!isValid) {
-				result = validationFailedMessage;
+				// The object is for Gemini compatibility
+				// but seems to work for all providers
+				result = {
+					error: {
+						message: validationFailedMessage,
+					},
+				};
 			} else if (hasExceededMaxCallCount) {
-				result = maxCallCountExceededMessage;
+				// The object is for Gemini compatibility
+				// but seems to work for all providers
+				result = {
+					error: {
+						message: maxCallCountExceededMessage,
+					},
+				};
 			}
 
-			return { id, result };
+			return { id, name, result };
 		}),
 	);
 

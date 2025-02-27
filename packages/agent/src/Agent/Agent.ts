@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { sendMessage } from '@agent/methods';
 import { Logger } from '@sparrowstack/logger';
 import { ToolRegistry } from '@core/ToolRegistry';

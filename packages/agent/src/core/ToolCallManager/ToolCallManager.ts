@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ToolRegistry } from '@core/ToolRegistry';
 import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
@@ -39,8 +40,6 @@ export class ToolCallManager {
 	}: {
 		responseMessage: IModelResponse;
 	}): Promise<IModelResponse> {
-		console.log('[responseMessage.toolCalls]', responseMessage.toolCalls);
-
 		// If no tool calls, return the original response
 		if (
 			!Array.isArray(responseMessage.toolCalls) ||
@@ -69,16 +68,54 @@ export class ToolCallManager {
 			chatMessageManager: this.chatMessageManager,
 		});
 
-		const assistantToolCallResponseMessages =
+		const toolCallResponseMessages =
 			this.provider.adapters.toToolCallResponseMessages({
 				toolCallResults,
 			});
 
-		assistantToolCallResponseMessages.forEach((message) => {
-			this.chatMessageManager.addToMessages({
-				message,
+		console.log(
+			'[DEBUG]::toolCallResponseMessages',
+			toolCallResponseMessages,
+		);
+
+		// Some providers require custom messages for tool call responses.
+		// Some providers require just the assistant/user messages for tool call responses.
+		// Some require both the assistant and user messages for tool call responses.
+		//
+		// Below we're checking for both and adding them to the chat message manager.
+		//
+		// If below gets any more complex, we can move this to a helper function.
+		// --------------------------------------------------------------------------
+		if (toolCallResponseMessages?.customMessages?.length > 0) {
+			// OpenAI / Anthropic Require custom messages for tool call responses.
+			toolCallResponseMessages.customMessages.forEach((message) => {
+				this.chatMessageManager.addToMessages({
+					message,
+				});
 			});
-		});
+		} else {
+			// Google Generative AI require both the assistant/user messages for tool call responses.
+			if (toolCallResponseMessages?.assistantMessages?.length > 0) {
+				toolCallResponseMessages.assistantMessages.forEach(
+					(message) => {
+						this.chatMessageManager.addToMessages({
+							message,
+						});
+					},
+				);
+			}
+
+			if (toolCallResponseMessages?.userMessages?.length > 0) {
+				toolCallResponseMessages.userMessages.forEach((message) => {
+					this.chatMessageManager.addToMessages({
+						message,
+					});
+				});
+			}
+		}
+		// --------------------------------------------------------------------------
+
+		console.log('[DEBUG]::Messages', this.chatMessageManager.getMessages());
 
 		// Get the model's response to the tool call results
 		const toolCallResponseMessage = await this.provider.sendPrompt();

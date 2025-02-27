@@ -1,11 +1,11 @@
-export const toToolCallResponseMessages = ({
-	toolCallResults,
-}: {
+interface IParams {
 	toolCallResults: {
-		id?: string;
+		id: string;
 		result: unknown;
 	}[];
-}) => {
+}
+
+export const toToolCallResponseMessages = ({ toolCallResults }: IParams) => {
 	const toolResultMessages = toolCallResults.map((toolCallResult) => {
 		return {
 			role: 'user',
@@ -19,7 +19,9 @@ export const toToolCallResponseMessages = ({
 		};
 	});
 
-	return [...toolResultMessages];
+	return {
+		customMessages: [...toolResultMessages],
+	};
 };
 
 // Example for reference

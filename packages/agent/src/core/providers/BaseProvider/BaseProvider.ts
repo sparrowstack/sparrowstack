@@ -6,13 +6,14 @@ import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,
+	IToolCallResponseMessage,
 	IToToolCallRequestMessageParams,
 	IToToolCallResponseMessagesParams,
 } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	Sdk,
 	ToolCallRequestMessage,
-	ToolCallResponseMessages,
+	// ToolCallResponseMessages,
 } from '@core/providers/BaseProvider/common/types';
 
 export abstract class BaseProvider {
@@ -74,7 +75,7 @@ export abstract class BaseProvider {
 
 		toToolCallResponseMessages: ({
 			toolCallResults,
-		}: IToToolCallResponseMessagesParams) => ToolCallResponseMessages;
+		}: IToToolCallResponseMessagesParams) => IToolCallResponseMessage;
 	};
 
 	abstract sendPrompt(): Promise<IModelResponse>;
