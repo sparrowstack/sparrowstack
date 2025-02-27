@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ToolRegistry } from '@core/ToolRegistry';
 import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
@@ -73,10 +72,6 @@ export class ToolCallManager {
 				toolCallResults,
 			});
 
-		console.log(
-			'[DEBUG]::toolCallResponseMessages',
-			toolCallResponseMessages,
-		);
 
 		// Some providers require custom messages for tool call responses.
 		// Some providers require just the assistant/user messages for tool call responses.
@@ -114,8 +109,6 @@ export class ToolCallManager {
 			}
 		}
 		// --------------------------------------------------------------------------
-
-		console.log('[DEBUG]::Messages', this.chatMessageManager.getMessages());
 
 		// Get the model's response to the tool call results
 		const toolCallResponseMessage = await this.provider.sendPrompt();

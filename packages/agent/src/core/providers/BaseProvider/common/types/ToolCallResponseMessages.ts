@@ -1,10 +1,10 @@
-export type ToolCallResponseMessages =
+export type ToolCallResponseMessage =
 	// OpenAI
 	| {
 			role: string;
 			tool_call_id: string;
 			content: string;
-	  }[]
+	  }
 	// Anthropic
 	| {
 			role: string;
@@ -13,4 +13,20 @@ export type ToolCallResponseMessages =
 				tool_use_id: string;
 				content: string;
 			}[];
-	  }[];
+	  }
+	// Google Generative AI
+	| {
+			role: 'function';
+			parts: {
+				functionResponse: {
+					name: string;
+					response: unknown;
+				};
+			}[];
+	  }
+	| {
+			role: 'user';
+			parts: {
+				text: string;
+			}[];
+	  };

@@ -1,7 +1,7 @@
-// import type { ToolCallResponseMessages } from '@core/providers/BaseProvider/common/types';
+import type { ToolCallResponseMessages } from '@core/providers/BaseProvider/common/types';
 
 export interface IToolCallResponseMessage {
-	userMessages: unknown[];
-	customMessages: unknown[];
-	assistantMessages: unknown[];
+	userMessages?: ToolCallResponseMessages[];
+	customMessages?: ToolCallResponseMessages[];
+	assistantMessages?: ToolCallResponseMessages[];
 }
