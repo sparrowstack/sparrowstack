@@ -3,6 +3,7 @@ import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type {
+	IToolCallRequestMessage,
 	IToolCallResponseMessage,
 	IToToolCallResponseMessagesParams,
 } from '@core/providers/OpenAIProvider/common/interfaces';
@@ -12,6 +13,7 @@ import {
 } from '@core/providers/OpenAIProvider/adapters';
 
 export class OpenAIProvider extends BaseProvider<
+	IToolCallRequestMessage,
 	IToolCallResponseMessage,
 	IToToolCallResponseMessagesParams
 > {

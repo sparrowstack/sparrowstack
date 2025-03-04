@@ -9,9 +9,9 @@ import type {
 	IConstructorParams,
 	IToToolCallRequestMessageParams,
 } from '@core/providers/BaseProvider/common/interfaces';
-import type { ToolCallRequestMessage } from '@core/providers/BaseProvider/common/types';
 
 export abstract class BaseProvider<
+	TToolCallRequestMessage = unknown,
 	TToolCallResponseMessage = unknown,
 	TToolCallResponseMessagesParams = unknown,
 > {
@@ -69,7 +69,7 @@ export abstract class BaseProvider<
 	abstract adapters: {
 		toToolCallRequestMessage: (
 			params: IToToolCallRequestMessageParams,
-		) => ToolCallRequestMessage;
+		) => TToolCallRequestMessage;
 
 		toToolCallResponseMessages: (
 			params: TToolCallResponseMessagesParams,

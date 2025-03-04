@@ -3,6 +3,7 @@ import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/AnthropicProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type {
+	IToolCallRequestMessage,
 	IToolCallResponseMessage,
 	IToToolCallResponseMessagesParams,
 } from '@core/providers/AnthropicProvider/common/interfaces';
@@ -12,6 +13,7 @@ import {
 } from '@core/providers/AnthropicProvider/adapters';
 
 export class AnthropicProvider extends BaseProvider<
+	IToolCallRequestMessage,
 	IToolCallResponseMessage,
 	IToToolCallResponseMessagesParams
 > {
