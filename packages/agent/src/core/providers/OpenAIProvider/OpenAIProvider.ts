@@ -5,7 +5,6 @@ import type { IConstructorParams } from '@core/providers/BaseProvider/common/int
 import type {
 	IToolCallRequestMessage,
 	IToolCallResponseMessage,
-	IToToolCallResponseMessagesParams,
 } from '@core/providers/OpenAIProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
@@ -14,8 +13,7 @@ import {
 
 export class OpenAIProvider extends BaseProvider<
 	IToolCallRequestMessage,
-	IToolCallResponseMessage,
-	IToToolCallResponseMessagesParams
+	IToolCallResponseMessage
 > {
 	constructor({
 		name,

@@ -1,16 +1,9 @@
 import type { IToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
-
-interface IParams {
-	toolCallResults: {
-		id: string;
-		name: string;
-		result: unknown;
-	}[];
-}
+import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: IParams): IToolCallResponseMessage => {
+}: ToolCallResults): IToolCallResponseMessage => {
 	// Gemini expects the function response to be the raw result
 	const functionResponses = toolCallResults.map(({ name, result }) => {
 		let response = result;

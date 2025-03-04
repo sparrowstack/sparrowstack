@@ -1,15 +1,9 @@
+import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
 import type { IToolCallResponseMessage } from '@core/providers/AnthropicProvider/common/interfaces';
-
-interface IParams {
-	toolCallResults: {
-		id: string;
-		result: unknown;
-	}[];
-}
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: IParams): IToolCallResponseMessage => {
+}: ToolCallResults): IToolCallResponseMessage => {
 	const toolResultMessages = toolCallResults.map((toolCallResult) => {
 		return {
 			role: 'user',

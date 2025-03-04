@@ -1,20 +1,14 @@
+import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
 import type { IToolCallResponseMessage } from '@core/providers/OpenAIProvider/common/interfaces';
-
-interface IParams {
-	toolCallResults: {
-		id: string;
-		result: unknown;
-	}[];
-}
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: IParams): IToolCallResponseMessage => {
-	const toolResultMessages = toolCallResults.map((toolCallResults) => {
+}: ToolCallResults): IToolCallResponseMessage => {
+	const toolResultMessages = toolCallResults.map((toolCallResult) => {
 		return {
 			role: 'tool',
-			tool_call_id: toolCallResults.id,
-			content: JSON.stringify(toolCallResults.result),
+			tool_call_id: toolCallResult.id,
+			content: JSON.stringify(toolCallResult.result),
 		};
 	});
 
