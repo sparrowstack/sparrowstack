@@ -1,7 +1,7 @@
 import type OpenAI from 'openai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
-import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IToolCallRequestMessage,
 	IToolCallResponseMessage,
@@ -23,7 +23,7 @@ export class OpenAIProvider extends BaseProvider<
 		systemPrompt,
 		toolRegistry,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		super({
 			name,
 			model,

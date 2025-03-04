@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/AnthropicProvider/methods';
-import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
@@ -23,7 +23,7 @@ export class AnthropicProvider extends BaseProvider<
 		systemPrompt,
 		toolRegistry,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		super({
 			name,
 			model,

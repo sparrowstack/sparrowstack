@@ -1,7 +1,7 @@
 import { ChatMessage } from '@chat-message';
 import { ProviderName } from '@sparrowstack/core';
 
-interface IConstructorParams {
+interface ConstructorParams {
 	providerName: ProviderName;
 }
 
@@ -10,7 +10,7 @@ export class ChatMessageManager {
 	protected chatMessage: ChatMessage;
 	protected chatMessages: unknown[] = [];
 
-	constructor({ providerName }: IConstructorParams) {
+	constructor({ providerName }: ConstructorParams) {
 		this.providerName = providerName;
 		this.chatMessage = new ChatMessage({ providerName });
 	}

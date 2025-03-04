@@ -5,12 +5,12 @@ import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
 import type {
-	IModelResponse,
+	ModelResponse,
 	ToolCallResults,
 } from '@core/providers/BaseProvider/common/interfaces';
 import type {
-	IConstructorParams,
-	IToToolCallRequestMessageParams,
+	ConstructorParams,
+	ModelResponseMessage,
 } from '@core/providers/BaseProvider/common/interfaces';
 
 export abstract class BaseProvider<
@@ -42,7 +42,7 @@ export abstract class BaseProvider<
 		systemPrompt,
 		toolRegistry,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		// Base Properties
 		// --------------------------------
 		this.name = name; // e.g. 'openai'
@@ -70,7 +70,7 @@ export abstract class BaseProvider<
 
 	abstract adapters: {
 		toToolCallRequestMessage: (
-			params: IToToolCallRequestMessageParams,
+			params: ModelResponseMessage,
 		) => TToolCallRequestMessage;
 
 		toToolCallResponseMessages: (
@@ -78,5 +78,5 @@ export abstract class BaseProvider<
 		) => TToolCallResponseMessage;
 	};
 
-	abstract sendPrompt(): Promise<IModelResponse>;
+	abstract sendPrompt(): Promise<ModelResponse>;
 }

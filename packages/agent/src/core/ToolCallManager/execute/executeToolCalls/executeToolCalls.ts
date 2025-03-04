@@ -3,7 +3,7 @@ import type { ProviderName } from '@sparrowstack/core';
 import type { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { ToolCallResult } from '@core/ToolCallManager/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
-import type { IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	executeToolCall,
 	executeValidationCheck,
@@ -15,7 +15,7 @@ interface IParams {
 	providerName: ProviderName;
 	systemPrompt: SystemPrompt;
 	toolRegistry: ToolRegistry;
-	toolCalls: IModelResponseToolCall[];
+	toolCalls: ModelResponseToolCall[];
 	chatMessageManager: ChatMessageManager;
 }
 

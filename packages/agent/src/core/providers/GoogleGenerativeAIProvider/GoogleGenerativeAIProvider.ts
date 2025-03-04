@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/GoogleGenerativeAIProvider/methods';
-import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IToolCallRequestMessage,
 	IToolCallResponseMessage,
@@ -23,7 +23,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 		systemPrompt,
 		toolRegistry,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		super({
 			name,
 			model,

@@ -1,12 +1,12 @@
 import OpenAI from 'openai';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { getToolCalls } from '@core/providers/OpenAIProvider/adapters/toModelResponse/common/utils';
 
 export const toModelResponse = ({
 	response,
 }: {
 	response: OpenAI.ChatCompletion;
-}): IModelResponse => {
+}): ModelResponse => {
 	const { id, model, usage, choices } = response;
 	const { prompt_tokens: inputTokens, completion_tokens: outputTokens } =
 		usage || {};
@@ -17,7 +17,7 @@ export const toModelResponse = ({
 
 	const toolCalls = getToolCalls({ message });
 
-	const modelResponse: IModelResponse = {
+	const modelResponse: ModelResponse = {
 		id,
 		role,
 		model,

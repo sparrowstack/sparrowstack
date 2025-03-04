@@ -1,11 +1,11 @@
 import { OpenAI } from 'openai';
 import { Role } from '@sparrowstack/core';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 export const toToolCallRequestMessage = ({
 	responseMessage,
 }: {
-	responseMessage: IModelResponse;
+	responseMessage: ModelResponse;
 }) => {
 	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
 		return toolCall.rawToolCall;

@@ -1,5 +1,5 @@
 import { randomUUIDv7 } from 'bun';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	UsageMetadata,
 	GenerateContentResult,
@@ -14,7 +14,7 @@ interface IParams {
 	response: GenerateContentResult;
 }
 
-export const toModelResponse = ({ response }: IParams): IModelResponse => {
+export const toModelResponse = ({ response }: IParams): ModelResponse => {
 	const { response: responseData } = response;
 	const id = randomUUIDv7();
 	const model = (responseData as any)?.modelVersion ?? 'unknown';
@@ -30,7 +30,7 @@ export const toModelResponse = ({ response }: IParams): IModelResponse => {
 	const { usageMetadata } = responseData;
 	const toolCalls = getToolCalls({ response });
 
-	const modelResponse: IModelResponse = {
+	const modelResponse: ModelResponse = {
 		id,
 		role,
 		model,

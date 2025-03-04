@@ -3,7 +3,7 @@ import { ProviderName } from '@sparrowstack/core';
 import type { Content } from '@google/generative-ai';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/adapters';
 import {
 	GoogleGenerativeAI,
@@ -28,7 +28,7 @@ export const sendPrompt = async ({
 	toolRegistry,
 	providerName,
 	chatMessageManager,
-}: IParams): Promise<IModelResponse> => {
+}: IParams): Promise<ModelResponse> => {
 	const messages = chatMessageManager.getMessages<Content>();
 	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
 

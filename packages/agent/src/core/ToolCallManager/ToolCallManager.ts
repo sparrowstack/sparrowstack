@@ -2,10 +2,10 @@ import { ToolRegistry } from '@core/ToolRegistry';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 
-interface IConstructorParams {
+interface ConstructorParams {
 	provider: Provider;
 	toolRegistry: ToolRegistry;
 	interactionLogger: InteractionLogger;
@@ -23,7 +23,7 @@ export class ToolCallManager {
 		toolRegistry,
 		interactionLogger,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		this.provider = provider;
 		this.toolRegistry = toolRegistry;
 		this.interactionLogger = interactionLogger;
@@ -37,8 +37,8 @@ export class ToolCallManager {
 	public async handleToolCalls({
 		responseMessage,
 	}: {
-		responseMessage: IModelResponse;
-	}): Promise<IModelResponse> {
+		responseMessage: ModelResponse;
+	}): Promise<ModelResponse> {
 		// If no tool calls, return the original response
 		if (
 			!Array.isArray(responseMessage.toolCalls) ||

@@ -3,7 +3,7 @@ import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/AnthropicProvider/adapters/toModelResponse';
 
 export interface IParams {
@@ -24,7 +24,7 @@ export const sendPrompt = async ({
 	toolRegistry,
 	providerName,
 	chatMessageManager,
-}: IParams): Promise<IModelResponse> => {
+}: IParams): Promise<ModelResponse> => {
 	const system = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages<Anthropic.MessageParam>();
 	const tools = toolRegistry.getToolSchemas<Anthropic.Tool>({

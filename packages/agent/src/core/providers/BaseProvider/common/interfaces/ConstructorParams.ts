@@ -3,7 +3,7 @@ import { ToolRegistry } from '@core/ToolRegistry';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 
-export interface IConstructorParams {
+export interface ConstructorParams {
 	model: string;
 	apiKey: string;
 	name: ProviderName;

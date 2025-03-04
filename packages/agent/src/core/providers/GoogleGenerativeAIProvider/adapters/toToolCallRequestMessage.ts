@@ -1,9 +1,9 @@
 import { Role } from '@sparrowstack/core';
 import type { FunctionCall } from '@google/generative-ai';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 interface IParams {
-	responseMessage: IModelResponse;
+	responseMessage: ModelResponse;
 }
 
 export const toToolCallRequestMessage = ({ responseMessage }: IParams) => {

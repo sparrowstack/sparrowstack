@@ -12,13 +12,13 @@ import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 // import type { BaseProvider } from '@core/providers/BaseProvider/BaseProvider';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	SystemPrompt,
 	type ISystemPromptParams,
 } from '@sparrowstack/system-prompt';
 
-interface IConstructorParams {
+interface ConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: ProviderName;
@@ -53,7 +53,7 @@ export class Agent {
 		apiKey,
 		provider: providerName,
 		systemPrompt = defaultPrompt,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		// Values
 		// --------------------------------
 		this.providerName = providerName;
@@ -108,7 +108,7 @@ export class Agent {
 		message,
 	}: {
 		message: string;
-	}): Promise<IModelResponse> {
+	}): Promise<ModelResponse> {
 		return sendMessage({
 			message,
 			provider: this.provider,
