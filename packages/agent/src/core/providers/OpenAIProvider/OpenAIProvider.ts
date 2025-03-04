@@ -2,12 +2,19 @@ import type OpenAI from 'openai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type {
+	IToolCallResponseMessage,
+	IToToolCallResponseMessagesParams,
+} from '@core/providers/OpenAIProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
 } from '@core/providers/OpenAIProvider/adapters';
 
-export class OpenAIProvider extends BaseProvider {
+export class OpenAIProvider extends BaseProvider<
+	IToolCallResponseMessage,
+	IToToolCallResponseMessagesParams
+> {
 	constructor({
 		name,
 		model,

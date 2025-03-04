@@ -1,12 +1,12 @@
-import OpenAI from 'openai';
-import { Anthropic } from '@anthropic-ai/sdk';
-import { type GenerateContentResult } from '@google/generative-ai';
+// import OpenAI from 'openai';
+// import { Anthropic } from '@anthropic-ai/sdk';
+// import { type GenerateContentResult } from '@google/generative-ai';
 import { type IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/IModelResponseToolCall';
 
-type RawMessageResponse =
-	| Anthropic.Messages.Message
-	| OpenAI.ChatCompletion
-	| GenerateContentResult;
+type RawMessageResponse = unknown;
+// | Anthropic.Messages.Message
+// | OpenAI.ChatCompletion
+// | GenerateContentResult;
 
 export interface IUsage {
 	inputTokens: number | null;

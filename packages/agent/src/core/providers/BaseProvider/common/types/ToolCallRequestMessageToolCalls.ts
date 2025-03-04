@@ -1,4 +1,4 @@
-import { OpenAI } from 'openai';
+// import { OpenAI } from 'openai';
 
-export type ToolCallRequestMessageToolCalls =
-	OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];
+export type ToolCallRequestMessageToolCalls = unknown;
+// OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];

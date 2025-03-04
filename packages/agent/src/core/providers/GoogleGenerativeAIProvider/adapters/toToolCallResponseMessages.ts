@@ -1,3 +1,5 @@
+import type { IToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
+
 interface IParams {
 	toolCallResults: {
 		id: string;
@@ -6,7 +8,9 @@ interface IParams {
 	}[];
 }
 
-export const toToolCallResponseMessages = ({ toolCallResults }: IParams) => {
+export const toToolCallResponseMessages = ({
+	toolCallResults,
+}: IParams): IToolCallResponseMessage => {
 	// Gemini expects the function response to be the raw result
 	const functionResponses = toolCallResults.map(({ name, result }) => {
 		let response = result;
@@ -26,18 +30,18 @@ export const toToolCallResponseMessages = ({ toolCallResults }: IParams) => {
 	});
 
 	const assistantMessages = {
-		role: 'function',
+		role: 'function' as const,
 		parts: [...functionResponses],
 	};
 
 	// Gemini expects the user response to be a JSON string
 	const userTexts = toolCallResults.map(({ result }) => {
-		let text = result;
+		let text: string;
 
 		try {
 			text = typeof result === 'string' ? result : JSON.stringify(result);
 		} catch {
-			// Do nothing
+			text = result as string;
 		}
 
 		return {
@@ -46,7 +50,7 @@ export const toToolCallResponseMessages = ({ toolCallResults }: IParams) => {
 	});
 
 	const userMessages = {
-		role: 'user',
+		role: 'user' as const,
 		parts: [...userTexts],
 	};
 

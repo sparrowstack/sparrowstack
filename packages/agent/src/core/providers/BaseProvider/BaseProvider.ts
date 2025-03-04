@@ -6,17 +6,17 @@ import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,
-	IToolCallResponseMessage,
 	IToToolCallRequestMessageParams,
-	IToToolCallResponseMessagesParams,
 } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	Sdk,
 	ToolCallRequestMessage,
-	// ToolCallResponseMessages,
 } from '@core/providers/BaseProvider/common/types';
 
-export abstract class BaseProvider {
+export abstract class BaseProvider<
+	TToolCallResponseMessage = unknown,
+	TToolCallResponseMessagesParams = unknown,
+> {
 	// Base
 	readonly model: string;
 	readonly apiKey: string;
@@ -69,13 +69,13 @@ export abstract class BaseProvider {
 	}
 
 	abstract adapters: {
-		toToolCallRequestMessage: ({
-			responseMessage,
-		}: IToToolCallRequestMessageParams) => ToolCallRequestMessage;
+		toToolCallRequestMessage: (
+			params: IToToolCallRequestMessageParams,
+		) => ToolCallRequestMessage;
 
-		toToolCallResponseMessages: ({
-			toolCallResults,
-		}: IToToolCallResponseMessagesParams) => IToolCallResponseMessage;
+		toToolCallResponseMessages: (
+			params: TToolCallResponseMessagesParams,
+		) => TToolCallResponseMessage;
 	};
 
 	abstract sendPrompt(): Promise<IModelResponse>;

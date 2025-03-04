@@ -1,4 +1,5 @@
-// TODO: Extract this to a common interface
+import type { IToolCallResponseMessage } from '@core/providers/OpenAIProvider/common/interfaces';
+
 interface IParams {
 	toolCallResults: {
 		id: string;
@@ -6,7 +7,9 @@ interface IParams {
 	}[];
 }
 
-export const toToolCallResponseMessages = ({ toolCallResults }: IParams) => {
+export const toToolCallResponseMessages = ({
+	toolCallResults,
+}: IParams): IToolCallResponseMessage => {
 	const toolResultMessages = toolCallResults.map((toolCallResults) => {
 		return {
 			role: 'tool',

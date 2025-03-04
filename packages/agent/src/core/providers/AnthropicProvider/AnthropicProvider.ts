@@ -2,12 +2,19 @@ import Anthropic from '@anthropic-ai/sdk';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/AnthropicProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type {
+	IToolCallResponseMessage,
+	IToToolCallResponseMessagesParams,
+} from '@core/providers/AnthropicProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
 } from '@core/providers/AnthropicProvider/adapters';
 
-export class AnthropicProvider extends BaseProvider {
+export class AnthropicProvider extends BaseProvider<
+	IToolCallResponseMessage,
+	IToToolCallResponseMessagesParams
+> {
 	constructor({
 		name,
 		model,

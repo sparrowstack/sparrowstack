@@ -9,7 +9,8 @@ import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { defaultPrompt } from '@sparrowstack/system-prompts';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
-import type { AIProvider } from '@core/providers/BaseProvider/common/types';
+// import type { BaseProvider } from '@core/providers/BaseProvider/BaseProvider';
+import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {
@@ -42,7 +43,7 @@ export class Agent {
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Provider
-	readonly provider: AIProvider;
+	readonly provider: Provider;
 
 	// Tool Calling
 	readonly toolCallManager: ToolCallManager;

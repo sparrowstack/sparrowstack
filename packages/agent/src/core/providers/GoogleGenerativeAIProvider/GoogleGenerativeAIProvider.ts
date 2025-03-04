@@ -2,12 +2,19 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/GoogleGenerativeAIProvider/methods';
 import type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type {
+	IToolCallResponseMessage,
+	IToToolCallResponseMessagesParams,
+} from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
 } from '@core/providers/GoogleGenerativeAIProvider/adapters';
 
-export class GoogleGenerativeAIProvider extends BaseProvider {
+export class GoogleGenerativeAIProvider extends BaseProvider<
+	IToolCallResponseMessage,
+	IToToolCallResponseMessagesParams
+> {
 	constructor({
 		name,
 		model,

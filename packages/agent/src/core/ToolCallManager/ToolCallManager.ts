@@ -1,19 +1,19 @@
 import { ToolRegistry } from '@core/ToolRegistry';
-import type { AIProvider } from '@core/providers/BaseProvider/common/types';
+import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 
 interface IConstructorParams {
-	provider: AIProvider;
+	provider: Provider;
 	toolRegistry: ToolRegistry;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
 }
 
 export class ToolCallManager {
-	readonly provider: AIProvider;
+	readonly provider: Provider;
 	readonly toolRegistry: ToolRegistry;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
@@ -72,7 +72,6 @@ export class ToolCallManager {
 				toolCallResults,
 			});
 
-
 		// Some providers require custom messages for tool call responses.
 		// Some providers require just the assistant/user messages for tool call responses.
 		// Some require both the assistant and user messages for tool call responses.
@@ -81,7 +80,10 @@ export class ToolCallManager {
 		//
 		// If below gets any more complex, we can move this to a helper function.
 		// --------------------------------------------------------------------------
-		if (toolCallResponseMessages?.customMessages?.length > 0) {
+		if (
+			toolCallResponseMessages?.customMessages &&
+			toolCallResponseMessages?.customMessages?.length > 0
+		) {
 			// OpenAI / Anthropic Require custom messages for tool call responses.
 			toolCallResponseMessages.customMessages.forEach((message) => {
 				this.chatMessageManager.addToMessages({
@@ -90,7 +92,10 @@ export class ToolCallManager {
 			});
 		} else {
 			// Google Generative AI require both the assistant/user messages for tool call responses.
-			if (toolCallResponseMessages?.assistantMessages?.length > 0) {
+			if (
+				toolCallResponseMessages?.assistantMessages &&
+				toolCallResponseMessages?.assistantMessages?.length > 0
+			) {
 				toolCallResponseMessages.assistantMessages.forEach(
 					(message) => {
 						this.chatMessageManager.addToMessages({
@@ -100,7 +105,10 @@ export class ToolCallManager {
 				);
 			}
 
-			if (toolCallResponseMessages?.userMessages?.length > 0) {
+			if (
+				toolCallResponseMessages?.userMessages &&
+				toolCallResponseMessages?.userMessages?.length > 0
+			) {
 				toolCallResponseMessages.userMessages.forEach((message) => {
 					this.chatMessageManager.addToMessages({
 						message,
