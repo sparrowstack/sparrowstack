@@ -1,17 +1,15 @@
 import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
+import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	IConstructorParams,
 	IToToolCallRequestMessageParams,
 } from '@core/providers/BaseProvider/common/interfaces';
-import type {
-	Sdk,
-	ToolCallRequestMessage,
-} from '@core/providers/BaseProvider/common/types';
+import type { ToolCallRequestMessage } from '@core/providers/BaseProvider/common/types';
 
 export abstract class BaseProvider<
 	TToolCallResponseMessage = unknown,
@@ -27,7 +25,7 @@ export abstract class BaseProvider<
 	readonly toolRegistry: ToolRegistry;
 
 	// Utilities
-	readonly sdk: Sdk;
+	readonly sdk: ProviderSDK;
 	readonly systemPrompt: SystemPrompt;
 	readonly chatMessageManager: ChatMessageManager;
 
