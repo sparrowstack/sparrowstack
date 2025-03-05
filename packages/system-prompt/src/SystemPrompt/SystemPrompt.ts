@@ -1,4 +1,4 @@
-import { type ProviderName } from '@sparrowstack/core';
+import { ProviderName } from '@sparrowstack/core';
 import { Type } from '@system-prompt/common/enums';
 import { getPrompt } from '@system-prompt/methods/getPrompt';
 import type {

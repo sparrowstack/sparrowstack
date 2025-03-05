@@ -14,6 +14,7 @@
 		"publish:all": "bunx nx run-many --target=publish-package --all --parallel",
 		"release:all": "bun lint:all && bun build:all && bun publish:all",
 		"release:all:local": "bun lint:all && bun build:all && bun link:all",
+		"ci": "bun install && bun link:all && bun lint:all && bun test:unit:all && bun build:all",
 		"changeset": "bunx changeset",
 		"changeset:status": "bunx changeset status",
 		"version-packages": "bunx changeset version",
