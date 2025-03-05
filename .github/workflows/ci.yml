@@ -17,9 +17,6 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: TS Version
-              run: bunx tsc --version
-
             - name: Setup Bun
               uses: oven-sh/setup-bun@v1
               with:
@@ -27,6 +24,9 @@ jobs:
 
             - name: Install dependencies
               run: bun install
+
+            - name: TS Version
+              run: bunx tsc --version
 
             - name: Lint
               run: bun lint:all
