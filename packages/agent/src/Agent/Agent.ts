@@ -7,17 +7,18 @@ import { ProviderFactory } from '@core/ProviderFactory';
 import { InteractionLogger } from '@core/InteractionLogger';
 import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { defaultPrompt } from '@sparrowstack/system-prompts';
-import { ChatMessageManager } from '@core/ChatMessageManager';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
-import type { AIProvider } from '@core/providers/BaseProvider/common/types';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+// import type { BaseProvider } from '@core/providers/BaseProvider/BaseProvider';
+import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	SystemPrompt,
 	type ISystemPromptParams,
 } from '@sparrowstack/system-prompt';
 
-interface IConstructorParams {
+interface ConstructorParams {
 	model: string;
 	apiKey: string;
 	provider: ProviderName;
@@ -42,7 +43,7 @@ export class Agent {
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Provider
-	readonly provider: AIProvider;
+	readonly provider: Provider;
 
 	// Tool Calling
 	readonly toolCallManager: ToolCallManager;
@@ -52,7 +53,7 @@ export class Agent {
 		apiKey,
 		provider: providerName,
 		systemPrompt = defaultPrompt,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		// Values
 		// --------------------------------
 		this.providerName = providerName;
@@ -68,9 +69,12 @@ export class Agent {
 		// --------------------------------
 		this.toolRegistry = new ToolRegistry({ tools });
 
+		// Chat Message Manager
+		// --------------------------------
+		this.chatMessageManager = new ChatMessageManager({ providerName });
+
 		// Utilities
 		// --------------------------------
-		this.chatMessageManager = new ChatMessageManager();
 		this.logger = new Logger({ context: this.providerDisplayName });
 		this.interactionLogger = new InteractionLogger({
 			logger: this.logger,
@@ -104,7 +108,7 @@ export class Agent {
 		message,
 	}: {
 		message: string;
-	}): Promise<IModelResponse> {
+	}): Promise<ModelResponse> {
 		return sendMessage({
 			message,
 			provider: this.provider,

@@ -1,19 +1,19 @@
 import { ToolRegistry } from '@core/ToolRegistry';
-import type { AIProvider } from '@core/providers/BaseProvider/common/types';
+import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import type { ChatMessageManager } from '@core/ChatMessageManager';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 
-interface IConstructorParams {
-	provider: AIProvider;
+interface ConstructorParams {
+	provider: Provider;
 	toolRegistry: ToolRegistry;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
 }
 
 export class ToolCallManager {
-	readonly provider: AIProvider;
+	readonly provider: Provider;
 	readonly toolRegistry: ToolRegistry;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
@@ -23,7 +23,7 @@ export class ToolCallManager {
 		toolRegistry,
 		interactionLogger,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		this.provider = provider;
 		this.toolRegistry = toolRegistry;
 		this.interactionLogger = interactionLogger;
@@ -37,8 +37,8 @@ export class ToolCallManager {
 	public async handleToolCalls({
 		responseMessage,
 	}: {
-		responseMessage: IModelResponse;
-	}): Promise<IModelResponse> {
+		responseMessage: ModelResponse;
+	}): Promise<ModelResponse> {
 		// If no tool calls, return the original response
 		if (
 			!Array.isArray(responseMessage.toolCalls) ||
@@ -67,16 +67,56 @@ export class ToolCallManager {
 			chatMessageManager: this.chatMessageManager,
 		});
 
-		const assistantToolCallResponseMessages =
+		const toolCallResponseMessages =
 			this.provider.adapters.toToolCallResponseMessages({
 				toolCallResults,
 			});
 
-		assistantToolCallResponseMessages.forEach((message) => {
-			this.chatMessageManager.addToMessages({
-				message,
+		// Some providers require custom messages for tool call responses.
+		// Some providers require just the assistant/user messages for tool call responses.
+		// Some require both the assistant and user messages for tool call responses.
+		//
+		// Below we're checking for both and adding them to the chat message manager.
+		//
+		// If below gets any more complex, we can move this to a helper function.
+		// --------------------------------------------------------------------------
+		if (
+			toolCallResponseMessages?.customMessages &&
+			toolCallResponseMessages?.customMessages?.length > 0
+		) {
+			// OpenAI / Anthropic Require custom messages for tool call responses.
+			toolCallResponseMessages.customMessages.forEach((message) => {
+				this.chatMessageManager.addToMessages({
+					message,
+				});
 			});
-		});
+		} else {
+			// Google Generative AI require both the assistant/user messages for tool call responses.
+			if (
+				toolCallResponseMessages?.assistantMessages &&
+				toolCallResponseMessages?.assistantMessages?.length > 0
+			) {
+				toolCallResponseMessages.assistantMessages.forEach(
+					(message) => {
+						this.chatMessageManager.addToMessages({
+							message,
+						});
+					},
+				);
+			}
+
+			if (
+				toolCallResponseMessages?.userMessages &&
+				toolCallResponseMessages?.userMessages?.length > 0
+			) {
+				toolCallResponseMessages.userMessages.forEach((message) => {
+					this.chatMessageManager.addToMessages({
+						message,
+					});
+				});
+			}
+		}
+		// --------------------------------------------------------------------------
 
 		// Get the model's response to the tool call results
 		const toolCallResponseMessage = await this.provider.sendPrompt();

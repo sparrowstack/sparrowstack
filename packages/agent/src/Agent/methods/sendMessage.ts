@@ -1,11 +1,11 @@
-import type { AIProvider } from '@core/providers/BaseProvider/common/types';
 import type { ToolCallManager } from '@core/ToolCallManager/ToolCallManager';
+import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+import type { Provider } from '@core/providers/BaseProvider/common/types/Provider';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
-import type { ChatMessageManager } from '@core/ChatMessageManager';
 
 interface IParams {
 	message: string;
-	provider: AIProvider;
+	provider: Provider;
 	toolCallManager: ToolCallManager;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
@@ -28,7 +28,7 @@ export const sendMessage = async ({
 
 	const responseMessage = toolCallResponseMessage || modelResponseMessage;
 
-	chatMessageManager.addAssistantMessage({
+	chatMessageManager.addModelMessage({
 		text: responseMessage.text,
 	});
 

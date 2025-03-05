@@ -1,5 +1,5 @@
-export type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces/IModelResponse';
-export type { IConstructorParams } from '@core/providers/BaseProvider/common/interfaces/IConstructorParams';
-export type { IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/IModelResponseToolCall';
-export type { IToToolCallRequestMessageParams } from '@core/providers/BaseProvider/common/interfaces/IToToolCallRequestMessageParams';
-export type { IToToolCallResponseMessagesParams } from '@core/providers/BaseProvider/common/interfaces/IToToolCallResponseMessagesParams';
+export type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces/ModelResponse';
+export type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces/ToolCallResults';
+export type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces/ConstructorParams';
+export type { ModelResponseMessage } from '@core/providers/BaseProvider/common/interfaces/ModelResponseMessage';
+export type { ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/ModelResponseToolCall';

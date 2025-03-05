@@ -1,21 +1,22 @@
 import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
-import { ChatMessageManager } from '@core/ChatMessageManager';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
 import type {
-	IConstructorParams,
-	IToToolCallRequestMessageParams,
-	IToToolCallResponseMessagesParams,
+	ModelResponse,
+	ToolCallResults,
 } from '@core/providers/BaseProvider/common/interfaces';
 import type {
-	Sdk,
-	ToolCallRequestMessage,
-	ToolCallResponseMessages,
-} from '@core/providers/BaseProvider/common/types';
+	ConstructorParams,
+	ModelResponseMessage,
+} from '@core/providers/BaseProvider/common/interfaces';
 
-export abstract class BaseProvider {
+export abstract class BaseProvider<
+	TToolCallRequestMessage = unknown,
+	TToolCallResponseMessage = unknown,
+> {
 	// Base
 	readonly model: string;
 	readonly apiKey: string;
@@ -26,7 +27,7 @@ export abstract class BaseProvider {
 	readonly toolRegistry: ToolRegistry;
 
 	// Utilities
-	readonly sdk: Sdk;
+	readonly sdk: ProviderSDK;
 	readonly systemPrompt: SystemPrompt;
 	readonly chatMessageManager: ChatMessageManager;
 
@@ -41,7 +42,7 @@ export abstract class BaseProvider {
 		systemPrompt,
 		toolRegistry,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		// Base Properties
 		// --------------------------------
 		this.name = name; // e.g. 'openai'
@@ -68,14 +69,14 @@ export abstract class BaseProvider {
 	}
 
 	abstract adapters: {
-		toToolCallRequestMessage: ({
-			responseMessage,
-		}: IToToolCallRequestMessageParams) => ToolCallRequestMessage;
+		toToolCallRequestMessage: (
+			params: ModelResponseMessage,
+		) => TToolCallRequestMessage;
 
-		toToolCallResponseMessages: ({
-			toolCallResults,
-		}: IToToolCallResponseMessagesParams) => ToolCallResponseMessages;
+		toToolCallResponseMessages: (
+			params: ToolCallResults,
+		) => TToolCallResponseMessage;
 	};
 
-	abstract sendPrompt(): Promise<IModelResponse>;
+	abstract sendPrompt(): Promise<ModelResponse>;
 }

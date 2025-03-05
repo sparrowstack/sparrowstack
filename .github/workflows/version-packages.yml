@@ -23,14 +23,8 @@ jobs:
               with:
                   bun-version: latest
 
-            - name: Install dependencies
-              run: bun install
-
-            - name: Lint
-              run: bun lint:all
-
-            - name: Build
-              run: bun build:all
+            - name: Run CI (install, link, lint, test, build)
+              run: bun ci
 
             - name: Create Version Packages Pull Request
               id: changesets

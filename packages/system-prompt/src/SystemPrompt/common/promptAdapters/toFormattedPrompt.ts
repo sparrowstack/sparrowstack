@@ -1,7 +1,11 @@
 import type { IPrompt } from '@system-prompt/common/interfaces';
 import { toBasePrompt } from '@system-prompt/common/promptAdapters/toBasePrompt';
 
-export const toFormattedPrompt = ({ prompt }: { prompt: IPrompt }) => {
+interface IParams {
+	prompt: IPrompt;
+}
+
+export const toFormattedPrompt = ({ prompt }: IParams) => {
 	let formattedPrompt = `${prompt.role}\n\n`;
 	const basePrompt = toBasePrompt({ prompt });
 

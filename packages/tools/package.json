@@ -14,12 +14,13 @@
 		"url": "https://sparrowstack.ai"
 	},
 	"scripts": {
+		"test:unit": "bun test --test-file-pattern \"\\.unit\\.test\\.ts$\" tests",
 		"format": "bunx prettier --write \"src/**/*.{js,ts,json,md}\"",
 		"format:check": "bunx prettier --check \"src/**/*.{js,ts,json,md}\"",
 		"lint": "bunx eslint \"src/**/*.{js,ts}\"",
 		"lint:fix": "bunx eslint \"src/**/*.{js,ts}\" --fix",
 		"build:js": "bun build src/index.ts --outdir dist --target bun",
-		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
+		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist --rootDir src --project tsconfig.build.json",
 		"build": "bun build:js && bun build:types",
 		"link": "bun link",
 		"unlink": "bun unlink",

@@ -1,7 +1,7 @@
 import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
-import { ChatMessageManager } from '@core/ChatMessageManager';
 import { providers } from '@core/ProviderFactory/common/constants';
 
 export class ProviderFactory {

@@ -1,8 +1,9 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import type { ProviderName } from '@sparrowstack/core';
 import type { SystemPrompt } from '@sparrowstack/system-prompt';
-import type { ChatMessageManager } from '@core/ChatMessageManager';
-import type { IModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
+import type { ToolCallResult } from '@core/ToolCallManager/common/types';
+import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+import type { ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	executeToolCall,
 	executeValidationCheck,
@@ -14,7 +15,7 @@ interface IParams {
 	providerName: ProviderName;
 	systemPrompt: SystemPrompt;
 	toolRegistry: ToolRegistry;
-	toolCalls: IModelResponseToolCall[];
+	toolCalls: ModelResponseToolCall[];
 	chatMessageManager: ChatMessageManager;
 }
 
@@ -25,7 +26,7 @@ export const executeToolCalls = async ({
 	systemPrompt,
 	toolRegistry,
 	chatMessageManager,
-}: IParams) => {
+}: IParams): Promise<ToolCallResult[]> => {
 	const toolCallResults = await Promise.all(
 		toolCalls.map(async (toolCall) => {
 			let result: unknown;
@@ -60,12 +61,24 @@ export const executeToolCalls = async ({
 					toolCall,
 				});
 			} else if (!isValid) {
-				result = validationFailedMessage;
+				// The object is for Gemini compatibility
+				// but seems to work for all providers
+				result = {
+					error: {
+						message: validationFailedMessage,
+					},
+				};
 			} else if (hasExceededMaxCallCount) {
-				result = maxCallCountExceededMessage;
+				// The object is for Gemini compatibility
+				// but seems to work for all providers
+				result = {
+					error: {
+						message: maxCallCountExceededMessage,
+					},
+				};
 			}
 
-			return { id, result };
+			return { id, name, result };
 		}),
 	);
 

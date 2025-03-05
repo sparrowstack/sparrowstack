@@ -1,5 +1,6 @@
+import { ProviderName } from '@sparrowstack/core';
 import { Type } from '@system-prompt/common/enums';
-import { toFormattedPrompt } from '@system-prompt/common/promptAdapters';
+import { getPrompt } from '@system-prompt/methods/getPrompt';
 import type {
 	IPrompt,
 	ISystemPromptParams,
@@ -19,7 +20,12 @@ export class SystemPrompt {
 		this.prompt = prompt;
 	}
 
-	public getPrompt(): string {
-		return toFormattedPrompt({ prompt: this.prompt });
+	public getPrompt<ReturnType = string>({
+		providerName,
+	}: { providerName?: ProviderName } = {}): ReturnType {
+		return getPrompt<ReturnType>({
+			providerName,
+			prompt: this.prompt,
+		});
 	}
 }

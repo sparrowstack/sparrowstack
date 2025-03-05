@@ -5,8 +5,8 @@ import type { IToolParams } from '@tool/common/interfaces';
 import type { ICachedResult } from '@tool/common/interfaces/ICachedResult';
 import type {
 	Validate,
-	ToolFunction,
 	Parameters,
+	ToolFunction,
 	CallableFunctionResponseMessage,
 } from '@tool/common/types';
 
@@ -52,14 +52,19 @@ export class Tool {
 		// antonyms
 	}
 
-	public getSchema({ providerName }: { providerName: ProviderName }) {
-		const toSchema = providerSchemas[providerName];
+	public getSchema<SchemaType>({
+		providerName,
+	}: {
+		providerName: ProviderName;
+	}): SchemaType {
+		const toSchema =
+			providerSchemas[providerName as keyof typeof providerSchemas];
 
-		return toSchema({
+		return toSchema<SchemaType>({
 			name: this.name,
 			parameters: this.parameters,
 			description: this.description,
-		});
+		}) as SchemaType;
 	}
 
 	// Setters

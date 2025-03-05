@@ -2,7 +2,7 @@ import { Agent } from '@sparrowstack/agent';
 import { Logger } from '@sparrowstack/logger';
 import { InteractiveSession } from '@core';
 
-interface IConstructorParams {
+interface ConstructorParams {
 	agent: Agent;
 }
 
@@ -10,7 +10,7 @@ export class InteractiveTerminal {
 	agent: Agent;
 	logger = new Logger({ context: 'InteractiveTerminal' });
 
-	constructor({ agent }: IConstructorParams) {
+	constructor({ agent }: ConstructorParams) {
 		this.agent = agent;
 	}
 

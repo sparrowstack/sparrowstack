@@ -1,8 +1,8 @@
 import chalk from 'chalk';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 interface IParams {
-	message: IModelResponse;
+	message: ModelResponse;
 }
 
 export const modelResponseTemplate = ({ message }: IParams) => {

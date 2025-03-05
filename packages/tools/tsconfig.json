@@ -5,6 +5,6 @@
 			"@tools/*": ["./src/*"]
 		}
 	},
-	"include": ["index.ts", "src/**/*.ts"],
-	"exclude": ["node_modules", "dist", "tests"]
+	"include": ["src/**/*", "tests/**/*"],
+	"exclude": ["dist", "node_modules"]
 }

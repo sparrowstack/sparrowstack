@@ -2,12 +2,10 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"paths": {
-			"@chat-message": ["./src/ChatMessage"],
-			"@chat-message/*": ["./src/ChatMessage/*"],
 			"@common": ["./src/common"],
 			"@common/*": ["./src/common/*"]
 		}
 	},
-	"include": ["src/**/*"],
-	"exclude": ["dist", "node_modules", "**/*.test.ts"]
+	"include": ["src/**/*", "tests/**/*"],
+	"exclude": ["dist", "node_modules"]
 }

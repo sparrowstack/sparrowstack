@@ -1,5 +1,7 @@
 export enum Role {
 	User = 'user',
-	Assistant = 'assistant',
+	Model = 'model',
 	System = 'system',
+	FunctionCall = 'function',
+	Assistant = 'assistant',
 }

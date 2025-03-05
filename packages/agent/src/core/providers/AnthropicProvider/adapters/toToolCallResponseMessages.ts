@@ -1,11 +1,9 @@
+import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
+import type { IToolCallResponseMessage } from '@core/providers/AnthropicProvider/common/interfaces';
+
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: {
-	toolCallResults: {
-		id: string;
-		result: unknown;
-	}[];
-}) => {
+}: ToolCallResults): IToolCallResponseMessage => {
 	const toolResultMessages = toolCallResults.map((toolCallResult) => {
 		return {
 			role: 'user',
@@ -19,7 +17,9 @@ export const toToolCallResponseMessages = ({
 		};
 	});
 
-	return [...toolResultMessages];
+	return {
+		customMessages: [...toolResultMessages],
+	};
 };
 
 // Example for reference

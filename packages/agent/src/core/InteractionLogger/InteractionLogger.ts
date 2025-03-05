@@ -1,14 +1,14 @@
 import { Logger } from '@sparrowstack/logger';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
-import { ChatMessageManager } from '@core/ChatMessageManager';
-import type { IModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	messagesTemplate,
 	contextWindowTemplate,
 	modelResponseTemplate,
 } from '@core/InteractionLogger/common/templates';
 
-interface IConstructorParams {
+interface ConstructorParams {
 	logger: Logger;
 	systemPrompt: SystemPrompt;
 	chatMessageManager: ChatMessageManager;
@@ -23,7 +23,7 @@ export class InteractionLogger {
 		logger,
 		systemPrompt,
 		chatMessageManager,
-	}: IConstructorParams) {
+	}: ConstructorParams) {
 		this.logger = logger;
 		this.systemPrompt = systemPrompt;
 		this.chatMessageManager = chatMessageManager;
@@ -47,7 +47,7 @@ export class InteractionLogger {
 		this.logger.info(contextWindow);
 	}
 
-	public logModelResponse({ message }: { message: IModelResponse }) {
+	public logModelResponse({ message }: { message: ModelResponse }) {
 		const modelResponse = modelResponseTemplate({ message });
 
 		console.log('');
