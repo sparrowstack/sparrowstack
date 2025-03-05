@@ -17,6 +17,9 @@ jobs:
               with:
                   fetch-depth: 0
 
+            - name: TS Version
+              run: npx tsc --version
+
             - name: Setup Bun
               uses: oven-sh/setup-bun@v1
               with:

@@ -12,7 +12,7 @@ export class ChatMessage {
 	}: {
 		text: string;
 	}): MessageType {
-		let message: MessageType;
+		let message: MessageType; 
 
 		if (this.providerName === ProviderName.GoogleGenerativeAI) {
 			message = {
