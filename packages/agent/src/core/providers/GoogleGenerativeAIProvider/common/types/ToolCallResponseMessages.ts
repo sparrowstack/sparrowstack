@@ -1,6 +1,8 @@
+import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums/Role';
+
 export type ToolCallResponseMessage =
 	| {
-			role: 'function';
+			role: Role.FunctionCall;
 			parts: {
 				functionResponse: {
 					name: string;
@@ -9,7 +11,7 @@ export type ToolCallResponseMessage =
 			}[];
 	  }
 	| {
-			role: 'user';
+			role: Role.User;
 			parts: {
 				text: string;
 			}[];

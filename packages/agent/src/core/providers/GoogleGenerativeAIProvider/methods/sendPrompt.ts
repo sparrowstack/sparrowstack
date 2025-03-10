@@ -40,7 +40,7 @@ export const sendPrompt = async ({
 		model,
 		tools,
 	});
-	console.log('[DEBUG]::SparrowChatHistory', messages);
+
 	const sdkChat = sdkModel.startChat({
 		history: messages,
 		systemInstruction,
@@ -53,8 +53,7 @@ export const sendPrompt = async ({
 
 	const response = toModelResponse({ response: rawResponse });
 
-	const history = await sdkChat.getHistory();
-	console.log('[DEBUG]::GoogleChatHistory', history);
+	// const history = await sdkChat.getHistory();
 
 	return response;
 };

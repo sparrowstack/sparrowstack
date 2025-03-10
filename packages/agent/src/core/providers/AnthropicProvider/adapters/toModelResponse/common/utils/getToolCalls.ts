@@ -1,11 +1,7 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-
+import { ContentType } from '@core/providers/AnthropicProvider/common/enums';
 interface IParams {
 	response: Anthropic.Messages.Message;
-}
-
-export enum ContentType {
-	ToolUse = 'tool_use',
 }
 
 export const getToolCalls = ({ response }: IParams) => {

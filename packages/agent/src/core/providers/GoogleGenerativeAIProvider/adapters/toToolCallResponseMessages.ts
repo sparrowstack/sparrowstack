@@ -1,5 +1,6 @@
-import type { IToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
+import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums/Role';
 import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
+import type { IToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
@@ -23,7 +24,7 @@ export const toToolCallResponseMessages = ({
 	});
 
 	const assistantMessages = {
-		role: 'function' as const,
+		role: Role.FunctionCall,
 		parts: [...functionResponses],
 	};
 
@@ -43,7 +44,7 @@ export const toToolCallResponseMessages = ({
 	});
 
 	const userMessages = {
-		role: 'user' as const,
+		role: Role.User,
 		parts: [...userTexts],
 	};
 

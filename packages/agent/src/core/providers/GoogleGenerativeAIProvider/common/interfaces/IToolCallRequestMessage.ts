@@ -1,7 +1,7 @@
-// import { Role } from '@sparrowstack/core';
-import type { /*FunctionCall, */ Part } from '@google/generative-ai';
+import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums/Role';
+import type { Part } from '@google/generative-ai';
 
 export type IToolCallRequestMessage = {
-	role: string;
+	role: Role;
 	parts: Part[];
 };
