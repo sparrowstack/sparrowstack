@@ -1,2 +1,3 @@
-export type { IToolCallRequestMessage } from '@core/providers/OpenAIProvider/common/interfaces/IToolCallRequestMessage';
-export type { IToolCallResponseMessage } from '@core/providers/OpenAIProvider/common/interfaces/IToolCallResponseMessage';
+export type { ToolCallResponseMessage } from '@core/providers/OpenAIProvider/common/interfaces/ToolCallResponseMessage';
+export type { OpenAIToolCallRequestMessage } from '@core/providers/OpenAIProvider/common/interfaces/OpenAIToolCallRequestMessage';
+export type { OpenAIToolCallResponseMessage } from '@core/providers/OpenAIProvider/common/interfaces/OpenAIToolCallResponseMessage';

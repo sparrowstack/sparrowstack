@@ -1,4 +1,4 @@
-import { Role } from '@sparrowstack/core';
+import { Role } from '@core/providers/AnthropicProvider/common/enums/Role';
 import { ContentType } from '@core/providers/AnthropicProvider/common/enums';
 import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
 import type {
@@ -28,7 +28,7 @@ export const toToolCallResponseMessages = ({
 
 /**
 
-User Message: Tool Result
+User Message: Tool Response
 --------------------------------
 {
 	role: 'user',

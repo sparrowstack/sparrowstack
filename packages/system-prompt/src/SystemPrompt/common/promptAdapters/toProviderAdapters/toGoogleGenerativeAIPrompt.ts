@@ -1,4 +1,4 @@
-import { Role } from '@sparrowstack/core';
+import { Role } from '@system-prompt/common/enums/Role';
 import { type Content } from '@google/generative-ai';
 
 interface IParams {

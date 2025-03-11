@@ -1,5 +1,5 @@
-import { Role } from '@sparrowstack/core';
 import type { FunctionCall } from '@google/generative-ai';
+import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
 interface IParams {

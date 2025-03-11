@@ -1,4 +1,5 @@
-import { Role, ProviderName } from '@sparrowstack/core';
+import { ProviderName } from '@sparrowstack/core';
+import { Role } from '@chat-message/common/enums/Role';
 
 export class ChatMessage {
 	readonly providerName: ProviderName;
@@ -12,7 +13,7 @@ export class ChatMessage {
 	}: {
 		text: string;
 	}): MessageType {
-		let message: MessageType; 
+		let message: MessageType;
 
 		if (this.providerName === ProviderName.GoogleGenerativeAI) {
 			message = {

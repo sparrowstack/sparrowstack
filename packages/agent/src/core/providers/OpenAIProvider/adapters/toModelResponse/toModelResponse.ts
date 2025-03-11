@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import { ContentType } from '@core/providers/OpenAIProvider/common/enums';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { getToolCalls } from '@core/providers/OpenAIProvider/adapters/toModelResponse/common/utils';
 
@@ -8,26 +9,28 @@ export const toModelResponse = ({
 	response: OpenAI.ChatCompletion;
 }): ModelResponse => {
 	const { id, model, usage, choices } = response;
-	const { prompt_tokens: inputTokens, completion_tokens: outputTokens } =
-		usage || {};
-	// redo common method
+	const {
+		prompt_tokens: inputTokens = null,
+		completion_tokens: outputTokens = null,
+	} = usage || {};
 	const choice = choices[0];
 	const { message, finish_reason: stopReason } = choice;
-	const { role, content: text } = message;
-
+	const { role, content } = message;
+	const text = content || '';
+	const type = ContentType.Message;
 	const toolCalls = getToolCalls({ message });
 
 	const modelResponse: ModelResponse = {
 		id,
 		role,
 		model,
-		type: 'message', // TODO: Find way to dynamically update
-		text: text || '',
+		type,
+		text,
 		stopReason,
 		toolCalls,
 		usage: {
-			inputTokens: inputTokens ?? null,
-			outputTokens: outputTokens ?? null,
+			inputTokens,
+			outputTokens,
 		},
 		rawMessage: response,
 	};
@@ -35,39 +38,146 @@ export const toModelResponse = ({
 	return modelResponse;
 };
 
-// OpenAI::ResponseMessage {
-//   id: "chatcmpl-Ar5WdbkadhvM0qHSFKB0qoMu3HJzD",
-//   object: "chat.completion",
-//   created: 1737215987,
-//   model: "gpt-4o-2024-08-06",
-//   choices: [
-//     {
-//       index: 0,
-//       message: {
-//         role: "assistant",
-//         content: "```typescript\n// src/utils/addNumbers.ts\n\ninterface IParams {\n  firstNumber: number;\n  secondNumber: number;\n}\n\nexport const addNumbers = ({ firstNumber, secondNumber }: IParams): number => {\n  return firstNumber + secondNumber;\n};\n```",
-//         refusal: null,
-//       },
-//       logprobs: null,
-//       finish_reason: "stop",
-//     }
-//   ],
-//   usage: {
-//     prompt_tokens: 707,
-//     completion_tokens: 56,
-//     total_tokens: 763,
-//     prompt_tokens_details: {
-//       cached_tokens: 0,
-//       audio_tokens: 0,
-//     },
-//     completion_tokens_details: {
-//       reasoning_tokens: 0,
-//       audio_tokens: 0,
-//       accepted_prediction_tokens: 0,
-//       rejected_prediction_tokens: 0,
-//     },
-//   },
-//   service_tier: "default",
-//   system_fingerprint: "fp_50cad350e4",
-//   _request_id: "req_a00fed83a975d6f3258a851cf8742be8",
-// }
+/**
+
+OpenAI Message: Standard
+-------------------------------
+{
+	id: 'chatcmpl-B9a7AA7bLfjrLSPFMEFW7ckUZTfbS',
+	object: 'chat.completion',
+	created: 1741623476,
+	model: 'gpt-4o-2024-08-06',
+	choices: [
+		{
+			index: 0,
+			message: {
+				role: 'assistant',
+				content:
+					'Hello! How can I assist you today with TypeScript, full-stack development, or any other technical inquiry you might have?',
+				refusal: null,
+			},
+			logprobs: null,
+			finish_reason: 'stop',
+		},
+	],
+	usage: {
+		prompt_tokens: 866,
+		completion_tokens: 27,
+		total_tokens: 893,
+		prompt_tokens_details: {
+			cached_tokens: 0,
+			audio_tokens: 0,
+		},
+		completion_tokens_details: {
+			reasoning_tokens: 0,
+			audio_tokens: 0,
+			accepted_prediction_tokens: 0,
+			rejected_prediction_tokens: 0,
+		},
+	},
+	service_tier: 'default',
+	system_fingerprint: 'fp_f9f4fb6dbf',
+	_request_id: 'req_4594b4df378e4f49af16cef7be9ee4e9',
+};
+
+
+OpenAI Message: Tool Call
+-------------------------------
+{
+	id: 'chatcmpl-B9a9Iaqv2DG2O6CnYyE0rw13DlMn7',
+	object: 'chat.completion',
+	created: 1741623608,
+	model: 'gpt-4o-2024-08-06',
+	choices: [
+		{
+			index: 0,
+			message: {
+				role: 'assistant',
+				content: null,
+				tool_calls: [
+					{
+						id: 'call_8XL4qjqBOhAxmfpvzmZaxSZN',
+						type: 'function',
+						function: {
+							name: 'getDirectoryStructure',
+							arguments: '{}',
+						},
+					},
+				],
+				refusal: null,
+			},
+			logprobs: null,
+			finish_reason: 'tool_calls',
+		},
+	],
+	usage: {
+		prompt_tokens: 897,
+		completion_tokens: 12,
+		total_tokens: 909,
+		prompt_tokens_details: {
+			cached_tokens: 0,
+			audio_tokens: 0,
+		},
+		completion_tokens_details: {
+			reasoning_tokens: 0,
+			audio_tokens: 0,
+			accepted_prediction_tokens: 0,
+			rejected_prediction_tokens: 0,
+		},
+	},
+	service_tier: 'default',
+	system_fingerprint: 'fp_f9f4fb6dbf',
+	_request_id: 'req_02cfbb70897405730fecd9d756e28cca',
+};
+
+OpenAI Message: Tool Call (with parameters)
+---------------------------------------------
+{
+	id: 'chatcmpl-B9aC9DcUFqli58YSIpVZkh9Wvb1hL',
+	object: 'chat.completion',
+	created: 1741623785,
+	model: 'gpt-4o-2024-08-06',
+	choices: [
+		{
+			index: 0,
+			message: {
+				role: 'assistant',
+				content: null,
+				tool_calls: [
+					{
+						id: 'call_awfdxoPFVxc5rkyodgR7pXZ7',
+						type: 'function',
+						function: {
+							name: 'getWeather',
+							arguments:
+								'{"city":"San Francisco","stateCode":"CA","countryCode":"US"}',
+						},
+					},
+				],
+				refusal: null,
+			},
+			logprobs: null,
+			finish_reason: 'tool_calls',
+		},
+	],
+	usage: {
+		prompt_tokens: 1209,
+		completion_tokens: 26,
+		total_tokens: 1235,
+		prompt_tokens_details: {
+			cached_tokens: 1152,
+			audio_tokens: 0,
+		},
+		completion_tokens_details: {
+			reasoning_tokens: 0,
+			audio_tokens: 0,
+			accepted_prediction_tokens: 0,
+			rejected_prediction_tokens: 0,
+		},
+	},
+	service_tier: 'default',
+	system_fingerprint: 'fp_f9f4fb6dbf',
+	_request_id: 'req_3fc7cf43bf4a30766e9404ca6d9b5742',
+};
+
+*/
