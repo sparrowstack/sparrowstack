@@ -1,1 +1,1 @@
-export type { ToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/types/ToolCallResponseMessages';
+export type { GoogleGenerativeAIToolCallResponseMessages } from '@core/providers/GoogleGenerativeAIProvider/common/types/GoogleGenerativeAIToolCallResponseMessages';

@@ -1,7 +1,8 @@
 import OpenAI from 'openai';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { Role, ProviderName } from '@sparrowstack/core';
+import { ProviderName } from '@sparrowstack/core';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { Role } from '@core/providers/OpenAIProvider/common/enums/Role';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/OpenAIProvider/adapters/toModelResponse';

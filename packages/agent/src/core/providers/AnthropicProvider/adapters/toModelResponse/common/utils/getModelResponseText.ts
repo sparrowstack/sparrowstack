@@ -1,11 +1,8 @@
 import { Anthropic } from '@anthropic-ai/sdk';
+import { ContentType } from '@core/providers/AnthropicProvider/common/enums';
 
 interface IParams {
 	response: Anthropic.Messages.Message;
-}
-
-export enum ContentType {
-	Text = 'text',
 }
 
 export const getModelResponseText = ({ response }: IParams) => {
