@@ -1,11 +1,19 @@
 import OpenAI from 'openai';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { ProviderName } from '@sparrowstack/core';
+import { ProviderName, Model } from '@sparrowstack/core';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Role } from '@core/providers/OpenAIProvider/common/enums/Role';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/OpenAIProvider/adapters/toModelResponse';
+
+interface IChatCompletionCreateParams {
+	model: string;
+	tools: OpenAI.ChatCompletionTool[];
+	messages: OpenAI.ChatCompletionMessageParam[];
+	max_tokens?: number;
+	max_completion_tokens?: number;
+}
 
 export interface IParams {
 	sdk: OpenAI;
@@ -37,12 +45,21 @@ export const sendPrompt = async ({
 		providerName,
 	});
 
-	const rawResponse = (await sdk.chat.completions.create({
+	const chatCompletionCreateParams: IChatCompletionCreateParams = {
 		model,
 		tools,
 		messages,
-		max_tokens: maxTokens,
-	})) as OpenAI.Chat.Completions.ChatCompletion;
+	};
+
+	if (model === Model.OpenAI.o3Mini) {
+		chatCompletionCreateParams.max_completion_tokens = maxTokens;
+	} else {
+		chatCompletionCreateParams.max_tokens = maxTokens;
+	}
+
+	const rawResponse = (await sdk.chat.completions.create(
+		chatCompletionCreateParams,
+	)) as OpenAI.Chat.Completions.ChatCompletion;
 
 	const response = toModelResponse({ response: rawResponse });
 
