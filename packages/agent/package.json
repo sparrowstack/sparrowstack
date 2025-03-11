@@ -27,8 +27,8 @@
 		"publish-package": "bun publish"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "0.36.3",
-		"@google/generative-ai": "^0.22.0",
+		"@anthropic-ai/sdk": "0.39.0",
+		"@google/generative-ai": "0.24.0",
 		"@sparrowstack/chat-message-manager": "workspace:*",
 		"@sparrowstack/core": "workspace:*",
 		"@sparrowstack/logger": "workspace:*",
@@ -36,7 +36,7 @@
 		"@sparrowstack/system-prompts": "workspace:*",
 		"@sparrowstack/tool": "workspace:*",
 		"chalk": "5.4.1",
-		"openai": "4.83.0"
+		"openai": "4.86.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"

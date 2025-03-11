@@ -1,6 +1,7 @@
 // https://platform.openai.com/docs/models
 export enum OpenAIModel {
 	o3Mini = 'o3-mini-2025-01-31',
+	GPT45Preview = 'gpt-4.5-preview-2025-02-27',
 	GPT4o = 'gpt-4o',
 	GPT4oLatest = 'chatgpt-4o-latest',
 	GPT4oMini = 'gpt-4o-mini',
@@ -19,6 +20,7 @@ export enum OpenAIModel {
 
 // https://docs.anthropic.com/en/docs/about-claude/models
 export enum AnthropicModel {
+	Claude37Sonnet = 'claude-3-7-sonnet-20250219',
 	Claude35Sonnet = 'claude-3-5-sonnet-20241022',
 	Claude35Haiku = 'claude-3-5-haiku-20241022',
 	Claude35Opus = 'claude-3-opus-20240229',
