@@ -1,14 +1,11 @@
 import { Role } from '@core/providers/AnthropicProvider/common/enums/Role';
 import { ContentType } from '@core/providers/AnthropicProvider/common/enums';
 import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
-import type {
-	ToolCallResponseMessage,
-	AnthropicToolCallResponseMessage,
-} from '@core/providers/AnthropicProvider/common/interfaces';
+import type { AnthropicToolCallResponseMessage } from '@core/providers/AnthropicProvider/common/interfaces';
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: ToolCallResults): ToolCallResponseMessage => {
+}: ToolCallResults): AnthropicToolCallResponseMessage[] => {
 	const toolResultMessages: AnthropicToolCallResponseMessage[] =
 		toolCallResults.map((toolCallResult) => ({
 			role: Role.User,
@@ -21,9 +18,7 @@ export const toToolCallResponseMessages = ({
 			],
 		}));
 
-	return {
-		customMessages: toolResultMessages,
-	};
+	return toolResultMessages;
 };
 
 /**

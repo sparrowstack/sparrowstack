@@ -1,20 +1,17 @@
 import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
-import type { ToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
+import type { GoogleGenerativeAIToolCallResponseMessages } from '@core/providers/GoogleGenerativeAIProvider/common/types';
 import {
-	getAssistantMessages,
 	getUserMessages,
+	getAssistantMessages,
 } from '@core/providers/GoogleGenerativeAIProvider/adapters/toToolCallResponseMessages/common/utils';
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: ToolCallResults): ToolCallResponseMessage => {
+}: ToolCallResults): GoogleGenerativeAIToolCallResponseMessages => {
 	const assistantMessages = getAssistantMessages(toolCallResults);
 	const userMessages = getUserMessages(toolCallResults);
 
-	return {
-		assistantMessages: [assistantMessages],
-		userMessages: [userMessages],
-	};
+	return [...[assistantMessages], ...[userMessages]];
 };
 
 /**

@@ -7,13 +7,13 @@ import {
 	toToolCallResponseMessages,
 } from '@core/providers/AnthropicProvider/adapters';
 import type {
-	ToolCallResponseMessage,
+	AnthropicToolCallResponseMessage,
 	AnthropicToolCallRequestMessage,
 } from '@core/providers/AnthropicProvider/common/interfaces';
 
 export class AnthropicProvider extends BaseProvider<
 	AnthropicToolCallRequestMessage,
-	ToolCallResponseMessage
+	AnthropicToolCallResponseMessage[]
 > {
 	constructor({
 		name,

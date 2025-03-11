@@ -4,7 +4,7 @@ import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
 import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	OpenAIToolCallRequestMessage,
-	ToolCallResponseMessage,
+	OpenAIToolCallResponseMessage,
 } from '@core/providers/OpenAIProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
@@ -13,7 +13,7 @@ import {
 
 export class OpenAIProvider extends BaseProvider<
 	OpenAIToolCallRequestMessage,
-	ToolCallResponseMessage
+	OpenAIToolCallResponseMessage[]
 > {
 	constructor({
 		name,
