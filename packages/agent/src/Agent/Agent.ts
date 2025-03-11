@@ -4,12 +4,12 @@ import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import { ToolCallManager } from '@core/ToolCallManager';
 import { ProviderFactory } from '@core/ProviderFactory';
+import type { Settings } from '@agent/common/interfaces';
 import { InteractionLogger } from '@core/InteractionLogger';
 import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { defaultPrompt } from '@sparrowstack/system-prompts';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
-// import type { BaseProvider } from '@core/providers/BaseProvider/BaseProvider';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
@@ -21,6 +21,7 @@ import {
 interface ConstructorParams {
 	model: string;
 	apiKey: string;
+	settings?: Settings;
 	provider: ProviderName;
 	tools?: Tool[] | IToolParams[];
 	systemPrompt?: SystemPrompt | ISystemPromptParams;
@@ -47,10 +48,15 @@ export class Agent {
 
 	// Tool Calling
 	readonly toolCallManager: ToolCallManager;
+
+	// Settings
+	readonly settings?: Settings;
+
 	constructor({
 		model,
 		tools,
 		apiKey,
+		settings,
 		provider: providerName,
 		systemPrompt = defaultPrompt,
 	}: ConstructorParams) {
@@ -87,6 +93,7 @@ export class Agent {
 		this.provider = ProviderFactory.create({
 			model,
 			apiKey,
+			settings: this.settings,
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
 			toolRegistry: this.toolRegistry,
@@ -102,6 +109,10 @@ export class Agent {
 			interactionLogger: this.interactionLogger,
 			chatMessageManager: this.chatMessageManager,
 		});
+
+		// Settings
+		// --------------------------------
+		this.settings = settings;
 	}
 
 	public async sendMessage({
@@ -111,6 +122,7 @@ export class Agent {
 	}): Promise<ModelResponse> {
 		return sendMessage({
 			message,
+			settings: this.settings,
 			provider: this.provider,
 			toolCallManager: this.toolCallManager,
 			interactionLogger: this.interactionLogger,

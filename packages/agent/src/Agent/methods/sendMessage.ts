@@ -1,3 +1,4 @@
+import type { Settings } from '@agent/common/interfaces';
 import type { ToolCallManager } from '@core/ToolCallManager/ToolCallManager';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { Provider } from '@core/providers/BaseProvider/common/types/Provider';
@@ -6,6 +7,7 @@ import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogge
 interface IParams {
 	message: string;
 	provider: Provider;
+	settings?: Settings;
 	toolCallManager: ToolCallManager;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;

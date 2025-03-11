@@ -1,5 +1,6 @@
 import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
+import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
@@ -32,12 +33,13 @@ export abstract class BaseProvider<
 	readonly chatMessageManager: ChatMessageManager;
 
 	// Settings
-	readonly maxTokens: number;
+	readonly settings?: Settings;
 
 	constructor({
 		name,
 		model,
 		apiKey,
+		settings,
 		displayName,
 		systemPrompt,
 		toolRegistry,
@@ -65,7 +67,7 @@ export abstract class BaseProvider<
 
 		// Settings
 		// --------------------------------
-		this.maxTokens = 4096;
+		this.settings = settings;
 	}
 
 	abstract adapters: {
