@@ -1,2 +1,4 @@
-export type { IToolCallRequestMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces/IToolCallRequestMessage';
-export type { IToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces/IToolCallResponseMessage';
+export type { ToolCallResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces/ToolCallResponseMessage';
+export type { GoogleGenerativeAIToolCallRequestMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces/GoogleGenerativeAIToolCallRequestMessage';
+export type { GoogleGenerativeAIToolCallUserResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces/GoogleGenerativeAIToolCallUserResponseMessage';
+export type { GoogleGenerativeAIToolCallFunctionResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces/GoogleGenerativeAIToolCallFunctionResponseMessage';

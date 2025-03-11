@@ -3,8 +3,8 @@ import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/GoogleGenerativeAIProvider/methods';
 import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type {
-	IToolCallRequestMessage,
-	IToolCallResponseMessage,
+	GoogleGenerativeAIToolCallRequestMessage,
+	ToolCallResponseMessage,
 } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
@@ -12,8 +12,8 @@ import {
 } from '@core/providers/GoogleGenerativeAIProvider/adapters';
 
 export class GoogleGenerativeAIProvider extends BaseProvider<
-	IToolCallRequestMessage,
-	IToolCallResponseMessage
+	GoogleGenerativeAIToolCallRequestMessage,
+	ToolCallResponseMessage
 > {
 	constructor({
 		name,

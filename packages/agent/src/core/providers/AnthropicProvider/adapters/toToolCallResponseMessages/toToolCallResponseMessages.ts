@@ -28,7 +28,7 @@ export const toToolCallResponseMessages = ({
 
 /**
 
-User Message: Tool Response
+Anthropic Message: Tool Response
 --------------------------------
 {
 	role: 'user',
