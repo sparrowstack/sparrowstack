@@ -19,6 +19,7 @@ export class OpenAIProvider extends BaseProvider<
 		name,
 		model,
 		apiKey,
+		settings,
 		displayName,
 		systemPrompt,
 		toolRegistry,
@@ -28,6 +29,7 @@ export class OpenAIProvider extends BaseProvider<
 			name,
 			model,
 			apiKey,
+			settings,
 			displayName,
 			systemPrompt,
 			toolRegistry,
@@ -48,9 +50,9 @@ export class OpenAIProvider extends BaseProvider<
 	public sendPrompt() {
 		return sendPrompt({
 			model: this.model,
+			settings: this.settings,
 			providerName: this.name,
 			sdk: this.sdk as OpenAI,
-			maxTokens: this.maxTokens,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
 			chatMessageManager: this.chatMessageManager,

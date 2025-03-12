@@ -1,10 +1,15 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import type { Content } from '@google/generative-ai';
+import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/adapters';
+import {
+	buildChatParams,
+	buildModelParams,
+} from '@core/providers/GoogleGenerativeAIProvider/common/utils';
 import {
 	GoogleGenerativeAI,
 	type FunctionDeclarationsTool,
@@ -12,7 +17,7 @@ import {
 
 export interface IParams {
 	model: string;
-	maxTokens: number;
+	settings?: Settings;
 	sdk: GoogleGenerativeAI;
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
@@ -23,7 +28,7 @@ export interface IParams {
 export const sendPrompt = async ({
 	sdk,
 	model,
-	// maxTokens,
+	settings,
 	systemPrompt,
 	toolRegistry,
 	providerName,
@@ -31,20 +36,20 @@ export const sendPrompt = async ({
 }: IParams): Promise<ModelResponse> => {
 	const messages = chatMessageManager.getMessages<Content>();
 	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
-
 	const tools = toolRegistry.getToolSchemas<FunctionDeclarationsTool>({
 		providerName,
 	});
 
-	const sdkModel = sdk.getGenerativeModel({
-		model,
-		tools,
-	});
+	// TODO: Instantiate in Provider?
+	const modelParams = buildModelParams({ model, tools });
+	const sdkModel = sdk.getGenerativeModel(modelParams);
 
-	const sdkChat = sdkModel.startChat({
-		history: messages,
+	const chatParams = buildChatParams({
+		settings,
 		systemInstruction,
+		history: messages,
 	});
+	const sdkChat = sdkModel.startChat(chatParams);
 
 	const lastMessage = messages[messages.length - 1];
 	const userMessage = lastMessage.parts[0].text as string;

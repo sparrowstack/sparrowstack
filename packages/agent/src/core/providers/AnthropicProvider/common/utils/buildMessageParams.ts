@@ -33,14 +33,6 @@ export const buildMessageParams = ({
 		};
 	}
 
-	if (settings?.maxTokens) {
-		messagesParams.max_tokens = settings.maxTokens;
-	}
-
-	if (settings?.temperature) {
-		messagesParams.temperature = settings.temperature;
-	}
-
 	if (settings?.thinking) {
 		messagesParams.thinking = {
 			type: 'enabled',

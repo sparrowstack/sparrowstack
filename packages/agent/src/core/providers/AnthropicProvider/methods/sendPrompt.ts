@@ -32,14 +32,13 @@ export const sendPrompt = async ({
 	const tools = toolRegistry.getToolSchemas<Anthropic.Tool>({
 		providerName,
 	});
-	const messageParams =
-		buildMessageParams({
-			model,
-			tools,
-			system,
-			messages,
-			settings,
-		});
+	const messageParams = buildMessageParams({
+		model,
+		tools,
+		system,
+		messages,
+		settings,
+	});
 
 	const rawResponse = (await sdk.messages.create(
 		messageParams,
