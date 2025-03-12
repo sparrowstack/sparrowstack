@@ -27,9 +27,27 @@ export const printHeader = ({ agent }: IParams) => {
 		),
 	);
 	console.log('');
-	console.log(`${chalk.bold('Tools:')}`);
-	console.log(toolRegistry.getToolNames());
-	console.log('');
+	const toolNames = toolRegistry.getToolNames();
+
+	if (toolNames.length > 0) {
+		console.log(`${chalk.bold('Tools:')}`);
+		toolNames.forEach((toolName: string) => {
+			console.log(`  ${chalk.dim('•')} ${toolName}`);
+		});
+
+		console.log('');
+	}
+
+	if (agent.settings) {
+		console.log(`${chalk.bold('Settings:')}`);
+
+		Object.entries(agent.settings).forEach(([key, value]) => {
+			console.log(`  ${chalk.dim('•')} ${key}: ${value}`);
+		});
+
+		console.log('');
+	}
+
 	console.log(chalk.dim('- Type "q" to quit'));
 	console.log('');
 	console.log('');
