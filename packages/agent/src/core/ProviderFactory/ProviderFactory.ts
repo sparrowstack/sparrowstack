@@ -1,31 +1,37 @@
 import { ProviderName } from '@sparrowstack/core';
 import { ToolRegistry } from '@core/ToolRegistry';
-import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { providers } from '@core/ProviderFactory/common/constants';
+import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+
+interface IParams {
+	model: string;
+	apiKey: string;
+	settings?: Settings;
+	systemPrompt: SystemPrompt;
+	providerName: ProviderName;
+	toolRegistry: ToolRegistry;
+	providerDisplayName: string;
+	chatMessageManager: ChatMessageManager;
+}
 
 export class ProviderFactory {
 	public static create({
 		model,
 		apiKey,
+		settings,
 		toolRegistry,
 		systemPrompt,
 		providerName,
 		chatMessageManager,
 		providerDisplayName,
-	}: {
-		model: string;
-		apiKey: string;
-		systemPrompt: SystemPrompt;
-		providerName: ProviderName;
-		toolRegistry: ToolRegistry;
-		providerDisplayName: string;
-		chatMessageManager: ChatMessageManager;
-	}) {
+	}: IParams) {
 		const Provider = providers[providerName as keyof typeof providers];
 		const provider = new Provider({
 			model,
 			apiKey,
+			settings,
 			systemPrompt,
 			toolRegistry,
 			chatMessageManager,

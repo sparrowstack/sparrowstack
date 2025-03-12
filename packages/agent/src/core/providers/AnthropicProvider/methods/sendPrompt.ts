@@ -1,15 +1,17 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
+import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/AnthropicProvider/adapters/toModelResponse';
+import { buildMessageParams } from '@core/providers/AnthropicProvider/common/utils/buildMessageParams';
 
 export interface IParams {
 	model: string;
 	sdk: Anthropic;
-	maxTokens: number;
+	settings?: Settings;
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
@@ -19,7 +21,7 @@ export interface IParams {
 export const sendPrompt = async ({
 	sdk,
 	model,
-	maxTokens,
+	settings,
 	systemPrompt,
 	toolRegistry,
 	providerName,
@@ -30,14 +32,17 @@ export const sendPrompt = async ({
 	const tools = toolRegistry.getToolSchemas<Anthropic.Tool>({
 		providerName,
 	});
-
-	const rawResponse = (await sdk.messages.create({
+	const messageParams = buildMessageParams({
 		model,
 		tools,
 		system,
 		messages,
-		max_tokens: maxTokens,
-	})) as Anthropic.Messages.Message;
+		settings,
+	});
+
+	const rawResponse = (await sdk.messages.create(
+		messageParams,
+	)) as Anthropic.Messages.Message;
 
 	const response = toModelResponse({ response: rawResponse });
 

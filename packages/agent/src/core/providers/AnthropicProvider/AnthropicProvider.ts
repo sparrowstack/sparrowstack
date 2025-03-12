@@ -19,6 +19,7 @@ export class AnthropicProvider extends BaseProvider<
 		name,
 		model,
 		apiKey,
+		settings,
 		displayName,
 		systemPrompt,
 		toolRegistry,
@@ -28,6 +29,7 @@ export class AnthropicProvider extends BaseProvider<
 			name,
 			model,
 			apiKey,
+			settings,
 			displayName,
 			systemPrompt,
 			toolRegistry,
@@ -48,8 +50,8 @@ export class AnthropicProvider extends BaseProvider<
 	public sendPrompt() {
 		return sendPrompt({
 			model: this.model,
+			settings: this.settings,
 			providerName: this.name,
-			maxTokens: this.maxTokens,
 			sdk: this.sdk as Anthropic,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
