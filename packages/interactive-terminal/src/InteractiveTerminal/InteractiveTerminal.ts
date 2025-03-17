@@ -9,16 +9,16 @@ interface ConstructorParams {
 export class InteractiveTerminal {
 	agent: Agent;
 	logger = new Logger({ context: 'InteractiveTerminal' });
+	private interactiveSession: InteractiveSession;
 
 	constructor({ agent }: ConstructorParams) {
 		this.agent = agent;
+		this.interactiveSession = new InteractiveSession({
+			agent: this.agent,
+		});
 	}
 
 	public start() {
-		const interactiveSession = new InteractiveSession({
-			agent: this.agent,
-		});
-
-		interactiveSession.start();
+		this.interactiveSession.start();
 	}
 }

@@ -8,7 +8,7 @@ import {
 	executeToolCall,
 	executeValidationCheck,
 	executeMaxCallCountCheck,
-} from '@core/ToolCallManager/execute/executeToolCalls/utils';
+} from '@core/ToolCallManager/methods/executeToolCalls/utils';
 
 interface IParams {
 	model: string;
@@ -17,6 +17,11 @@ interface IParams {
 	toolRegistry: ToolRegistry;
 	toolCalls: ModelResponseToolCall[];
 	chatMessageManager: ChatMessageManager;
+	onRequestPermission?: ({
+		message,
+	}: {
+		message: string;
+	}) => Promise<boolean>;
 }
 
 export const executeToolCalls = async ({
@@ -26,10 +31,12 @@ export const executeToolCalls = async ({
 	systemPrompt,
 	toolRegistry,
 	chatMessageManager,
+	onRequestPermission,
 }: IParams): Promise<ToolCallResult[]> => {
 	const toolCallResults = await Promise.all(
 		toolCalls.map(async (toolCall) => {
 			let result: unknown;
+			let hasPermission = true;
 			const { id, name } = toolCall;
 			const tool = toolRegistry.getToolByName({ name });
 			const runtimeParams = {
@@ -42,40 +49,58 @@ export const executeToolCalls = async ({
 				lastCachedResult: tool.getLastCachedResult(),
 			};
 
-			const { isValid, validationFailedMessage } =
-				await executeValidationCheck({
-					tool,
-					runtimeParams,
+			if (tool.needsPermission?.user && onRequestPermission) {
+				hasPermission = await onRequestPermission({
+					message: tool.needsPermission.message,
 				});
+			}
 
-			const { hasExceededMaxCallCount, maxCallCountExceededMessage } =
-				await executeMaxCallCountCheck({
-					tool,
-					isValid,
-					runtimeParams,
-				});
-
-			if (isValid && !hasExceededMaxCallCount) {
-				result = await executeToolCall({
-					tool,
-					toolCall,
-				});
-			} else if (!isValid) {
-				// The object is for Gemini compatibility
-				// but seems to work for all providers
-				result = {
-					error: {
-						message: validationFailedMessage,
+			if (!hasPermission) {
+				return {
+					id,
+					name,
+					result: {
+						error: {
+							message: 'Permission to call tool denied by user',
+						},
 					},
 				};
-			} else if (hasExceededMaxCallCount) {
-				// The object is for Gemini compatibility
-				// but seems to work for all providers
-				result = {
-					error: {
-						message: maxCallCountExceededMessage,
-					},
-				};
+			} else {
+				const { isValid, validationFailedMessage } =
+					await executeValidationCheck({
+						tool,
+						runtimeParams,
+					});
+
+				const { hasExceededMaxCallCount, maxCallCountExceededMessage } =
+					await executeMaxCallCountCheck({
+						tool,
+						isValid,
+						runtimeParams,
+					});
+
+				if (isValid && !hasExceededMaxCallCount) {
+					result = await executeToolCall({
+						tool,
+						toolCall,
+					});
+				} else if (!isValid) {
+					// The error object is for Gemini compatibility
+					// but seems to work for all providers
+					result = {
+						error: {
+							message: validationFailedMessage,
+						},
+					};
+				} else if (hasExceededMaxCallCount) {
+					// The error object is for Gemini compatibility
+					// but seems to work for all providers
+					result = {
+						error: {
+							message: maxCallCountExceededMessage,
+						},
+					};
+				}
 			}
 
 			return { id, name, result };
