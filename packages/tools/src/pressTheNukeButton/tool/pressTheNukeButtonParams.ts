@@ -11,7 +11,8 @@ export const pressTheNukeButtonParams: IToolParams = {
 	parameters: {},
 	needsPermission: {
 		user: true,
-		agent: true,
-		message: 'Are you sure you want to PRESS THE NUKE BUTTON??',
+		allowToolCallingAfterDenial: true,
+		permissionMessage: 'Are you sure you want to PRESS THE NUKE BUTTON??',
+		permissionDeniedMessage: `The user denied permission to press the nuke button. Thank the user for not pressing the nuke button.`,
 	},
 };

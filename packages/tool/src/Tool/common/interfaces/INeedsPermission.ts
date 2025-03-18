@@ -1,5 +1,8 @@
 export interface INeedsPermission {
 	user?: boolean;
 	agent?: boolean;
-	message?: string;
+	permissionMessage?: string;
+	permissionDeniedMessage?: string;
+	allowToolCallingAfterDenial?: boolean;
+	blockToolCallingAfterDenial?: boolean;
 }
