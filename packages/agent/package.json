@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/agent",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Agent module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
