@@ -9,10 +9,19 @@ export const getAssistantMessages = (
 	const functionResponses = toolCallResults.map(({ name, result }) => {
 		let response = result;
 
+		// If the response is an JSON object, parse it
 		try {
 			response = JSON.parse(result as string);
-		} catch {
-			// Do nothing
+		} catch {}
+
+		// If the response is still a string,
+		// we're assuming the response is a raw string,
+		// In this case we wrap it in an object as
+		// Gemini will choke on a raw string 'response' value
+		if (typeof response === 'string') {
+			response = {
+				message: response,
+			};
 		}
 
 		return {

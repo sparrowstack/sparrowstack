@@ -115,6 +115,12 @@ export class Agent {
 		this.settings = settings;
 	}
 
+	public setRequestPermissionHandler(
+		handler: ({ message }: { message: string }) => Promise<boolean>,
+	) {
+		this.toolCallManager.setRequestPermissionHandler(handler);
+	}
+
 	public async sendMessage({
 		message,
 	}: {

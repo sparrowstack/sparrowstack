@@ -4,11 +4,12 @@ import type { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { ToolCallResult } from '@core/ToolCallManager/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
+import type { RuntimeParams } from '@core/ToolCallManager/methods/executeToolCalls/common/interfaces/RuntimeParams';
 import {
-	executeToolCall,
-	executeValidationCheck,
-	executeMaxCallCountCheck,
-} from '@core/ToolCallManager/execute/executeToolCalls/utils';
+	getToolCallResult,
+	handleNeedsUserPermission,
+	getPermissionDeniedToolCallResult,
+} from '@core/ToolCallManager/methods/executeToolCalls/common/utils';
 
 interface IParams {
 	model: string;
@@ -17,6 +18,11 @@ interface IParams {
 	toolRegistry: ToolRegistry;
 	toolCalls: ModelResponseToolCall[];
 	chatMessageManager: ChatMessageManager;
+	onRequestPermission?: ({
+		message,
+	}: {
+		message: string;
+	}) => Promise<boolean>;
 }
 
 export const executeToolCalls = async ({
@@ -26,13 +32,14 @@ export const executeToolCalls = async ({
 	systemPrompt,
 	toolRegistry,
 	chatMessageManager,
+	onRequestPermission,
 }: IParams): Promise<ToolCallResult[]> => {
 	const toolCallResults = await Promise.all(
 		toolCalls.map(async (toolCall) => {
 			let result: unknown;
 			const { id, name } = toolCall;
 			const tool = toolRegistry.getToolByName({ name });
-			const runtimeParams = {
+			const runtimeParams: RuntimeParams = {
 				model,
 				provider: providerName,
 				callCount: tool.getCallCount(),
@@ -42,40 +49,19 @@ export const executeToolCalls = async ({
 				lastCachedResult: tool.getLastCachedResult(),
 			};
 
-			const { isValid, validationFailedMessage } =
-				await executeValidationCheck({
-					tool,
-					runtimeParams,
-				});
+			const hasPermission = await handleNeedsUserPermission({
+				tool,
+				onRequestPermission,
+			});
 
-			const { hasExceededMaxCallCount, maxCallCountExceededMessage } =
-				await executeMaxCallCountCheck({
-					tool,
-					isValid,
-					runtimeParams,
-				});
-
-			if (isValid && !hasExceededMaxCallCount) {
-				result = await executeToolCall({
+			if (!hasPermission) {
+				result = getPermissionDeniedToolCallResult({ tool });
+			} else {
+				result = await getToolCallResult({
 					tool,
 					toolCall,
+					runtimeParams,
 				});
-			} else if (!isValid) {
-				// The object is for Gemini compatibility
-				// but seems to work for all providers
-				result = {
-					error: {
-						message: validationFailedMessage,
-					},
-				};
-			} else if (hasExceededMaxCallCount) {
-				// The object is for Gemini compatibility
-				// but seems to work for all providers
-				result = {
-					error: {
-						message: maxCallCountExceededMessage,
-					},
-				};
 			}
 
 			return { id, name, result };

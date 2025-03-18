@@ -3,7 +3,7 @@ import type { Provider } from '@core/providers/BaseProvider/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { executeToolCalls } from '@core/ToolCallManager/execute/executeToolCalls/executeToolCalls';
+import { executeToolCalls } from '@core/ToolCallManager/methods/executeToolCalls/executeToolCalls';
 
 interface ConstructorParams {
 	provider: Provider;
@@ -17,6 +17,11 @@ export class ToolCallManager {
 	readonly toolRegistry: ToolRegistry;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
+	private onRequestPermission?: ({
+		message,
+	}: {
+		message: string;
+	}) => Promise<boolean>;
 
 	constructor({
 		provider,
@@ -28,6 +33,12 @@ export class ToolCallManager {
 		this.toolRegistry = toolRegistry;
 		this.interactionLogger = interactionLogger;
 		this.chatMessageManager = chatMessageManager;
+	}
+
+	public setRequestPermissionHandler(
+		handler: ({ message }: { message: string }) => Promise<boolean>,
+	) {
+		this.onRequestPermission = handler;
 	}
 
 	// Note: Could probably do some cleaning up here
@@ -64,6 +75,7 @@ export class ToolCallManager {
 			providerName: this.provider.name,
 			toolCalls: responseMessage.toolCalls,
 			systemPrompt: this.provider.systemPrompt,
+			onRequestPermission: this.onRequestPermission,
 			chatMessageManager: this.chatMessageManager,
 		});
 

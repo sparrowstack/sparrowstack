@@ -1,8 +1,11 @@
 import { Type } from '@tool/common/enums';
 import { ProviderName } from '@sparrowstack/core';
 import { providerSchemas } from '@tool/common/constants';
-import type { IToolParams } from '@tool/common/interfaces';
-import type { ICachedResult } from '@tool/common/interfaces/ICachedResult';
+import type {
+	IToolParams,
+	ICachedResult,
+	INeedsPermission,
+} from '@tool/common/interfaces';
 import type {
 	Validate,
 	Parameters,
@@ -18,6 +21,7 @@ export class Tool {
 	readonly maxCallCount?: number;
 	readonly parameters: Parameters;
 	readonly type = Type.Tool as const;
+	readonly needsPermission?: INeedsPermission;
 
 	readonly validationFailedMessage?: string | CallableFunctionResponseMessage;
 	readonly maxCallCountExceededMessage?:
@@ -34,6 +38,7 @@ export class Tool {
 		description,
 		maxCallCount,
 		parameters = {},
+		needsPermission,
 		function: toolFunction,
 		validationFailedMessage,
 		maxCallCountExceededMessage,
@@ -46,6 +51,7 @@ export class Tool {
 		this.parameters = parameters;
 		this.description = description;
 		this.maxCallCount = maxCallCount;
+		this.needsPermission = needsPermission;
 		this.validationFailedMessage = validationFailedMessage;
 		this.maxCallCountExceededMessage = maxCallCountExceededMessage;
 		// synonyms
