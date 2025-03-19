@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export interface Settings {
 	stream?: boolean;
 	maxTokens?: number;
@@ -5,4 +7,5 @@ export interface Settings {
 	temperature?: number;
 	thinkingBudget?: number;
 	toolChoice?: 'any' | 'auto' | 'none';
+	responseFormat?: z.ZodObject<any>;
 }
