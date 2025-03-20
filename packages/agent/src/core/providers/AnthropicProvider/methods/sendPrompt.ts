@@ -1,6 +1,7 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
+import { State } from '@agent/common/enums/State';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
@@ -9,6 +10,7 @@ import { toModelResponse } from '@core/providers/AnthropicProvider/adapters/toMo
 import { buildMessageParams } from '@core/providers/AnthropicProvider/common/utils/buildMessageParams';
 
 export interface IParams {
+	state?: State;
 	model: string;
 	sdk: Anthropic;
 	settings?: Settings;

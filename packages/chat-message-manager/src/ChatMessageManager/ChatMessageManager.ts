@@ -23,8 +23,8 @@ export class ChatMessageManager {
 		this.chatMessages.push(message);
 	}
 
-	public addModelMessage<MessageType>({ text }: { text: string }): void {
-		const message = this.chatMessage.createModelMessage<MessageType>({
+	public addAssistantMessage<MessageType>({ text }: { text: string }): void {
+		const message = this.chatMessage.createAssistantMessage<MessageType>({
 			text,
 		});
 

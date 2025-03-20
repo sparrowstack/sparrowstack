@@ -1,11 +1,14 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/AnthropicProvider/methods';
-import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
 } from '@core/providers/AnthropicProvider/adapters';
+import type {
+	SendPromptParams,
+	ConstructorParams,
+} from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	AnthropicToolCallResponseMessage,
 	AnthropicToolCallRequestMessage,
@@ -47,9 +50,10 @@ export class AnthropicProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt() {
+	public sendPrompt(params?: SendPromptParams) {
 		return sendPrompt({
 			model: this.model,
+			state: params?.state,
 			settings: this.settings,
 			providerName: this.name,
 			sdk: this.sdk as Anthropic,

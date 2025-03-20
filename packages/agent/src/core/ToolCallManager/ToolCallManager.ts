@@ -1,4 +1,5 @@
 import { ToolRegistry } from '@core/ToolRegistry';
+import { State } from '@agent/common/enums/State';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
@@ -59,11 +60,14 @@ export class ToolCallManager {
 		}
 
 		// Handle the current batch of tool calls
+
+		// Convert model response to tool call request message
 		const assistantToolCallRequestMessage =
 			this.provider.adapters.toToolCallRequestMessage({
 				responseMessage,
 			});
 
+		// Add tool call request message to chat history
 		this.chatMessageManager.addToMessages({
 			message: assistantToolCallRequestMessage,
 		});
@@ -79,11 +83,13 @@ export class ToolCallManager {
 			chatMessageManager: this.chatMessageManager,
 		});
 
+		// Convert tool call results to tool call response messages
 		const toolCallResponseMessages =
 			this.provider.adapters.toToolCallResponseMessages({
 				toolCallResults,
 			});
 
+		// Add tool call response messages to chat history
 		toolCallResponseMessages.forEach((message) => {
 			this.chatMessageManager.addToMessages({
 				message,
@@ -91,7 +97,9 @@ export class ToolCallManager {
 		});
 
 		// Get the model's response to the tool call results
-		const toolCallResponseMessage = await this.provider.sendPrompt();
+		const toolCallResponseMessage = await this.provider.sendPrompt({
+			state: State.ToolCallResponse,
+		});
 
 		// OpenAI: will send a batch of tool calls in the same message
 		// Anthropic: will send tool calls in subsequent messages

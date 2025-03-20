@@ -1,5 +1,6 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
+import { State } from '@agent/common/enums/State';
 import type { Content } from '@google/generative-ai';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
@@ -17,6 +18,7 @@ import {
 
 export interface IParams {
 	model: string;
+	state?: State;
 	settings?: Settings;
 	sdk: GoogleGenerativeAI;
 	toolRegistry: ToolRegistry;
@@ -28,6 +30,7 @@ export interface IParams {
 export const sendPrompt = async ({
 	sdk,
 	model,
+	state,
 	settings,
 	systemPrompt,
 	toolRegistry,
@@ -39,23 +42,29 @@ export const sendPrompt = async ({
 	const tools = toolRegistry.getToolSchemas<FunctionDeclarationsTool>({
 		providerName,
 	});
+	const isToolCall = state === State.ToolCallResponse;
 
 	// TODO: Instantiate in Provider?
+
+	// Build SDK Model
 	const modelParams = buildModelParams({ model, tools });
 	const sdkModel = sdk.getGenerativeModel(modelParams);
 
+	// Build SDK Chat
 	const chatParams = buildChatParams({
 		settings,
+		isToolCall,
 		systemInstruction,
 		history: messages,
 	});
 	const sdkChat = sdkModel.startChat(chatParams);
 
+	// Send Message
 	const lastMessage = messages[messages.length - 1];
 	const userMessage = lastMessage.parts[0].text as string;
-
 	const rawResponse = await sdkChat.sendMessage(userMessage);
 
+	// Format Response
 	const response = toModelResponse({ response: rawResponse });
 
 	// const history = await sdkChat.getHistory();

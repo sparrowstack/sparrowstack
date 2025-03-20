@@ -30,7 +30,7 @@ export class ChatMessage {
 		return message;
 	}
 
-	public createModelMessage<MessageType>({
+	public createAssistantMessage<MessageType>({
 		text,
 	}: {
 		text: string;

@@ -30,7 +30,7 @@ export const sendMessage = async ({
 
 	const responseMessage = toolCallResponseMessage || modelResponseMessage;
 
-	chatMessageManager.addModelMessage({
+	chatMessageManager.addAssistantMessage({
 		text: responseMessage.text,
 	});
 
