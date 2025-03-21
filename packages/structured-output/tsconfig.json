@@ -1,0 +1,11 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"paths": {
+			"@structured-output": ["./src/StructuredOutput"],
+			"@structured-output/*": ["./src/StructuredOutput/*"]
+		}
+	},
+	"include": ["src/**/*", "tests/**/*"],
+	"exclude": ["dist", "node_modules"]
+}
