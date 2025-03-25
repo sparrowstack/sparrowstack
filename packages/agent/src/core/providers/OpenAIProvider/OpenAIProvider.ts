@@ -4,7 +4,7 @@ import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
-} from '@core/providers/OpenAIProvider/adapters';
+} from '@core/providers/OpenAIProvider/common/adapters';
 import type {
 	ConstructorParams,
 	SendPromptParams,
@@ -26,6 +26,7 @@ export class OpenAIProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
+		structuredOutput,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -36,6 +37,7 @@ export class OpenAIProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
+			structuredOutput,
 			chatMessageManager,
 		});
 
@@ -59,6 +61,7 @@ export class OpenAIProvider extends BaseProvider<
 			sdk: this.sdk as OpenAI,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
+			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
 		});
 	}

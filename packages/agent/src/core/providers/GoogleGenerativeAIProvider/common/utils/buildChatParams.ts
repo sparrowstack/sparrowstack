@@ -81,12 +81,14 @@ const DefaultResponseFormat = z.object({
 	text: z.string().describe('The response text to display to the user'),
 	metadata: z
 		.object({
-			type: z.enum([
-				'general',
-				'tool_response',
-				'error',
-				'clarification',
-			]),
+			type: z
+				.enum([
+					'Chat Response',
+					'Tool Response',
+					'Error',
+					'Clarification',
+				])
+				.describe('The type of response you are providing the user.'),
 			confidence: z
 				.number()
 				.describe('Confidence in the response, 1-100'),
@@ -96,6 +98,11 @@ const DefaultResponseFormat = z.object({
 					'Whether the response requires a follow-up from the user',
 				),
 			ChainOfThought,
+			originalResponse: z
+				.string()
+				.describe(
+					'The original response from the LLM. This feild should contain the unstuctured/unformatted response from the LLM',
+				),
 		})
 		.describe('Metadata for debugging purposes only'),
 });

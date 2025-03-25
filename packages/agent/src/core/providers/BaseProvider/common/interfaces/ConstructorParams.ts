@@ -10,6 +10,7 @@ export interface ConstructorParams {
 	name: ProviderName;
 	displayName: string;
 	settings?: Settings;
+	structuredOutput?: any;
 	systemPrompt: SystemPrompt;
 	toolRegistry: ToolRegistry;
 	chatMessageManager: ChatMessageManager;

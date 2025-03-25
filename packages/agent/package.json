@@ -32,6 +32,7 @@
 		"@sparrowstack/chat-message-manager": "workspace:*",
 		"@sparrowstack/core": "workspace:*",
 		"@sparrowstack/logger": "workspace:*",
+		"@sparrowstack/structured-output": "workspace:*",
 		"@sparrowstack/system-prompt": "workspace:*",
 		"@sparrowstack/system-prompts": "workspace:*",
 		"@sparrowstack/tool": "workspace:*",

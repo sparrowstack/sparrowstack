@@ -13,6 +13,7 @@ interface IParams {
 	providerName: ProviderName;
 	toolRegistry: ToolRegistry;
 	providerDisplayName: string;
+	structuredOutput: any;
 	chatMessageManager: ChatMessageManager;
 }
 
@@ -24,6 +25,7 @@ export class ProviderFactory {
 		toolRegistry,
 		systemPrompt,
 		providerName,
+		structuredOutput,
 		chatMessageManager,
 		providerDisplayName,
 	}: IParams) {
@@ -34,6 +36,7 @@ export class ProviderFactory {
 			settings,
 			systemPrompt,
 			toolRegistry,
+			structuredOutput,
 			chatMessageManager,
 			name: providerName,
 			displayName: providerDisplayName,

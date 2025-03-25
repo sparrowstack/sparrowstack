@@ -4,54 +4,10 @@ import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Role } from '@core/providers/OpenAIProvider/common/enums/Role';
 
-// Test Format
-// ------------------------------------
-import { z } from 'zod';
-import { zodResponseFormat } from 'openai/helpers/zod';
-
-const Step = z.object({
-	explanation: z.string(),
-	output: z.string(),
-});
-
-const ChainOfThought = z
-	.object({
-		steps: z.array(Step),
-	})
-	.describe('The LLM chain of thought to arrive to this answer.');
-
-const defaultResponseFormat = z.object({
-	text: z.string().describe('The response text to display to the user'),
-	metadata: z
-		.object({
-			type: z.enum([
-				'general',
-				'tool_response',
-				'error',
-				'clarification',
-			]),
-			confidence: z
-				.number()
-				.describe('Confidence in the response, 1-100'),
-			requiresFollowUp: z
-				.boolean()
-				.describe(
-					'Whether the response requires a follow-up from the user',
-				),
-			ChainOfThought,
-		})
-		.describe('Metadata for debugging purposes only'),
-});
-
-const responseFormat = zodResponseFormat(
-	defaultResponseFormat,
-	'default_response_format',
-);
-// ------------------------------------
-
 interface IParams {
 	model: string;
 	settings?: Settings;
+	structuredOutput: any;
 	systemPrompt: SystemPrompt;
 	tools: OpenAI.ChatCompletionTool[];
 	chatMessages: OpenAI.Chat.Completions.ChatCompletionMessageParam[];
@@ -63,6 +19,7 @@ export const buildChatParams = ({
 	settings,
 	systemPrompt,
 	chatMessages,
+	structuredOutput,
 }: IParams) => {
 	const systemPromptMessage = {
 		role: Role.System,
@@ -82,8 +39,9 @@ export const buildChatParams = ({
 	} else {
 		chatCompletionCreateParams.max_tokens = settings?.maxTokens ?? 4096;
 	}
+	console.log('structuredOutput', structuredOutput);
 
-	chatCompletionCreateParams.response_format = responseFormat;
+	chatCompletionCreateParams.response_format = structuredOutput;
 
 	return chatCompletionCreateParams;
 };

@@ -1,5 +1,6 @@
-import { expect, test, describe, beforeEach } from 'bun:test';
 import { ProviderName } from '@sparrowstack/core';
+import { Name } from '@structured-output/common/enums';
+import { expect, test, describe, beforeEach } from 'bun:test';
 import { StructuredOutput } from '@structured-output/StructuredOutput';
 import {
 	mockZodResponseFormat,
@@ -11,7 +12,19 @@ describe('StructuredOutput', () => {
 	const strucuturedOutput = mockZodResponseFormat;
 	let structuredOutput: StructuredOutput;
 
-	describe('when instantiated', () => {
+	describe('when instantiated with no name', () => {
+		beforeEach(() => {
+			structuredOutput = new StructuredOutput({
+				strucuturedOutput,
+			});
+		});
+
+		test('should have a name', () => {
+			expect(structuredOutput.name).toBe(Name.Default);
+		});
+	});
+
+	describe('when instantiated with a name', () => {
 		beforeEach(() => {
 			structuredOutput = new StructuredOutput({
 				name,

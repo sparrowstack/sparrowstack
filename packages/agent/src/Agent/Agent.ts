@@ -9,10 +9,12 @@ import { InteractionLogger } from '@core/InteractionLogger';
 import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { defaultPrompt } from '@sparrowstack/system-prompts';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
+import { StructuredOutputFactory } from '@core/StucturedOutputFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import { getProviderDisplayName } from '@core/providers/BaseProvider/common/utils';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
+import type { StructuredOutputCreateParams } from '@core/StucturedOutputFactory/common/interfaces';
 import {
 	SystemPrompt,
 	type ISystemPromptParams,
@@ -25,6 +27,7 @@ interface ConstructorParams {
 	provider: ProviderName;
 	tools?: Tool[] | IToolParams[];
 	systemPrompt?: SystemPrompt | ISystemPromptParams;
+	responseFormat?: StructuredOutputCreateParams['responseFormat'];
 }
 
 export class Agent {
@@ -34,6 +37,9 @@ export class Agent {
 
 	// System Prompt
 	readonly systemPrompt: SystemPrompt;
+
+	// Structured Output
+	readonly structuredOutput?: any; // create response format
 
 	// Tools
 	readonly toolRegistry: ToolRegistry;
@@ -57,6 +63,7 @@ export class Agent {
 		tools,
 		apiKey,
 		settings,
+		responseFormat,
 		provider: providerName,
 		systemPrompt = defaultPrompt,
 	}: ConstructorParams) {
@@ -69,6 +76,13 @@ export class Agent {
 		// --------------------------------
 		this.systemPrompt = SystemPromptFactory.create({
 			systemPrompt,
+		});
+
+		// Structured Output
+		// --------------------------------
+		this.structuredOutput = StructuredOutputFactory.create({
+			providerName,
+			responseFormat,
 		});
 
 		// Tools
@@ -97,6 +111,7 @@ export class Agent {
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
 			toolRegistry: this.toolRegistry,
+			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
 			providerDisplayName: this.providerDisplayName,
 		});

@@ -34,6 +34,9 @@ export abstract class BaseProvider<
 	// Settings
 	readonly settings?: Settings;
 
+	// Structured Output
+	readonly structuredOutput: any;
+
 	constructor({
 		name,
 		model,
@@ -42,6 +45,7 @@ export abstract class BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
+		structuredOutput,
 		chatMessageManager,
 	}: ConstructorParams) {
 		// Base Properties
@@ -63,6 +67,10 @@ export abstract class BaseProvider<
 			apiKey,
 			providerName: this.name,
 		});
+
+		// Structured Output
+		// --------------------------------
+		this.structuredOutput = structuredOutput;
 
 		// Settings
 		// --------------------------------

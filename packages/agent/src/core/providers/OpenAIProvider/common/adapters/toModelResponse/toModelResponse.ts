@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import { ContentType } from '@core/providers/OpenAIProvider/common/enums';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { getToolCalls } from '@core/providers/OpenAIProvider/adapters/toModelResponse/common/utils';
+import { getToolCalls } from '@core/providers/OpenAIProvider/common/adapters/toModelResponse/common/utils';
 
 export const toModelResponse = ({
 	response,
