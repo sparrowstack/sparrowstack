@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"paths": {
 			"@structured-output": ["./src/StructuredOutput"],
-			"@structured-output/*": ["./src/StructuredOutput/*"]
+			"@structured-output/*": ["./src/StructuredOutput/*"],
+			"@tests/*": ["./tests/*"]
 		}
 	},
 	"include": ["src/**/*", "tests/**/*"],

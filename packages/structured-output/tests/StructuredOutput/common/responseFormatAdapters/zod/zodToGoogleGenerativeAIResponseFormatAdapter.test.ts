@@ -1,24 +1,25 @@
 import { expect, test, describe, beforeEach } from 'bun:test';
 import {
 	mockZodResponseFormat,
-	expectedOpenAIResponseFormat,
+	expectedGoogleGenerativeAIResponseFormat,
 } from '@tests/mocks';
-import { zodToOpenAIResponseFormatAdapter } from '@structured-output/common/responseFormatAdapters/zod';
+import { zodToGoogleGenerativeAIResponseFormatAdapter } from '@structured-output/common/responseFormatAdapters/zod';
 
-describe('zodToOpenAIResponseFormatAdapter', () => {
+describe('zodToGoogleGenerativeAIResponseFormatAdapter', () => {
 	describe('when provided a Zod responseFormat', () => {
 		let responseFormat: Record<string, any>;
 
 		beforeEach(() => {
-			responseFormat = zodToOpenAIResponseFormatAdapter({
-				name: 'testResponseFormat',
+			responseFormat = zodToGoogleGenerativeAIResponseFormatAdapter({
 				zodObject: mockZodResponseFormat,
 			});
 		});
 
 		test('should return the correct response format', () => {
 			expect(responseFormat).toStrictEqual(
-				expect.objectContaining(expectedOpenAIResponseFormat),
+				expect.objectContaining(
+					expectedGoogleGenerativeAIResponseFormat,
+				),
 			);
 		});
 	});

@@ -1,16 +1,16 @@
 import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
 
-interface Params {
+export interface Params {
 	name: string;
 	zodObject: z.ZodObject<any>;
 }
 
-export const zodToOpenAIResponseFormatAdapter = ({
+export const zodToOpenAIResponseFormatAdapter = <ResponseFormat>({
 	name,
 	zodObject,
-}: Params) => {
+}: Params): ResponseFormat => {
 	const responseFormat = zodResponseFormat(zodObject, name);
 
-	return responseFormat;
+	return responseFormat as ResponseFormat;
 };
