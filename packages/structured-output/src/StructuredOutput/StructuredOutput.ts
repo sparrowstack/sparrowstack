@@ -22,10 +22,12 @@ export class StructuredOutput {
 	}: {
 		providerName: ProviderName;
 	}): ResponseFormat {
-		return getResponseFormat<ResponseFormat>({
+		const responseFormat = getResponseFormat<ResponseFormat>({
 			providerName,
 			name: this.name,
 			zodObject: this.strucuturedOutput,
 		});
+
+		return responseFormat;
 	}
 }

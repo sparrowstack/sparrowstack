@@ -17,7 +17,7 @@ describe('zodToAnthropicResponseFormatAdapter', () => {
 
 		test('should return the correct response format', () => {
 			expect(responseFormat).toStrictEqual(
-				expect.objectContaining(expectedAnthropicResponseFormat),
+				expectedAnthropicResponseFormat,
 			);
 		});
 	});

@@ -9,13 +9,11 @@ export const expectedGoogleGenerativeAIResponseFormat = {
 			type: 'object',
 			properties: {
 				ChainOfThought: {
-					additionalProperties: false,
 					description:
 						'The LLM chain of thought to arrive to this answer.',
 					properties: {
 						steps: {
 							items: {
-								additionalProperties: false,
 								properties: {
 									explanation: {
 										type: 'string',
@@ -58,11 +56,8 @@ export const expectedGoogleGenerativeAIResponseFormat = {
 				'requiresFollowUp',
 				'ChainOfThought',
 			],
-			additionalProperties: false,
 			description: 'Metadata for debugging purposes only',
 		},
 	},
 	required: ['text', 'metadata'],
-	additionalProperties: false,
-	$schema: 'http://json-schema.org/draft-07/schema#',
 };

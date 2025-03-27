@@ -1,7 +1,7 @@
 export const expectedOpenAIResponseFormat = {
 	type: 'json_schema',
 	json_schema: {
-		name: 'testResponseFormat',
+		name: 'structured-output',
 		strict: true,
 		schema: {
 			type: 'object',

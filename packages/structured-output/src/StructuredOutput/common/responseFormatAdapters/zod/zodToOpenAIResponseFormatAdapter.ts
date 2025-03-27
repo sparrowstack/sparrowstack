@@ -11,9 +11,6 @@ export const zodToOpenAIResponseFormatAdapter = <ResponseFormat>({
 	zodObject,
 }: Params): ResponseFormat => {
 	const responseFormat = zodResponseFormat(zodObject, name);
-	console.log(
-		'[zodToOpenAIResponseFormatAdapter] responseFormat',
-		responseFormat,
-	);
+
 	return responseFormat as ResponseFormat;
 };

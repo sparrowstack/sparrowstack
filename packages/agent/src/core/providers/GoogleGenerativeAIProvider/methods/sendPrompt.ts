@@ -6,7 +6,7 @@ import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/adapters';
+import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/common/adapters';
 import {
 	buildChatParams,
 	buildModelParams,
@@ -20,6 +20,7 @@ export interface IParams {
 	model: string;
 	state?: State;
 	settings?: Settings;
+	structuredOutput: any;
 	sdk: GoogleGenerativeAI;
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
@@ -30,11 +31,11 @@ export interface IParams {
 export const sendPrompt = async ({
 	sdk,
 	model,
-	state,
 	settings,
 	systemPrompt,
 	toolRegistry,
 	providerName,
+	structuredOutput,
 	chatMessageManager,
 }: IParams): Promise<ModelResponse> => {
 	const messages = chatMessageManager.getMessages<Content>();
@@ -42,7 +43,6 @@ export const sendPrompt = async ({
 	const tools = toolRegistry.getToolSchemas<FunctionDeclarationsTool>({
 		providerName,
 	});
-	const isToolCall = state === State.ToolCallResponse;
 
 	// TODO: Instantiate in Provider?
 
@@ -53,7 +53,7 @@ export const sendPrompt = async ({
 	// Build SDK Chat
 	const chatParams = buildChatParams({
 		settings,
-		isToolCall,
+		structuredOutput,
 		systemInstruction,
 		history: messages,
 	});

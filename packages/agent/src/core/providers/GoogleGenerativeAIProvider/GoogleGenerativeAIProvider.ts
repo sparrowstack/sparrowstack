@@ -10,7 +10,7 @@ import type {
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
-} from '@core/providers/GoogleGenerativeAIProvider/adapters';
+} from '@core/providers/GoogleGenerativeAIProvider/common/adapters';
 
 export class GoogleGenerativeAIProvider extends BaseProvider<
 	GoogleGenerativeAIToolCallRequestMessage,
@@ -24,6 +24,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
+		structuredOutput,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -34,6 +35,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
+			structuredOutput,
 			chatMessageManager,
 		});
 
@@ -57,6 +59,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
 			sdk: this.sdk as GoogleGenerativeAI,
+			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
 		});
 	}

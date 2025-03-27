@@ -8,7 +8,7 @@ import {
 	getToolCalls,
 	getCandidate,
 	getCandidateData,
-} from '@core/providers/GoogleGenerativeAIProvider/adapters/toModelResponse/common/utils';
+} from '@core/providers/GoogleGenerativeAIProvider/common/adapters/toModelResponse/common/utils';
 
 interface IParams {
 	response: GenerateContentResult;

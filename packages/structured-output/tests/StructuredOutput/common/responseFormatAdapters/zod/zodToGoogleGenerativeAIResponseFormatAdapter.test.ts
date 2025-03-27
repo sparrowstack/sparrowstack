@@ -17,9 +17,7 @@ describe('zodToGoogleGenerativeAIResponseFormatAdapter', () => {
 
 		test('should return the correct response format', () => {
 			expect(responseFormat).toStrictEqual(
-				expect.objectContaining(
-					expectedGoogleGenerativeAIResponseFormat,
-				),
+				expectedGoogleGenerativeAIResponseFormat,
 			);
 		});
 	});

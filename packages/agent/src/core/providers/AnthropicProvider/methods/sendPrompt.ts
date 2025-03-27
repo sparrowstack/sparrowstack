@@ -6,7 +6,7 @@ import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { toModelResponse } from '@core/providers/AnthropicProvider/adapters/toModelResponse';
+import { toModelResponse } from '@core/providers/AnthropicProvider/common/adapters/toModelResponse';
 import { buildMessageParams } from '@core/providers/AnthropicProvider/common/utils/buildMessageParams';
 
 export interface IParams {
@@ -17,6 +17,7 @@ export interface IParams {
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
+	structuredOutput: any;
 	chatMessageManager: ChatMessageManager;
 }
 
@@ -27,6 +28,7 @@ export const sendPrompt = async ({
 	systemPrompt,
 	toolRegistry,
 	providerName,
+	structuredOutput,
 	chatMessageManager,
 }: IParams): Promise<ModelResponse> => {
 	const system = systemPrompt.getPrompt();
@@ -40,6 +42,7 @@ export const sendPrompt = async ({
 		system,
 		messages,
 		settings,
+		structuredOutput,
 	});
 
 	const rawResponse = (await sdk.messages.create(

@@ -4,7 +4,7 @@ import { sendPrompt } from '@core/providers/AnthropicProvider/methods';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
-} from '@core/providers/AnthropicProvider/adapters';
+} from '@core/providers/AnthropicProvider/common/adapters';
 import type {
 	SendPromptParams,
 	ConstructorParams,
@@ -26,6 +26,7 @@ export class AnthropicProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
+		structuredOutput,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -36,6 +37,7 @@ export class AnthropicProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
+			structuredOutput,
 			chatMessageManager,
 		});
 
@@ -59,6 +61,7 @@ export class AnthropicProvider extends BaseProvider<
 			sdk: this.sdk as Anthropic,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
+			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
 		});
 	}

@@ -3,7 +3,7 @@ import type { GoogleGenerativeAIToolCallResponseMessages } from '@core/providers
 import {
 	getUserMessages,
 	getAssistantMessages,
-} from '@core/providers/GoogleGenerativeAIProvider/adapters/toToolCallResponseMessages/common/utils';
+} from '@core/providers/GoogleGenerativeAIProvider/common/adapters/toToolCallResponseMessages/common/utils';
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,

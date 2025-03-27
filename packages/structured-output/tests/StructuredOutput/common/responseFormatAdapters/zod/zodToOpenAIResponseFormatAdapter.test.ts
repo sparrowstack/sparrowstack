@@ -11,7 +11,7 @@ describe('zodToOpenAIResponseFormatAdapter', () => {
 
 		beforeEach(() => {
 			responseFormat = zodToOpenAIResponseFormatAdapter({
-				name: 'testResponseFormat',
+				name: 'structured-output',
 				zodObject: mockZodResponseFormat,
 			});
 		});

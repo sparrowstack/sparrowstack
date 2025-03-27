@@ -20,7 +20,7 @@ describe('getResponseFormat', () => {
 			beforeEach(() => {
 				responseFormat = getResponseFormat({
 					providerName: ProviderName.OpenAI,
-					name: 'testResponseFormat',
+					name: 'structured-output',
 					zodObject: mockZodResponseFormat,
 				});
 			});
@@ -36,14 +36,14 @@ describe('getResponseFormat', () => {
 			beforeEach(() => {
 				responseFormat = getResponseFormat({
 					providerName: ProviderName.Anthropic,
-					name: 'testResponseFormat',
+					name: 'structured-output',
 					zodObject: mockZodResponseFormat,
 				});
 			});
 
 			test('should return the correct response format', () => {
 				expect(responseFormat).toStrictEqual(
-					expect.objectContaining(expectedAnthropicResponseFormat),
+					expectedAnthropicResponseFormat,
 				);
 			});
 		});
@@ -52,16 +52,14 @@ describe('getResponseFormat', () => {
 			beforeEach(() => {
 				responseFormat = getResponseFormat({
 					providerName: ProviderName.GoogleGenerativeAI,
-					name: 'testResponseFormat',
+					name: 'structured-output',
 					zodObject: mockZodResponseFormat,
 				});
 			});
 
 			test('should return the correct response format', () => {
 				expect(responseFormat).toStrictEqual(
-					expect.objectContaining(
-						expectedGoogleGenerativeAIResponseFormat,
-					),
+					expectedGoogleGenerativeAIResponseFormat,
 				);
 			});
 		});

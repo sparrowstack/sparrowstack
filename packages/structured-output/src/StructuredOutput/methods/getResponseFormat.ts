@@ -15,9 +15,10 @@ export const getResponseFormat = <ResponseFormat>({
 		responseFormatAdapters[
 			providerName as keyof typeof responseFormatAdapters
 		];
-
-	return toResponseFormat<ResponseFormat>({
+	const responseFormat = toResponseFormat<ResponseFormat>({
 		name,
 		zodObject,
 	}) as ResponseFormat;
+
+	return responseFormat;
 };

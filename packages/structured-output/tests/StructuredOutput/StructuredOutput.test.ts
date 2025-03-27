@@ -5,10 +5,12 @@ import { StructuredOutput } from '@structured-output/StructuredOutput';
 import {
 	mockZodResponseFormat,
 	expectedOpenAIResponseFormat,
+	expectedAnthropicResponseFormat,
+	expectedGoogleGenerativeAIResponseFormat,
 } from '@tests/mocks';
 
 describe('StructuredOutput', () => {
-	const name = 'testResponseFormat';
+	const name = 'structured-output';
 	const strucuturedOutput = mockZodResponseFormat;
 	let structuredOutput: StructuredOutput;
 
@@ -52,17 +54,57 @@ describe('StructuredOutput', () => {
 	});
 
 	describe('when getResponseFormat is called', () => {
-		let responseFormat: Record<string, any>;
 		beforeEach(() => {
-			responseFormat = structuredOutput.getResponseFormat({
-				providerName: ProviderName.OpenAI,
+			structuredOutput = new StructuredOutput({
+				strucuturedOutput,
 			});
 		});
 
-		test('should return the correct response format', () => {
-			expect(responseFormat).toStrictEqual(
-				expect.objectContaining(expectedOpenAIResponseFormat),
-			);
+		let responseFormat: Record<string, any>;
+
+		describe('OpenAI', () => {
+			beforeEach(() => {
+				responseFormat = structuredOutput.getResponseFormat({
+					providerName: ProviderName.OpenAI,
+				});
+			});
+
+			test('should return the correct response format', () => {
+				expect(responseFormat).toStrictEqual(
+					expect.objectContaining(expectedOpenAIResponseFormat),
+				);
+			});
+		});
+
+		describe('Anthropic', () => {
+			let responseFormat: Record<string, any>;
+			beforeEach(() => {
+				responseFormat = structuredOutput.getResponseFormat({
+					providerName: ProviderName.Anthropic,
+				});
+			});
+
+			test('should return the correct response format', () => {
+				expect(responseFormat).toStrictEqual(
+					expectedAnthropicResponseFormat,
+				);
+			});
+		});
+
+		describe('Google Generative AI', () => {
+			let responseFormat: Record<string, any>;
+
+			beforeEach(() => {
+				responseFormat = structuredOutput.getResponseFormat({
+					providerName: ProviderName.GoogleGenerativeAI,
+				});
+			});
+
+			test('should return the correct response format', () => {
+				expect(responseFormat).toStrictEqual(
+					expectedGoogleGenerativeAIResponseFormat,
+				);
+			});
 		});
 	});
 });

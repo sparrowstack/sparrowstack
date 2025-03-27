@@ -23,9 +23,7 @@ export const sendMessage = async ({
 	chatMessageManager.addUserMessage({ text: message });
 
 	const modelResponseMessage = await provider.sendPrompt();
-	console.log('modelResponseMessage', modelResponseMessage);
 
-	// Gemini Hack for keeping structured response, chat only
 	const toolCallResponseMessage = await toolCallManager.handleToolCalls({
 		responseMessage: modelResponseMessage,
 	});

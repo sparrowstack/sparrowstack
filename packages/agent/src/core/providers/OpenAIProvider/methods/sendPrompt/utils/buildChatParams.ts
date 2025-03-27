@@ -39,7 +39,6 @@ export const buildChatParams = ({
 	} else {
 		chatCompletionCreateParams.max_tokens = settings?.maxTokens ?? 4096;
 	}
-	console.log('structuredOutput', structuredOutput);
 
 	chatCompletionCreateParams.response_format = structuredOutput;
 
