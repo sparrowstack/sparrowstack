@@ -1,0 +1,11 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"paths": {
+			"@vector-store": ["./src/VectorStore"],
+			"@vector-store/*": ["./src/VectorStore/*"]
+		}
+	},
+	"include": ["src/**/*", "tests/**/*", "examples/**/*", "scripts/**/*"],
+	"exclude": ["dist", "node_modules"]
+}

@@ -1,0 +1,19 @@
+services:
+  chromadb:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: chromadb
+    restart: unless-stopped
+    volumes:
+      - chroma_data:/chroma/chroma
+    ports:
+      - "8000:8000"
+    networks:
+      - chroma-network
+
+volumes:
+  chroma_data:
+    driver: local
+
+networks:
+  chroma-network:
+    driver: bridge 
