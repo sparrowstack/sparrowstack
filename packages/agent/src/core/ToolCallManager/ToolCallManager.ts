@@ -1,5 +1,4 @@
 import { ToolRegistry } from '@core/ToolRegistry';
-import { State } from '@agent/common/enums/State';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
@@ -97,9 +96,7 @@ export class ToolCallManager {
 		});
 
 		// Get the model's response to the tool call results
-		const toolCallResponseMessage = await this.provider.sendPrompt({
-			state: State.ToolCallResponse,
-		});
+		const toolCallResponseMessage = await this.provider.sendPrompt();
 
 		// OpenAI: will send a batch of tool calls in the same message
 		// Anthropic: will send tool calls in subsequent messages
@@ -115,6 +112,8 @@ export class ToolCallManager {
 				responseMessage: toolCallResponseMessage,
 			});
 		}
+
+		console.log('toolCallResponseMessage', toolCallResponseMessage);
 
 		return toolCallResponseMessage;
 	}

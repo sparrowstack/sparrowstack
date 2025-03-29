@@ -15,7 +15,7 @@ export const printAgentResponse = ({ response, metadata }: IParams) => {
 
 	console.log('');
 	console.log(`${agentPrompt} ${response}`);
-	if (logAgentMeta) {
+	if (logAgentMeta && metadata) {
 		console.log('');
 		console.log(`${agentMetaPrompt} ${agentMeta}`);
 	}

@@ -1,6 +1,5 @@
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
-import { State } from '@agent/common/enums/State';
 import type { Content } from '@google/generative-ai';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
@@ -18,7 +17,6 @@ import {
 
 export interface IParams {
 	model: string;
-	state?: State;
 	settings?: Settings;
 	structuredOutput: any;
 	sdk: GoogleGenerativeAI;

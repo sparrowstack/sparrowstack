@@ -10,8 +10,8 @@ export const toOpenAISchema = <SchemaType>({
 	return {
 		type: PropertyType.Function,
 		function: {
-			name: name,
-			description: description,
+			name,
+			description,
 			parameters: {
 				type: PropertyType.Object,
 				properties: parameters ? processParameters({ parameters }) : {},

@@ -1,7 +1,6 @@
 import OpenAI from 'openai';
 import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
-import { State } from '@agent/common/enums/State';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
@@ -12,7 +11,6 @@ import { toModelResponse } from '@core/providers/OpenAIProvider/common/adapters/
 export interface IParams {
 	sdk: OpenAI;
 	model: string;
-	state?: State;
 	settings?: Settings;
 	structuredOutput: any;
 	systemPrompt: SystemPrompt;

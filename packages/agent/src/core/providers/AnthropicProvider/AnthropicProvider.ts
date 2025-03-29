@@ -6,7 +6,6 @@ import {
 	toToolCallResponseMessages,
 } from '@core/providers/AnthropicProvider/common/adapters';
 import type {
-	SendPromptParams,
 	ConstructorParams,
 } from '@core/providers/BaseProvider/common/interfaces';
 import type {
@@ -52,10 +51,9 @@ export class AnthropicProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt(params?: SendPromptParams) {
+	public sendPrompt() {
 		return sendPrompt({
 			model: this.model,
-			state: params?.state,
 			settings: this.settings,
 			providerName: this.name,
 			sdk: this.sdk as Anthropic,

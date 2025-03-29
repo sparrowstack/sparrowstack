@@ -1,3 +1,4 @@
+import { ZodObject } from 'zod';
 import { Type } from '@tool/common/enums';
 import { ProviderName } from '@sparrowstack/core';
 import { providerSchemas } from '@tool/common/constants';
@@ -31,6 +32,7 @@ export class Tool {
 	private callCount: number;
 	private lastCachedResult?: ICachedResult;
 	private cachedResults: ICachedResult[];
+	private structuredOutput?: ZodObject<any, any, any, any, any>;
 
 	constructor({
 		name,
@@ -39,6 +41,7 @@ export class Tool {
 		maxCallCount,
 		parameters = {},
 		needsPermission,
+		structuredOutput,
 		function: toolFunction,
 		validationFailedMessage,
 		maxCallCountExceededMessage,
@@ -52,6 +55,7 @@ export class Tool {
 		this.description = description;
 		this.maxCallCount = maxCallCount;
 		this.needsPermission = needsPermission;
+		this.structuredOutput = structuredOutput;
 		this.validationFailedMessage = validationFailedMessage;
 		this.maxCallCountExceededMessage = maxCallCountExceededMessage;
 		// synonyms
@@ -70,6 +74,7 @@ export class Tool {
 			name: this.name,
 			parameters: this.parameters,
 			description: this.description,
+			structuredOutput: this.structuredOutput,
 		}) as SchemaType;
 	}
 

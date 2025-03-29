@@ -8,7 +8,6 @@ import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
 import type {
 	ModelResponse,
 	ToolCallResults,
-	SendPromptParams,
 	ConstructorParams,
 	ModelResponseMessage,
 } from '@core/providers/BaseProvider/common/interfaces';
@@ -87,5 +86,5 @@ export abstract class BaseProvider<
 		) => TToolCallResponseMessage;
 	};
 
-	abstract sendPrompt(params?: SendPromptParams): Promise<ModelResponse>;
+	abstract sendPrompt(): Promise<ModelResponse>;
 }

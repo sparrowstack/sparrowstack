@@ -1,14 +1,11 @@
 import type OpenAI from 'openai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
+import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
 } from '@core/providers/OpenAIProvider/common/adapters';
-import type {
-	ConstructorParams,
-	SendPromptParams,
-} from '@core/providers/BaseProvider/common/interfaces';
 import type {
 	OpenAIToolCallRequestMessage,
 	OpenAIToolCallResponseMessage,
@@ -52,10 +49,9 @@ export class OpenAIProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt(params?: SendPromptParams) {
+	public sendPrompt() {
 		return sendPrompt({
 			model: this.model,
-			state: params?.state,
 			settings: this.settings,
 			providerName: this.name,
 			sdk: this.sdk as OpenAI,
