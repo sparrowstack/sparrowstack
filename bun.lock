@@ -25,13 +25,14 @@
     },
     "packages/agent": {
       "name": "@sparrowstack/agent",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@anthropic-ai/sdk": "0.39.0",
         "@google/generative-ai": "0.24.0",
         "@sparrowstack/chat-message-manager": "workspace:*",
         "@sparrowstack/core": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
+        "@sparrowstack/structured-output": "workspace:*",
         "@sparrowstack/system-prompt": "workspace:*",
         "@sparrowstack/system-prompts": "workspace:*",
         "@sparrowstack/tool": "workspace:*",
@@ -44,7 +45,7 @@
     },
     "packages/chat-message-manager": {
       "name": "@sparrowstack/chat-message-manager",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
       },
@@ -54,14 +55,14 @@
     },
     "packages/core": {
       "name": "@sparrowstack/core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/interactive-terminal": {
       "name": "@sparrowstack/interactive-terminal",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
@@ -75,14 +76,14 @@
     },
     "packages/logger": {
       "name": "@sparrowstack/logger",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/sparrow": {
       "name": "@sparrowstack/sparrow",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/core": "workspace:*",
@@ -91,9 +92,21 @@
         "typescript": "^5.0.0",
       },
     },
+    "packages/structured-output": {
+      "name": "@sparrowstack/structured-output",
+      "version": "0.2.0",
+      "dependencies": {
+        "@sparrowstack/core": "workspace:*",
+        "zod": "3.24.2",
+        "zod-to-json-schema": "3.24.4",
+      },
+      "peerDependencies": {
+        "typescript": "^5.0.0",
+      },
+    },
     "packages/system-prompt": {
       "name": "@sparrowstack/system-prompt",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
       },
@@ -103,7 +116,7 @@
     },
     "packages/system-prompts": {
       "name": "@sparrowstack/system-prompts",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/system-prompt": "workspace:*",
       },
@@ -113,10 +126,12 @@
     },
     "packages/tool": {
       "name": "@sparrowstack/tool",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/chat-message-manager": "workspace:*",
         "@sparrowstack/core": "workspace:*",
+        "zod": "3.24.2",
+        "zod-to-json-schema": "3.24.4",
       },
       "peerDependencies": {
         "typescript": "^5.0.0",
@@ -124,7 +139,7 @@
     },
     "packages/tools": {
       "name": "@sparrowstack/tools",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/tool": "workspace:*",
@@ -466,6 +481,8 @@
     "@sparrowstack/logger": ["@sparrowstack/logger@workspace:packages/logger"],
 
     "@sparrowstack/sparrow": ["@sparrowstack/sparrow@workspace:packages/sparrow"],
+
+    "@sparrowstack/structured-output": ["@sparrowstack/structured-output@workspace:packages/structured-output"],
 
     "@sparrowstack/system-prompt": ["@sparrowstack/system-prompt@workspace:packages/system-prompt"],
 
@@ -1112,6 +1129,10 @@
     "yn": ["yn@3.1.1", "", {}, "sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q=="],
 
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
+
+    "zod": ["zod@3.24.2", "", {}, "sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ=="],
+
+    "zod-to-json-schema": ["zod-to-json-schema@3.24.4", "", { "peerDependencies": { "zod": "^3.24.1" } }, "sha512-0uNlcvgabyrni9Ag8Vghj21drk7+7tp7VTwwR7KxxXXc/3pbXz2PHlDgj3cICahgF1kHm4dExBFj7BXrZJXzig=="],
 
     "@babel/core/semver": ["semver@6.3.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA=="],
 

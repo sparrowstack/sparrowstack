@@ -151,9 +151,11 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     ```sh
     bun start:interactive-terminal:openai
     ```
-    or
     ```sh
     bun start:interactive-terminal:anthropic
+    ```
+    ```sh
+    bun start:interactive-terminal:google-generative-ai
     ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>

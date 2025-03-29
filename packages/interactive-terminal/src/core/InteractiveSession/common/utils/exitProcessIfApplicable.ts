@@ -3,11 +3,9 @@ interface IParams {
 }
 
 export const exitProcessIfApplicable = ({ input }: IParams) => {
-	if (
-		input.toLowerCase() === 'q' ||
-		input.toLowerCase() === 'quit' ||
-		input.toLowerCase() === 'exit'
-	) {
+	const message = input.toLowerCase();
+
+	if (message === 'q' || message === 'quit' || message === 'exit') {
 		process.exit(0);
 	}
 };

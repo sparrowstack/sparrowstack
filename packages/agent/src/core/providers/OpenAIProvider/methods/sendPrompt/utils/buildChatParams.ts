@@ -7,6 +7,7 @@ import { Role } from '@core/providers/OpenAIProvider/common/enums/Role';
 interface IParams {
 	model: string;
 	settings?: Settings;
+	structuredOutput: any;
 	systemPrompt: SystemPrompt;
 	tools: OpenAI.ChatCompletionTool[];
 	chatMessages: OpenAI.Chat.Completions.ChatCompletionMessageParam[];
@@ -18,6 +19,7 @@ export const buildChatParams = ({
 	settings,
 	systemPrompt,
 	chatMessages,
+	structuredOutput,
 }: IParams) => {
 	const systemPromptMessage = {
 		role: Role.System,
@@ -37,6 +39,8 @@ export const buildChatParams = ({
 	} else {
 		chatCompletionCreateParams.max_tokens = settings?.maxTokens ?? 4096;
 	}
+
+	chatCompletionCreateParams.response_format = structuredOutput;
 
 	return chatCompletionCreateParams;
 };

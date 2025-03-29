@@ -59,11 +59,14 @@ export class ToolCallManager {
 		}
 
 		// Handle the current batch of tool calls
+
+		// Convert model response to tool call request message
 		const assistantToolCallRequestMessage =
 			this.provider.adapters.toToolCallRequestMessage({
 				responseMessage,
 			});
 
+		// Add tool call request message to chat history
 		this.chatMessageManager.addToMessages({
 			message: assistantToolCallRequestMessage,
 		});
@@ -79,11 +82,13 @@ export class ToolCallManager {
 			chatMessageManager: this.chatMessageManager,
 		});
 
+		// Convert tool call results to tool call response messages
 		const toolCallResponseMessages =
 			this.provider.adapters.toToolCallResponseMessages({
 				toolCallResults,
 			});
 
+		// Add tool call response messages to chat history
 		toolCallResponseMessages.forEach((message) => {
 			this.chatMessageManager.addToMessages({
 				message,
@@ -107,6 +112,8 @@ export class ToolCallManager {
 				responseMessage: toolCallResponseMessage,
 			});
 		}
+
+		console.log('toolCallResponseMessage', toolCallResponseMessage);
 
 		return toolCallResponseMessage;
 	}

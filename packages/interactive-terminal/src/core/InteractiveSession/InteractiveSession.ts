@@ -3,44 +3,16 @@ import { Agent } from '@sparrowstack/agent';
 import { userPrompt } from '@core/InteractiveSession/common/constants/userPrompt';
 import {
 	printHeader,
+	getResponse,
 	validateInput,
 	printAgentResponse,
+	buildRequestPermission,
 	exitProcessIfApplicable,
-	formatForSparrowResponse,
 } from '@core/InteractiveSession/common/utils';
 
 interface IParams {
 	agent: Agent;
 }
-
-const buildRequestPermission = ({
-	rl,
-}: {
-	rl: readline.Interface;
-}): (({ message }: { message: string }) => Promise<boolean>) => {
-	const requestPermissionFunction = ({
-		message,
-	}: {
-		message: string;
-	}): Promise<boolean> => {
-		return new Promise((resolve) => {
-			const question = `${message} (y/n): `;
-			const formattedQuestion = formatForSparrowResponse({
-				message: question,
-			});
-
-			rl.question(formattedQuestion, (answer: string) => {
-				const isY = answer.toLowerCase() === 'y';
-				const isYes = answer.toLowerCase() === 'yes';
-				const userGavePermission = isY || isYes;
-
-				resolve(userGavePermission);
-			});
-		});
-	};
-
-	return requestPermissionFunction;
-};
 
 export class InteractiveSession {
 	agent: Agent;
@@ -61,10 +33,10 @@ export class InteractiveSession {
 
 	public start() {
 		const prompt = () => {
-			this.rl.question(userPrompt, async (input) => {
-				const message = input.trim();
+			this.rl.question(userPrompt, async (inputRaw) => {
+				const input = inputRaw.trim();
 				const isValid = validateInput({
-					input: message,
+					input,
 					onInvalid: prompt,
 				});
 
@@ -72,13 +44,14 @@ export class InteractiveSession {
 					return;
 				}
 
-				exitProcessIfApplicable({ input: message });
+				exitProcessIfApplicable({ input });
 
 				const { text } = await this.agent.sendMessage({
-					message,
+					message: input,
 				});
+				const { response, metadata } = getResponse({ output: text });
 
-				printAgentResponse({ response: text });
+				printAgentResponse({ response, metadata });
 
 				prompt();
 			});

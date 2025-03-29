@@ -1,0 +1,37 @@
+{
+	"name": "@sparrowstack/structured-output",
+	"version": "0.2.0",
+	"description": "Structured Output module for SparrowStack",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "restricted"
+	},
+	"author": {
+		"name": "SparrowStack",
+		"url": "https://sparrowstack.ai"
+	},
+	"scripts": {
+		"test:unit": "bun test --test-file-pattern \"\\.unit\\.test\\.ts$\" tests",
+		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
+		"format:check": "prettier --check \"src/**/*.{js,ts,json,md}\"",
+		"lint": "eslint \"src/**/*.{js,ts}\"",
+		"lint:fix": "eslint \"src/**/*.{js,ts}\" --fix",
+		"build:js": "bun build src/index.ts --outdir dist --target bun",
+		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist --rootDir src --project tsconfig.build.json",
+		"build": "bun build:js && bun build:types",
+		"link": "bun link",
+		"unlink": "bun unlink",
+		"publish-package": "bun publish"
+	},
+	"dependencies": {
+		"@sparrowstack/core": "workspace:*",
+		"zod": "3.24.2",
+		"zod-to-json-schema": "3.24.4"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	}
+}

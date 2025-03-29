@@ -1,10 +1,11 @@
+import { ZodObject } from 'zod';
+import type { INeedsPermission } from '@tool/common/interfaces/INeedsPermission';
 import type {
 	Validate,
 	Parameters,
 	ToolFunction,
 	CallableFunctionResponseMessage,
 } from '@tool/common/types';
-import type { INeedsPermission } from '@tool/common/interfaces/INeedsPermission';
 
 export interface IToolParams {
 	name: string;
@@ -16,4 +17,5 @@ export interface IToolParams {
 	needsPermission?: INeedsPermission;
 	validationFailedMessage?: string | CallableFunctionResponseMessage;
 	maxCallCountExceededMessage?: string | CallableFunctionResponseMessage;
+	structuredOutput?: ZodObject<any, any, any, any, any>;
 }

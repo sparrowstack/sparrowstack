@@ -1,14 +1,10 @@
 import type { Settings } from '@agent/common/interfaces';
 import { FunctionCallingMode as FunctionCallingModeEnum } from '@google/generative-ai';
-import type {
-	Part,
-	Content,
-	StartChatParams,
-	FunctionCallingMode,
-} from '@google/generative-ai';
+import type { Part, Content, StartChatParams } from '@google/generative-ai';
 
 interface IParams {
 	settings?: Settings;
+	structuredOutput: any;
 	history: Content[] | undefined;
 	systemInstruction: string | Content | Part | undefined;
 }
@@ -18,7 +14,6 @@ export const buildChatParams = ({
 	settings,
 	systemInstruction,
 }: IParams) => {
-	// const { temperature, topP, topK, maxOutputTokens } = settings;
 	const chatParams: StartChatParams = {
 		history,
 		systemInstruction,
@@ -28,12 +23,41 @@ export const buildChatParams = ({
 		},
 		toolConfig: {
 			functionCallingConfig: {
-				mode:
-					(settings?.toolChoice?.toUpperCase() as FunctionCallingMode) ??
-					FunctionCallingModeEnum.AUTO,
+				mode: FunctionCallingModeEnum.AUTO, // Default
 			},
 		},
 	};
+
+	// TODO: Gemini doesn't support structured output yet, in a way thats
+	// flexible enough to support the tool calling format and general chat
+	// Will update this when Gemini supports structured output in a more flexible way
+
+	// if (structuredOutput) {
+	// 	chatParams.generationConfig = {
+	// 		...chatParams.generationConfig,
+	// 		responseMimeType: 'application/json',
+	// 		responseSchema: structuredOutput,
+	// 	};
+	// }
+
+	// 	if (structuredOutput) {
+	// 		if (
+	// 			chatParams.systemInstruction &&
+	// 			typeof chatParams.systemInstruction !== 'string' &&
+	// 			'parts' in chatParams.systemInstruction
+	// 		) {
+	// 			chatParams.systemInstruction.parts[0].text += `
+	// <structured-output>
+	// When responding to the user, reuturn a JSON object with the following format:
+	// ${JSON.stringify(structuredOutput, null, 2)}}
+	// </structured-output>
+
+	// <tool-calling>
+	// However, when using tools, respond in the standard tool calling format without any additional formatting.
+	// </tool-calling>
+	// `;
+	// 		}
+	// 	}
 
 	return chatParams;
 };
