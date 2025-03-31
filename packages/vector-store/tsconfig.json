@@ -2,10 +2,15 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"paths": {
-			"@vector-store": ["./src/VectorStore"],
-			"@vector-store/*": ["./src/VectorStore/*"]
+			"@vector-store/*": ["./src/*"],
+			"@chromadb": ["./src/ChromaDB"],
+			"@chromadb/*": ["./src/ChromaDB/*"]
 		}
 	},
-	"include": ["src/**/*", "tests/**/*", "examples/**/*", "scripts/**/*"],
+	"include": [
+		"src/**/*",
+		"tests/**/*",
+		"src/ChromaDB/examples/ChunkCodebase"
+	],
 	"exclude": ["dist", "node_modules"]
 }

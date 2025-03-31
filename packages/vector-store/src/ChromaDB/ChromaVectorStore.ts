@@ -1,157 +1,151 @@
-import { ChromaClient, Collection } from 'chromadb';
-import type { ChromaDBConfig } from './common/interfaces';
-import type { Document, SearchResult, VectorStore } from '../common/interfaces';
+import 'dotenv/config';
+import { OpenAIEmbeddingFunction } from 'chromadb';
+import { Default, Space } from '@chromadb/common/enums';
+import { ChromaClient, type AddRecordsParams } from 'chromadb';
+import type { ChromaDBConfig } from '@chromadb/common/interfaces/ChromaDBConfig';
 
-/**
- * ChromaDB implementation of VectorStore
- */
-export class ChromaVectorStore implements VectorStore {
+export class ChromaVectorStore {
 	private client: ChromaClient;
-	private collection: Collection | null = null;
-	private readonly config: ChromaDBConfig;
+	private embeddingDimension: number;
+	private embeddingFunction: OpenAIEmbeddingFunction;
 
-	/**
-	 * Creates a new ChromaVectorStore
-	 * @param config Configuration options for the ChromaDB store
-	 */
-	constructor(config: ChromaDBConfig) {
-		this.config = {
-			url: 'http://localhost:8000',
-			embeddingDimension: 1536,
-			...config,
-		};
+	constructor({
+		dbUrl,
+		embeddingFunction,
+		embeddingDimension,
+	}: ChromaDBConfig = {}) {
+		// Create ChromaDB client
+		const client = new ChromaClient({
+			path: dbUrl || (Default.Url as string),
+		});
 
-		// Create the ChromaDB client with the updated API
-		this.client = new ChromaClient({
-			path: this.config.url,
+		this.client = client;
+		this.embeddingDimension =
+			embeddingDimension || Default.EmbeddingDimension;
+		this.embeddingFunction = embeddingFunction;
+	}
+
+	async heartbeat() {
+		return await this.client.heartbeat();
+	}
+
+	async listCollections() {
+		return await this.client.listCollections();
+	}
+
+	async deleteCollection({ collectionName }: { collectionName: string }) {
+		return await this.client.deleteCollection({
+			name: collectionName,
 		});
 	}
 
-	/**
-	 * Initialize the ChromaDB collection
-	 * @private
-	 */
-	private async initializeCollection(): Promise<Collection> {
-		if (this.collection) {
-			return this.collection;
-		}
+	async reset() {
+		return await this.client.reset();
+	}
 
-		const exists = await this.collectionExists();
+	async getCollection({ collectionName }: { collectionName: string }) {
+		return await this.client.getCollection({
+			name: collectionName,
+			embeddingFunction: this.embeddingFunction,
+		});
+	}
 
-		if (exists) {
-			this.collection = await this.client.getCollection({
-				name: this.config.collectionName,
-				...(this.config.embeddingFunction && {
-					embeddingFunction: this.config.embeddingFunction,
-				}),
-			});
+	async createCollection({
+		metadata,
+		collectionName,
+	}: {
+		collectionName: string;
+		metadata: Record<string, any>;
+	}) {
+		return await this.client.createCollection({
+			name: collectionName,
+			embeddingFunction: this.embeddingFunction,
+			metadata: {
+				'hnsw:space': metadata['hnsw:space'] || Space.Cosine,
+			},
+		});
+	}
+
+	async getOrCreateCollection({
+		metadata,
+		collectionName,
+	}: {
+		collectionName: string;
+		metadata: Record<string, any>;
+	}) {
+		return await this.client.getOrCreateCollection({
+			name: collectionName,
+			embeddingFunction: this.embeddingFunction,
+			metadata: {
+				'hnsw:space': metadata['hnsw:space'] || Space.Cosine,
+			},
+		});
+	}
+
+	// Collection methods
+	// ---------------------------
+	// async modify({ collectionName }: { collectionName: string }) {
+	// 	const collection = this.getCollection({ collectionName });
+
+	// 	return await collection.modify({
+	// 		name: collectionName,
+	// 	});
+	// }
+
+	async add({
+		records,
+		collectionName,
+	}: {
+		collectionName: string;
+		records: AddRecordsParams;
+	}) {
+		const collection = await this.getCollection({ collectionName });
+
+		return await collection.add(records);
+	}
+
+	async query({
+		nResults,
+		queryTexts,
+		collectionName,
+	}: {
+		collectionName: string;
+		queryTexts: string[];
+		nResults: number;
+	}) {
+		const collection = await this.getCollection({ collectionName });
+
+		const queryResults = await collection.query({
+			nResults,
+			queryTexts,
+		});
+
+		const documents = queryResults.documents?.[0] || [];
+
+		if (!documents || documents.length === 0) {
+			console.log('No results found');
 		} else {
-			this.collection = await this.client.createCollection({
-				name: this.config.collectionName,
-				...(this.config.embeddingFunction && {
-					embeddingFunction: this.config.embeddingFunction,
-				}),
-			});
-		}
+			const searchResults = documents.map(
+				(text: string | null, index: number) => {
+					const id = queryResults.ids?.[0]?.[index] || '';
+					const metadata = queryResults.metadatas?.[0]?.[index] || {};
+					const distance = queryResults.distances?.[0]?.[index] || 0;
 
-		return this.collection;
-	}
+					// Convert distance to similarity score (1 - distance)
+					const score = 1 - distance;
 
-	/**
-	 * Check if the collection exists
-	 */
-	async collectionExists(): Promise<boolean> {
-		try {
-			const collections = await this.client.listCollections();
-			return collections.some(
-				(collection) => collection === this.config.collectionName,
+					return {
+						document: {
+							id,
+							text: text || '',
+							metadata,
+						},
+						score,
+					};
+				},
 			);
-		} catch (error) {
-			console.error('Error checking collection existence:', error);
-			return false;
-		}
-	}
 
-	/**
-	 * Add documents to the vector store
-	 * @param documents Array of documents to add
-	 */
-	async addDocuments(documents: Document[]): Promise<void> {
-		try {
-			const collection = await this.initializeCollection();
-
-			// Prepare documents for ChromaDB format
-			const ids = documents.map((doc) => doc.id);
-			const texts = documents.map((doc) => doc.text);
-			const metadatas = documents.map((doc) => doc.metadata || {});
-
-			await collection.add({
-				ids,
-				documents: texts,
-				metadatas,
-			});
-		} catch (error) {
-			console.error('Error adding documents:', error);
-			throw error;
-		}
-	}
-
-	/**
-	 * Search for documents similar to the query
-	 * @param query The search query
-	 * @param limit Maximum number of results to return (default: 10)
-	 */
-	async search(query: string, limit = 10): Promise<SearchResult[]> {
-		try {
-			const collection = await this.initializeCollection();
-
-			const results = await collection.query({
-				queryTexts: [query],
-				nResults: limit,
-			});
-
-			if (!results.documents || !results.documents[0]) {
-				return [];
-			}
-
-			// Convert ChromaDB results to SearchResults
-			return (results.documents[0] || []).map((text, index) => {
-				const id = results.ids?.[0]?.[index] || '';
-				const metadata = results.metadatas?.[0]?.[index] || {};
-				const distance = results.distances?.[0]?.[index] || 0;
-
-				// Convert distance to similarity score (1 - distance)
-				const score = 1 - distance;
-
-				return {
-					document: {
-						id,
-						text: text || '',
-						metadata,
-					},
-					score,
-				};
-			});
-		} catch (error) {
-			console.error('Error searching documents:', error);
-			return [];
-		}
-	}
-
-	/**
-	 * Delete the entire collection
-	 */
-	async deleteCollection(): Promise<void> {
-		try {
-			if (await this.collectionExists()) {
-				await this.client.deleteCollection({
-					name: this.config.collectionName,
-				});
-				this.collection = null;
-			}
-		} catch (error) {
-			console.error('Error deleting collection:', error);
-			throw error;
+			return searchResults;
 		}
 	}
 }

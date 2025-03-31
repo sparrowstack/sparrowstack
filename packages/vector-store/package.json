@@ -17,10 +17,10 @@
 		"link": "bun link",
 		"unlink": "bun unlink",
 		"publish-package": "bun publish",
-		"chromadb:start": "./scripts/chromadb.sh start",
-		"chromadb:stop": "./scripts/chromadb.sh stop",
-		"chromadb:status": "./scripts/chromadb.sh status",
-		"chromadb:logs": "./scripts/chromadb.sh logs"
+		"chromadb:start": "docker compose -f ./src/ChromaDB/docker/docker-compose.yml up",
+		"chromadb:stop": "docker compose -f ./src/ChromaDB/docker/docker-compose.yml down --remove-orphans",
+		"chromadb:status": "docker compose -f ./src/ChromaDB/docker/docker-compose.yml ps",
+		"chromadb:logs": "docker compose -f ./src/ChromaDB/docker/docker-compose.yml logs"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"

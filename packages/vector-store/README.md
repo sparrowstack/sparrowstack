@@ -15,8 +15,10 @@ import { ChromaVectorStore } from '@sparrowstack/vector-store';
 
 // Create a new ChromaDB vector store
 const vectorStore = new ChromaVectorStore({
-	collectionName: 'my-documents',
-	url: 'http://localhost:8000', // Default URL for local Docker setup
+	config: {
+		collectionName: 'my-documents',
+		url: 'http://localhost:8000', // Default URL for local Docker setup
+	},
 });
 
 // Add documents to the store
@@ -34,7 +36,10 @@ await vectorStore.addDocuments([
 ]);
 
 // Search for similar documents
-const results = await vectorStore.search('sample document', 5);
+const results = await vectorStore.search({
+	query: 'sample document',
+	limit: 5,
+});
 console.log(results);
 ```
 
