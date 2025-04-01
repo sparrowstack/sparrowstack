@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/system-prompts",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "System Prompt module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
