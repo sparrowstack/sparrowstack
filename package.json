@@ -7,6 +7,7 @@
 	],
 	"scripts": {
 		"test:unit:all": "bunx nx run-many --target=test:unit --all --parallel",
+		"test:e2e:all": "bunx nx run-many --target=test:e2e --all --parallel",
 		"lint:all": "bunx nx run-many --target=lint --all --parallel",
 		"build:all": "bunx nx run-many --target=build --all --parallel",
 		"link:all": "bunx nx run-many --target=link --all --parallel",

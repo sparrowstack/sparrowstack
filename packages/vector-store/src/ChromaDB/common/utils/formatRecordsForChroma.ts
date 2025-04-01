@@ -1,38 +1,33 @@
+import type { Record } from '@chromadb/common/interfaces';
+import type { OpenAIEmbeddingFunction, AddRecordsParams } from 'chromadb';
 /**
  * Helper function to format records for ChromaDB operations
  * Takes an array of record objects and returns a formatted object
  * compatible with ChromaDB's upsert/add methods
  */
-export const formatRecordsForChroma = ({
+export const formatRecordsForChroma = async ({
 	records,
+	embeddingFunction,
 }: {
-	records: Array<{
-		id: string;
-		document: string;
-		metadata?: Record<string, any>;
-		embeddings?: number[];
-	}>;
-}) => {
+	records: Record[];
+	embeddingFunction: OpenAIEmbeddingFunction;
+}): Promise<AddRecordsParams> => {
 	const ids: string[] = [];
 	const documents: string[] = [];
-	const metadatas: Record<string, any>[] = [];
-	const embeddings: number[][] = [];
+	const metadatas: { [key: string]: any }[] = [];
 
 	records.forEach((record) => {
 		ids.push(record.id);
 		documents.push(record.document);
 		metadatas.push(record.metadata || {});
-
-		// Add embeddings if they exist
-		if (record.embeddings && record.embeddings.length > 0) {
-			embeddings.push(record.embeddings);
-		}
 	});
+
+	const embeddings = await embeddingFunction.generate(documents);
 
 	return {
 		ids,
 		documents,
 		metadatas,
-		...(embeddings.length > 0 ? { embeddings } : {}),
+		embeddings,
 	};
 };

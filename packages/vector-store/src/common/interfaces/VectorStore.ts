@@ -21,7 +21,7 @@ export interface VectorStore {
 	 * @param query The search query
 	 * @param limit Maximum number of results to return
 	 */
-	search({
+	query({
 		query,
 		limit,
 	}: {

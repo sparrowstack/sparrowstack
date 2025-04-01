@@ -1,8 +1,9 @@
-import 'dotenv/config';
-import { OpenAIEmbeddingFunction } from 'chromadb';
 import { Default, Space } from '@chromadb/common/enums';
-import { ChromaClient, type AddRecordsParams } from 'chromadb';
+import type { Record } from '@chromadb/common/interfaces';
+import { ChromaClient, OpenAIEmbeddingFunction } from 'chromadb';
+import type { SearchResult } from '@vector-store/common/interfaces';
 import type { ChromaDBConfig } from '@chromadb/common/interfaces/ChromaDBConfig';
+import { formatRecordsForChroma } from '@chromadb/common/utils/formatRecordsForChroma';
 
 export class ChromaVectorStore {
 	private client: ChromaClient;
@@ -29,18 +30,20 @@ export class ChromaVectorStore {
 		return await this.client.heartbeat();
 	}
 
-	async listCollections() {
-		return await this.client.listCollections();
-	}
-
-	async deleteCollection({ collectionName }: { collectionName: string }) {
-		return await this.client.deleteCollection({
+	async createCollection({
+		hnswSpace,
+		collectionName,
+	}: {
+		hnswSpace?: Space;
+		collectionName: string;
+	}) {
+		return await this.client.createCollection({
 			name: collectionName,
+			embeddingFunction: this.embeddingFunction,
+			metadata: {
+				'hnsw:space': hnswSpace || Space.Cosine,
+			},
 		});
-	}
-
-	async reset() {
-		return await this.client.reset();
 	}
 
 	async getCollection({ collectionName }: { collectionName: string }) {
@@ -50,20 +53,8 @@ export class ChromaVectorStore {
 		});
 	}
 
-	async createCollection({
-		metadata,
-		collectionName,
-	}: {
-		collectionName: string;
-		metadata: Record<string, any>;
-	}) {
-		return await this.client.createCollection({
-			name: collectionName,
-			embeddingFunction: this.embeddingFunction,
-			metadata: {
-				'hnsw:space': metadata['hnsw:space'] || Space.Cosine,
-			},
-		});
+	async listCollections() {
+		return await this.client.listCollections();
 	}
 
 	async getOrCreateCollection({
@@ -71,7 +62,7 @@ export class ChromaVectorStore {
 		collectionName,
 	}: {
 		collectionName: string;
-		metadata: Record<string, any>;
+		metadata: { [key: string]: any };
 	}) {
 		return await this.client.getOrCreateCollection({
 			name: collectionName,
@@ -82,50 +73,41 @@ export class ChromaVectorStore {
 		});
 	}
 
-	// Collection methods
-	// ---------------------------
-	// async modify({ collectionName }: { collectionName: string }) {
-	// 	const collection = this.getCollection({ collectionName });
-
-	// 	return await collection.modify({
-	// 		name: collectionName,
-	// 	});
-	// }
-
 	async add({
 		records,
 		collectionName,
 	}: {
+		records: Record[];
 		collectionName: string;
-		records: AddRecordsParams;
 	}) {
+		const formattedRecords = await formatRecordsForChroma({
+			records,
+			embeddingFunction: this.embeddingFunction,
+		});
 		const collection = await this.getCollection({ collectionName });
 
-		return await collection.add(records);
+		return await collection.add(formattedRecords);
 	}
 
 	async query({
-		nResults,
-		queryTexts,
+		limit,
+		query,
 		collectionName,
 	}: {
+		limit: number;
+		query: string[];
 		collectionName: string;
-		queryTexts: string[];
-		nResults: number;
-	}) {
+	}): Promise<SearchResult[]> {
+		let searchResults: SearchResult[] = [];
 		const collection = await this.getCollection({ collectionName });
-
 		const queryResults = await collection.query({
-			nResults,
-			queryTexts,
+			nResults: limit,
+			queryTexts: query,
 		});
-
 		const documents = queryResults.documents?.[0] || [];
 
-		if (!documents || documents.length === 0) {
-			console.log('No results found');
-		} else {
-			const searchResults = documents.map(
+		if (documents.length !== 0) {
+			searchResults = documents.map(
 				(text: string | null, index: number) => {
 					const id = queryResults.ids?.[0]?.[index] || '';
 					const metadata = queryResults.metadatas?.[0]?.[index] || {};
@@ -144,8 +126,18 @@ export class ChromaVectorStore {
 					};
 				},
 			);
-
-			return searchResults;
 		}
+
+		return searchResults;
+	}
+
+	async deleteCollection({ collectionName }: { collectionName: string }) {
+		return await this.client.deleteCollection({
+			name: collectionName,
+		});
+	}
+
+	async reset() {
+		return await this.client.reset();
 	}
 }
