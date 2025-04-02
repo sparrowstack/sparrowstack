@@ -7,7 +7,7 @@
 		<img src="/images/logo.png" alt="Logo" width="419" height="128">
 	</a> -->
 	<h1>SparrowStack</h1>
-	<p>An intuitive, lightweight, and modular TypeScript framework for building AI agents</p>
+	<p>An intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -41,24 +41,104 @@
 
 ## About
 
-SparrowStack is an intuitive, lightweight, and modular framework for building AI agents. Built with TypeScript from the ground up, it provides a type-safe environment for creating, testing, and deploying AI solutions.
+SparrowStack is an intuitive, lightweight, and modular framework for building AI agents. Built with TypeScript from the ground up, it provides a type-safe environment for creating, testing, and deploying your AI Agents.
 
 ### Key Features
 
 - **TypeScript-First**: Enjoy full type safety and IDE autocomplete support, reducing errors and accelerating development.
 - **Lightweight**: Minimal dependencies and efficient architecture ensure your projects remain fast and maintainable.
-- **Modular**: Flexible plugin system allows you to use only what you need and extend functionality with ease.
+- **Modular**: SparrowStack is built on framework-agnostic classes (like `Tool`, `SystemPrompt`, etc..) that are capabable of generating provider-specific schemas for seamless integration with any AI provider. These components are combined to create the SparrowStack framework.
 - **Intuitive API**: Developer-friendly interfaces that make building complex AI agents as simple as connecting building blocks.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+### Easy to get started
 
-### Built With
+#### Basic Example
 
-- [Bun](https://bun.sh/)
-- [Nx](https://nx.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/)
+```ts
+// Import base classes
+import { Agent, Model, Provider } from '@sparrowstack/sparrow';
+import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
+
+// Define settings
+const model = Model.OpenAI.o3Mini;
+const provider = Provider.OpenAI;
+const apiKey = process.env['OPENAI_API_KEY'] as string;
+const settings = {
+	temperature: 0.03,
+};
+
+// Instantiate Agent
+const agent = new Agent({
+	model,
+	apiKey,
+	provider,
+	settings,
+});
+
+// Interacte with agent
+const response = await agent.sendMessage({
+	message: 'Hello, how are you?',
+});
+
+console.log(response.text);
+
+// Optionally, start in an interactive terminal
+const interactiveTerminal = new InteractiveTerminal({ agent });
+await interactiveTerminal.start();
+```
+
+#### Add a tool
+
+```ts
+// Import base classes
+import { Tool, PropertyType } from '@sparrowstack/tool';
+import { Agent, Model, Provider } from '@sparrowstack/sparrow';
+
+// Define settings
+const model = Model.OpenAI.o3Mini;
+const provider = Provider.OpenAI;
+const apiKey = process.env['OPENAI_API_KEY'] as string;
+const settings = {
+	temperature: 0.03,
+};
+
+// Define Tool
+const addTwoNumbersTool = new Tool({
+	name: 'addTwoNumbers',
+	description: 'Add two numbers together.',
+	function: ({ number1, number2 }: { number1: number; number2: number }) => {
+		return number1 + number2;
+	},
+	parameters: {
+		number1: {
+			required: true,
+			type: PropertyType.Number,
+			description: 'The first number to add.',
+		},
+		number2: {
+			required: true,
+			type: PropertyType.Number,
+			description: 'The second number to add.',
+		},
+	},
+});
+
+// Instantiate Agent
+const agent = new Agent({
+	model,
+	apiKey,
+	provider,
+	settings,
+	tools: [addTwoNumbersTool],
+});
+
+// Interact with agent
+const response = await agent.sendMessage({
+	message: 'Please add 2 and 2.',
+});
+
+console.log(response.text); // "The answer is 4."
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -166,3 +246,4 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+````
