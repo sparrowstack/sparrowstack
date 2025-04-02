@@ -129,6 +129,7 @@ const agent = new Agent({
   apiKey,
   provider,
   settings,
+  tools: [addTwoNumbersTool],
 });
 
 // Interact with agent
