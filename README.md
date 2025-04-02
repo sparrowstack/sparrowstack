@@ -50,9 +50,9 @@ SparrowStack is an intuitive, lightweight, and modular framework for building AI
 - **Modular**: SparrowStack is built on framework-agnostic classes (like `Tool`, `SystemPrompt`, etc..) that are capabable of generating provider-specific schemas for seamless integration with any AI provider. These components are combined to create the SparrowStack framework.
 - **Intuitive API**: Developer-friendly interfaces that make building complex AI agents as simple as connecting building blocks.
 
-### Easy to get started
+## Getting Started
 
-#### Basic Example
+### Base Example
 
 ```ts
 // Import base classes
@@ -80,14 +80,14 @@ const response = await agent.sendMessage({
 	message: 'Hello, how are you?',
 });
 
-console.log(response.text);
+console.log(response.text); // Hello! How can I help you today?
 
 // Optionally, start in an interactive terminal
 const interactiveTerminal = new InteractiveTerminal({ agent });
 await interactiveTerminal.start();
 ```
 
-#### Add a tool
+### Add a tool
 
 ```ts
 // Import base classes
