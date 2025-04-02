@@ -64,20 +64,20 @@ const model = Model.OpenAI.o3Mini;
 const provider = Provider.OpenAI;
 const apiKey = process.env['OPENAI_API_KEY'] as string;
 const settings = {
-	temperature: 0.03,
+  temperature: 0.03,
 };
 
 // Instantiate Agent
 const agent = new Agent({
-	model,
-	apiKey,
-	provider,
-	settings,
+  model,
+  apiKey,
+  provider,
+  settings,
 });
 
 // Interacte with agent
 const response = await agent.sendMessage({
-	message: 'Hello, how are you?',
+  message: 'Hello, how are you?',
 });
 
 console.log(response.text); // Hello! How can I help you today?
@@ -99,42 +99,41 @@ const model = Model.OpenAI.o3Mini;
 const provider = Provider.OpenAI;
 const apiKey = process.env['OPENAI_API_KEY'] as string;
 const settings = {
-	temperature: 0.03,
+  temperature: 0.03,
 };
 
 // Define Tool
 const addTwoNumbersTool = new Tool({
-	name: 'addTwoNumbers',
-	description: 'Add two numbers together.',
-	function: ({ number1, number2 }: { number1: number; number2: number }) => {
-		return number1 + number2;
-	},
-	parameters: {
-		number1: {
-			required: true,
-			type: PropertyType.Number,
-			description: 'The first number to add.',
-		},
-		number2: {
-			required: true,
-			type: PropertyType.Number,
-			description: 'The second number to add.',
-		},
-	},
+  name: 'addTwoNumbers',
+  description: 'Add two numbers together.',
+  function: ({ number1, number2 }: { number1: number; number2: number }) => {
+    return number1 + number2;
+  },
+  parameters: {
+    number1: {
+      required: true,
+      type: PropertyType.Number,
+      description: 'The first number to add.',
+    },
+    number2: {
+      required: true,
+      type: PropertyType.Number,
+      description: 'The second number to add.',
+    },
+  },
 });
 
 // Instantiate Agent
 const agent = new Agent({
-	model,
-	apiKey,
-	provider,
-	settings,
-	tools: [addTwoNumbersTool],
+  model,
+  apiKey,
+  provider,
+  settings,
 });
 
 // Interact with agent
 const response = await agent.sendMessage({
-	message: 'Please add 2 and 2.',
+  message: 'Please add 2 and 2.',
 });
 
 console.log(response.text); // "The answer is 4."
