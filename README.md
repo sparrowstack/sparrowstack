@@ -7,7 +7,7 @@
 		<img src="/images/logo.png" alt="Logo" width="419" height="128">
 	</a> -->
 	<h1>SparrowStack</h1>
-	<p>Craft modular, powerful AI agents with ease</p>
+	<p>An intuitive, lightweight, and modular TypeScript framework for building AI agents</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -41,7 +41,14 @@
 
 ## About
 
-SparrowStack is a lightweight and modular framework designed to empower developers to easily craft powerful AI agents. By focusing on simplicity and flexibility, SparrowStack enables the creation of innovative AI solutions that can adapt to various needs and environments.
+SparrowStack is an intuitive, lightweight, and modular framework for building AI agents. Built with TypeScript from the ground up, it provides a type-safe environment for creating, testing, and deploying AI solutions.
+
+### Key Features
+
+- **TypeScript-First**: Enjoy full type safety and IDE autocomplete support, reducing errors and accelerating development.
+- **Lightweight**: Minimal dependencies and efficient architecture ensure your projects remain fast and maintainable.
+- **Modular**: Flexible plugin system allows you to use only what you need and extend functionality with ease.
+- **Intuitive API**: Developer-friendly interfaces that make building complex AI agents as simple as connecting building blocks.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
