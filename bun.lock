@@ -143,6 +143,7 @@
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/tool": "workspace:*",
+        "@sparrowstack/vector-store": "workspace:*",
         "axios": "1.7.9",
         "ignore": "7.0.3",
       },
@@ -152,7 +153,7 @@
     },
     "packages/vector-store": {
       "name": "@sparrowstack/vector-store",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "chromadb": "^1.8.1",
         "chromadb-default-embed": "^2.14.0",

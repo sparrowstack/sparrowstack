@@ -23,7 +23,12 @@ export class ChromaVectorStore {
 		this.client = client;
 		this.embeddingDimension =
 			embeddingDimension || Default.EmbeddingDimension;
-		this.embeddingFunction = embeddingFunction;
+		this.embeddingFunction =
+			embeddingFunction ||
+			new OpenAIEmbeddingFunction({
+				openai_api_key: process.env.OPENAI_API_KEY as string,
+				openai_model: 'text-embedding-3-small',
+			});
 	}
 
 	async heartbeat() {
@@ -58,17 +63,17 @@ export class ChromaVectorStore {
 	}
 
 	async getOrCreateCollection({
-		metadata,
+		hnswSpace,
 		collectionName,
 	}: {
+		hnswSpace?: Space;
 		collectionName: string;
-		metadata: { [key: string]: any };
 	}) {
 		return await this.client.getOrCreateCollection({
 			name: collectionName,
 			embeddingFunction: this.embeddingFunction,
 			metadata: {
-				'hnsw:space': metadata['hnsw:space'] || Space.Cosine,
+				'hnsw:space': hnswSpace || Space.Cosine,
 			},
 		});
 	}
@@ -84,7 +89,7 @@ export class ChromaVectorStore {
 			records,
 			embeddingFunction: this.embeddingFunction,
 		});
-		const collection = await this.getCollection({ collectionName });
+		const collection = await this.getOrCreateCollection({ collectionName });
 
 		return await collection.add(formattedRecords);
 	}

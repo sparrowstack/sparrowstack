@@ -29,6 +29,7 @@
 	"dependencies": {
 		"@sparrowstack/agent": "workspace:*",
 		"@sparrowstack/tool": "workspace:*",
+		"@sparrowstack/vector-store": "workspace:*",
 		"axios": "1.7.9",
 		"ignore": "7.0.3"
 	},

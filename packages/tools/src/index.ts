@@ -14,3 +14,11 @@ export { getDirectoryStructureToolParams } from './getDirectoryStructure/tool/ge
 export { getWeatherDataTool } from './getWeatherData/tool/getWeatherDataTool';
 export { getWeatherDataToolParams } from './getWeatherData/tool/getWeatherDataToolParams';
 export { validateGetWeatherDataToolCall } from './getWeatherData/validate/validateGetWeatherDataToolCall';
+
+// Add Document Vector Store
+export { addDocumentVectorStoreTool } from './addDocumentVectorStore/tool/addDocumentVectorStoreTool';
+export { addDocumentVectorStoreToolParams } from './addDocumentVectorStore/tool/addDocumentVectorStoreToolParams';
+
+// Retrieve Documents Vector Store
+export { retrieveDocumentsVectorStoreTool } from './retrieveDocumentsVectorStore/tool/retrieveDocumentsVectorStoreTool';
+export { retrieveDocumentsVectorStoreToolParams } from './retrieveDocumentsVectorStore/tool/retrieveDocumentsVectorStoreToolParams';
