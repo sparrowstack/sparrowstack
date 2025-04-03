@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.1
+
+### Patch Changes
+
+- 0644d50: Trigger npm package release to public
+- Updated dependencies [0644d50]
+    - @sparrowstack/agent@0.3.1
+    - @sparrowstack/tool@0.3.1
+    - @sparrowstack/vector-store@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
