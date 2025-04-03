@@ -246,4 +246,3 @@ For local development, it's recommended to use the `sparrow-starter` project to 
     ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-````

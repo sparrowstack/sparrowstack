@@ -1,1 +1,4 @@
 @dc-devs
+
+# Require approvals from CODEOWNERS for changes in workflows
+.github/workflows/ @dc-devs
