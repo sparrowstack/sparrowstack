@@ -1,5 +1,13 @@
 # @sparrowstack/system-prompts
 
+## 0.3.2
+
+### Patch Changes
+
+- a973fa7: Fixed version issues
+- Updated dependencies [a973fa7]
+    - @sparrowstack/system-prompt@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes
