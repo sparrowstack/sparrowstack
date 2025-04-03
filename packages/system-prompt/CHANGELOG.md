@@ -1,5 +1,13 @@
 # @sparrowstack/system-prompt
 
+## 0.3.3
+
+### Patch Changes
+
+- e44b26c: Trigger changeset
+- Updated dependencies [e44b26c]
+    - @sparrowstack/core@0.3.3
+
 ## 0.3.2
 
 ### Patch Changes

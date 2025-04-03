@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.3
+
+### Patch Changes
+
+- e44b26c: Trigger changeset
+- Updated dependencies [e44b26c]
+    - @sparrowstack/chat-message-manager@0.3.3
+    - @sparrowstack/core@0.3.3
+    - @sparrowstack/logger@0.3.3
+    - @sparrowstack/structured-output@0.3.3
+    - @sparrowstack/system-prompt@0.3.3
+    - @sparrowstack/system-prompts@0.3.3
+    - @sparrowstack/tool@0.3.3
+
 ## 0.3.2
 
 ### Patch Changes
