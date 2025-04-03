@@ -1,5 +1,14 @@
 # @sparrowstack/tool
 
+## 0.3.4
+
+### Patch Changes
+
+- 15cf11c: npm packages to public
+- Updated dependencies [15cf11c]
+    - @sparrowstack/chat-message-manager@0.3.4
+    - @sparrowstack/core@0.3.4
+
 ## 0.3.3
 
 ### Patch Changes

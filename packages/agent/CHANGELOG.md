@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.4
+
+### Patch Changes
+
+- 15cf11c: npm packages to public
+- Updated dependencies [15cf11c]
+    - @sparrowstack/structured-output@0.3.4
+    - @sparrowstack/system-prompts@0.3.4
+    - @sparrowstack/system-prompt@0.3.4
+    - @sparrowstack/logger@0.3.4
+    - @sparrowstack/tool@0.3.4
+    - @sparrowstack/chat-message-manager@0.3.4
+    - @sparrowstack/core@0.3.4
+
 ## 0.3.3
 
 ### Patch Changes
