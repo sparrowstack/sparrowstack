@@ -1,5 +1,14 @@
 # @sparrowstack/interactive-terminal
 
+## 0.3.2
+
+### Patch Changes
+
+- a973fa7: Fixed version issues
+- Updated dependencies [a973fa7]
+    - @sparrowstack/agent@0.3.2
+    - @sparrowstack/logger@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes
