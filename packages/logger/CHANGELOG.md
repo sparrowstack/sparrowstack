@@ -1,5 +1,11 @@
 # @sparrowstack/logger
 
+## 0.3.3
+
+### Patch Changes
+
+- e44b26c: Trigger changeset
+
 ## 0.3.2
 
 ### Patch Changes
