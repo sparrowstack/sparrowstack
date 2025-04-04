@@ -1,5 +1,14 @@
 # @sparrowstack/tool
 
+## 0.3.5
+
+### Patch Changes
+
+- 0180f63: Make agent package public
+- Updated dependencies [0180f63]
+    - @sparrowstack/chat-message-manager@0.3.5
+    - @sparrowstack/core@0.3.5
+
 ## 0.3.4
 
 ### Patch Changes

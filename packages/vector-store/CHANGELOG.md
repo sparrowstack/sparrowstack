@@ -1,5 +1,11 @@
 # @sparrowstack/vector-store
 
+## 0.3.5
+
+### Patch Changes
+
+- 0180f63: Make agent package public
+
 ## 0.3.4
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @sparrowstack/system-prompts
 
+## 0.3.5
+
+### Patch Changes
+
+- 0180f63: Make agent package public
+- Updated dependencies [0180f63]
+    - @sparrowstack/system-prompt@0.3.5
+
 ## 0.3.4
 
 ### Patch Changes
