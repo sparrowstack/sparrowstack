@@ -4,14 +4,12 @@ interface IParams {
 	level?: string;
 }
 
-export const getLogLevel = ({ level }: IParams): LogLevel => {
-	let logLevel: LogLevel = LogLevel.INFO;
+export const getLogLevel = ({ level }: IParams): LogLevel | null => {
+	let logLevel: LogLevel | null = null;
 
-	if (!level) return LogLevel.INFO; // Default to INFO if not set
+	const upperCaseLevel = level?.toUpperCase();
 
-	const upperCaseLevel = level.toUpperCase();
-
-	if (upperCaseLevel in LogLevel) {
+	if (upperCaseLevel && upperCaseLevel in LogLevel) {
 		logLevel = LogLevel[upperCaseLevel as keyof typeof LogLevel];
 	}
 
