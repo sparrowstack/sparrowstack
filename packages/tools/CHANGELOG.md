@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.5
+
+### Patch Changes
+
+- 0180f63: Make agent package public
+- Updated dependencies [0180f63]
+    - @sparrowstack/agent@0.3.5
+    - @sparrowstack/tool@0.3.5
+    - @sparrowstack/vector-store@0.3.5
+
 ## 0.3.4
 
 ### Patch Changes
