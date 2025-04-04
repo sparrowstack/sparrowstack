@@ -4,15 +4,15 @@ import { LogLevelColors } from '@logger/common/constants';
 interface IParams {
 	message: any;
 	context?: string;
-	level: LogLevel;
-	logLevel: LogLevel;
+	level: LogLevel | null;
+	logLevel: LogLevel | null;
 }
 
 export const log = (
 	{ message, context, level, logLevel }: IParams,
 	...args: any[]
 ): void => {
-	if (level <= logLevel) {
+	if (level && logLevel && level <= logLevel) {
 		const color = LogLevelColors[level];
 		const reset = '\x1b[0m';
 		const levelName = LogLevel[level]; /*.padEnd(7)*/

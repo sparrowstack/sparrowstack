@@ -3,7 +3,7 @@ import { log, getLogLevel } from '@logger/common/utils';
 
 export class Logger {
 	private context?: string;
-	private logLevel: LogLevel;
+	private logLevel: LogLevel | null;
 
 	constructor({ context }: { context?: string }) {
 		this.context = context;
