@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/tool",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "Tool module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/interactive-terminal",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "Interactive Terminal module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
