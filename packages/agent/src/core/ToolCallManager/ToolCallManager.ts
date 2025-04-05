@@ -113,8 +113,6 @@ export class ToolCallManager {
 			});
 		}
 
-		console.log('toolCallResponseMessage', toolCallResponseMessage);
-
 		return toolCallResponseMessage;
 	}
 }

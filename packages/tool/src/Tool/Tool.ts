@@ -23,7 +23,7 @@ export class Tool {
 	readonly parameters: Parameters;
 	readonly type = Type.Tool as const;
 	readonly needsPermission?: INeedsPermission;
-
+	readonly structuredOutput?: ZodObject<any, any, any, any, any>;
 	readonly validationFailedMessage?: string | CallableFunctionResponseMessage;
 	readonly maxCallCountExceededMessage?:
 		| string
@@ -32,8 +32,6 @@ export class Tool {
 	private callCount: number;
 	private lastCachedResult?: ICachedResult;
 	private cachedResults: ICachedResult[];
-
-	public structuredOutput?: ZodObject<any, any, any, any, any>;
 
 	constructor({
 		name,

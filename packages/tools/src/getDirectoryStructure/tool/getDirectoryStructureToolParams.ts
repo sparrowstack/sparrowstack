@@ -5,7 +5,6 @@ import type { IGetDirectoryStructureParams } from '@tools/getDirectoryStructure/
 
 export const getDirectoryStructureToolParams: IToolParams = {
 	name: 'getDirectoryStructure',
-
 	description:
 		'Get the directory structure of the current working project. Only use when analyzing code structure, debugging path issues, or when specifically requested by the user. Do not use for general conversation or greetings.',
 	function: async () => {
