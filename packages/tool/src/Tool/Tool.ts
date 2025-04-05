@@ -32,7 +32,8 @@ export class Tool {
 	private callCount: number;
 	private lastCachedResult?: ICachedResult;
 	private cachedResults: ICachedResult[];
-	private structuredOutput?: ZodObject<any, any, any, any, any>;
+
+	public structuredOutput?: ZodObject<any, any, any, any, any>;
 
 	constructor({
 		name,
