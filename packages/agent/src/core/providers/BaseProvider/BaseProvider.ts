@@ -5,6 +5,8 @@ import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
+import type { SendPromptParams } from '@core/providers/BaseProvider/common/interfaces';
+
 import type {
 	ModelResponse,
 	ToolCallResults,
@@ -86,5 +88,7 @@ export abstract class BaseProvider<
 		) => TToolCallResponseMessage;
 	};
 
-	abstract sendPrompt(): Promise<ModelResponse>;
+	abstract sendPrompt({
+		responseFormatSendMessage,
+	}: SendPromptParams): Promise<ModelResponse>;
 }

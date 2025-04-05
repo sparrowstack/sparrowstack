@@ -12,11 +12,12 @@ export interface IParams {
 	sdk: OpenAI;
 	model: string;
 	settings?: Settings;
-	structuredOutput: any;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
 	toolRegistry: ToolRegistry;
 	chatMessageManager: ChatMessageManager;
+	structuredOutput: OpenAI.ResponseFormatJSONSchema;
+	responseFormatSendMessage?: OpenAI.ResponseFormatJSONSchema;
 }
 
 export const sendPrompt = async ({
@@ -28,6 +29,7 @@ export const sendPrompt = async ({
 	providerName,
 	structuredOutput,
 	chatMessageManager,
+	responseFormatSendMessage,
 }: IParams): Promise<ModelResponse> => {
 	const tools = toolRegistry.getToolSchemas<OpenAI.ChatCompletionTool>({
 		providerName,
@@ -41,7 +43,7 @@ export const sendPrompt = async ({
 		settings,
 		chatMessages,
 		systemPrompt,
-		structuredOutput,
+		responseFormat: responseFormatSendMessage || structuredOutput,
 	});
 
 	const rawResponse = (await sdk.chat.completions.create(

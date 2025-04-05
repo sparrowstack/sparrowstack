@@ -138,9 +138,16 @@ export class Agent {
 
 	public async sendMessage({
 		message,
+		responseFormat: responseFormatParams,
 	}: {
 		message: string;
+		responseFormat?: StructuredOutputCreateParams['responseFormat'];
 	}): Promise<ModelResponse> {
+		const responseFormat = StructuredOutputFactory.create({
+			providerName: this.providerName,
+			responseFormat: responseFormatParams,
+		});
+
 		return sendMessage({
 			message,
 			settings: this.settings,
@@ -148,6 +155,7 @@ export class Agent {
 			toolCallManager: this.toolCallManager,
 			interactionLogger: this.interactionLogger,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatSendMessage: responseFormat,
 		});
 	}
 }
