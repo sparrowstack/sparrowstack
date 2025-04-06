@@ -1,5 +1,14 @@
 # @sparrowstack/interactive-terminal
 
+## 0.3.9
+
+### Patch Changes
+
+- 85b7071: Added community package
+- Updated dependencies [85b7071]
+    - @sparrowstack/agent@0.3.9
+    - @sparrowstack/logger@0.3.9
+
 ## 0.3.8
 
 ### Patch Changes

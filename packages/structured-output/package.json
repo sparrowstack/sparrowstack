@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/structured-output",
-	"version": "0.3.8",
+	"version": "0.3.9",
 	"description": "Structured Output module for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
