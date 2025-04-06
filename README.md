@@ -9,35 +9,7 @@
 	<h1>SparrowStack</h1>
 	<p>Sparrow is an intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
 </div>
-
-<!-- TABLE OF CONTENTS -->
-<br/>
-<details>
-	<summary>Table of Contents</summary>
-	<ol>
-		<li>
-			<a href="#about-the-project">About The Project</a>
-			<ul>
-				<li><a href="#built-with">Built With</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#getting-started">Getting Started</a>
-			<ul>
-				<li><a href="#prerequisites">Prerequisites</a></li>
-				<li><a href="#installation">Installation</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#development">Development</a>
-			<ul>
-				<li><a href="#sparrowstack">SparrowStack</a></li>
-				<li><a href="#sparrow-starter">SparrowStarter</a></li>
-			</ul>
-		</li>
-	</ol>
-</details>
-<br/>
+<br />
 
 ## About
 
@@ -148,10 +120,6 @@ const response = await agent.sendMessage({
 console.log(response.text); // "The answer is 4."
 ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- GETTING STARTED -->
-
 ## Getting Started
 
 We recommend using the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) template to kick off your project. Simply follow the setup guide, browse the example scripts for inspiration, and begin customizing your own agents today!
@@ -188,4 +156,3 @@ More detailed setup instructions follow below.
 ### Link to SparrowStarter
 Follow the instructions in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) README to setup repo and link the local `sparrowstack` packages.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
