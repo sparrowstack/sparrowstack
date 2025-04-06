@@ -127,7 +127,7 @@ We recommend using the [SparrowStarter](https://github.com/sparrowstack/sparrow-
 ## Development
 For local development, clone the `sparrowstack` repository and link its packages locally for use in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) project. Use [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) as your sandbox for testingchanges made in `sparrowstack`. 
 
-More detailed setup instructions follow below.
+More detailed setup instructions below.
 
 ### Prerequisites
 
