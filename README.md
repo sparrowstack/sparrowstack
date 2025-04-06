@@ -10,35 +10,6 @@
 	<p>Sparrow is an intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<br/>
-<details>
-	<summary>Table of Contents</summary>
-	<ol>
-		<li>
-			<a href="#about-the-project">About The Project</a>
-			<ul>
-				<li><a href="#built-with">Built With</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#getting-started">Getting Started</a>
-			<ul>
-				<li><a href="#prerequisites">Prerequisites</a></li>
-				<li><a href="#installation">Installation</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#development">Development</a>
-			<ul>
-				<li><a href="#sparrowstack">SparrowStack</a></li>
-				<li><a href="#sparrow-starter">SparrowStarter</a></li>
-			</ul>
-		</li>
-	</ol>
-</details>
-<br/>
-
 ## About
 
 SparrowStack is the modular “stack” of components powering the Sparrow AI Agent framework. Written in TypeScript from the ground up, it provides a type‑safe environment for building, testing, and deploying AI agents.
