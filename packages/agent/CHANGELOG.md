@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.11
+
+### Patch Changes
+
+- 0b2a504: Community package fix
+- Updated dependencies [0b2a504]
+    - @sparrowstack/chat-message-manager@0.3.11
+    - @sparrowstack/core@0.3.11
+    - @sparrowstack/logger@0.3.11
+    - @sparrowstack/structured-output@0.3.11
+    - @sparrowstack/system-prompt@0.3.11
+    - @sparrowstack/system-prompts@0.3.11
+    - @sparrowstack/tool@0.3.11
+
 ## 0.3.10
 
 ### Patch Changes

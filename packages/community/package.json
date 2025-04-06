@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/community",
-	"version": "0.3.10",
+	"version": "0.3.11",
 	"description": "Community tools and system prompts for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",
