@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.13
+
+### Patch Changes
+
+- 2162f72: Package files update
+- Updated dependencies [2162f72]
+    - @sparrowstack/chat-message-manager@0.3.13
+    - @sparrowstack/structured-output@0.3.13
+    - @sparrowstack/system-prompts@0.3.13
+    - @sparrowstack/system-prompt@0.3.13
+    - @sparrowstack/logger@0.3.13
+    - @sparrowstack/core@0.3.13
+    - @sparrowstack/tool@0.3.13
+
 ## 0.3.12
 
 ### Patch Changes

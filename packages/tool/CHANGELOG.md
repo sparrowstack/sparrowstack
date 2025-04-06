@@ -1,5 +1,14 @@
 # @sparrowstack/tool
 
+## 0.3.13
+
+### Patch Changes
+
+- 2162f72: Package files update
+- Updated dependencies [2162f72]
+    - @sparrowstack/chat-message-manager@0.3.13
+    - @sparrowstack/core@0.3.13
+
 ## 0.3.12
 
 ### Patch Changes
