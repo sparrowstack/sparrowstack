@@ -5,6 +5,10 @@
 	"type": "module",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/**/*",
+		"README.md"
+	],
 	"scripts": {
 		"test:unit": "bun test --test-file-pattern \"\\.unit\\.test\\.ts$\" tests",
 		"format": "prettier --write \"src/**/*.{js,ts,json,md}\"",
