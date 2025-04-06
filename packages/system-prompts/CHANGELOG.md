@@ -1,5 +1,13 @@
 # @sparrowstack/system-prompts
 
+## 0.3.7
+
+### Patch Changes
+
+- d39d65e: Added better strucutured output support
+- Updated dependencies [d39d65e]
+    - @sparrowstack/system-prompt@0.3.7
+
 ## 0.3.6
 
 ### Patch Changes
