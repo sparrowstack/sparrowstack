@@ -7,7 +7,7 @@
 		<img src="/images/logo.png" alt="Logo" width="419" height="128">
 	</a> -->
 	<h1>SparrowStack</h1>
-	<p>An intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
+	<p>Sparrow is an intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -137,7 +137,7 @@ const agent = new Agent({
   apiKey,
   provider,
   settings,
-  tools: [addTwoNumbersTool],
+  tools: [ addTwoNumbersTool ],
 });
 
 // Interact with agent
@@ -157,7 +157,7 @@ console.log(response.text); // "The answer is 4."
 We recommend using the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) template to kick off your project. Simply follow the setup guide, browse the example scripts for inspiration, and begin customizing your own agents today!
 
 ## Development
-For local development, clone the `sparrowstack` repository and link its packages locally for use in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) project. Use [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) as the sandbox for testingchanges made in `sparrowstack`. 
+For local development, clone the `sparrowstack` repository and link its packages locally for use in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) project. Use [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) as your sandbox for testingchanges made in `sparrowstack`. 
 
 More detailed setup instructions follow below.
 
