@@ -1,5 +1,13 @@
 # @sparrowstack/structured-output
 
+## 0.3.11
+
+### Patch Changes
+
+- 0b2a504: Community package fix
+- Updated dependencies [0b2a504]
+    - @sparrowstack/core@0.3.11
+
 ## 0.3.10
 
 ### Patch Changes
