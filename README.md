@@ -7,7 +7,7 @@
 		<img src="/images/logo.png" alt="Logo" width="419" height="128">
 	</a> -->
 	<h1>SparrowStack</h1>
-	<p>An intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
+	<p>Sparrow is an intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -41,23 +41,36 @@
 
 ## About
 
-SparrowStack is an intuitive, lightweight, and modular framework for building AI agents. Built with TypeScript from the ground up, it provides a type-safe environment for creating, testing, and deploying your AI Agents.
+SparrowStack is the modular “stack” of components powering the Sparrow AI Agent framework. Written in TypeScript from the ground up, it provides a type‑safe environment for building, testing, and deploying AI agents.
+
+It comprises framework‑agnostic classes (e.g., `Tool`, `SystemPrompt`, `StructuredOutput`) capable of generating provider‑specific schemas. Together, these modules stack to form the Sparrow AI Agent framework.
+
+### Multi Provider Support
+
+Sparrow supports multiple AI providers and models, giving you the flexibility to choose the optimal combination for your use case:
+
+- **OpenAI**
+- **Anthropic**
+- **Google Generative AI**
+
 
 ### Key Features
+- **Tool Calling**: Integrate custom tools into your agent and invoke them with ease.
+- **System Prompts**: Manage and switch system prompts to tailor your agent’s behavior.
+- **Structured Outputs**: Configure agents to emit structured data and parse responses reliably.
+- **System Settings**: Update model setttings like temperature, streaming, etc..
+- **Multi Provider Support**: Choose the best provider and model for your use case.
+- **Interactive Terminal**: Engage with your AI agent through a command‑line interface.
 
-- **TypeScript-First**: Enjoy full type safety and IDE autocomplete support, reducing errors and accelerating development.
-- **Lightweight**: Minimal dependencies and efficient architecture ensure your projects remain fast and maintainable.
-- **Modular**: SparrowStack is built on framework-agnostic classes (like `Tool`, `SystemPrompt`, etc..) that are capabable of generating provider-specific schemas for seamless integration with any AI provider. These components are combined to create the SparrowStack framework.
-- **Intuitive API**: Developer-friendly interfaces that make building complex AI agents as simple as connecting building blocks.
+## Intuitive API
+For a complete suite of example scripts and features, explore the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) repository.
 
-## Getting Started
 
-### Base Example
+### Example: Basic Agent
 
 ```ts
 // Import base classes
 import { Agent, Model, Provider } from '@sparrowstack/sparrow';
-import { InteractiveTerminal } from '@sparrowstack/interactive-terminal';
 
 // Define settings
 const model = Model.OpenAI.o3Mini;
@@ -81,18 +94,13 @@ const response = await agent.sendMessage({
 });
 
 console.log(response.text); // Hello! How can I help you today?
-
-// Optionally, start in an interactive terminal
-const interactiveTerminal = new InteractiveTerminal({ agent });
-await interactiveTerminal.start();
 ```
 
-### Add a tool
+### Example: Tool Calling Agent
 
 ```ts
 // Import base classes
-import { Tool, PropertyType } from '@sparrowstack/tool';
-import { Agent, Model, Provider } from '@sparrowstack/sparrow';
+import { Agent, Model, Provider, Tool, PropertyType } from '@sparrowstack/sparrow';
 
 // Define settings
 const model = Model.OpenAI.o3Mini;
@@ -129,7 +137,7 @@ const agent = new Agent({
   apiKey,
   provider,
   settings,
-  tools: [addTwoNumbersTool],
+  tools: [ addTwoNumbersTool ],
 });
 
 // Interact with agent
@@ -145,6 +153,13 @@ console.log(response.text); // "The answer is 4."
 <!-- GETTING STARTED -->
 
 ## Getting Started
+
+We recommend using the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) template to kick off your project. Simply follow the setup guide, browse the example scripts for inspiration, and begin customizing your own agents today!
+
+## Development
+For local development, clone the `sparrowstack` repository and link its packages locally for use in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) project. Use [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) as your sandbox for testingchanges made in `sparrowstack`. 
+
+More detailed setup instructions follow below.
 
 ### Prerequisites
 
@@ -164,85 +179,13 @@ console.log(response.text); // "The answer is 4."
     cd sparrowstack
     ```
 
-3. Install packages
+3. Setup development environment
 
     ```sh
-    bun install
+    bun setup:dev
     ```
 
-4. Lint the project
-
-    ```sh
-    bun lint:all
-    ```
-
-5. Build the project
-    ```sh
-    bun build:all
-    ```
-
-### Development
-
-For local development, it's recommended to use the `sparrow-starter` project to run your AI agents. Link local packages from the `sparrowstack` repository to facilitate easy development.
-
-## SparrowStack
-
-1. Build and link the local packages
-
-    ```sh
-    bun release:all:local
-    ```
-
-## SparrowStarter
-
-1.  Clone the repo
-
-    ```sh
-    git clone git@github.com:sparrowstack/sparrow-starter.git
-    ```
-
-2.  Navigate to the project directory
-
-    ```sh
-    cd sparrow-starter
-    ```
-
-3.  Link local packages from the `sparrowstack` repo
-
-    ```sh
-    // package.json
-
-    "dependencies": {
-        "@sparrowstack/sparrow": "link:@sparrowstack/sparrow",
-        "@sparrowstack/interactive-terminal": "link:@sparrowstack/interactive-terminal",
-        "@sparrowstack/system-prompts": "link:@sparrowstack/system-prompts",
-        "@sparrowstack/tools": "link:@sparrowstack/tools"
-    },
-    ```
-
-4.  Setup environment variables
-
-    Copy the `.env.template` file to `.env` and update the variables
-
-    ```sh
-    cp .env.template .env
-    ```
-
-5.  Install packages
-
-    ```sh
-    bun install
-    ```
-
-6.  Start the interactive terminal
-    ```sh
-    bun start:interactive-terminal:openai
-    ```
-    ```sh
-    bun start:interactive-terminal:anthropic
-    ```
-    ```sh
-    bun start:interactive-terminal:google-generative-ai
-    ```
+### Link to SparrowStarter
+Follow the instructions in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) README to setup repo and link the local `sparrowstack` packages.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
