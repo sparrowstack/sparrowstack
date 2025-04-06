@@ -1,5 +1,14 @@
 # @sparrowstack/community
 
+## 0.3.13
+
+### Patch Changes
+
+- 2162f72: Package files update
+- Updated dependencies [2162f72]
+    - @sparrowstack/system-prompts@0.3.13
+    - @sparrowstack/tools@0.3.13
+
 ## 0.3.12
 
 ### Patch Changes

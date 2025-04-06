@@ -1,5 +1,11 @@
 # @sparrowstack/vector-store
 
+## 0.3.13
+
+### Patch Changes
+
+- 2162f72: Package files update
+
 ## 0.3.12
 
 ### Patch Changes
