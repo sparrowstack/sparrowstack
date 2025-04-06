@@ -25,7 +25,7 @@
     },
     "packages/agent": {
       "name": "@sparrowstack/agent",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@anthropic-ai/sdk": "0.39.0",
         "@google/generative-ai": "0.24.0",
@@ -45,7 +45,7 @@
     },
     "packages/chat-message-manager": {
       "name": "@sparrowstack/chat-message-manager",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
       },
@@ -55,14 +55,14 @@
     },
     "packages/core": {
       "name": "@sparrowstack/core",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/interactive-terminal": {
       "name": "@sparrowstack/interactive-terminal",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/logger": "workspace:*",
@@ -76,17 +76,19 @@
     },
     "packages/logger": {
       "name": "@sparrowstack/logger",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "peerDependencies": {
         "typescript": "^5.0.0",
       },
     },
     "packages/sparrow": {
       "name": "@sparrowstack/sparrow",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/core": "workspace:*",
+        "@sparrowstack/system-prompt": "workspace:*",
+        "@sparrowstack/tool": "workspace:*",
       },
       "peerDependencies": {
         "typescript": "^5.0.0",
@@ -94,7 +96,7 @@
     },
     "packages/structured-output": {
       "name": "@sparrowstack/structured-output",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
         "zod": "3.24.2",
@@ -106,7 +108,7 @@
     },
     "packages/system-prompt": {
       "name": "@sparrowstack/system-prompt",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/core": "workspace:*",
       },
@@ -116,7 +118,7 @@
     },
     "packages/system-prompts": {
       "name": "@sparrowstack/system-prompts",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/system-prompt": "workspace:*",
       },
@@ -126,7 +128,7 @@
     },
     "packages/tool": {
       "name": "@sparrowstack/tool",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/chat-message-manager": "workspace:*",
         "@sparrowstack/core": "workspace:*",
@@ -139,7 +141,7 @@
     },
     "packages/tools": {
       "name": "@sparrowstack/tools",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@sparrowstack/agent": "workspace:*",
         "@sparrowstack/tool": "workspace:*",
@@ -153,7 +155,7 @@
     },
     "packages/vector-store": {
       "name": "@sparrowstack/vector-store",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "chromadb": "^1.8.1",
         "chromadb-default-embed": "^2.14.0",

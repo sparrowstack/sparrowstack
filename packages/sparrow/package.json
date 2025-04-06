@@ -28,7 +28,9 @@
 	},
 	"dependencies": {
 		"@sparrowstack/agent": "workspace:*",
-		"@sparrowstack/core": "workspace:*"
+		"@sparrowstack/core": "workspace:*",
+		"@sparrowstack/system-prompt": "workspace:*",
+		"@sparrowstack/tool": "workspace:*"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
