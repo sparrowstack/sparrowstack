@@ -1,0 +1,36 @@
+{
+	"name": "@sparrowstack/community",
+	"version": "0.3.8",
+	"description": "Community tools and system prompts for SparrowStack",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": {
+		"name": "SparrowStack",
+		"url": "https://sparrowstack.ai"
+	},
+	"scripts": {
+		"test:unit": "bun test --test-file-pattern \"\\.unit\\.test\\.ts$\" tests",
+		"format": "bunx prettier --write \"src/**/*.{js,ts,json,md}\"",
+		"format:check": "bunx prettier --check \"src/**/*.{js,ts,json,md}\"",
+		"lint": "bunx eslint \"src/**/*.{js,ts}\"",
+		"lint:fix": "bunx eslint \"src/**/*.{js,ts}\" --fix",
+		"build:js": "bun build src/index.ts --outdir dist --target bun",
+		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist --rootDir src --project tsconfig.build.json",
+		"build": "bun build:js && bun build:types",
+		"link": "bun link",
+		"unlink": "bun unlink",
+		"publish-package": "bun publish"
+	},
+	"dependencies": {
+		"@sparrowstack/tools": "workspace:*",
+		"@sparrowstack/system-prompts": "workspace:*"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	}
+}
