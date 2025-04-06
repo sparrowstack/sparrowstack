@@ -9,6 +9,7 @@
 	<h1>SparrowStack</h1>
 	<p>Sparrow is an intuitive, lightweight, and modular TypeScript based framework for building AI agents</p>
 </div>
+<br />
 
 ## About
 
