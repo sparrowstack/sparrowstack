@@ -1,5 +1,13 @@
 # @sparrowstack/system-prompt
 
+## 0.3.8
+
+### Patch Changes
+
+- 5bbe4a1: Added Tool and SystemPrompt to sparrow package
+- Updated dependencies [5bbe4a1]
+    - @sparrowstack/core@0.3.8
+
 ## 0.3.7
 
 ### Patch Changes

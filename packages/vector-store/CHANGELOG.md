@@ -1,5 +1,11 @@
 # @sparrowstack/vector-store
 
+## 0.3.8
+
+### Patch Changes
+
+- 5bbe4a1: Added Tool and SystemPrompt to sparrow package
+
 ## 0.3.7
 
 ### Patch Changes
