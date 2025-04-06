@@ -33,7 +33,7 @@
 		"format:check": "bunx prettier --check \"src/**/*.{js,ts,json,md}\"",
 		"lint": "bunx eslint \"src/**/*.{js,ts}\"",
 		"lint:fix": "bunx eslint \"src/**/*.{js,ts}\" --fix",
-		"build:js": "bun build ./src/index.ts ./src/community/systemPrompts/index.ts ./src/community/tools/index.ts --outdir dist --target bun --splitting --external='@sparrowstack/*'",
+		"build:js": "bun build ./src/index.ts --outdir dist --target bun --external='@sparrowstack/*' && bun build ./src/community/systemPrompts/index.ts --outdir dist/community/systemPrompts --target bun --external='@sparrowstack/*' && bun build ./src/community/tools/index.ts --outdir dist/community/tools --target bun --external='@sparrowstack/*'",
 		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist --rootDir src --project tsconfig.build.json",
 		"build": "bun build:js && bun build:types",
 		"link": "bun link",
