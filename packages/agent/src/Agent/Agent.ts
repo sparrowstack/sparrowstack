@@ -39,7 +39,7 @@ export class Agent {
 	readonly systemPrompt: SystemPrompt;
 
 	// Structured Output
-	readonly structuredOutput?: any; // create response format
+	readonly responseFormatAgent?: any; // create response format
 
 	// Tools
 	readonly toolRegistry: ToolRegistry;
@@ -80,7 +80,7 @@ export class Agent {
 
 		// Structured Output
 		// --------------------------------
-		this.structuredOutput = StructuredOutputFactory.create({
+		this.responseFormatAgent = StructuredOutputFactory.create({
 			providerName,
 			responseFormat,
 		});
@@ -111,8 +111,8 @@ export class Agent {
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
 			toolRegistry: this.toolRegistry,
-			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatAgent: this.responseFormatAgent,
 			providerDisplayName: this.providerDisplayName,
 		});
 
@@ -138,9 +138,16 @@ export class Agent {
 
 	public async sendMessage({
 		message,
+		responseFormat: responseFormatParams,
 	}: {
 		message: string;
+		responseFormat?: StructuredOutputCreateParams['responseFormat'];
 	}): Promise<ModelResponse> {
+		const responseFormat = StructuredOutputFactory.create({
+			providerName: this.providerName,
+			responseFormat: responseFormatParams,
+		});
+
 		return sendMessage({
 			message,
 			settings: this.settings,
@@ -148,6 +155,7 @@ export class Agent {
 			toolCallManager: this.toolCallManager,
 			interactionLogger: this.interactionLogger,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatSendMessage: responseFormat,
 		});
 	}
 }

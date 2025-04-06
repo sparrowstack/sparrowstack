@@ -15,8 +15,9 @@ export interface IParams {
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
-	structuredOutput: any;
 	chatMessageManager: ChatMessageManager;
+	responseFormatAgent: Record<string, unknown>;
+	responseFormatSendMessage?: Record<string, unknown>;
 }
 
 export const sendPrompt = async ({
@@ -26,21 +27,23 @@ export const sendPrompt = async ({
 	systemPrompt,
 	toolRegistry,
 	providerName,
-	structuredOutput,
 	chatMessageManager,
+	responseFormatAgent,
+	responseFormatSendMessage,
 }: IParams): Promise<ModelResponse> => {
 	const system = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages<Anthropic.MessageParam>();
 	const tools = toolRegistry.getToolSchemas<Anthropic.Tool>({
 		providerName,
 	});
+	const responseFormat = responseFormatSendMessage || responseFormatAgent;
 	const messageParams = buildMessageParams({
 		model,
 		tools,
 		system,
 		messages,
 		settings,
-		structuredOutput,
+		responseFormat,
 	});
 
 	const rawResponse = (await sdk.messages.create(

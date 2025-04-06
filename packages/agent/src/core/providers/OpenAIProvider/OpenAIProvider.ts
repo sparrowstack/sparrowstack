@@ -1,7 +1,10 @@
 import type OpenAI from 'openai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/OpenAIProvider/methods';
-import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
+import type {
+	SendPromptParams,
+	ConstructorParams,
+} from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
@@ -23,8 +26,8 @@ export class OpenAIProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
-		structuredOutput,
 		chatMessageManager,
+		responseFormatAgent,
 	}: ConstructorParams) {
 		super({
 			name,
@@ -34,8 +37,8 @@ export class OpenAIProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
-			structuredOutput,
 			chatMessageManager,
+			responseFormatAgent,
 		});
 
 		this.adapters = {
@@ -49,7 +52,7 @@ export class OpenAIProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt() {
+	public sendPrompt({ responseFormatSendMessage }: SendPromptParams = {}) {
 		return sendPrompt({
 			model: this.model,
 			settings: this.settings,
@@ -57,8 +60,10 @@ export class OpenAIProvider extends BaseProvider<
 			sdk: this.sdk as OpenAI,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
-			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatAgent: this.responseFormatAgent,
+			responseFormatSendMessage:
+				responseFormatSendMessage as OpenAI.ResponseFormatJSONSchema,
 		});
 	}
 }

@@ -6,8 +6,8 @@ interface IParams {
 	model: string;
 	system: string;
 	settings?: Settings;
+	responseFormat: Record<string, unknown>;
 	tools: Anthropic.Tool[];
-	structuredOutput: any;
 	messages: Anthropic.Messages.MessageParam[];
 }
 
@@ -17,7 +17,7 @@ export const buildMessageParams = ({
 	system,
 	messages,
 	settings,
-	structuredOutput,
+	responseFormat,
 }: IParams) => {
 	// TODO: Add Metadata
 	const messagesParams: Anthropic.Messages.MessageCreateParams = {
@@ -43,16 +43,11 @@ export const buildMessageParams = ({
 		};
 	}
 
-	if (structuredOutput) {
+	if (responseFormat) {
+		// TODO: Add example for response format accuracy
 		messagesParams.system += `
-<structured-output>
-When responding to the user, use the following JSON format:
-${JSON.stringify(structuredOutput, null, 2)}}
-</structured-output>
-
-<tool-calling>
-However, when using tools, respond in the standard tool calling format without any additional formatting.
-</tool-calling>
+When responding to the user, reply ONLY using the following JSON format:
+${JSON.stringify(responseFormat, null, 2)}
 `;
 	}
 

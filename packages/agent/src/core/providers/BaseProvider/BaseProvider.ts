@@ -5,6 +5,8 @@ import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
+import type { SendPromptParams } from '@core/providers/BaseProvider/common/interfaces';
+
 import type {
 	ModelResponse,
 	ToolCallResults,
@@ -34,7 +36,7 @@ export abstract class BaseProvider<
 	readonly settings?: Settings;
 
 	// Structured Output
-	readonly structuredOutput: any;
+	readonly responseFormatAgent: any;
 
 	constructor({
 		name,
@@ -44,8 +46,8 @@ export abstract class BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
-		structuredOutput,
 		chatMessageManager,
+		responseFormatAgent,
 	}: ConstructorParams) {
 		// Base Properties
 		// --------------------------------
@@ -69,7 +71,7 @@ export abstract class BaseProvider<
 
 		// Structured Output
 		// --------------------------------
-		this.structuredOutput = structuredOutput;
+		this.responseFormatAgent = responseFormatAgent;
 
 		// Settings
 		// --------------------------------
@@ -86,5 +88,7 @@ export abstract class BaseProvider<
 		) => TToolCallResponseMessage;
 	};
 
-	abstract sendPrompt(): Promise<ModelResponse>;
+	abstract sendPrompt({
+		responseFormatSendMessage,
+	}: SendPromptParams): Promise<ModelResponse>;
 }

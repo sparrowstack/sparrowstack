@@ -11,6 +11,7 @@ interface IParams {
 	toolCallManager: ToolCallManager;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
+	responseFormatSendMessage?: any;
 }
 
 export const sendMessage = async ({
@@ -19,10 +20,13 @@ export const sendMessage = async ({
 	toolCallManager,
 	interactionLogger,
 	chatMessageManager,
+	responseFormatSendMessage,
 }: IParams) => {
 	chatMessageManager.addUserMessage({ text: message });
 
-	const modelResponseMessage = await provider.sendPrompt();
+	const modelResponseMessage = await provider.sendPrompt({
+		responseFormatSendMessage,
+	});
 
 	const toolCallResponseMessage = await toolCallManager.handleToolCalls({
 		responseMessage: modelResponseMessage,

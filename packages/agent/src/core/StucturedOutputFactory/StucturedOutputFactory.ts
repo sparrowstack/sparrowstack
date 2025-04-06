@@ -7,27 +7,27 @@ export class StructuredOutputFactory {
 		responseFormat,
 		strucuturedOutput: strucuturedOutputInstance,
 	}: StructuredOutputCreateParams): Record<string, unknown> | null {
-		let structuredOutput: Record<string, unknown> | null = null;
+		let responseFormatAgent: Record<string, unknown> | null = null;
 
 		if (strucuturedOutputInstance) {
-			structuredOutput = strucuturedOutputInstance.getResponseFormat({
+			responseFormatAgent = strucuturedOutputInstance.getResponseFormat({
 				providerName,
 			});
 		} else if (responseFormat && 'name' in responseFormat) {
-			structuredOutput = new StructuredOutput({
+			responseFormatAgent = new StructuredOutput({
 				name: responseFormat.name,
 				strucuturedOutput: responseFormat.responseFormat,
 			}).getResponseFormat({
 				providerName,
 			});
 		} else if (responseFormat && !('name' in responseFormat)) {
-			structuredOutput = new StructuredOutput({
+			responseFormatAgent = new StructuredOutput({
 				strucuturedOutput: responseFormat,
 			}).getResponseFormat({
 				providerName,
 			});
 		}
 
-		return structuredOutput;
+		return responseFormatAgent;
 	}
 }

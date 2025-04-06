@@ -1,27 +1,21 @@
 import type { ToolCallResult } from '@core/ToolCallManager/common/types';
 import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums/Role';
 import type { GoogleGenerativeAIToolCallFunctionResponseMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
-
+import { isJsonString } from '@core/providers/GoogleGenerativeAIProvider/common/adapters/toToolCallResponseMessages/common/utils/isJsonString';
 export const getAssistantMessages = (
 	toolCallResults: ToolCallResult[],
 ): GoogleGenerativeAIToolCallFunctionResponseMessage => {
 	// Gemini expects the function response to be the raw result
 	const functionResponses = toolCallResults.map(({ name, result }) => {
+		const isJson = isJsonString({ jsonString: result as string });
 		let response = result;
 
-		// If the response is an JSON object, parse it
-		try {
-			response = JSON.parse(result as string);
-		} catch {}
-
-		// If the response is still a string,
-		// we're assuming the response is a raw string,
-		// In this case we wrap it in an object as
-		// Gemini will choke on a raw string 'response' value
-		if (typeof response === 'string') {
-			response = {
-				message: response,
-			};
+		if (isJson) {
+			response = JSON.parse(result);
+		}
+		// If the response is not JSON, we'll return the raw result
+		else {
+			response = { result };
 		}
 
 		return {
