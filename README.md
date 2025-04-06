@@ -60,7 +60,7 @@ const agent = new Agent({
   settings,
 });
 
-// Interacte with agent
+// Interact with agent
 const response = await agent.sendMessage({
   message: 'Hello, how are you?',
 });
