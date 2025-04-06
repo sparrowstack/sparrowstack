@@ -5,6 +5,20 @@
 	"type": "module",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./system-prompts": {
+			"types": "./dist/community/systemPrompts/index.d.ts",
+			"default": "./dist/community/systemPrompts/index.js"
+		},
+		"./tools": {
+			"types": "./dist/community/tools/index.d.ts",
+			"default": "./dist/community/tools/index.js"
+		}
+	},
 	"license": "MIT",
 	"publishConfig": {
 		"access": "public"

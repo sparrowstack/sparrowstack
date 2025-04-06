@@ -3,7 +3,7 @@ export {
 	defaultPromptParams,
 	softwareEngineerTypeScriptPrompt,
 	softwareEngineerTypeScriptPromptParams,
-} from './system-prompts';
+} from './community/systemPrompts';
 
 export {
 	pressTheNukeButtonTool,
@@ -16,4 +16,4 @@ export {
 	addDocumentVectorStoreToolParams,
 	retrieveDocumentsVectorStoreTool,
 	retrieveDocumentsVectorStoreToolParams,
-} from './tools';
+} from './community/tools';
