@@ -20,12 +20,13 @@ import {
 export interface IParams {
 	model: string;
 	settings?: Settings;
-	responseFormatAgent: any;
 	sdk: GoogleGenerativeAI;
 	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
 	chatMessageManager: ChatMessageManager;
+	responseFormatAgent: any;
+	responseFormatSendMessage?: any;
 }
 
 export const sendPrompt = async ({
@@ -35,8 +36,9 @@ export const sendPrompt = async ({
 	systemPrompt,
 	toolRegistry,
 	providerName,
-	responseFormatAgent,
 	chatMessageManager,
+	responseFormatAgent,
+	responseFormatSendMessage,
 }: IParams): Promise<ModelResponse> => {
 	// Get Messages
 	const messages = chatMessageManager.getMessages<Content>();
@@ -51,12 +53,13 @@ export const sendPrompt = async ({
 	});
 	const modelParams = buildModelParams({ model, tools });
 	const sdkModel = sdk.getGenerativeModel(modelParams);
+	const responseFormat = responseFormatSendMessage || responseFormatAgent;
 
 	// Build Chat SDK
 	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
 	const chatParams = buildChatParams({
 		settings,
-		responseFormatAgent,
+		responseFormat,
 		systemInstruction,
 		history: updatedMessages,
 	});

@@ -1,9 +1,12 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { BaseProvider } from '@core/providers/BaseProvider';
 import { sendPrompt } from '@core/providers/GoogleGenerativeAIProvider/methods';
-import type { ConstructorParams } from '@core/providers/BaseProvider/common/interfaces';
 import type { GoogleGenerativeAIToolCallResponseMessages } from '@core/providers/GoogleGenerativeAIProvider/common/types';
 import type { GoogleGenerativeAIToolCallRequestMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
+import type {
+	SendPromptParams,
+	ConstructorParams,
+} from '@core/providers/BaseProvider/common/interfaces';
 import {
 	toToolCallRequestMessage,
 	toToolCallResponseMessages,
@@ -47,7 +50,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt() {
+	public sendPrompt({ responseFormatSendMessage }: SendPromptParams = {}) {
 		return sendPrompt({
 			model: this.model,
 			providerName: this.name,
@@ -55,8 +58,9 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
 			sdk: this.sdk as GoogleGenerativeAI,
-			responseFormatAgent: this.responseFormatAgent,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatAgent: this.responseFormatAgent,
+			responseFormatSendMessage: responseFormatSendMessage,
 		});
 	}
 }

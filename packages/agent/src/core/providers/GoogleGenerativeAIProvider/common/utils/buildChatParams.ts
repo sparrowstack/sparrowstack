@@ -4,7 +4,7 @@ import type { Part, Content, StartChatParams } from '@google/generative-ai';
 
 interface IParams {
 	settings?: Settings;
-	responseFormatAgent: any;
+	responseFormat: any;
 	history: Content[] | undefined;
 	systemInstruction: string | Content | Part | undefined;
 }
@@ -28,36 +28,36 @@ export const buildChatParams = ({
 		},
 	};
 
-	// TODO: Gemini doesn't support structured output yet, in a way thats
-	// flexible enough to support the tool calling format and general chat
-	// Will update this when Gemini supports structured output in a more flexible way
-
-	// if (responseFormatAgent) {
-	// 	chatParams.generationConfig = {
-	// 		...chatParams.generationConfig,
-	// 		responseMimeType: 'application/json',
-	// 		responseSchema: responseFormatAgent,
-	// 	};
-	// }
-
-	// 	if (responseFormatAgent) {
-	// 		if (
-	// 			chatParams.systemInstruction &&
-	// 			typeof chatParams.systemInstruction !== 'string' &&
-	// 			'parts' in chatParams.systemInstruction
-	// 		) {
-	// 			chatParams.systemInstruction.parts[0].text += `
-	// <structured-output>
-	// When responding to the user, reuturn a JSON object with the following format:
-	// ${JSON.stringify(responseFormatAgent, null, 2)}}
-	// </structured-output>
-
-	// <tool-calling>
-	// However, when using tools, respond in the standard tool calling format without any additional formatting.
-	// </tool-calling>
-	// `;
-	// 		}
-	// 	}
-
 	return chatParams;
 };
+
+// TODO: Gemini doesn't support structured output yet, in a way thats
+// flexible enough to support the tool calling format and general chat
+// Will update this when Gemini supports structured output in a more flexible way
+
+// if (responseFormatAgent) {
+// 	chatParams.generationConfig = {
+// 		...chatParams.generationConfig,
+// 		responseMimeType: 'application/json',
+// 		responseSchema: responseFormatAgent,
+// 	};
+// }
+
+// 	if (responseFormatAgent) {
+// 		if (
+// 			chatParams.systemInstruction &&
+// 			typeof chatParams.systemInstruction !== 'string' &&
+// 			'parts' in chatParams.systemInstruction
+// 		) {
+// 			chatParams.systemInstruction.parts[0].text += `
+// <structured-output>
+// When responding to the user, reuturn a JSON object with the following format:
+// ${JSON.stringify(responseFormatAgent, null, 2)}}
+// </structured-output>
+
+// <tool-calling>
+// However, when using tools, respond in the standard tool calling format without any additional formatting.
+// </tool-calling>
+// `;
+// 		}
+// 	}
