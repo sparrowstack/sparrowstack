@@ -36,7 +36,7 @@ export abstract class BaseProvider<
 	readonly settings?: Settings;
 
 	// Structured Output
-	readonly structuredOutput: any;
+	readonly responseFormatAgent: any;
 
 	constructor({
 		name,
@@ -46,8 +46,8 @@ export abstract class BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
-		structuredOutput,
 		chatMessageManager,
+		responseFormatAgent,
 	}: ConstructorParams) {
 		// Base Properties
 		// --------------------------------
@@ -71,7 +71,7 @@ export abstract class BaseProvider<
 
 		// Structured Output
 		// --------------------------------
-		this.structuredOutput = structuredOutput;
+		this.responseFormatAgent = responseFormatAgent;
 
 		// Settings
 		// --------------------------------

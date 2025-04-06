@@ -13,7 +13,7 @@ interface IParams {
 	providerName: ProviderName;
 	toolRegistry: ToolRegistry;
 	providerDisplayName: string;
-	structuredOutput: any;
+	responseFormatAgent: any;
 	chatMessageManager: ChatMessageManager;
 }
 
@@ -25,8 +25,8 @@ export class ProviderFactory {
 		toolRegistry,
 		systemPrompt,
 		providerName,
-		structuredOutput,
 		chatMessageManager,
+		responseFormatAgent,
 		providerDisplayName,
 	}: IParams) {
 		const Provider = providers[providerName as keyof typeof providers];
@@ -36,9 +36,9 @@ export class ProviderFactory {
 			settings,
 			systemPrompt,
 			toolRegistry,
-			structuredOutput,
 			chatMessageManager,
 			name: providerName,
+			responseFormatAgent,
 			displayName: providerDisplayName,
 		});
 

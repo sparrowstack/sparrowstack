@@ -26,7 +26,7 @@ export class OpenAIProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
-		structuredOutput,
+		responseFormatAgent,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -37,7 +37,7 @@ export class OpenAIProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
-			structuredOutput,
+			responseFormatAgent,
 			chatMessageManager,
 		});
 
@@ -60,7 +60,7 @@ export class OpenAIProvider extends BaseProvider<
 			sdk: this.sdk as OpenAI,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
-			structuredOutput: this.structuredOutput,
+			responseFormatAgent: this.responseFormatAgent,
 			chatMessageManager: this.chatMessageManager,
 			responseFormatSendMessage:
 				responseFormatSendMessage as OpenAI.ResponseFormatJSONSchema,

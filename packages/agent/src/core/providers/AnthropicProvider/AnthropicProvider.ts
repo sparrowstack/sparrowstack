@@ -6,6 +6,7 @@ import {
 	toToolCallResponseMessages,
 } from '@core/providers/AnthropicProvider/common/adapters';
 import type {
+	SendPromptParams,
 	ConstructorParams,
 } from '@core/providers/BaseProvider/common/interfaces';
 import type {
@@ -25,7 +26,7 @@ export class AnthropicProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
-		structuredOutput,
+		responseFormatAgent,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -36,7 +37,7 @@ export class AnthropicProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
-			structuredOutput,
+			responseFormatAgent,
 			chatMessageManager,
 		});
 
@@ -51,7 +52,7 @@ export class AnthropicProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt() {
+	public sendPrompt({ responseFormatSendMessage }: SendPromptParams = {}) {
 		return sendPrompt({
 			model: this.model,
 			settings: this.settings,
@@ -59,8 +60,9 @@ export class AnthropicProvider extends BaseProvider<
 			sdk: this.sdk as Anthropic,
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
-			structuredOutput: this.structuredOutput,
+			responseFormatAgent: this.responseFormatAgent,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatSendMessage: responseFormatSendMessage,
 		});
 	}
 }

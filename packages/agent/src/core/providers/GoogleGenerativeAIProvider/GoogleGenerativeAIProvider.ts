@@ -21,7 +21,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 		displayName,
 		systemPrompt,
 		toolRegistry,
-		structuredOutput,
+		responseFormatAgent,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -32,7 +32,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 			displayName,
 			systemPrompt,
 			toolRegistry,
-			structuredOutput,
+			responseFormatAgent,
 			chatMessageManager,
 		});
 
@@ -55,7 +55,7 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 			systemPrompt: this.systemPrompt,
 			toolRegistry: this.toolRegistry,
 			sdk: this.sdk as GoogleGenerativeAI,
-			structuredOutput: this.structuredOutput,
+			responseFormatAgent: this.responseFormatAgent,
 			chatMessageManager: this.chatMessageManager,
 		});
 	}

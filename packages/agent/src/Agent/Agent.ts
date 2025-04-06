@@ -39,7 +39,7 @@ export class Agent {
 	readonly systemPrompt: SystemPrompt;
 
 	// Structured Output
-	readonly structuredOutput?: any; // create response format
+	readonly responseFormatAgent?: any; // create response format
 
 	// Tools
 	readonly toolRegistry: ToolRegistry;
@@ -80,7 +80,7 @@ export class Agent {
 
 		// Structured Output
 		// --------------------------------
-		this.structuredOutput = StructuredOutputFactory.create({
+		this.responseFormatAgent = StructuredOutputFactory.create({
 			providerName,
 			responseFormat,
 		});
@@ -111,8 +111,8 @@ export class Agent {
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
 			toolRegistry: this.toolRegistry,
-			structuredOutput: this.structuredOutput,
 			chatMessageManager: this.chatMessageManager,
+			responseFormatAgent: this.responseFormatAgent,
 			providerDisplayName: this.providerDisplayName,
 		});
 
