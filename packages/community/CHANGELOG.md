@@ -1,5 +1,14 @@
 # @sparrowstack/community
 
+## 0.3.12
+
+### Patch Changes
+
+- 7e18775: Community fix
+- Updated dependencies [7e18775]
+    - @sparrowstack/system-prompts@0.3.12
+    - @sparrowstack/tools@0.3.12
+
 ## 0.3.11
 
 ### Patch Changes

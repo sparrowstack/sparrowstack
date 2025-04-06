@@ -1,5 +1,11 @@
 # @sparrowstack/logger
 
+## 0.3.12
+
+### Patch Changes
+
+- 7e18775: Community fix
+
 ## 0.3.11
 
 ### Patch Changes

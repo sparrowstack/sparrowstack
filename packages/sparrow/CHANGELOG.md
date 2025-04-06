@@ -1,5 +1,16 @@
 # @sparrowstack/sparrow
 
+## 0.3.12
+
+### Patch Changes
+
+- 7e18775: Community fix
+- Updated dependencies [7e18775]
+    - @sparrowstack/agent@0.3.12
+    - @sparrowstack/core@0.3.12
+    - @sparrowstack/system-prompt@0.3.12
+    - @sparrowstack/tool@0.3.12
+
 ## 0.3.11
 
 ### Patch Changes
