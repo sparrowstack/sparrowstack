@@ -120,10 +120,6 @@ const response = await agent.sendMessage({
 console.log(response.text); // "The answer is 4."
 ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- GETTING STARTED -->
-
 ## Getting Started
 
 We recommend using the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) template to kick off your project. Simply follow the setup guide, browse the example scripts for inspiration, and begin customizing your own agents today!
@@ -160,4 +156,3 @@ More detailed setup instructions follow below.
 ### Link to SparrowStarter
 Follow the instructions in the [SparrowStarter](https://github.com/sparrowstack/sparrow-starter) README to setup repo and link the local `sparrowstack` packages.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
