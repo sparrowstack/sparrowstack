@@ -1,5 +1,13 @@
 # @sparrowstack/structured-output
 
+## 0.3.9
+
+### Patch Changes
+
+- 85b7071: Added community package
+- Updated dependencies [85b7071]
+    - @sparrowstack/core@0.3.9
+
 ## 0.3.8
 
 ### Patch Changes

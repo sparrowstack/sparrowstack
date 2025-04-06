@@ -1,5 +1,11 @@
 # @sparrowstack/core
 
+## 0.3.9
+
+### Patch Changes
+
+- 85b7071: Added community package
+
 ## 0.3.8
 
 ### Patch Changes
