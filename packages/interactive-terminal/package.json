@@ -34,7 +34,7 @@
 		"@sparrowstack/agent": "workspace:*",
 		"@sparrowstack/logger": "workspace:*",
 		"chalk": "5.4.1",
-		"ora": "8.1.1",
+		"ora": "8.2.0",
 		"wrap-ansi": "9.0.0"
 	},
 	"peerDependencies": {
