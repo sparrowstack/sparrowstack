@@ -1,18 +1,17 @@
-import { Role } from '@core/providers/OpenAIProvider/common/enums/Role';
+import type { OpenAI } from 'openai';
 import type { ToolCallResults } from '@core/providers/BaseProvider/common/interfaces';
-import type { OpenAIToolCallResponseMessage } from '@core/providers/OpenAIProvider/common/interfaces';
+import type { OpenAIToolCallResponseMessages } from '@core/providers/OpenAIProvider/common/types';
 
 export const toToolCallResponseMessages = ({
 	toolCallResults,
-}: ToolCallResults): OpenAIToolCallResponseMessage[] => {
-	const toolResultMessages: OpenAIToolCallResponseMessage[] =
-		toolCallResults.map((toolCallResult) => {
-			return {
-				role: Role.Tool,
-				tool_call_id: toolCallResult.id,
-				content: JSON.stringify(toolCallResult.result),
-			};
-		});
+}: ToolCallResults): OpenAIToolCallResponseMessages => {
+	const toolResultMessages = toolCallResults.map((toolCallResult) => {
+		return {
+			type: 'function_call_output',
+			call_id: toolCallResult.callId,
+			output: toolCallResult.result,
+		};
+	}) as OpenAI.Responses.ResponseFunctionToolCallOutputItem[];
 
 	return toolResultMessages;
 };

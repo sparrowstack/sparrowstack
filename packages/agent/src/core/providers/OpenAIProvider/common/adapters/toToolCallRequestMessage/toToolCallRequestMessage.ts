@@ -1,20 +1,16 @@
 import { OpenAI } from 'openai';
-import { Role } from '@core/providers/OpenAIProvider/common/enums/Role';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import type { OpenAIToolCallRequestMessage } from '@core/providers/OpenAIProvider/common/interfaces';
+import type { OpenAIToolCallRequestMessages } from '@core/providers/OpenAIProvider/common/types';
 export const toToolCallRequestMessage = ({
 	responseMessage,
 }: {
 	responseMessage: ModelResponse;
-}): OpenAIToolCallRequestMessage => {
+}): OpenAIToolCallRequestMessages => {
 	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
 		return toolCall.rawToolCall;
-	}) as OpenAI.Chat.Completions.ChatCompletionMessageToolCall[];
+	}) as OpenAI.Responses.ResponseFunctionToolCall[];
 
-	return {
-		role: Role.Assistant,
-		tool_calls: toolCalls,
-	};
+	return toolCalls;
 };
 
 /**

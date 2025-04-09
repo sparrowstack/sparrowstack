@@ -15,7 +15,7 @@
 
 SparrowStack is the modular “stack” of components powering the Sparrow AI Agent framework. Written in TypeScript from the ground up, it provides a type‑safe environment for building, testing, and deploying AI agents.
 
-It comprises framework‑agnostic classes (e.g., `Tool`, `SystemPrompt`, `StructuredOutput`) capable of generating provider‑specific schemas. Together, these modules stack to form the Sparrow AI Agent framework.
+It comprises framework‑agnostic classes (e.g., `Tool`, `SystemPrompt`, `StructuredOutput`) capable of generating provider‑specific schemas. Together, these and other core modules stack to form the Sparrow AI Agent framework.
 
 ### Multi Provider Support
 

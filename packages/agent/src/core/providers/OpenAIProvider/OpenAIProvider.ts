@@ -10,13 +10,13 @@ import {
 	toToolCallResponseMessages,
 } from '@core/providers/OpenAIProvider/common/adapters';
 import type {
-	OpenAIToolCallRequestMessage,
-	OpenAIToolCallResponseMessage,
-} from '@core/providers/OpenAIProvider/common/interfaces';
+	OpenAIToolCallRequestMessages,
+	OpenAIToolCallResponseMessages,
+} from '@core/providers/OpenAIProvider/common/types';
 
 export class OpenAIProvider extends BaseProvider<
-	OpenAIToolCallRequestMessage,
-	OpenAIToolCallResponseMessage[]
+	OpenAIToolCallRequestMessages,
+	OpenAIToolCallResponseMessages
 > {
 	constructor({
 		name,
@@ -62,8 +62,7 @@ export class OpenAIProvider extends BaseProvider<
 			toolRegistry: this.toolRegistry,
 			chatMessageManager: this.chatMessageManager,
 			responseFormatAgent: this.responseFormatAgent,
-			responseFormatSendMessage:
-				responseFormatSendMessage as OpenAI.ResponseFormatJSONSchema,
+			responseFormatSendMessage: responseFormatSendMessage,
 		});
 	}
 }

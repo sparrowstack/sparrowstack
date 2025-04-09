@@ -37,7 +37,7 @@ export const executeToolCalls = async ({
 	const toolCallResults = await Promise.all(
 		toolCalls.map(async (toolCall) => {
 			let result: unknown;
-			const { id, name } = toolCall;
+			const { id, name, callId } = toolCall;
 			const tool = toolRegistry.getToolByName({ name });
 			const runtimeParams: RuntimeParams = {
 				model,
@@ -64,7 +64,7 @@ export const executeToolCalls = async ({
 				});
 			}
 
-			return { id, name, result };
+			return { id, callId, name, result };
 		}),
 	);
 

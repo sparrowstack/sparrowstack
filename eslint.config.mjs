@@ -65,6 +65,12 @@ export default [
 
 			'@typescript-eslint/no-explicit-any': 'warn',
 			'no-empty': ['error', { allowEmptyCatch: true }],
+			'@typescript-eslint/ban-ts-comment': [
+				'warn',
+				{
+					'ts-nocheck': false,
+				},
+			],
 		},
 	},
 ];

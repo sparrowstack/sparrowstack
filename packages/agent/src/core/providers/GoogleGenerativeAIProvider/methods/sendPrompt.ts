@@ -11,7 +11,7 @@ import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/comm
 import {
 	buildChatParams,
 	buildModelParams,
-} from '@core/providers/GoogleGenerativeAIProvider/common/utils';
+} from '@core/providers/GoogleGenerativeAIProvider/methods/common/utils';
 import {
 	GoogleGenerativeAI,
 	type FunctionDeclarationsTool,

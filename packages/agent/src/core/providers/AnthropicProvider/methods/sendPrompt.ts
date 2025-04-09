@@ -6,7 +6,7 @@ import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/AnthropicProvider/common/adapters/toModelResponse';
-import { buildMessageParams } from '@core/providers/AnthropicProvider/common/utils/buildMessageParams';
+import { buildMessageParams } from '@core/providers/AnthropicProvider/methods/common/utils/buildMessageParams';
 
 export interface IParams {
 	model: string;

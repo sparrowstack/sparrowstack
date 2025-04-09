@@ -5,7 +5,7 @@ import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
-import { buildChatParams } from '@core/providers/OpenAIProvider/methods/sendPrompt/utils';
+import { buildChatParams } from '@core/providers/OpenAIProvider/methods/sendPrompt/common/utils';
 import { toModelResponse } from '@core/providers/OpenAIProvider/common/adapters/toModelResponse';
 
 export interface IParams {
@@ -16,8 +16,8 @@ export interface IParams {
 	providerName: ProviderName;
 	toolRegistry: ToolRegistry;
 	chatMessageManager: ChatMessageManager;
-	responseFormatAgent: OpenAI.ResponseFormatJSONSchema;
-	responseFormatSendMessage?: OpenAI.ResponseFormatJSONSchema;
+	responseFormatAgent: Record<string, unknown>;
+	responseFormatSendMessage?: Record<string, unknown>;
 }
 
 export const sendPrompt = async ({
@@ -32,11 +32,11 @@ export const sendPrompt = async ({
 	responseFormatSendMessage,
 }: IParams): Promise<ModelResponse> => {
 	const responseFormat = responseFormatSendMessage || responseFormatAgent;
-	const tools = toolRegistry.getToolSchemas<OpenAI.ChatCompletionTool>({
+	const tools = toolRegistry.getToolSchemas<OpenAI.Responses.Tool>({
 		providerName,
 	});
 	const chatMessages =
-		chatMessageManager.getMessages<OpenAI.ChatCompletionMessageParam>();
+		chatMessageManager.getMessages<OpenAI.Responses.ResponseOutputItem>();
 
 	const chatParams = buildChatParams({
 		model,
@@ -47,9 +47,9 @@ export const sendPrompt = async ({
 		responseFormat,
 	});
 
-	const rawResponse = (await sdk.chat.completions.create(
+	const rawResponse = (await sdk.responses.create(
 		chatParams,
-	)) as OpenAI.Chat.Completions.ChatCompletion;
+	)) as OpenAI.Responses.Response;
 
 	const response = toModelResponse({ response: rawResponse });
 

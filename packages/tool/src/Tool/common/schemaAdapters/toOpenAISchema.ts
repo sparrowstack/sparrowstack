@@ -8,18 +8,15 @@ export const toOpenAISchema = <SchemaType>({
 	description,
 }: IToolSchemaParams): SchemaType => {
 	return {
-		type: PropertyType.Function,
-		function: {
-			name,
-			description,
-			parameters: {
-				type: PropertyType.Object,
-				properties: parameters ? processParameters({ parameters }) : {},
-				required: parameters
-					? getRequiredParameters({ parameters })
-					: [],
-				additionalProperties: false,
-			},
+		type: 'function',
+		name,
+		description,
+		parameters: {
+			type: PropertyType.Object,
+			properties: parameters ? processParameters({ parameters }) : {},
+			required: parameters ? getRequiredParameters({ parameters }) : [],
+			additionalProperties: false,
 		},
+		strict: true,
 	} as SchemaType;
 };
