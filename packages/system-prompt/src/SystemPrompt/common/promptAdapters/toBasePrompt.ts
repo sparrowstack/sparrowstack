@@ -1,8 +1,8 @@
-import type { IPrompt } from '@system-prompt/common/interfaces';
-import type { IBasePrompt } from '@system-prompt/common/types';
+import type { Prompt } from '@system-prompt/common/interfaces';
+import type { BasePrompt } from '@system-prompt/common/types';
 
-export const toBasePrompt = ({ prompt }: { prompt: IPrompt }) => {
-	const basePrompt: IBasePrompt = {};
+export const toBasePrompt = ({ prompt }: { prompt: Prompt }) => {
+	const basePrompt: BasePrompt = {};
 
 	prompt?.blocks?.forEach((block) => {
 		// Get itemOptions options

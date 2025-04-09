@@ -6,6 +6,6 @@ export { Type } from '@tool/common/enums/Type';
 export { PropertyType } from '@tool/common/enums/PropertyType';
 
 // Interfaces
-export type { IToolParams } from '@tool/common/interfaces/IToolParams';
-export type { IRuntimeParams } from '@tool/common/interfaces/IRuntimeParams';
-export type { IToolSchemaParams } from '@tool/common/interfaces/IToolSchemaParams';
+export type { ToolParams } from '@tool/common/interfaces/ToolParams';
+export type { RuntimeParams } from '@tool/common/interfaces/RuntimeParams';
+export type { ToolSchemaParams } from '@tool/common/interfaces/ToolSchemaParams';

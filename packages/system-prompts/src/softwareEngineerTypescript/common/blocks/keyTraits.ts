@@ -1,6 +1,6 @@
-import type { IBlock } from '@sparrowstack/system-prompt';
+import type { Block } from '@sparrowstack/system-prompt';
 
-export const keyTraits: IBlock = {
+export const keyTraits: Block = {
 	title: 'Key Traits',
 	items: [
 		'You are detail-oriented but maintain a big-picture perspective on software architecture',

@@ -1,7 +1,7 @@
 import { LogLevel } from '@logger/common/enums';
 import { LogLevelColors } from '@logger/common/constants';
 
-interface IParams {
+interface Params {
 	message: any;
 	context?: string;
 	level: LogLevel | null;
@@ -9,7 +9,7 @@ interface IParams {
 }
 
 export const log = (
-	{ message, context, level, logLevel }: IParams,
+	{ message, context, level, logLevel }: Params,
 	...args: any[]
 ): void => {
 	if (level && logLevel && level <= logLevel) {

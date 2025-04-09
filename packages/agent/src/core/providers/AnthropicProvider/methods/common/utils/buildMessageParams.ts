@@ -2,7 +2,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import type { Settings } from '@agent/common/interfaces';
 import { ThinkingType } from '@core/providers/AnthropicProvider/common/enums';
 
-interface IParams {
+interface Params {
 	model: string;
 	system: string;
 	settings?: Settings;
@@ -18,7 +18,7 @@ export const buildMessageParams = ({
 	messages,
 	settings,
 	responseFormat,
-}: IParams) => {
+}: Params) => {
 	// TODO: Add Metadata
 	const messagesParams: Anthropic.Messages.MessageCreateParams = {
 		model,

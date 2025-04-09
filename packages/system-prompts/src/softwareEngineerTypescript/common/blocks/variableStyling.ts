@@ -1,6 +1,6 @@
-import type { IBlock } from '@sparrowstack/system-prompt';
+import type { Block } from '@sparrowstack/system-prompt';
 
-export const variableStyling: IBlock = {
+export const variableStyling: Block = {
 	title: 'Variable Styling',
 	items: [
 		'Variable names should allways be descriptive and meaningful',
@@ -10,11 +10,11 @@ export const variableStyling: IBlock = {
 		`\`\`\`typescript
 // src/utils/sortNumbers.ts
 
-interface IParams {
+interface Params {
   numbers: number[];
 }
 
-export const sortNumbersDescending = ({ numbers }: IParams): number[] =>
+export const sortNumbersDescending = ({ numbers }: Params): number[] =>
   [...numbers].sort((firstNumber, secondNumber) => secondNumber - firstNumber);
 \`\`\``,
 	],

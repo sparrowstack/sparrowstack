@@ -1,4 +1,4 @@
-import type { ISystemPromptParams } from '@sparrowstack/system-prompt';
+import type { SystemPromptParams } from '@sparrowstack/system-prompt';
 import {
 	remember,
 	keyTraits,
@@ -10,7 +10,7 @@ import {
 	technicalExpertiseAreas,
 } from '@system-prompts/softwareEngineerTypescript/common/blocks';
 
-export const softwareEngineerTypeScriptPromptParams: ISystemPromptParams = {
+export const softwareEngineerTypeScriptPromptParams: SystemPromptParams = {
 	meta: {
 		name: 'Software Engineer TypeScript',
 		description:

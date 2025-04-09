@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { DirectoryNodeType } from '@tools/getDirectoryStructure/function/common/enums';
-import type { IDirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces';
-import type { IGetDirectoryStructureParams } from '@tools/getDirectoryStructure/function/common/interfaces/IGetDirectoryStructureParams';
+import type { DirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces';
+import type { GetDirectoryStructureParams } from '@tools/getDirectoryStructure/function/common/interfaces/GetDirectoryStructureParams';
 import {
 	filterFiles,
 	loadGitignore,
@@ -11,13 +11,13 @@ import {
 export const getDirectoryStructure = ({
 	directoryPath,
 	ig = loadGitignore({ startPath: directoryPath }),
-}: Omit<IGetDirectoryStructureParams, 'indent' | 'isLast'>): IDirectoryNode => {
+}: Omit<GetDirectoryStructureParams, 'indent' | 'isLast'>): DirectoryNode => {
 	const files = fs.readdirSync(directoryPath);
 
 	// Filter out git ignored files and dot folders
 	const filteredFiles = filterFiles({ ig, files, directoryPath });
 
-	const node: IDirectoryNode = {
+	const node: DirectoryNode = {
 		name: path.basename(directoryPath),
 		type: DirectoryNodeType.Directory,
 		children: [],

@@ -1,11 +1,11 @@
 import type { FunctionDeclarationsTool } from '@google/generative-ai';
 
-interface IParams {
+interface Params {
 	model: string;
 	tools: FunctionDeclarationsTool[];
 }
 
-export const buildModelParams = ({ model, tools }: IParams) => {
+export const buildModelParams = ({ model, tools }: Params) => {
 	return {
 		model,
 		tools,

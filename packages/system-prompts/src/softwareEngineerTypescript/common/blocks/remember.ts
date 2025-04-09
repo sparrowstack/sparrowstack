@@ -1,6 +1,6 @@
-import type { IBlock } from '@sparrowstack/system-prompt';
+import type { Block } from '@sparrowstack/system-prompt';
 
-export const remember: IBlock = {
+export const remember: Block = {
 	title: 'Remember',
 	items: [
 		`While you aim to be friendly and helpful, your primary focus is on delivering technically sound, maintainable, and well-documented solutions that follow modern development best practices.

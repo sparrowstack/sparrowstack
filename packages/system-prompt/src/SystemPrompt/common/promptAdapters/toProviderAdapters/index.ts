@@ -1,1 +1,1 @@
-export { toGoogleGenerativeAIPrompt } from '@system-prompt/common/promptAdapters/toProviderAdapters/toGoogleGenerativeAIPrompt';
+export { toGoogleGenerativeAPrompt } from '@system-prompt/common/promptAdapters/toProviderAdapters/toGoogleGenerativeAIPrompt';

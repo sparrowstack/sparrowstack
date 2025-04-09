@@ -1,13 +1,13 @@
 import { sendMessage } from '@agent/methods';
 import { Logger } from '@sparrowstack/logger';
-import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import { ToolCallManager } from '@core/ToolCallManager';
 import { ProviderFactory } from '@core/ProviderFactory';
 import type { Settings } from '@agent/common/interfaces';
+import { Tool, type ToolParams } from '@sparrowstack/tool';
 import { InteractionLogger } from '@core/InteractionLogger';
-import { Tool, type IToolParams } from '@sparrowstack/tool';
 import { defaultPrompt } from '@sparrowstack/system-prompts';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
 import { StructuredOutputFactory } from '@core/StucturedOutputFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
@@ -17,7 +17,7 @@ import type { ModelResponse } from '@core/providers/BaseProvider/common/interfac
 import type { StructuredOutputCreateParams } from '@core/StucturedOutputFactory/common/interfaces';
 import {
 	SystemPrompt,
-	type ISystemPromptParams,
+	type SystemPromptParams,
 } from '@sparrowstack/system-prompt';
 
 interface ConstructorParams {
@@ -25,8 +25,8 @@ interface ConstructorParams {
 	apiKey: string;
 	settings?: Settings;
 	provider: ProviderName;
-	tools?: Tool[] | IToolParams[];
-	systemPrompt?: SystemPrompt | ISystemPromptParams;
+	tools?: Tool[] | ToolParams[];
+	systemPrompt?: SystemPrompt | SystemPromptParams;
 	responseFormat?: StructuredOutputCreateParams['responseFormat'];
 }
 
@@ -42,7 +42,7 @@ export class Agent {
 	readonly responseFormatAgent?: any; // create response format
 
 	// Tools
-	readonly toolRegistry: ToolRegistry;
+	readonly toolRegistryManager: ToolRegistryManager;
 
 	// Utilities
 	readonly logger: Logger;
@@ -87,7 +87,7 @@ export class Agent {
 
 		// Tools
 		// --------------------------------
-		this.toolRegistry = new ToolRegistry({ tools });
+		this.toolRegistryManager = new ToolRegistryManager({ tools });
 
 		// Chat Message Manager
 		// --------------------------------
@@ -110,7 +110,7 @@ export class Agent {
 			settings: this.settings,
 			systemPrompt: this.systemPrompt,
 			providerName: this.providerName,
-			toolRegistry: this.toolRegistry,
+			toolRegistryManager: this.toolRegistryManager,
 			chatMessageManager: this.chatMessageManager,
 			responseFormatAgent: this.responseFormatAgent,
 			providerDisplayName: this.providerDisplayName,
@@ -120,9 +120,9 @@ export class Agent {
 		// --------------------------------
 		this.toolCallManager = new ToolCallManager({
 			provider: this.provider,
-			toolRegistry: this.toolRegistry,
 			interactionLogger: this.interactionLogger,
 			chatMessageManager: this.chatMessageManager,
+			toolRegistryManager: this.toolRegistryManager,
 		});
 
 		// Settings

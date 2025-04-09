@@ -1,10 +1,10 @@
 import { PropertyType } from '@tool/common/enums';
-import type { IToolSchemaParams } from '@tool/common/interfaces';
+import type { ToolSchemaParams } from '@tool/common/interfaces';
 import { expect, test, describe, beforeEach, afterEach } from 'bun:test';
 import { toOpenAISchema } from '@tool/common/schemaAdapters/toOpenAISchema';
 
 describe('toOpenAISchema', () => {
-	let toolSchema: IToolSchemaParams;
+	let toolSchema: ToolSchemaParams;
 
 	beforeEach(() => {
 		// Setup tool schema

@@ -1,6 +1,6 @@
 import { type ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/ModelResponseToolCall';
 
-export interface IUsage {
+export interface Usage {
 	inputTokens?: number;
 	outputTokens?: number;
 	totalTokens?: number;
@@ -20,7 +20,7 @@ export interface ModelResponse {
 	stopSequence?: string | null;
 
 	// Usage statistics
-	usage?: IUsage;
+	usage?: Usage;
 
 	// Tool Calling
 	toolCalls?: ModelResponseToolCall[];

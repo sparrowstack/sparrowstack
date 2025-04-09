@@ -10,7 +10,7 @@ import {
 	exitProcessIfApplicable,
 } from '@core/InteractiveSession/common/utils';
 
-interface IParams {
+interface Params {
 	agent: Agent;
 }
 
@@ -18,7 +18,7 @@ export class InteractiveSession {
 	agent: Agent;
 	private rl: readline.Interface;
 
-	constructor({ agent }: IParams) {
+	constructor({ agent }: Params) {
 		this.rl = readline.createInterface({
 			input: process.stdin,
 			output: process.stdout,

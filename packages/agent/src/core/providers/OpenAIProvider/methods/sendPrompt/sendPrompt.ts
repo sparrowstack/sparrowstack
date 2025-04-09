@@ -1,21 +1,21 @@
 import OpenAI from 'openai';
-import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { buildChatParams } from '@core/providers/OpenAIProvider/methods/sendPrompt/common/utils';
 import { toModelResponse } from '@core/providers/OpenAIProvider/common/adapters/toModelResponse';
 
-export interface IParams {
+export interface Params {
 	sdk: OpenAI;
 	model: string;
 	settings?: Settings;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
-	toolRegistry: ToolRegistry;
 	chatMessageManager: ChatMessageManager;
+	toolRegistryManager: ToolRegistryManager;
 	responseFormatAgent: Record<string, unknown>;
 	responseFormatSendMessage?: Record<string, unknown>;
 }
@@ -25,14 +25,14 @@ export const sendPrompt = async ({
 	model,
 	settings,
 	systemPrompt,
-	toolRegistry,
+	toolRegistryManager,
 	providerName,
 	responseFormatAgent,
 	chatMessageManager,
 	responseFormatSendMessage,
-}: IParams): Promise<ModelResponse> => {
+}: Params): Promise<ModelResponse> => {
 	const responseFormat = responseFormatSendMessage || responseFormatAgent;
-	const tools = toolRegistry.getToolSchemas<OpenAI.Responses.Tool>({
+	const tools = toolRegistryManager.getToolSchemas<OpenAI.Responses.Tool>({
 		providerName,
 	});
 	const chatMessages =

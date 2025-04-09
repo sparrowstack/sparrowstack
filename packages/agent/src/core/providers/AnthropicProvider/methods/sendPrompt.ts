@@ -1,21 +1,21 @@
 import { Anthropic } from '@anthropic-ai/sdk';
-import { ToolRegistry } from '@core/ToolRegistry';
 import { ProviderName } from '@sparrowstack/core';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/AnthropicProvider/common/adapters/toModelResponse';
 import { buildMessageParams } from '@core/providers/AnthropicProvider/methods/common/utils/buildMessageParams';
 
-export interface IParams {
+export interface Params {
 	model: string;
 	sdk: Anthropic;
 	settings?: Settings;
-	toolRegistry: ToolRegistry;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
 	chatMessageManager: ChatMessageManager;
+	toolRegistryManager: ToolRegistryManager;
 	responseFormatAgent: Record<string, unknown>;
 	responseFormatSendMessage?: Record<string, unknown>;
 }
@@ -25,15 +25,15 @@ export const sendPrompt = async ({
 	model,
 	settings,
 	systemPrompt,
-	toolRegistry,
 	providerName,
 	chatMessageManager,
+	toolRegistryManager,
 	responseFormatAgent,
 	responseFormatSendMessage,
-}: IParams): Promise<ModelResponse> => {
+}: Params): Promise<ModelResponse> => {
 	const system = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages<Anthropic.MessageParam>();
-	const tools = toolRegistry.getToolSchemas<Anthropic.Tool>({
+	const tools = toolRegistryManager.getToolSchemas<Anthropic.Tool>({
 		providerName,
 	});
 	const responseFormat = responseFormatSendMessage || responseFormatAgent;

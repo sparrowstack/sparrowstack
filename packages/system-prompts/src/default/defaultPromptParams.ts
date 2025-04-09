@@ -1,6 +1,6 @@
-import type { ISystemPromptParams } from '@sparrowstack/system-prompt';
+import type { SystemPromptParams } from '@sparrowstack/system-prompt';
 
-export const defaultPromptParams: ISystemPromptParams = {
+export const defaultPromptParams: SystemPromptParams = {
 	meta: {
 		name: 'Default',
 		description: 'A default system prompt.',

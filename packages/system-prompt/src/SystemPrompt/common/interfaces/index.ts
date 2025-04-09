@@ -1,5 +1,5 @@
-export type { IMeta } from '@system-prompt/common/interfaces/IMeta';
-export type { IBlock } from '@system-prompt/common/interfaces/IBlock';
-export type { IPrompt } from '@system-prompt/common/interfaces/IPrompt';
-export type { IItemOptions } from '@system-prompt/common/interfaces/IItemOptions';
-export type { ISystemPromptParams } from '@system-prompt/common/interfaces/ISystemPromptParams';
+export type { Meta } from '@system-prompt/common/interfaces/Meta';
+export type { Block } from '@system-prompt/common/interfaces/Block';
+export type { Prompt } from '@system-prompt/common/interfaces/Prompt';
+export type { ItemOptions } from '@system-prompt/common/interfaces/ItemOptions';
+export type { SystemPromptParams } from '@system-prompt/common/interfaces/SystemPromptParams';

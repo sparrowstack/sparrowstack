@@ -1,4 +1,4 @@
-import { ToolRegistry } from '@core/ToolRegistry';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
@@ -7,16 +7,16 @@ import { executeToolCalls } from '@core/ToolCallManager/methods/executeToolCalls
 
 interface ConstructorParams {
 	provider: Provider;
-	toolRegistry: ToolRegistry;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
+	toolRegistryManager: ToolRegistryManager;
 }
 
 export class ToolCallManager {
 	readonly provider: Provider;
-	readonly toolRegistry: ToolRegistry;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
+	readonly toolRegistryManager: ToolRegistryManager;
 	private onRequestPermission?: ({
 		message,
 	}: {
@@ -25,14 +25,14 @@ export class ToolCallManager {
 
 	constructor({
 		provider,
-		toolRegistry,
+		toolRegistryManager,
 		interactionLogger,
 		chatMessageManager,
 	}: ConstructorParams) {
 		this.provider = provider;
-		this.toolRegistry = toolRegistry;
 		this.interactionLogger = interactionLogger;
 		this.chatMessageManager = chatMessageManager;
+		this.toolRegistryManager = toolRegistryManager;
 	}
 
 	public setRequestPermissionHandler(
@@ -86,12 +86,12 @@ export class ToolCallManager {
 		// Execute tool calls
 		const toolCallResults = await executeToolCalls({
 			model: this.provider.model,
-			toolRegistry: this.toolRegistry,
 			providerName: this.provider.name,
 			toolCalls: responseMessage.toolCalls,
 			systemPrompt: this.provider.systemPrompt,
-			onRequestPermission: this.onRequestPermission,
 			chatMessageManager: this.chatMessageManager,
+			onRequestPermission: this.onRequestPermission,
+			toolRegistryManager: this.toolRegistryManager,
 		});
 
 		// Convert tool call results to tool call response messages

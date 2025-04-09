@@ -1,7 +1,7 @@
-import type { IDirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces';
+import type { DirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces';
 
 export const formatForMarkdown = (
-	node: IDirectoryNode,
+	node: DirectoryNode,
 	indent: string = '',
 	isLast: boolean = true,
 ): string => {

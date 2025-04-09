@@ -1,7 +1,7 @@
 import { ProviderName } from '@sparrowstack/core';
-import { toGoogleGenerativeAIPrompt } from '@system-prompt/common/promptAdapters/toProviderAdapters';
+import { toGoogleGenerativeAPrompt } from '@system-prompt/common/promptAdapters/toProviderAdapters';
 
-interface IParams {
+interface Params {
 	prompt: string;
 	providerName?: ProviderName;
 }
@@ -9,11 +9,11 @@ interface IParams {
 export const toProviderPrompt = <ReturnType = string>({
 	prompt,
 	providerName,
-}: IParams): ReturnType => {
+}: Params): ReturnType => {
 	let providerPrompt: ReturnType = prompt as ReturnType;
 
 	if (providerName === ProviderName.GoogleGenerativeAI) {
-		providerPrompt = toGoogleGenerativeAIPrompt({ prompt }) as ReturnType;
+		providerPrompt = toGoogleGenerativeAPrompt({ prompt }) as ReturnType;
 	}
 
 	return providerPrompt;

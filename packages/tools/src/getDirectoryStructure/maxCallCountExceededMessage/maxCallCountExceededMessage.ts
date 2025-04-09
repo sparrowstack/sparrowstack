@@ -1,11 +1,11 @@
-import type { IRuntimeParams } from '@sparrowstack/tool';
-import type { IDirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces/IDirectoryNode';
+import type { RuntimeParams } from '@sparrowstack/tool';
+import type { DirectoryNode } from '@tools/getDirectoryStructure/function/common/interfaces/DirectoryNode';
 
 export const maxCallCountExceededMessage = async (
-	runtimeParams: IRuntimeParams,
+	runtimeParams: RuntimeParams,
 ): Promise<string> => {
 	const { lastCachedResult } = runtimeParams;
-	const result = lastCachedResult?.result as IDirectoryNode;
+	const result = lastCachedResult?.result as DirectoryNode;
 
 	// Note: return the result object as a string
 	// When I JSON.stringify the result, I get 'overload' errors from the LLM.

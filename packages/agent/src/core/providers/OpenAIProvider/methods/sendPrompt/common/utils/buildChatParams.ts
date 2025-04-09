@@ -3,7 +3,7 @@ import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Include } from '@core/providers/OpenAIProvider/methods/sendPrompt/common/enums/Include';
 
-interface IParams {
+interface Params {
 	model: string;
 	settings?: Settings;
 	systemPrompt: SystemPrompt;
@@ -19,7 +19,7 @@ export const buildChatParams = ({
 	systemPrompt,
 	chatMessages,
 	responseFormat,
-}: IParams) => {
+}: Params) => {
 	const input = chatMessages;
 	const instructions = systemPrompt.getPrompt();
 	const include = [

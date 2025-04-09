@@ -1,5 +1,5 @@
 import { ProviderName } from '@sparrowstack/core';
-import { ToolRegistry } from '@core/ToolRegistry';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
@@ -25,7 +25,7 @@ export abstract class BaseProvider<
 	readonly displayName: string;
 
 	// Tools
-	readonly toolRegistry: ToolRegistry;
+	readonly toolRegistryManager: ToolRegistryManager;
 
 	// Utilities
 	readonly sdk: ProviderSDK;
@@ -45,8 +45,8 @@ export abstract class BaseProvider<
 		settings,
 		displayName,
 		systemPrompt,
-		toolRegistry,
 		chatMessageManager,
+		toolRegistryManager,
 		responseFormatAgent,
 	}: ConstructorParams) {
 		// Base Properties
@@ -58,7 +58,7 @@ export abstract class BaseProvider<
 
 		// Tools
 		// --------------------------------
-		this.toolRegistry = toolRegistry;
+		this.toolRegistryManager = toolRegistryManager;
 
 		// Utilities
 		// --------------------------------

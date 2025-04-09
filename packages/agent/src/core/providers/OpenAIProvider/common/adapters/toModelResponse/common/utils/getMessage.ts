@@ -1,9 +1,9 @@
 import { OpenAI } from 'openai';
 
-interface IParams {
+interface Params {
 	response: OpenAI.Responses.Response;
 }
-export const getMessage = ({ response }: IParams) => {
+export const getMessage = ({ response }: Params) => {
 	const { output } = response;
 	const message = output.find((item) => item.type === 'message');
 	const { content } = message || {};

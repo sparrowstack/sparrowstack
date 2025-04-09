@@ -3,11 +3,11 @@ import {
 	TemperatureMeasurementUnit,
 } from '@tools/getWeatherData/function/common/enums';
 
-interface IParams {
+interface Params {
 	units: string;
 }
 
-export const getTemperatureScaleName = ({ units }: IParams) => {
+export const getTemperatureScaleName = ({ units }: Params) => {
 	return units === Unit.Imperial
 		? TemperatureMeasurementUnit.Fahrenheit
 		: TemperatureMeasurementUnit.Celsius;

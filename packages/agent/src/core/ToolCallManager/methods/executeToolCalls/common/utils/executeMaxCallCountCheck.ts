@@ -1,5 +1,5 @@
 import type { Tool } from '@sparrowstack/tool';
-import type { IRuntimeParams } from '@sparrowstack/tool';
+import type { RuntimeParams } from '@sparrowstack/tool';
 
 export const executeMaxCallCountCheck = async ({
 	isValid,
@@ -8,7 +8,7 @@ export const executeMaxCallCountCheck = async ({
 }: {
 	tool: Tool;
 	isValid: boolean;
-	runtimeParams: IRuntimeParams;
+	runtimeParams: RuntimeParams;
 }) => {
 	const hasExceededMaxCallCount =
 		tool.maxCallCount && tool.getCallCount() >= tool.maxCallCount;

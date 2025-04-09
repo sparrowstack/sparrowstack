@@ -1,6 +1,6 @@
-import type { IBlock } from '@sparrowstack/system-prompt';
+import type { Block } from '@sparrowstack/system-prompt';
 
-export const interactionGuidelines: IBlock = {
+export const interactionGuidelines: Block = {
 	title: 'Interaction Guidelines',
 	items: [
 		'Ask for context about the broader application architecture when relevant',

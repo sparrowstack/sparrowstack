@@ -1,10 +1,10 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ContentType } from '@core/providers/AnthropicProvider/common/enums';
-interface IParams {
+interface Params {
 	response: Anthropic.Messages.Message;
 }
 
-export const getToolCalls = ({ response }: IParams) => {
+export const getToolCalls = ({ response }: Params) => {
 	const toolCalls = response.content.filter(
 		(content) => content.type === ContentType.ToolUse,
 	) as Anthropic.Messages.ToolUseBlock[];

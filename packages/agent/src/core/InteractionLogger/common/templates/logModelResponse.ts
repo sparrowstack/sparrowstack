@@ -1,11 +1,11 @@
 import chalk from 'chalk';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 
-interface IParams {
+interface Params {
 	message: ModelResponse;
 }
 
-export const modelResponseTemplate = ({ message }: IParams) => {
+export const modelResponseTemplate = ({ message }: Params) => {
 	return chalk.dim(`
 ------------------------------------ 
 Model Response:

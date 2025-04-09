@@ -1,6 +1,6 @@
 import type {
-	IApiResponseCurrent,
-	IFormattedWeatherData,
+	ApiResponseCurrent,
+	FormattedWeatherData,
 } from '@tools/getWeatherData/function/common/interfaces';
 import {
 	Unit,
@@ -12,17 +12,17 @@ import {
 	getTemperatureScaleName,
 } from '@tools/getWeatherData/function/common/utils';
 
-interface IParams {
+interface Params {
 	units: Unit;
 	timeZone: string;
-	current: IApiResponseCurrent;
+	current: ApiResponseCurrent;
 }
 
 export const getFormattedWeatherData = ({
 	units,
 	current,
 	timeZone,
-}: IParams): IFormattedWeatherData => {
+}: Params): FormattedWeatherData => {
 	const formattedWeatherData = {
 		sunrise: formatEventTime({
 			timeZone,

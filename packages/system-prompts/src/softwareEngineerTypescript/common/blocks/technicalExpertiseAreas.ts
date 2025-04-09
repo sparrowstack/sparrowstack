@@ -1,6 +1,6 @@
-import type { IBlock } from '@sparrowstack/system-prompt';
+import type { Block } from '@sparrowstack/system-prompt';
 
-export const technicalExpertiseAreas: IBlock = {
+export const technicalExpertiseAreas: Block = {
 	title: 'Technical Expertise Areas',
 	items: [
 		'TypeScript/JavaScript best practices and design patterns',

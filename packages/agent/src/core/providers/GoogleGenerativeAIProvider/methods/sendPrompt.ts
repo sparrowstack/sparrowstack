@@ -1,8 +1,8 @@
-import { ToolRegistry } from '@core/ToolRegistry';
 import type { Part } from '@google/generative-ai';
 import { ProviderName } from '@sparrowstack/core';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums';
 import type { Content /*GenerateContentResult*/ } from '@google/generative-ai';
@@ -17,16 +17,16 @@ import {
 	type FunctionDeclarationsTool,
 } from '@google/generative-ai';
 
-export interface IParams {
+export interface Params {
 	model: string;
 	settings?: Settings;
 	sdk: GoogleGenerativeAI;
-	toolRegistry: ToolRegistry;
+	responseFormatAgent: any;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
-	chatMessageManager: ChatMessageManager;
-	responseFormatAgent: any;
 	responseFormatSendMessage?: any;
+	chatMessageManager: ChatMessageManager;
+	toolRegistryManager: ToolRegistryManager;
 }
 
 export const sendPrompt = async ({
@@ -34,12 +34,12 @@ export const sendPrompt = async ({
 	model,
 	settings,
 	systemPrompt,
-	toolRegistry,
+	toolRegistryManager,
 	providerName,
 	chatMessageManager,
 	responseFormatAgent,
 	responseFormatSendMessage,
-}: IParams): Promise<ModelResponse> => {
+}: Params): Promise<ModelResponse> => {
 	// Get Messages
 	const messages = chatMessageManager.getMessages<Content>();
 	const updatedMessages = [...messages];
@@ -48,7 +48,7 @@ export const sendPrompt = async ({
 	const isFunctionMessage = lastChatMessage?.role === Role.FunctionCall;
 
 	// Build Model SDK
-	const tools = toolRegistry.getToolSchemas<FunctionDeclarationsTool>({
+	const tools = toolRegistryManager.getToolSchemas<FunctionDeclarationsTool>({
 		providerName,
 	});
 	const modelParams = buildModelParams({ model, tools });

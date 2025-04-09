@@ -3,11 +3,11 @@ import {
 	SpeedMeasurementUnit,
 } from '@tools/getWeatherData/function/common/enums';
 
-interface IParams {
+interface Params {
 	units: string;
 }
 
-export const getSpeedScaleName = ({ units }: IParams) => {
+export const getSpeedScaleName = ({ units }: Params) => {
 	return units === Unit.Imperial
 		? SpeedMeasurementUnit.MilesPerHour
 		: SpeedMeasurementUnit.MetersPerSecond;

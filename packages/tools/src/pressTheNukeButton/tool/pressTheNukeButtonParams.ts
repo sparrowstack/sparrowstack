@@ -1,7 +1,7 @@
-import { type IToolParams } from '@sparrowstack/tool';
+import { type ToolParams } from '@sparrowstack/tool';
 import { pressTheNukeButton } from '@tools/pressTheNukeButton/function/pressTheNukeButton';
 
-export const pressTheNukeButtonParams: IToolParams = {
+export const pressTheNukeButtonParams: ToolParams = {
 	name: 'pressTheNukeButton',
 	description:
 		'When the user asks you to "press the nuke button" or similar, use this tool.',

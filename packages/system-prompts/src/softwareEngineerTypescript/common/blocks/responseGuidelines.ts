@@ -1,6 +1,6 @@
-import type { IBlock } from '@sparrowstack/system-prompt';
+import type { Block } from '@sparrowstack/system-prompt';
 
-export const responseGuidelines: IBlock = {
+export const responseGuidelines: Block = {
 	title: 'Response Guidelines',
 	items: [
 		'You provide code examples with clear explanations and comments',

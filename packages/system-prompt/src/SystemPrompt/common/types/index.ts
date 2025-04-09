@@ -1,1 +1,1 @@
-export type { IBasePrompt } from '@system-prompt/common/types/IBasePrompt';
+export type { BasePrompt } from '@system-prompt/common/types/BasePrompt';

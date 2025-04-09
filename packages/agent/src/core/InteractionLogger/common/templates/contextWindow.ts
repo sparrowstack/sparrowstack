@@ -1,11 +1,11 @@
 import chalk from 'chalk';
 
-interface IParams {
+interface Params {
 	systemPrompt: string;
 	messages: unknown[];
 }
 
-export const contextWindowTemplate = ({ messages, systemPrompt }: IParams) => {
+export const contextWindowTemplate = ({ messages, systemPrompt }: Params) => {
 	return chalk.dim(`
 ------------------------------------ 
 Context Window:

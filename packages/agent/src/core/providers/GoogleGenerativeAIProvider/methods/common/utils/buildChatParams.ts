@@ -2,7 +2,7 @@ import type { Settings } from '@agent/common/interfaces';
 import { FunctionCallingMode as FunctionCallingModeEnum } from '@google/generative-ai';
 import type { Part, Content, StartChatParams } from '@google/generative-ai';
 
-interface IParams {
+interface Params {
 	settings?: Settings;
 	responseFormat: any;
 	history: Content[] | undefined;
@@ -13,7 +13,7 @@ export const buildChatParams = ({
 	history,
 	settings,
 	systemInstruction,
-}: IParams) => {
+}: Params) => {
 	const chatParams: StartChatParams = {
 		history,
 		systemInstruction,
