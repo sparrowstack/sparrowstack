@@ -1,8 +1,7 @@
 export { SystemPrompt } from '@system-prompt/SystemPrompt';
 export type {
-	Meta,
-	Block,
 	Prompt,
-	ItemOptions,
+	Section,
+	BulletOptions,
 	SystemPromptParams,
 } from '@system-prompt/common/interfaces';

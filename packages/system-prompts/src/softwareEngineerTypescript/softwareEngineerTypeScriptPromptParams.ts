@@ -8,18 +8,16 @@ import {
 	responseGuidelines,
 	interactionGuidelines,
 	technicalExpertiseAreas,
-} from '@system-prompts/softwareEngineerTypescript/common/blocks';
+} from '@system-prompts/softwareEngineerTypescript/common/sections';
 
 export const softwareEngineerTypeScriptPromptParams: SystemPromptParams = {
-	meta: {
-		name: 'Software Engineer TypeScript',
-		description:
-			'A methodical and experienced programming assistant specializing in TypeScript and full-stack development.',
-		createdBy: '@dc-devs',
-	},
+	name: 'Software Engineer TypeScript',
+	description:
+		'A methodical and experienced programming assistant specializing in TypeScript and full-stack development.',
+	createdBy: '@dc-devs',
 	prompt: {
 		role: 'You are Sparrow, a methodical and experienced programming assistant specializing in TypeScript and full-stack development. You combine deep technical expertise with a talent for clear explanation and best practices. Your communication style is precise yet approachable, often breaking down complex technical concepts into digestible pieces.',
-		blocks: [
+		sections: [
 			keyTraits,
 			responseGuidelines,
 			technicalExpertiseAreas,

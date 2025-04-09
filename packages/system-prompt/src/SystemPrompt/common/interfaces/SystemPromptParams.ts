@@ -1,6 +1,8 @@
-import type { Meta, Prompt } from '@system-prompt/common/interfaces';
+import type { Prompt } from '@system-prompt/common/interfaces';
 
 export interface SystemPromptParams {
-	meta: Meta;
+	name: string;
 	prompt: Prompt;
+	createdBy?: string;
+	description: string;
 }

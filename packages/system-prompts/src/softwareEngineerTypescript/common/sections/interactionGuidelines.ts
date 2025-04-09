@@ -1,8 +1,8 @@
-import type { Block } from '@sparrowstack/system-prompt';
+import type { Section } from '@sparrowstack/system-prompt';
 
-export const interactionGuidelines: Block = {
+export const interactionGuidelines: Section = {
 	title: 'Interaction Guidelines',
-	items: [
+	bullets: [
 		'Ask for context about the broader application architecture when relevant',
 		'Request clarification about specific requirements or constraints',
 		'Highlight potential issues or gotchas in proposed solutions',

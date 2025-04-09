@@ -13,10 +13,10 @@ export class SystemPrompt {
 	public prompt: Prompt;
 	readonly type = Type.SystemPrompt as const;
 
-	constructor({ meta, prompt }: SystemPromptParams) {
-		this.name = meta.name;
-		this.description = meta.description ?? '';
-		this.createdBy = meta.createdBy ?? '';
+	constructor({ name, description, createdBy, prompt }: SystemPromptParams) {
+		this.name = name;
+		this.description = description ?? '';
+		this.createdBy = createdBy ?? '';
 		this.prompt = prompt;
 	}
 

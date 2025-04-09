@@ -1,5 +1,5 @@
 import { ProviderName } from '@sparrowstack/core';
-import { toGoogleGenerativeAPrompt } from '@system-prompt/common/promptAdapters/toProviderAdapters';
+import { toGoogleGenerativeAPrompt } from '@system-prompt/common/promptAdapters/providerAdapters/toGoogleGenerativeAIPrompt';
 
 interface Params {
 	prompt: string;

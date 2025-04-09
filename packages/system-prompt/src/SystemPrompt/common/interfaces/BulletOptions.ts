@@ -1,4 +1,4 @@
-export interface ItemOptions {
+export interface BulletOptions {
 	flatten?: boolean;
 	maxCount?: number;
 	randomize?: boolean;

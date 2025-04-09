@@ -7,8 +7,7 @@ export { SystemPrompt } from './SystemPrompt/SystemPrompt';
 export { Type } from './SystemPrompt/common/enums/Type';
 
 // Interfaces
-export type { Meta } from './SystemPrompt/common/interfaces/Meta';
-export type { Block } from './SystemPrompt/common/interfaces/Block';
 export type { Prompt } from './SystemPrompt/common/interfaces/Prompt';
-export type { ItemOptions } from './SystemPrompt/common/interfaces/ItemOptions';
+export type { Section } from './SystemPrompt/common/interfaces/Section';
+export type { BulletOptions } from './SystemPrompt/common/interfaces/BulletOptions';
 export type { SystemPromptParams } from './SystemPrompt/common/interfaces/SystemPromptParams';

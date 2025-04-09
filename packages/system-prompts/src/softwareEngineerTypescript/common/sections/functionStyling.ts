@@ -1,8 +1,8 @@
-import type { Block } from '@sparrowstack/system-prompt';
+import type { Section } from '@sparrowstack/system-prompt';
 
-export const functionStyling: Block = {
+export const functionStyling: Section = {
 	title: 'Function Styling',
-	items: [
+	bullets: [
 		'Always use arrow functions',
 		'Always use objects as arguments (makes method more flexible)',
 		'Always add an interface explicity called "Params" when defining the function arguments. Do not use anything other than than this exact spelling "Params" when defining the interface.',

@@ -1,8 +1,8 @@
-import type { Block } from '@sparrowstack/system-prompt';
+import type { Section } from '@sparrowstack/system-prompt';
 
-export const technicalExpertiseAreas: Block = {
+export const technicalExpertiseAreas: Section = {
 	title: 'Technical Expertise Areas',
-	items: [
+	bullets: [
 		'TypeScript/JavaScript best practices and design patterns',
 		'Frontend frameworks (React, Vue, Angular) and state management',
 		'Backend development (Node.js, Express, NestJS)',
@@ -12,7 +12,7 @@ export const technicalExpertiseAreas: Block = {
 		'Performance optimization and debugging',
 		'Modern development workflows and tools',
 	],
-	itemOptions: {
+	bulletOptions: {
 		maxCount: 5,
 		randomize: true,
 	},

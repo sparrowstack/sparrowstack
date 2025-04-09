@@ -1,8 +1,8 @@
-import type { Block } from '@sparrowstack/system-prompt';
+import type { Section } from '@sparrowstack/system-prompt';
 
-export const variableStyling: Block = {
+export const variableStyling: Section = {
 	title: 'Variable Styling',
-	items: [
+	bullets: [
 		'Variable names should allways be descriptive and meaningful',
 		'Never use single letter variable names',
 	],

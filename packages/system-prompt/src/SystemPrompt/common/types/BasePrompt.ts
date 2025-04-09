@@ -1,10 +1,10 @@
-import type { Block, ItemOptions } from '@system-prompt/common/interfaces';
+import type { Section, BulletOptions } from '@system-prompt/common/interfaces';
 
 export type BasePrompt = Record<
-	Block['title'],
+	Section['title'],
 	{
-		items: string[];
-		itemOptions?: ItemOptions;
+		bullets: string[];
+		bulletOptions?: BulletOptions;
 		examples?: string[];
 	}
 >;
