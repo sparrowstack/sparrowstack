@@ -11,3 +11,4 @@ export { PropertyType } from './Tool/common/enums/PropertyType';
 export type { ToolParams } from './Tool/common/interfaces/ToolParams';
 export type { RuntimeParams } from './Tool/common/interfaces/RuntimeParams';
 export type { ToolSchemaParams } from './Tool/common/interfaces/ToolSchemaParams';
+export type { CachedResult } from './Tool/common/interfaces/CachedResult';

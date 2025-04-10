@@ -1,10 +1,10 @@
 import type { ProviderName } from '@sparrowstack/core';
+import type { RuntimeParams } from '@sparrowstack/tool';
 import type { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { ToolCallResult } from '@core/ToolCallManager/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
-import type { RuntimeParams } from '@core/ToolCallManager/methods/executeToolCalls/common/interfaces/RuntimeParams';
 import {
 	getToolCallResult,
 	handleNeedsUserPermission,
