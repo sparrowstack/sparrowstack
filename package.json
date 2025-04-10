@@ -36,6 +36,7 @@
 		"globals": "16.0.0",
 		"nx": "20.7.1",
 		"prettier": "3.5.3",
+		"tsc-alias": "^1.8.15",
 		"typescript": "5.8.3"
 	},
 	"dependencies": {

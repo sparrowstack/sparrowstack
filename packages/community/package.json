@@ -38,7 +38,7 @@
 		"lint": "bunx eslint \"src/**/*.{js,ts}\"",
 		"lint:fix": "bunx eslint \"src/**/*.{js,ts}\" --fix",
 		"build:js": "bun build ./src/index.ts --outdir dist --target bun --external='@sparrowstack/*' && bun build ./src/community/systemPrompts/index.ts --outdir dist/community/systemPrompts --target bun --external='@sparrowstack/*' && bun build ./src/community/tools/index.ts --outdir dist/community/tools --target bun --external='@sparrowstack/*'",
-		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist --rootDir src --project tsconfig.build.json",
+		"build:types": "tsc --declaration --emitDeclarationOnly --outDir dist --rootDir src --project tsconfig.build.json && tsc-alias -p tsconfig.build.json --dir dist",
 		"build": "bun build:js && bun build:types",
 		"link": "bun link",
 		"unlink": "bun unlink",
