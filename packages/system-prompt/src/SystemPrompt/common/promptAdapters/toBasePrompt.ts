@@ -1,29 +1,29 @@
-import type { IPrompt } from '@system-prompt/common/interfaces';
-import type { IBasePrompt } from '@system-prompt/common/types';
+import type { Prompt } from '@system-prompt/common/interfaces';
+import type { BasePrompt } from '@system-prompt/common/types';
 
-export const toBasePrompt = ({ prompt }: { prompt: IPrompt }) => {
-	const basePrompt: IBasePrompt = {};
+export const toBasePrompt = ({ prompt }: { prompt: Prompt }) => {
+	const basePrompt: BasePrompt = {};
 
-	prompt?.blocks?.forEach((block) => {
-		// Get itemOptions options
-		const itemOptions = block.itemOptions;
-		// Create a copy of items array to avoid mutating the original
-		let items = [...block.items];
+	prompt?.sections?.forEach((section) => {
+		// Get bulletOptions options
+		const bulletOptions = section.bulletOptions;
+		// Create a copy of bullets array to avoid mutating the original
+		let bullets = [...section.bullets];
 
-		// Randomize items if specified
-		if (itemOptions?.randomize) {
-			items = items.sort(() => Math.random() - 0.5);
+		// Randomize bullets if specified
+		if (bulletOptions?.randomize) {
+			bullets = bullets.sort(() => Math.random() - 0.5);
 		}
 
 		// Apply maxCount limit if specified
-		if (itemOptions?.maxCount) {
-			items = items.slice(0, itemOptions.maxCount);
+		if (bulletOptions?.maxCount) {
+			bullets = bullets.slice(0, bulletOptions.maxCount);
 		}
 
-		basePrompt[block.title] = {
-			items,
-			...(itemOptions && { itemOptions }),
-			...(block.examples && { examples: block.examples }),
+		basePrompt[section.title] = {
+			bullets,
+			...(bulletOptions && { bulletOptions }),
+			...(section.examples && { examples: section.examples }),
 		};
 	});
 

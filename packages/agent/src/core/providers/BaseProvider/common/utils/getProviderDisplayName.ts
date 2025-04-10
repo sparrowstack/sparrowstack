@@ -1,10 +1,10 @@
 import { ProviderName } from '@sparrowstack/core';
 
-interface IParams {
+interface Params {
 	providerName: ProviderName;
 }
 
-export const getProviderDisplayName = ({ providerName }: IParams) => {
+export const getProviderDisplayName = ({ providerName }: Params) => {
 	return (
 		Object.keys(ProviderName).find(
 			(key) =>

@@ -2,8 +2,8 @@ import {
 	toISOString,
 	toLocaleString,
 } from '@tools/getWeatherData/function/common/utils';
-import { type IEventTime } from '@tools/getWeatherData/function/common/interfaces';
-interface IParams {
+import { type EventTime } from '@tools/getWeatherData/function/common/interfaces';
+interface Params {
 	timeZone: string;
 	timestampSeconds: number;
 }
@@ -11,7 +11,7 @@ interface IParams {
 export const formatEventTime = ({
 	timeZone,
 	timestampSeconds,
-}: IParams): IEventTime => {
+}: Params): EventTime => {
 	return {
 		utc: toISOString({ timestampSeconds }),
 		local: toLocaleString({

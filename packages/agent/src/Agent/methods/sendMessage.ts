@@ -4,14 +4,14 @@ import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { Provider } from '@core/providers/BaseProvider/common/types/Provider';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
 
-interface IParams {
+interface Params {
 	message: string;
 	provider: Provider;
 	settings?: Settings;
 	toolCallManager: ToolCallManager;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
-	responseFormatSendMessage?: any;
+	structuredOutputSendMessage?: any;
 }
 
 export const sendMessage = async ({
@@ -20,12 +20,12 @@ export const sendMessage = async ({
 	toolCallManager,
 	interactionLogger,
 	chatMessageManager,
-	responseFormatSendMessage,
-}: IParams) => {
+	structuredOutputSendMessage,
+}: Params) => {
 	chatMessageManager.addUserMessage({ text: message });
 
 	const modelResponseMessage = await provider.sendPrompt({
-		responseFormatSendMessage,
+		structuredOutputSendMessage,
 	});
 
 	const toolCallResponseMessage = await toolCallManager.handleToolCalls({

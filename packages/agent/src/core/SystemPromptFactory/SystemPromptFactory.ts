@@ -1,14 +1,14 @@
 import {
 	Type,
 	SystemPrompt,
-	type ISystemPromptParams,
+	type SystemPromptParams,
 } from '@sparrowstack/system-prompt';
 
 export class SystemPromptFactory {
 	public static create({
 		systemPrompt,
 	}: {
-		systemPrompt: SystemPrompt | ISystemPromptParams;
+		systemPrompt: SystemPrompt | SystemPromptParams;
 	}): SystemPrompt {
 		const isSystemPromptInstance =
 			'type' in systemPrompt && systemPrompt.type === Type.SystemPrompt;

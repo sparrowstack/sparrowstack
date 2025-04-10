@@ -1,4 +1,3 @@
-import type { ProviderName } from '@sparrowstack/core';
 import type { StructuredOutput } from '@sparrowstack/structured-output';
 import type {
 	ResponseFormat,
@@ -6,7 +5,5 @@ import type {
 } from '@core/StucturedOutputFactory/common/types';
 
 export interface StructuredOutputCreateParams {
-	providerName: ProviderName;
-	responseFormat?: ResponseFormatZod | ResponseFormat;
-	strucuturedOutput?: StructuredOutput;
+	responseFormat?: ResponseFormatZod | ResponseFormat | StructuredOutput;
 }

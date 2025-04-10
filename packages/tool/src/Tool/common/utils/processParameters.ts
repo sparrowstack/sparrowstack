@@ -1,8 +1,8 @@
 import { PropertyType } from '@tool/common/enums';
-import type { IParameterDefinition } from '@tool/common/interfaces';
+import type { ParameterDefinition } from '@tool/common/interfaces';
 
-interface IParams {
-	parameters: Record<string, IParameterDefinition>;
+interface Params {
+	parameters: Record<string, ParameterDefinition>;
 	upperCasePropertyTypes?: boolean;
 	removeEnums?: boolean;
 }
@@ -11,7 +11,7 @@ export const processParameters = ({
 	parameters,
 	removeEnums = false,
 	upperCasePropertyTypes = false,
-}: IParams): Record<string, unknown> => {
+}: Params): Record<string, unknown> => {
 	return Object.entries(parameters).reduce(
 		(accumulator, [name, parameterDefinition]) => ({
 			...accumulator,

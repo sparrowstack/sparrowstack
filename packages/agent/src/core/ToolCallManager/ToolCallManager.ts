@@ -1,4 +1,4 @@
-import { ToolRegistry } from '@core/ToolRegistry';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { InteractionLogger } from '@core/InteractionLogger/InteractionLogger';
@@ -7,16 +7,16 @@ import { executeToolCalls } from '@core/ToolCallManager/methods/executeToolCalls
 
 interface ConstructorParams {
 	provider: Provider;
-	toolRegistry: ToolRegistry;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
+	toolRegistryManager: ToolRegistryManager;
 }
 
 export class ToolCallManager {
 	readonly provider: Provider;
-	readonly toolRegistry: ToolRegistry;
 	readonly interactionLogger: InteractionLogger;
 	readonly chatMessageManager: ChatMessageManager;
+	readonly toolRegistryManager: ToolRegistryManager;
 	private onRequestPermission?: ({
 		message,
 	}: {
@@ -25,14 +25,14 @@ export class ToolCallManager {
 
 	constructor({
 		provider,
-		toolRegistry,
+		toolRegistryManager,
 		interactionLogger,
 		chatMessageManager,
 	}: ConstructorParams) {
 		this.provider = provider;
-		this.toolRegistry = toolRegistry;
 		this.interactionLogger = interactionLogger;
 		this.chatMessageManager = chatMessageManager;
+		this.toolRegistryManager = toolRegistryManager;
 	}
 
 	public setRequestPermissionHandler(
@@ -66,20 +66,32 @@ export class ToolCallManager {
 				responseMessage,
 			});
 
-		// Add tool call request message to chat history
-		this.chatMessageManager.addToMessages({
-			message: assistantToolCallRequestMessage,
-		});
+		// In the case of mulitple tool calls
+		// some Providers require new messages for each tool call request
+		// the forEach below handles this use case
+		if (Array.isArray(assistantToolCallRequestMessage)) {
+			assistantToolCallRequestMessage.forEach((message: any) => {
+				this.chatMessageManager.addToMessages({
+					message,
+				});
+			});
+			// The rest of Providers require a single message (with multiple tool call requests defined)
+			// the below handles this use case
+		} else {
+			this.chatMessageManager.addToMessages({
+				message: assistantToolCallRequestMessage,
+			});
+		}
 
 		// Execute tool calls
 		const toolCallResults = await executeToolCalls({
 			model: this.provider.model,
-			toolRegistry: this.toolRegistry,
 			providerName: this.provider.name,
 			toolCalls: responseMessage.toolCalls,
 			systemPrompt: this.provider.systemPrompt,
-			onRequestPermission: this.onRequestPermission,
 			chatMessageManager: this.chatMessageManager,
+			onRequestPermission: this.onRequestPermission,
+			toolRegistryManager: this.toolRegistryManager,
 		});
 
 		// Convert tool call results to tool call response messages
@@ -89,7 +101,7 @@ export class ToolCallManager {
 			});
 
 		// Add tool call response messages to chat history
-		toolCallResponseMessages.forEach((message) => {
+		toolCallResponseMessages.forEach((message: any) => {
 			this.chatMessageManager.addToMessages({
 				message,
 			});
@@ -98,8 +110,10 @@ export class ToolCallManager {
 		// Get the model's response to the tool call results
 		const toolCallResponseMessage = await this.provider.sendPrompt();
 
-		// OpenAI: will send a batch of tool calls in the same message
-		// Anthropic: will send tool calls in subsequent messages
+		// OpenAI and Google send a batch of tool calls in the same message
+		// we handle above..
+		//
+		// Anthropic will send tool calls in subsequent messages
 		//
 		// This recursive call will help us handle both cases (mainly for Anthropic)
 		//

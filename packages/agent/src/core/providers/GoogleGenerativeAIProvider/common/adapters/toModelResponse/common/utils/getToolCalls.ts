@@ -1,11 +1,11 @@
 import { randomUUIDv7 } from 'bun';
 import type { GenerateContentResult } from '@google/generative-ai';
 
-interface IParams {
+interface Params {
 	response: GenerateContentResult;
 }
 
-export const getToolCalls = ({ response }: IParams) => {
+export const getToolCalls = ({ response }: Params) => {
 	const toolCalls = response.response.functionCalls() || [];
 
 	const adaptedToolCalls = toolCalls.map((toolCall) => {

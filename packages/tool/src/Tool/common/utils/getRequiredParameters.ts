@@ -1,10 +1,10 @@
-import type { IParameterDefinition } from '@tool/common/interfaces';
+import type { ParameterDefinition } from '@tool/common/interfaces';
 
-interface IParams {
-	parameters: Record<string, IParameterDefinition>;
+interface Params {
+	parameters: Record<string, ParameterDefinition>;
 }
 
-export const getRequiredParameters = ({ parameters }: IParams): string[] => {
+export const getRequiredParameters = ({ parameters }: Params): string[] => {
 	return Object.entries(parameters)
 		.filter(([_, parameterDefinition]) => parameterDefinition.required)
 		.map(([name]) => name);

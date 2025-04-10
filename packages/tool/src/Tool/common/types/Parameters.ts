@@ -1,3 +1,3 @@
-import type { IParameterDefinition } from '@tool/common/interfaces';
+import type { ParameterDefinition } from '@tool/common/interfaces';
 
-export type Parameters = Record<string, IParameterDefinition>;
+export type Parameters = Record<string, ParameterDefinition>;

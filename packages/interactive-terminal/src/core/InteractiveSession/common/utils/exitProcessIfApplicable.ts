@@ -1,8 +1,8 @@
-interface IParams {
+interface Params {
 	input: string;
 }
 
-export const exitProcessIfApplicable = ({ input }: IParams) => {
+export const exitProcessIfApplicable = ({ input }: Params) => {
 	const message = input.toLowerCase();
 
 	if (message === 'q' || message === 'quit' || message === 'exit') {

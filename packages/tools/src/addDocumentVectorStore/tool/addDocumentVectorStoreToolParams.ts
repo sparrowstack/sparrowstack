@@ -1,7 +1,7 @@
-import { PropertyType, type IToolParams } from '@sparrowstack/tool';
+import { PropertyType, type ToolParams } from '@sparrowstack/tool';
 import { addDocumentVectorStore } from '@tools/addDocumentVectorStore/function/addDocumentVectorStore';
 
-export const addDocumentVectorStoreToolParams: IToolParams = {
+export const addDocumentVectorStoreToolParams: ToolParams = {
 	name: 'addDocumentVectorStore',
 
 	description: 'Add the text documentto the vector database.',

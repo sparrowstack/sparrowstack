@@ -1,5 +1,5 @@
-import type { IRuntimeParams } from '@tool/common/interfaces';
+import type { RuntimeParams } from '@tool/common/interfaces';
 
 export type CallableFunctionResponseMessage = (
-	runtimeParams: IRuntimeParams,
+	runtimeParams: RuntimeParams,
 ) => Promise<string>;

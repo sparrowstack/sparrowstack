@@ -1,8 +1,9 @@
 import { type ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces/ModelResponseToolCall';
 
-export interface IUsage {
-	inputTokens: number | null;
-	outputTokens: number | null;
+export interface Usage {
+	inputTokens?: number;
+	outputTokens?: number;
+	totalTokens?: number;
 }
 
 export interface ModelResponse {
@@ -19,13 +20,11 @@ export interface ModelResponse {
 	stopSequence?: string | null;
 
 	// Usage statistics
-	usage?: IUsage;
+	usage?: Usage;
 
 	// Tool Calling
 	toolCalls?: ModelResponseToolCall[];
 
-	// Additional metadata
-	created?: number; // Unix timestamp
-	systemFingerprint?: string; // OpenAI specific , but useful for tracking
+	// Raw message
 	rawMessage: unknown;
 }

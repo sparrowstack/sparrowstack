@@ -1,10 +1,10 @@
 import { PropertyType } from '@tool/common/enums';
-import type { IToolSchemaParams } from '@tool/common/interfaces';
+import type { ToolSchemaParams } from '@tool/common/interfaces';
 import { expect, test, describe, beforeEach, afterEach } from 'bun:test';
 import { toOpenAISchema } from '@tool/common/schemaAdapters/toOpenAISchema';
 
 describe('toOpenAISchema', () => {
-	let toolSchema: IToolSchemaParams;
+	let toolSchema: ToolSchemaParams;
 
 	beforeEach(() => {
 		// Setup tool schema
@@ -42,17 +42,16 @@ describe('toOpenAISchema', () => {
 
 		test('should return expected function schema', () => {
 			expect(openAISchema).toEqual({
-				type: PropertyType.Function,
-				function: {
-					name: toolName,
-					description: toolDescription,
-					parameters: {
-						type: PropertyType.Object,
-						properties: {},
-						required: [],
-						additionalProperties: false,
-					},
+				type: 'function',
+				name: toolName,
+				description: toolDescription,
+				parameters: {
+					type: PropertyType.Object,
+					properties: {},
+					required: [],
+					additionalProperties: false,
 				},
+				strict: true,
 			});
 		});
 	});
@@ -89,26 +88,25 @@ describe('toOpenAISchema', () => {
 
 		test('should return expected function schema', () => {
 			expect(openAISchema).toEqual({
-				type: PropertyType.Function,
-				function: {
-					name: toolName,
-					description: toolDescription,
-					parameters: {
-						type: PropertyType.Object,
-						properties: {
-							param1: {
-								type: PropertyType.String,
-								description: parameter1Description,
-							},
-							param2: {
-								type: PropertyType.Number,
-								description: parameter2Description,
-							},
+				type: 'function',
+				name: toolName,
+				description: toolDescription,
+				parameters: {
+					type: PropertyType.Object,
+					properties: {
+						param1: {
+							type: PropertyType.String,
+							description: parameter1Description,
 						},
-						required: ['param1'],
-						additionalProperties: false,
+						param2: {
+							type: PropertyType.Number,
+							description: parameter2Description,
+						},
 					},
+					required: ['param1'],
+					additionalProperties: false,
 				},
+				strict: true,
 			});
 		});
 	});
@@ -154,33 +152,32 @@ describe('toOpenAISchema', () => {
 
 		test('should return expected function schema', () => {
 			expect(openAISchema).toEqual({
-				type: PropertyType.Function,
-				function: {
-					name: toolName,
-					description: toolDescription,
-					parameters: {
-						type: PropertyType.Object,
-						properties: {
-							param1: {
-								type: PropertyType.Object,
-								description: parameter1Description,
-								properties: {
-									nestedParam: {
-										type: PropertyType.String,
-										description: nestedParameterDescription,
-									},
+				type: 'function',
+				name: toolName,
+				description: toolDescription,
+				parameters: {
+					type: PropertyType.Object,
+					properties: {
+						param1: {
+							type: PropertyType.Object,
+							description: parameter1Description,
+							properties: {
+								nestedParam: {
+									type: PropertyType.String,
+									description: nestedParameterDescription,
 								},
 							},
-							param2: {
-								type: PropertyType.String,
-								description: parameter2Description,
-								enum: ['value1', 'value2'],
-							},
 						},
-						required: ['param1', 'param2'],
-						additionalProperties: false,
+						param2: {
+							type: PropertyType.String,
+							description: parameter2Description,
+							enum: ['value1', 'value2'],
+						},
 					},
+					required: ['param1', 'param2'],
+					additionalProperties: false,
 				},
+				strict: true,
 			});
 		});
 	});

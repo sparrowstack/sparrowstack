@@ -1,10 +1,10 @@
 import type { GenerateContentCandidate } from '@google/generative-ai';
 
-interface IParams {
+interface Params {
 	candidate: GenerateContentCandidate;
 }
 
-export const getCandidateData = ({ candidate }: IParams) => {
+export const getCandidateData = ({ candidate }: Params) => {
 	const { content, finishReason } = candidate;
 	const { role, parts } = content;
 	const [part1] = parts;

@@ -1,13 +1,13 @@
 import axios from 'axios';
-import type { IGeoData } from '@tools/getWeatherData/function/common/interfaces';
+import type { GeoData } from '@tools/getWeatherData/function/common/interfaces';
 
-interface IParams {
+interface Params {
 	city: string;
 	stateCode: string;
 	countryCode: string;
 }
 
-interface IGeoDataReturnValue {
+interface GeoDataReturnValue {
 	latitude: number;
 	longitude: number;
 	city: string;
@@ -19,11 +19,11 @@ export const getGeoDataFromApi = async ({
 	city,
 	stateCode,
 	countryCode,
-}: IParams): Promise<IGeoDataReturnValue> => {
+}: Params): Promise<GeoDataReturnValue> => {
 	const apiKey = process.env.OPEN_WEATHER_MAP_API_KEY;
 	const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=1&appid=${apiKey}`;
 	const response = await axios.get(url);
-	const data = response.data[0] as IGeoData;
+	const data = response.data[0] as GeoData;
 	const { lat, lon, country, state, name } = data;
 	const formattedGeoData = {
 		latitude: lat,

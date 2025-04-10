@@ -1,8 +1,7 @@
 export { SystemPrompt } from '@system-prompt/SystemPrompt';
 export type {
-	IMeta,
-	IBlock,
-	IPrompt,
-	IItemOptions,
-	ISystemPromptParams,
+	Prompt,
+	Section,
+	BulletOptions,
+	SystemPromptParams,
 } from '@system-prompt/common/interfaces';

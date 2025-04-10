@@ -3,13 +3,13 @@ import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import type { GoogleGenerativeAIToolCallRequestMessage } from '@core/providers/GoogleGenerativeAIProvider/common/interfaces';
 
-interface IParams {
+interface Params {
 	responseMessage: ModelResponse;
 }
 
 export const toToolCallRequestMessage = ({
 	responseMessage,
-}: IParams): GoogleGenerativeAIToolCallRequestMessage => {
+}: Params): GoogleGenerativeAIToolCallRequestMessage => {
 	const toolCalls = responseMessage.toolCalls!.map((toolCall) => {
 		const rawToolCall = toolCall.rawToolCall as FunctionCall;
 

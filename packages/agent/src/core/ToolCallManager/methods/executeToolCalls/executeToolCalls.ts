@@ -1,6 +1,6 @@
-import { ToolRegistry } from '@core/ToolRegistry';
 import type { ProviderName } from '@sparrowstack/core';
 import type { SystemPrompt } from '@sparrowstack/system-prompt';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { ToolCallResult } from '@core/ToolCallManager/common/types';
 import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponseToolCall } from '@core/providers/BaseProvider/common/interfaces';
@@ -11,13 +11,13 @@ import {
 	getPermissionDeniedToolCallResult,
 } from '@core/ToolCallManager/methods/executeToolCalls/common/utils';
 
-interface IParams {
+interface Params {
 	model: string;
 	providerName: ProviderName;
 	systemPrompt: SystemPrompt;
-	toolRegistry: ToolRegistry;
 	toolCalls: ModelResponseToolCall[];
 	chatMessageManager: ChatMessageManager;
+	toolRegistryManager: ToolRegistryManager;
 	onRequestPermission?: ({
 		message,
 	}: {
@@ -30,15 +30,15 @@ export const executeToolCalls = async ({
 	toolCalls,
 	providerName,
 	systemPrompt,
-	toolRegistry,
+	toolRegistryManager,
 	chatMessageManager,
 	onRequestPermission,
-}: IParams): Promise<ToolCallResult[]> => {
+}: Params): Promise<ToolCallResult[]> => {
 	const toolCallResults = await Promise.all(
 		toolCalls.map(async (toolCall) => {
 			let result: unknown;
-			const { id, name } = toolCall;
-			const tool = toolRegistry.getToolByName({ name });
+			const { id, name, callId } = toolCall;
+			const tool = toolRegistryManager.getToolByName({ name });
 			const runtimeParams: RuntimeParams = {
 				model,
 				provider: providerName,
@@ -64,7 +64,7 @@ export const executeToolCalls = async ({
 				});
 			}
 
-			return { id, name, result };
+			return { id, callId, name, result };
 		}),
 	);
 

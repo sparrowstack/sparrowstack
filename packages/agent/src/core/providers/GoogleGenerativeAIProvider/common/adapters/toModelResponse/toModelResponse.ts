@@ -10,11 +10,11 @@ import {
 	getCandidateData,
 } from '@core/providers/GoogleGenerativeAIProvider/common/adapters/toModelResponse/common/utils';
 
-interface IParams {
+interface Params {
 	response: GenerateContentResult;
 }
 
-export const toModelResponse = ({ response }: IParams): ModelResponse => {
+export const toModelResponse = ({ response }: Params): ModelResponse => {
 	const { response: responseData } = response;
 	const id = randomUUIDv7();
 	const model = (responseData as any)?.modelVersion ?? 'unknown';

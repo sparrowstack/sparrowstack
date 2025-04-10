@@ -1,12 +1,12 @@
 import type { Tool } from '@sparrowstack/tool';
-import type { IRuntimeParams } from '@sparrowstack/tool';
+import type { RuntimeParams } from '@sparrowstack/tool';
 
 export const executeValidationCheck = async ({
 	tool,
 	runtimeParams,
 }: {
 	tool: Tool;
-	runtimeParams: IRuntimeParams;
+	runtimeParams: RuntimeParams;
 }) => {
 	let isValid = true;
 	let validationFailedMessage = null;

@@ -1,10 +1,10 @@
 import { PropertyType } from '@tool/common/enums';
-import type { IParameterDefinition } from '@tool/common/interfaces';
+import type { ParameterDefinition } from '@tool/common/interfaces';
 import { expect, test, describe, beforeEach, afterEach } from 'bun:test';
 import { getRequiredParameters } from '@tool/common/utils/getRequiredParameters';
 
 describe('getRequiredParameters', () => {
-	let testParameters: Record<string, IParameterDefinition>;
+	let testParameters: Record<string, ParameterDefinition>;
 
 	beforeEach(() => {
 		// Setup test parameters

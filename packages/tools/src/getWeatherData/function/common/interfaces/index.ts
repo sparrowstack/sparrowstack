@@ -1,7 +1,7 @@
-export type { IGeoData } from '@tools/getWeatherData/function/common/interfaces/IGeoData';
-export type { IEventTime } from '@tools/getWeatherData/function/common/interfaces/IEventTime';
-export type { IWeatherData } from '@tools/getWeatherData/function/common/interfaces/IWeatherData';
-export type { IApiResponseCurrent } from '@tools/getWeatherData/function/common/interfaces/IApiResponseCurrent';
-export type { IGetWeatherDataParams } from '@tools/getWeatherData/function/common/interfaces/IGetWeatherDataParams';
-export type { IFormattedWeatherData } from '@tools/getWeatherData/function/common/interfaces/IFormattedWeatherData';
-export type { IApiResponseWeatherData } from '@tools/getWeatherData/function/common/interfaces/IApiResponseWeatherData';
+export type { GeoData } from '@tools/getWeatherData/function/common/interfaces/GeoData';
+export type { EventTime } from '@tools/getWeatherData/function/common/interfaces/EventTime';
+export type { WeatherData } from '@tools/getWeatherData/function/common/interfaces/WeatherData';
+export type { ApiResponseCurrent } from '@tools/getWeatherData/function/common/interfaces/ApiResponseCurrent';
+export type { GetWeatherDataParams } from '@tools/getWeatherData/function/common/interfaces/GetWeatherDataParams';
+export type { FormattedWeatherData } from '@tools/getWeatherData/function/common/interfaces/FormattedWeatherData';
+export type { ApiResponseWeatherData } from '@tools/getWeatherData/function/common/interfaces/ApiResponseWeatherData';

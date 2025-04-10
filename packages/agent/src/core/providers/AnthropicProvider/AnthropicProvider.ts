@@ -25,9 +25,9 @@ export class AnthropicProvider extends BaseProvider<
 		settings,
 		displayName,
 		systemPrompt,
-		toolRegistry,
+		toolRegistryManager,
 		chatMessageManager,
-		responseFormatAgent,
+		structuredOutputAgent,
 	}: ConstructorParams) {
 		super({
 			name,
@@ -36,9 +36,9 @@ export class AnthropicProvider extends BaseProvider<
 			settings,
 			displayName,
 			systemPrompt,
-			toolRegistry,
+			toolRegistryManager,
 			chatMessageManager,
-			responseFormatAgent,
+			structuredOutputAgent,
 		});
 
 		this.adapters = {
@@ -52,17 +52,17 @@ export class AnthropicProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt({ responseFormatSendMessage }: SendPromptParams = {}) {
+	public sendPrompt({ structuredOutputSendMessage }: SendPromptParams = {}) {
 		return sendPrompt({
 			model: this.model,
 			settings: this.settings,
 			providerName: this.name,
 			sdk: this.sdk as Anthropic,
 			systemPrompt: this.systemPrompt,
-			toolRegistry: this.toolRegistry,
 			chatMessageManager: this.chatMessageManager,
-			responseFormatAgent: this.responseFormatAgent,
-			responseFormatSendMessage: responseFormatSendMessage,
+			structuredOutputAgent: this.structuredOutputAgent,
+			toolRegistryManager: this.toolRegistryManager,
+			structuredOutputSendMessage: structuredOutputSendMessage,
 		});
 	}
 }

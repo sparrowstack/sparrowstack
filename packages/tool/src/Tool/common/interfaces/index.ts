@@ -1,6 +1,6 @@
-export type { IToolParams } from '@tool/common/interfaces/IToolParams';
-export type { ICachedResult } from '@tool/common/interfaces/ICachedResult';
-export type { IRuntimeParams } from '@tool/common/interfaces/IRuntimeParams';
-export type { INeedsPermission } from '@tool/common/interfaces/INeedsPermission';
-export type { IToolSchemaParams } from '@tool/common/interfaces/IToolSchemaParams';
-export type { IParameterDefinition } from '@tool/common/interfaces/IParameterDefinition';
+export type { ToolParams } from '@tool/common/interfaces/ToolParams';
+export type { CachedResult } from '@tool/common/interfaces/CachedResult';
+export type { RuntimeParams } from '@tool/common/interfaces/RuntimeParams';
+export type { NeedsPermission } from '@tool/common/interfaces/NeedsPermission';
+export type { ToolSchemaParams } from '@tool/common/interfaces/ToolSchemaParams';
+export type { ParameterDefinition } from '@tool/common/interfaces/ParameterDefinition';

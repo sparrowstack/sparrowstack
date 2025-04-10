@@ -1,10 +1,10 @@
 import { PropertyType } from '@tool/common/enums';
-import type { IParameterDefinition } from '@tool/common/interfaces';
+import type { ParameterDefinition } from '@tool/common/interfaces';
 import { expect, test, describe, beforeEach, afterEach } from 'bun:test';
 import { processParameters } from '@tool/common/utils/processParameters';
 
 describe('processParameters', () => {
-	let testParameters: Record<string, IParameterDefinition>;
+	let testParameters: Record<string, ParameterDefinition>;
 	const testParam1Description = 'Test parameter 1';
 	const testParam2Description = 'Test parameter 2';
 	const nestedParamDescription = 'Nested parameter';

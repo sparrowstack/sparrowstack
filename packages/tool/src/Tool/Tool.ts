@@ -3,9 +3,9 @@ import { Type } from '@tool/common/enums';
 import { ProviderName } from '@sparrowstack/core';
 import { providerSchemas } from '@tool/common/constants';
 import type {
-	IToolParams,
-	ICachedResult,
-	INeedsPermission,
+	ToolParams,
+	CachedResult,
+	NeedsPermission,
 } from '@tool/common/interfaces';
 import type {
 	Validate,
@@ -22,7 +22,7 @@ export class Tool {
 	readonly maxCallCount?: number;
 	readonly parameters: Parameters;
 	readonly type = Type.Tool as const;
-	readonly needsPermission?: INeedsPermission;
+	readonly needsPermission?: NeedsPermission;
 	readonly structuredOutput?: ZodObject<any, any, any, any, any>;
 	readonly validationFailedMessage?: string | CallableFunctionResponseMessage;
 	readonly maxCallCountExceededMessage?:
@@ -30,8 +30,8 @@ export class Tool {
 		| CallableFunctionResponseMessage;
 
 	private callCount: number;
-	private lastCachedResult?: ICachedResult;
-	private cachedResults: ICachedResult[];
+	private lastCachedResult?: CachedResult;
+	private cachedResults: CachedResult[];
 
 	constructor({
 		name,
@@ -44,7 +44,7 @@ export class Tool {
 		function: toolFunction,
 		validationFailedMessage,
 		maxCallCountExceededMessage,
-	}: IToolParams) {
+	}: ToolParams) {
 		this.name = name;
 		this.callCount = 0;
 		this.cachedResults = [];
@@ -82,7 +82,7 @@ export class Tool {
 		this.callCount += 1;
 	}
 
-	public addCachedResult({ result }: { result: ICachedResult }) {
+	public addCachedResult({ result }: { result: CachedResult }) {
 		this.cachedResults.push(result);
 		this.lastCachedResult = result;
 	}

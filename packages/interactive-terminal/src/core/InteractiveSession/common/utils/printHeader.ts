@@ -2,12 +2,12 @@ import chalk from 'chalk';
 import wrapAnsi from 'wrap-ansi';
 import type { Agent } from '@sparrowstack/agent';
 
-interface IParams {
+interface Params {
 	agent: Agent;
 }
 
-export const printHeader = ({ agent }: IParams) => {
-	const { provider, systemPrompt, toolRegistry } = agent;
+export const printHeader = ({ agent }: Params) => {
+	const { provider, systemPrompt, toolRegistryManager } = agent;
 
 	console.log(
 		chalk.greenBright(`
@@ -27,7 +27,7 @@ export const printHeader = ({ agent }: IParams) => {
 		),
 	);
 	console.log('');
-	const toolNames = toolRegistry.getToolNames();
+	const toolNames = toolRegistryManager.getToolNames();
 
 	if (toolNames.length > 0) {
 		console.log(`${chalk.bold('Tools:')}`);

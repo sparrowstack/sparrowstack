@@ -1,7 +1,7 @@
-import { PropertyType, type IToolParams } from '@sparrowstack/tool';
+import { PropertyType, type ToolParams } from '@sparrowstack/tool';
 import { retrieveDocumentsVectorStore } from '@tools/retrieveDocumentsVectorStore/function/retrieveDocumentsVectorStore';
 
-export const retrieveDocumentsVectorStoreToolParams: IToolParams = {
+export const retrieveDocumentsVectorStoreToolParams: ToolParams = {
 	name: 'retrieveDocumentsVectorStore',
 
 	description: `Retrieve text documents from the vector database. 

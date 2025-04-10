@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
-interface IParams {
+interface Params {
 	message: string;
 }
 
-export const formatForSparrowResponse = ({ message }: IParams) => {
+export const formatForSparrowResponse = ({ message }: Params) => {
 	const sparrowPrompt = `${chalk.blueBright('[Sparrow]:')} `;
 
 	return `\n${sparrowPrompt} ${message}`;

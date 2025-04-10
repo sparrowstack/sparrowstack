@@ -3,12 +3,12 @@ import type {
 	GenerateContentCandidate,
 } from '@google/generative-ai';
 
-interface IParams {
+interface Params {
 	response: GenerateContentResult;
 	index: number;
 }
 
-export const getCandidate = ({ response, index }: IParams) => {
+export const getCandidate = ({ response, index }: Params) => {
 	const { response: responseData } = response;
 	const { candidates } = responseData;
 	const candidate = candidates?.[index] as GenerateContentCandidate;

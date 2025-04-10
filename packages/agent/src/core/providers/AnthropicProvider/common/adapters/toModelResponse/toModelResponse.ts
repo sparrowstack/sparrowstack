@@ -5,11 +5,11 @@ import {
 	getModelResponseText,
 } from '@core/providers/AnthropicProvider/common/adapters/toModelResponse/common/utils';
 
-interface IParams {
+interface Params {
 	response: Anthropic.Messages.Message;
 }
 
-export const toModelResponse = ({ response }: IParams): ModelResponse => {
+export const toModelResponse = ({ response }: Params): ModelResponse => {
 	const {
 		id,
 		role,

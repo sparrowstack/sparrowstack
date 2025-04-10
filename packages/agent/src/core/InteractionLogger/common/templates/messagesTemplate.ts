@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
-interface IParams {
+interface Params {
 	messages: unknown[];
 }
 
-export const messagesTemplate = ({ messages }: IParams) => {
+export const messagesTemplate = ({ messages }: Params) => {
 	return chalk.dim(`
 ------------------------------------ 
 Messages:

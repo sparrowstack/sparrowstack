@@ -1,4 +1,4 @@
-import type { IToolSchemaParams } from '@tool';
+import type { ToolSchemaParams } from '@tool';
 import { PropertyType } from '@tool/common/enums';
 import { processParameters, getRequiredParameters } from '@tool/common/utils';
 
@@ -6,20 +6,17 @@ export const toOpenAISchema = <SchemaType>({
 	name,
 	parameters,
 	description,
-}: IToolSchemaParams): SchemaType => {
+}: ToolSchemaParams): SchemaType => {
 	return {
-		type: PropertyType.Function,
-		function: {
-			name,
-			description,
-			parameters: {
-				type: PropertyType.Object,
-				properties: parameters ? processParameters({ parameters }) : {},
-				required: parameters
-					? getRequiredParameters({ parameters })
-					: [],
-				additionalProperties: false,
-			},
+		type: 'function',
+		name,
+		description,
+		parameters: {
+			type: PropertyType.Object,
+			properties: parameters ? processParameters({ parameters }) : {},
+			required: parameters ? getRequiredParameters({ parameters }) : [],
+			additionalProperties: false,
 		},
+		strict: true,
 	} as SchemaType;
 };

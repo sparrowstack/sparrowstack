@@ -1,11 +1,11 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 import { ContentType } from '@core/providers/AnthropicProvider/common/enums';
 
-interface IParams {
+interface Params {
 	response: Anthropic.Messages.Message;
 }
 
-export const getModelResponseText = ({ response }: IParams) => {
+export const getModelResponseText = ({ response }: Params) => {
 	let text = '';
 	let type = '';
 

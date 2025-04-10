@@ -23,8 +23,8 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 		settings,
 		displayName,
 		systemPrompt,
-		toolRegistry,
-		responseFormatAgent,
+		toolRegistryManager,
+		structuredOutputAgent,
 		chatMessageManager,
 	}: ConstructorParams) {
 		super({
@@ -34,8 +34,8 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 			settings,
 			displayName,
 			systemPrompt,
-			toolRegistry,
-			responseFormatAgent,
+			toolRegistryManager,
+			structuredOutputAgent,
 			chatMessageManager,
 		});
 
@@ -50,17 +50,17 @@ export class GoogleGenerativeAIProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt({ responseFormatSendMessage }: SendPromptParams = {}) {
+	public sendPrompt({ structuredOutputSendMessage }: SendPromptParams = {}) {
 		return sendPrompt({
 			model: this.model,
 			providerName: this.name,
 			settings: this.settings,
 			systemPrompt: this.systemPrompt,
-			toolRegistry: this.toolRegistry,
 			sdk: this.sdk as GoogleGenerativeAI,
 			chatMessageManager: this.chatMessageManager,
-			responseFormatAgent: this.responseFormatAgent,
-			responseFormatSendMessage: responseFormatSendMessage,
+			toolRegistryManager: this.toolRegistryManager,
+			structuredOutputAgent: this.structuredOutputAgent,
+			structuredOutputSendMessage: structuredOutputSendMessage,
 		});
 	}
 }

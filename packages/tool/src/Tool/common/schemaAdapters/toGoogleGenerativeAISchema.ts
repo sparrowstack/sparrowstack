@@ -1,4 +1,4 @@
-import type { IToolSchemaParams } from '@tool';
+import type { ToolSchemaParams } from '@tool';
 import { PropertyType } from '@tool/common/enums';
 import { processParameters, getRequiredParameters } from '@tool/common/utils';
 
@@ -6,7 +6,7 @@ export const toGoogleGenerativeAI = <SchemaType>({
 	name,
 	parameters,
 	description,
-}: IToolSchemaParams): SchemaType => {
+}: ToolSchemaParams): SchemaType => {
 	const properties = parameters
 		? processParameters({
 				parameters,

@@ -3,31 +3,23 @@ import type { StructuredOutputCreateParams } from '@core/StucturedOutputFactory/
 
 export class StructuredOutputFactory {
 	static create({
-		providerName,
 		responseFormat,
-		strucuturedOutput: strucuturedOutputInstance,
-	}: StructuredOutputCreateParams): Record<string, unknown> | null {
-		let responseFormatAgent: Record<string, unknown> | null = null;
+	}: StructuredOutputCreateParams): StructuredOutput | undefined {
+		let structuredOutput: StructuredOutput | undefined = undefined;
 
-		if (strucuturedOutputInstance) {
-			responseFormatAgent = strucuturedOutputInstance.getResponseFormat({
-				providerName,
-			});
+		if (responseFormat instanceof StructuredOutput) {
+			structuredOutput = responseFormat;
 		} else if (responseFormat && 'name' in responseFormat) {
-			responseFormatAgent = new StructuredOutput({
+			structuredOutput = new StructuredOutput({
 				name: responseFormat.name,
 				strucuturedOutput: responseFormat.responseFormat,
-			}).getResponseFormat({
-				providerName,
 			});
 		} else if (responseFormat && !('name' in responseFormat)) {
-			responseFormatAgent = new StructuredOutput({
+			structuredOutput = new StructuredOutput({
 				strucuturedOutput: responseFormat,
-			}).getResponseFormat({
-				providerName,
 			});
 		}
 
-		return responseFormatAgent;
+		return structuredOutput;
 	}
 }

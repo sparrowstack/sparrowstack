@@ -10,13 +10,13 @@ import {
 	toToolCallResponseMessages,
 } from '@core/providers/OpenAIProvider/common/adapters';
 import type {
-	OpenAIToolCallRequestMessage,
-	OpenAIToolCallResponseMessage,
-} from '@core/providers/OpenAIProvider/common/interfaces';
+	OpenAIToolCallRequestMessages,
+	OpenAIToolCallResponseMessages,
+} from '@core/providers/OpenAIProvider/common/types';
 
 export class OpenAIProvider extends BaseProvider<
-	OpenAIToolCallRequestMessage,
-	OpenAIToolCallResponseMessage[]
+	OpenAIToolCallRequestMessages,
+	OpenAIToolCallResponseMessages
 > {
 	constructor({
 		name,
@@ -25,9 +25,9 @@ export class OpenAIProvider extends BaseProvider<
 		settings,
 		displayName,
 		systemPrompt,
-		toolRegistry,
+		toolRegistryManager,
 		chatMessageManager,
-		responseFormatAgent,
+		structuredOutputAgent,
 	}: ConstructorParams) {
 		super({
 			name,
@@ -36,9 +36,9 @@ export class OpenAIProvider extends BaseProvider<
 			settings,
 			displayName,
 			systemPrompt,
-			toolRegistry,
 			chatMessageManager,
-			responseFormatAgent,
+			toolRegistryManager,
+			structuredOutputAgent,
 		});
 
 		this.adapters = {
@@ -52,18 +52,17 @@ export class OpenAIProvider extends BaseProvider<
 		toToolCallResponseMessages: typeof toToolCallResponseMessages;
 	};
 
-	public sendPrompt({ responseFormatSendMessage }: SendPromptParams = {}) {
+	public sendPrompt({ structuredOutputSendMessage }: SendPromptParams = {}) {
 		return sendPrompt({
 			model: this.model,
 			settings: this.settings,
 			providerName: this.name,
 			sdk: this.sdk as OpenAI,
 			systemPrompt: this.systemPrompt,
-			toolRegistry: this.toolRegistry,
 			chatMessageManager: this.chatMessageManager,
-			responseFormatAgent: this.responseFormatAgent,
-			responseFormatSendMessage:
-				responseFormatSendMessage as OpenAI.ResponseFormatJSONSchema,
+			structuredOutputAgent: this.structuredOutputAgent,
+			toolRegistryManager: this.toolRegistryManager,
+			structuredOutputSendMessage: structuredOutputSendMessage,
 		});
 	}
 }
