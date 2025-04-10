@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.14
+
+### Patch Changes
+
+- a6c5dbc: Updated deps. Refactors.
+- Updated dependencies [a6c5dbc]
+    - @sparrowstack/structured-output@0.3.14
+    - @sparrowstack/system-prompts@0.3.14
+    - @sparrowstack/system-prompt@0.3.14
+    - @sparrowstack/logger@0.3.14
+    - @sparrowstack/tool@0.3.14
+    - @sparrowstack/chat-message-manager@0.3.14
+    - @sparrowstack/core@0.3.14
+
 ## 0.3.13
 
 ### Patch Changes
