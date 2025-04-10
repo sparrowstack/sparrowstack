@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/core",
-	"version": "0.3.14",
+	"version": "0.3.15",
 	"description": "Core types and shared functionality for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",

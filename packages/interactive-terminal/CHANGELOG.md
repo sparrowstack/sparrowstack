@@ -1,5 +1,14 @@
 # @sparrowstack/interactive-terminal
 
+## 0.3.15
+
+### Patch Changes
+
+- 0d457fd: Fixed path alias bug in dist
+- Updated dependencies [0d457fd]
+    - @sparrowstack/logger@0.3.15
+    - @sparrowstack/agent@0.3.15
+
 ## 0.3.14
 
 ### Patch Changes

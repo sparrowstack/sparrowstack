@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.15
+
+### Patch Changes
+
+- 0d457fd: Fixed path alias bug in dist
+- Updated dependencies [0d457fd]
+    - @sparrowstack/vector-store@0.3.15
+    - @sparrowstack/agent@0.3.15
+    - @sparrowstack/tool@0.3.15
+
 ## 0.3.14
 
 ### Patch Changes

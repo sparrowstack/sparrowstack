@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.15
+
+### Patch Changes
+
+- 0d457fd: Fixed path alias bug in dist
+- Updated dependencies [0d457fd]
+    - @sparrowstack/chat-message-manager@0.3.15
+    - @sparrowstack/structured-output@0.3.15
+    - @sparrowstack/system-prompts@0.3.15
+    - @sparrowstack/system-prompt@0.3.15
+    - @sparrowstack/logger@0.3.15
+    - @sparrowstack/core@0.3.15
+    - @sparrowstack/tool@0.3.15
+
 ## 0.3.14
 
 ### Patch Changes
