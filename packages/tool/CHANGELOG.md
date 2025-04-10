@@ -1,5 +1,14 @@
 # @sparrowstack/tool
 
+## 0.3.14
+
+### Patch Changes
+
+- a6c5dbc: Updated deps. Refactors.
+- Updated dependencies [a6c5dbc]
+    - @sparrowstack/chat-message-manager@0.3.14
+    - @sparrowstack/core@0.3.14
+
 ## 0.3.13
 
 ### Patch Changes

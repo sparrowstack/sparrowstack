@@ -1,5 +1,14 @@
 # @sparrowstack/community
 
+## 0.3.14
+
+### Patch Changes
+
+- a6c5dbc: Updated deps. Refactors.
+- Updated dependencies [a6c5dbc]
+    - @sparrowstack/system-prompts@0.3.14
+    - @sparrowstack/tools@0.3.14
+
 ## 0.3.13
 
 ### Patch Changes

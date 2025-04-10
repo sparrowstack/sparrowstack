@@ -1,5 +1,11 @@
 # @sparrowstack/logger
 
+## 0.3.14
+
+### Patch Changes
+
+- a6c5dbc: Updated deps. Refactors.
+
 ## 0.3.13
 
 ### Patch Changes
