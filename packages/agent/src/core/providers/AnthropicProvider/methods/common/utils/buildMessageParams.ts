@@ -6,8 +6,8 @@ interface Params {
 	model: string;
 	system: string;
 	settings?: Settings;
-	responseFormat: Record<string, unknown>;
 	tools: Anthropic.Tool[];
+	responseFormat?: Record<string, unknown>;
 	messages: Anthropic.Messages.MessageParam[];
 }
 

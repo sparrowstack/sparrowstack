@@ -1,11 +1,12 @@
 import type { Part } from '@google/generative-ai';
 import { ProviderName } from '@sparrowstack/core';
+import type { Content } from '@google/generative-ai';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
+import type { StructuredOutput } from '@sparrowstack/structured-output';
 import { Role } from '@core/providers/GoogleGenerativeAIProvider/common/enums';
-import type { Content /*GenerateContentResult*/ } from '@google/generative-ai';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/GoogleGenerativeAIProvider/common/adapters';
 import {
@@ -14,6 +15,7 @@ import {
 } from '@core/providers/GoogleGenerativeAIProvider/methods/common/utils';
 import {
 	GoogleGenerativeAI,
+	type ResponseSchema,
 	type FunctionDeclarationsTool,
 } from '@google/generative-ai';
 
@@ -21,12 +23,12 @@ export interface Params {
 	model: string;
 	settings?: Settings;
 	sdk: GoogleGenerativeAI;
-	responseFormatAgent: any;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
-	responseFormatSendMessage?: any;
 	chatMessageManager: ChatMessageManager;
 	toolRegistryManager: ToolRegistryManager;
+	structuredOutputAgent?: StructuredOutput;
+	structuredOutputSendMessage?: StructuredOutput;
 }
 
 export const sendPrompt = async ({
@@ -34,11 +36,11 @@ export const sendPrompt = async ({
 	model,
 	settings,
 	systemPrompt,
-	toolRegistryManager,
 	providerName,
 	chatMessageManager,
-	responseFormatAgent,
-	responseFormatSendMessage,
+	toolRegistryManager,
+	structuredOutputAgent,
+	structuredOutputSendMessage,
 }: Params): Promise<ModelResponse> => {
 	// Get Messages
 	const messages = chatMessageManager.getMessages<Content>();
@@ -53,17 +55,18 @@ export const sendPrompt = async ({
 	});
 	const modelParams = buildModelParams({ model, tools });
 	const sdkModel = sdk.getGenerativeModel(modelParams);
-	const responseFormat = responseFormatSendMessage || responseFormatAgent;
 
-	// Build Chat SDK
+	// Build Chat SDK Params
 	const systemInstruction = systemPrompt.getPrompt<Content>({ providerName });
-	const chatParams = buildChatParams({
-		settings,
-		responseFormat,
-		systemInstruction,
-		history: updatedMessages,
-	});
-	const sdkChat = sdkModel.startChat(chatParams);
+	const responseFormatAgent =
+		structuredOutputAgent?.getResponseFormat<ResponseSchema>({
+			providerName,
+		});
+	const responseFormatSendMessage =
+		structuredOutputSendMessage?.getResponseFormat<ResponseSchema>({
+			providerName,
+		});
+	const responseFormat = responseFormatSendMessage || responseFormatAgent;
 
 	// Given the way Google Generative AI works,
 	// we need to handle user and function call messages differently
@@ -73,10 +76,27 @@ export const sendPrompt = async ({
 	let rawResponse: any;
 
 	if (isUserMessage) {
+		const chatParams = buildChatParams({
+			settings,
+			responseFormat,
+			systemInstruction,
+			history: updatedMessages,
+		});
+		const sdkChat = sdkModel.startChat(chatParams);
 		const chatMessage = lastChatMessage?.parts[0].text as string;
+
 		rawResponse = await sdkChat.sendMessage(chatMessage);
 	} else if (isFunctionMessage) {
+		const chatParams = buildChatParams({
+			settings,
+			responseFormat,
+			isFunctionMessage,
+			systemInstruction,
+			history: updatedMessages,
+		});
+		const sdkChat = sdkModel.startChat(chatParams);
 		const chatMessage = lastChatMessage?.parts as Part[];
+
 		rawResponse = await sdkChat.sendMessage(chatMessage);
 	}
 

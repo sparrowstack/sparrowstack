@@ -2,13 +2,18 @@ import OpenAI from 'openai';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { Include } from '@core/providers/OpenAIProvider/methods/sendPrompt/common/enums/Include';
+import {
+	ResponseFormatName,
+	ResponseFormatType,
+} from '@core/providers/OpenAIProvider/methods/sendPrompt/common/enums';
 
 interface Params {
 	model: string;
 	settings?: Settings;
 	systemPrompt: SystemPrompt;
+	responseFormatName?: string;
 	tools: OpenAI.Responses.Tool[];
-	responseFormat: Record<string, unknown>;
+	responseFormat?: Record<string, any>;
 	chatMessages: OpenAI.Responses.ResponseOutputItem[];
 }
 
@@ -19,6 +24,7 @@ export const buildChatParams = ({
 	systemPrompt,
 	chatMessages,
 	responseFormat,
+	responseFormatName,
 }: Params) => {
 	const input = chatMessages;
 	const instructions = systemPrompt.getPrompt();
@@ -44,11 +50,16 @@ export const buildChatParams = ({
 	}
 
 	if (responseFormat) {
+		const zodSchema = responseFormat?.json_schema?.schema;
+		const schema = zodSchema
+			? zodSchema
+			: responseFormat?.json_schema?.schema;
+
 		responseCreateParams.text = {
 			format: {
-				type: 'json_schema',
-				schema: responseFormat,
-				name: 'response_format',
+				type: ResponseFormatType.JsonSchema,
+				name: responseFormatName ?? ResponseFormatName.Default,
+				schema: schema,
 			},
 		};
 	}

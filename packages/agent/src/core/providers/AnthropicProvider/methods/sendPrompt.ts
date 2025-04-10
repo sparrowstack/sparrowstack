@@ -3,6 +3,7 @@ import { ProviderName } from '@sparrowstack/core';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ToolRegistryManager } from '@core/ToolRegistryManager';
+import type { StructuredOutput } from '@sparrowstack/structured-output';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { toModelResponse } from '@core/providers/AnthropicProvider/common/adapters/toModelResponse';
@@ -16,8 +17,8 @@ export interface Params {
 	providerName: ProviderName;
 	chatMessageManager: ChatMessageManager;
 	toolRegistryManager: ToolRegistryManager;
-	responseFormatAgent: Record<string, unknown>;
-	responseFormatSendMessage?: Record<string, unknown>;
+	structuredOutputAgent?: StructuredOutput;
+	structuredOutputSendMessage?: StructuredOutput;
 }
 
 export const sendPrompt = async ({
@@ -28,14 +29,21 @@ export const sendPrompt = async ({
 	providerName,
 	chatMessageManager,
 	toolRegistryManager,
-	responseFormatAgent,
-	responseFormatSendMessage,
+	structuredOutputAgent,
+	structuredOutputSendMessage,
 }: Params): Promise<ModelResponse> => {
 	const system = systemPrompt.getPrompt();
 	const messages = chatMessageManager.getMessages<Anthropic.MessageParam>();
 	const tools = toolRegistryManager.getToolSchemas<Anthropic.Tool>({
 		providerName,
 	});
+	const responseFormatAgent = structuredOutputAgent?.getResponseFormat<
+		Record<string, unknown>
+	>({ providerName });
+	const responseFormatSendMessage =
+		structuredOutputSendMessage?.getResponseFormat<Record<string, unknown>>(
+			{ providerName },
+		);
 	const responseFormat = responseFormatSendMessage || responseFormatAgent;
 	const messageParams = buildMessageParams({
 		model,

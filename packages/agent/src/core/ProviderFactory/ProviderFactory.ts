@@ -9,7 +9,7 @@ interface Params {
 	model: string;
 	apiKey: string;
 	settings?: Settings;
-	responseFormatAgent: any;
+	structuredOutputAgent: any;
 	systemPrompt: SystemPrompt;
 	providerName: ProviderName;
 	providerDisplayName: string;
@@ -26,7 +26,7 @@ export class ProviderFactory {
 		providerName,
 		chatMessageManager,
 		toolRegistryManager,
-		responseFormatAgent,
+		structuredOutputAgent,
 		providerDisplayName,
 	}: Params) {
 		const Provider = providers[providerName as keyof typeof providers];
@@ -38,7 +38,7 @@ export class ProviderFactory {
 			toolRegistryManager,
 			chatMessageManager,
 			name: providerName,
-			responseFormatAgent,
+			structuredOutputAgent,
 			displayName: providerDisplayName,
 		});
 

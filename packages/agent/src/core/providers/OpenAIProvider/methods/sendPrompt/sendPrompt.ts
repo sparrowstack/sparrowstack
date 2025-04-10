@@ -7,6 +7,7 @@ import type { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ModelResponse } from '@core/providers/BaseProvider/common/interfaces';
 import { buildChatParams } from '@core/providers/OpenAIProvider/methods/sendPrompt/common/utils';
 import { toModelResponse } from '@core/providers/OpenAIProvider/common/adapters/toModelResponse';
+import type { StructuredOutput } from '@sparrowstack/structured-output';
 
 export interface Params {
 	sdk: OpenAI;
@@ -16,8 +17,8 @@ export interface Params {
 	providerName: ProviderName;
 	chatMessageManager: ChatMessageManager;
 	toolRegistryManager: ToolRegistryManager;
-	responseFormatAgent: Record<string, unknown>;
-	responseFormatSendMessage?: Record<string, unknown>;
+	structuredOutputAgent?: StructuredOutput;
+	structuredOutputSendMessage?: StructuredOutput;
 }
 
 export const sendPrompt = async ({
@@ -25,18 +26,27 @@ export const sendPrompt = async ({
 	model,
 	settings,
 	systemPrompt,
-	toolRegistryManager,
 	providerName,
-	responseFormatAgent,
 	chatMessageManager,
-	responseFormatSendMessage,
+	toolRegistryManager,
+	structuredOutputAgent,
+	structuredOutputSendMessage,
 }: Params): Promise<ModelResponse> => {
-	const responseFormat = responseFormatSendMessage || responseFormatAgent;
 	const tools = toolRegistryManager.getToolSchemas<OpenAI.Responses.Tool>({
 		providerName,
 	});
 	const chatMessages =
 		chatMessageManager.getMessages<OpenAI.Responses.ResponseOutputItem>();
+	const responseFormatAgent = structuredOutputAgent?.getResponseFormat<
+		Record<string, any>
+	>({ providerName });
+	const responseFormatSendMessage =
+		structuredOutputSendMessage?.getResponseFormat<Record<string, any>>({
+			providerName,
+		});
+	const responseFormat = responseFormatSendMessage || responseFormatAgent;
+	const responseFormatName =
+		structuredOutputSendMessage?.name || responseFormatAgent?.name;
 
 	const chatParams = buildChatParams({
 		model,
@@ -45,6 +55,7 @@ export const sendPrompt = async ({
 		chatMessages,
 		systemPrompt,
 		responseFormat,
+		responseFormatName,
 	});
 
 	const rawResponse = (await sdk.responses.create(

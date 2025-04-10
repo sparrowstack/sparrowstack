@@ -11,7 +11,7 @@ interface Params {
 	toolCallManager: ToolCallManager;
 	interactionLogger: InteractionLogger;
 	chatMessageManager: ChatMessageManager;
-	responseFormatSendMessage?: any;
+	structuredOutputSendMessage?: any;
 }
 
 export const sendMessage = async ({
@@ -20,12 +20,12 @@ export const sendMessage = async ({
 	toolCallManager,
 	interactionLogger,
 	chatMessageManager,
-	responseFormatSendMessage,
+	structuredOutputSendMessage,
 }: Params) => {
 	chatMessageManager.addUserMessage({ text: message });
 
 	const modelResponseMessage = await provider.sendPrompt({
-		responseFormatSendMessage,
+		structuredOutputSendMessage,
 	});
 
 	const toolCallResponseMessage = await toolCallManager.handleToolCalls({

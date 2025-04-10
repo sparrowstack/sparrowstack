@@ -1,8 +1,9 @@
 import { ProviderName } from '@sparrowstack/core';
-import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import type { Settings } from '@agent/common/interfaces';
 import { SystemPrompt } from '@sparrowstack/system-prompt';
 import { ProviderSDKFactory } from '@core/ProviderSDKFactory';
+import { ToolRegistryManager } from '@core/ToolRegistryManager';
+import type { StructuredOutput } from '@sparrowstack/structured-output';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { ProviderSDK } from '@core/ProviderSDKFactory/common/types';
 import type { SendPromptParams } from '@core/providers/BaseProvider/common/interfaces';
@@ -36,7 +37,7 @@ export abstract class BaseProvider<
 	readonly settings?: Settings;
 
 	// Structured Output
-	readonly responseFormatAgent: any;
+	readonly structuredOutputAgent?: StructuredOutput;
 
 	constructor({
 		name,
@@ -47,7 +48,7 @@ export abstract class BaseProvider<
 		systemPrompt,
 		chatMessageManager,
 		toolRegistryManager,
-		responseFormatAgent,
+		structuredOutputAgent,
 	}: ConstructorParams) {
 		// Base Properties
 		// --------------------------------
@@ -71,7 +72,7 @@ export abstract class BaseProvider<
 
 		// Structured Output
 		// --------------------------------
-		this.responseFormatAgent = responseFormatAgent;
+		this.structuredOutputAgent = structuredOutputAgent;
 
 		// Settings
 		// --------------------------------
@@ -89,6 +90,6 @@ export abstract class BaseProvider<
 	};
 
 	abstract sendPrompt({
-		responseFormatSendMessage,
+		structuredOutputSendMessage,
 	}: SendPromptParams): Promise<ModelResponse>;
 }

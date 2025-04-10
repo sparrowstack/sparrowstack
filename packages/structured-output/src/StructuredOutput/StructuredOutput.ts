@@ -2,17 +2,16 @@ import { z } from 'zod';
 import { ProviderName } from '@sparrowstack/core';
 import { Name } from '@structured-output/common/enums';
 import { getResponseFormat } from '@structured-output/methods';
-
-interface Params {
-	name?: string;
-	strucuturedOutput: z.ZodObject<any>;
-}
+import type { StructuredOutputConstructorParams } from '@structured-output/common/interfaces';
 
 export class StructuredOutput {
 	readonly name: string;
 	readonly strucuturedOutput: z.ZodObject<any>;
 
-	constructor({ name = Name.Default, strucuturedOutput }: Params) {
+	constructor({
+		name = Name.Default,
+		strucuturedOutput,
+	}: StructuredOutputConstructorParams) {
 		this.name = name;
 		this.strucuturedOutput = strucuturedOutput;
 	}

@@ -1,17 +1,25 @@
 import type { Settings } from '@agent/common/interfaces';
 import { FunctionCallingMode as FunctionCallingModeEnum } from '@google/generative-ai';
-import type { Part, Content, StartChatParams } from '@google/generative-ai';
+import { MimeType } from '@core/providers/GoogleGenerativeAIProvider/methods/common/enums';
+import type {
+	Part,
+	Content,
+	ResponseSchema,
+	StartChatParams,
+} from '@google/generative-ai';
 
 interface Params {
 	settings?: Settings;
-	responseFormat: any;
+	isFunctionMessage?: boolean;
 	history: Content[] | undefined;
+	responseFormat?: ResponseSchema;
 	systemInstruction: string | Content | Part | undefined;
 }
 
 export const buildChatParams = ({
 	history,
 	settings,
+	responseFormat,
 	systemInstruction,
 }: Params) => {
 	const chatParams: StartChatParams = {
@@ -28,6 +36,14 @@ export const buildChatParams = ({
 		},
 	};
 
+	if (responseFormat) {
+		chatParams.generationConfig = {
+			...chatParams.generationConfig,
+			responseMimeType: MimeType.Json,
+			responseSchema: responseFormat,
+		};
+	}
+
 	return chatParams;
 };
 
@@ -35,15 +51,7 @@ export const buildChatParams = ({
 // flexible enough to support the tool calling format and general chat
 // Will update this when Gemini supports structured output in a more flexible way
 
-// if (responseFormatAgent) {
-// 	chatParams.generationConfig = {
-// 		...chatParams.generationConfig,
-// 		responseMimeType: 'application/json',
-// 		responseSchema: responseFormatAgent,
-// 	};
-// }
-
-// 	if (responseFormatAgent) {
+// 	if (structuredOutputAgent) {
 // 		if (
 // 			chatParams.systemInstruction &&
 // 			typeof chatParams.systemInstruction !== 'string' &&
@@ -52,7 +60,7 @@ export const buildChatParams = ({
 // 			chatParams.systemInstruction.parts[0].text += `
 // <structured-output>
 // When responding to the user, reuturn a JSON object with the following format:
-// ${JSON.stringify(responseFormatAgent, null, 2)}}
+// ${JSON.stringify(structuredOutputAgent, null, 2)}}
 // </structured-output>
 
 // <tool-calling>

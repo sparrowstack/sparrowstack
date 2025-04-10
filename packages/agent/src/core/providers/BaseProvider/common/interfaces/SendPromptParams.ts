@@ -1,3 +1,3 @@
 export interface SendPromptParams {
-	responseFormatSendMessage?: any;
+	structuredOutputSendMessage?: any;
 }

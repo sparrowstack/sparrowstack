@@ -9,6 +9,7 @@ import { InteractionLogger } from '@core/InteractionLogger';
 import { defaultPrompt } from '@sparrowstack/system-prompts';
 import { ToolRegistryManager } from '@core/ToolRegistryManager';
 import { SystemPromptFactory } from '@core/SystemPromptFactory';
+import { StructuredOutput } from '@sparrowstack/structured-output';
 import { StructuredOutputFactory } from '@core/StucturedOutputFactory';
 import { ChatMessageManager } from '@sparrowstack/chat-message-manager';
 import type { Provider } from '@core/providers/BaseProvider/common/types';
@@ -39,7 +40,7 @@ export class Agent {
 	readonly systemPrompt: SystemPrompt;
 
 	// Structured Output
-	readonly responseFormatAgent?: any; // create response format
+	readonly structuredOutputAgent?: StructuredOutput | undefined;
 
 	// Tools
 	readonly toolRegistryManager: ToolRegistryManager;
@@ -80,8 +81,7 @@ export class Agent {
 
 		// Structured Output
 		// --------------------------------
-		this.responseFormatAgent = StructuredOutputFactory.create({
-			providerName,
+		this.structuredOutputAgent = StructuredOutputFactory.create({
 			responseFormat,
 		});
 
@@ -112,7 +112,7 @@ export class Agent {
 			providerName: this.providerName,
 			toolRegistryManager: this.toolRegistryManager,
 			chatMessageManager: this.chatMessageManager,
-			responseFormatAgent: this.responseFormatAgent,
+			structuredOutputAgent: this.structuredOutputAgent,
 			providerDisplayName: this.providerDisplayName,
 		});
 
@@ -143,19 +143,18 @@ export class Agent {
 		message: string;
 		responseFormat?: StructuredOutputCreateParams['responseFormat'];
 	}): Promise<ModelResponse> {
-		const responseFormat = StructuredOutputFactory.create({
-			providerName: this.providerName,
+		const structuredOutputSendMessage = StructuredOutputFactory.create({
 			responseFormat: responseFormatParams,
 		});
 
 		return sendMessage({
 			message,
+			structuredOutputSendMessage,
 			settings: this.settings,
 			provider: this.provider,
 			toolCallManager: this.toolCallManager,
 			interactionLogger: this.interactionLogger,
 			chatMessageManager: this.chatMessageManager,
-			responseFormatSendMessage: responseFormat,
 		});
 	}
 }
