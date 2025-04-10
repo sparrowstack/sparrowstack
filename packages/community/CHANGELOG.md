@@ -1,5 +1,14 @@
 # @sparrowstack/community
 
+## 0.3.15
+
+### Patch Changes
+
+- 0d457fd: Fixed path alias bug in dist
+- Updated dependencies [0d457fd]
+    - @sparrowstack/system-prompts@0.3.15
+    - @sparrowstack/tools@0.3.15
+
 ## 0.3.14
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @sparrowstack/logger
 
+## 0.3.15
+
+### Patch Changes
+
+- 0d457fd: Fixed path alias bug in dist
+
 ## 0.3.14
 
 ### Patch Changes
