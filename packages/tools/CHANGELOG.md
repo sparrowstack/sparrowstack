@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.17
+
+### Patch Changes
+
+- 62a1350: Updated ci
+- Updated dependencies [62a1350]
+    - @sparrowstack/agent@0.3.17
+    - @sparrowstack/tool@0.3.17
+    - @sparrowstack/vector-store@0.3.17
+
 ## 0.3.16
 
 ### Patch Changes

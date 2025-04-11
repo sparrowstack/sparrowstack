@@ -1,5 +1,11 @@
 # @sparrowstack/vector-store
 
+## 0.3.17
+
+### Patch Changes
+
+- 62a1350: Updated ci
+
 ## 0.3.16
 
 ### Patch Changes

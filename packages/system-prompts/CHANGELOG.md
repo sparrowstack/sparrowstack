@@ -1,5 +1,13 @@
 # @sparrowstack/system-prompts
 
+## 0.3.17
+
+### Patch Changes
+
+- 62a1350: Updated ci
+- Updated dependencies [62a1350]
+    - @sparrowstack/system-prompt@0.3.17
+
 ## 0.3.16
 
 ### Patch Changes
