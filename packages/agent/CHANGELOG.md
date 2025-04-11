@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.17
+
+### Patch Changes
+
+- 62a1350: Updated ci
+- Updated dependencies [62a1350]
+    - @sparrowstack/chat-message-manager@0.3.17
+    - @sparrowstack/core@0.3.17
+    - @sparrowstack/logger@0.3.17
+    - @sparrowstack/structured-output@0.3.17
+    - @sparrowstack/system-prompt@0.3.17
+    - @sparrowstack/system-prompts@0.3.17
+    - @sparrowstack/tool@0.3.17
+
 ## 0.3.16
 
 ### Patch Changes
