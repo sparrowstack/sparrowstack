@@ -1,5 +1,13 @@
 # @sparrowstack/structured-output
 
+## 0.3.16
+
+### Patch Changes
+
+- 353c2b4: update bun.lock
+- Updated dependencies [353c2b4]
+    - @sparrowstack/core@0.3.16
+
 ## 0.3.15
 
 ### Patch Changes
