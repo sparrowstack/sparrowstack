@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.16
+
+### Patch Changes
+
+- 353c2b4: update bun.lock
+- Updated dependencies [353c2b4]
+    - @sparrowstack/chat-message-manager@0.3.16
+    - @sparrowstack/core@0.3.16
+    - @sparrowstack/logger@0.3.16
+    - @sparrowstack/structured-output@0.3.16
+    - @sparrowstack/system-prompt@0.3.16
+    - @sparrowstack/system-prompts@0.3.16
+    - @sparrowstack/tool@0.3.16
+
 ## 0.3.15
 
 ### Patch Changes
