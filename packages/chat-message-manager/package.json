@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/chat-message-manager",
-	"version": "0.3.17",
+	"version": "0.3.18",
 	"description": "Chat Message Manager for SparrowStack",
 	"type": "module",
 	"main": "./dist/index.js",

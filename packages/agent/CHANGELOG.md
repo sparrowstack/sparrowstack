@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.18
+
+### Patch Changes
+
+- 4efbd39: Changeset test
+- Updated dependencies [4efbd39]
+    - @sparrowstack/chat-message-manager@0.3.18
+    - @sparrowstack/core@0.3.18
+    - @sparrowstack/logger@0.3.18
+    - @sparrowstack/structured-output@0.3.18
+    - @sparrowstack/system-prompt@0.3.18
+    - @sparrowstack/system-prompts@0.3.18
+    - @sparrowstack/tool@0.3.18
+
 ## 0.3.17
 
 ### Patch Changes
