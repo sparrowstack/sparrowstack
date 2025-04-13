@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.20
+
+### Patch Changes
+
+- 922148c: Update bun.lock
+- Updated dependencies [922148c]
+    - @sparrowstack/agent@0.3.20
+    - @sparrowstack/tool@0.3.20
+    - @sparrowstack/vector-store@0.3.20
+
 ## 0.3.19
 
 ### Patch Changes

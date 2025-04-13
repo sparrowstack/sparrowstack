@@ -1,5 +1,16 @@
 # @sparrowstack/sparrow
 
+## 0.3.20
+
+### Patch Changes
+
+- 922148c: Update bun.lock
+- Updated dependencies [922148c]
+    - @sparrowstack/agent@0.3.20
+    - @sparrowstack/core@0.3.20
+    - @sparrowstack/system-prompt@0.3.20
+    - @sparrowstack/tool@0.3.20
+
 ## 0.3.19
 
 ### Patch Changes
