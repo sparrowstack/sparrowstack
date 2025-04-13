@@ -1,5 +1,11 @@
 # @sparrowstack/core
 
+## 0.3.18
+
+### Patch Changes
+
+- 4efbd39: Changeset test
+
 ## 0.3.17
 
 ### Patch Changes

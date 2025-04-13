@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.18
+
+### Patch Changes
+
+- 4efbd39: Changeset test
+- Updated dependencies [4efbd39]
+    - @sparrowstack/agent@0.3.18
+    - @sparrowstack/tool@0.3.18
+    - @sparrowstack/vector-store@0.3.18
+
 ## 0.3.17
 
 ### Patch Changes
