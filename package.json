@@ -17,10 +17,9 @@
 		"release:all:local": "bun lint:all && bun build:all && bun link:all",
 		"ci": "bun install && bun link:all && bun lint:all && bun build:all && bun test:unit:all",
 		"setup:dev": "bun install && bun link:all && bun lint:all && bun build:all",
-		"update-lockfile": "bun install --update-lockfile",
 		"changeset": "bunx changeset",
 		"changeset:status": "bunx changeset status",
-		"version-packages": "bunx changeset version && bun update-lockfile",
+		"version-packages": "bunx changeset version && bun update",
 		"get-package-version": "node -p \"require('./packages/agent/package.json').version\""
 	},
 	"devDependencies": {
