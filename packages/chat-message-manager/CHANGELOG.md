@@ -1,5 +1,13 @@
 # @sparrowstack/chat-message-manager
 
+## 0.3.19
+
+### Patch Changes
+
+- a39791b: Trigger version packages
+- Updated dependencies [a39791b]
+    - @sparrowstack/core@0.3.19
+
 ## 0.3.18
 
 ### Patch Changes

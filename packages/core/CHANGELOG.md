@@ -1,5 +1,11 @@
 # @sparrowstack/core
 
+## 0.3.19
+
+### Patch Changes
+
+- a39791b: Trigger version packages
+
 ## 0.3.18
 
 ### Patch Changes
