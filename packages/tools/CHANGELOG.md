@@ -1,5 +1,15 @@
 # @sparrowstack/tools
 
+## 0.3.19
+
+### Patch Changes
+
+- a39791b: Trigger version packages
+- Updated dependencies [a39791b]
+    - @sparrowstack/agent@0.3.19
+    - @sparrowstack/tool@0.3.19
+    - @sparrowstack/vector-store@0.3.19
+
 ## 0.3.18
 
 ### Patch Changes

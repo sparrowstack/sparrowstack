@@ -1,5 +1,14 @@
 # @sparrowstack/community
 
+## 0.3.19
+
+### Patch Changes
+
+- a39791b: Trigger version packages
+- Updated dependencies [a39791b]
+    - @sparrowstack/system-prompts@0.3.19
+    - @sparrowstack/tools@0.3.19
+
 ## 0.3.18
 
 ### Patch Changes
