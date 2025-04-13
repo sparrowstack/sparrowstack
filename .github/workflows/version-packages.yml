@@ -38,7 +38,7 @@ jobs:
             - name: Commit and push lockfile changes
               if: steps.changesets.outputs.hasChanges == 'true'
               run: |
-                  git config --global user.name "SparrowStack Bot"
+                  git config --global user.name "sparrowstack-dev"
                   git config --global user.email "bot@sparrowstack.ai"
                   git add bun.lock
                   git commit -m "chore: update lockfile"
