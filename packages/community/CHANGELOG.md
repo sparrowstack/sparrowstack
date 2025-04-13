@@ -1,5 +1,14 @@
 # @sparrowstack/community
 
+## 0.3.21
+
+### Patch Changes
+
+- fa5f8a0: test changeset
+- Updated dependencies [fa5f8a0]
+    - @sparrowstack/system-prompts@0.3.21
+    - @sparrowstack/tools@0.3.21
+
 ## 0.3.20
 
 ### Patch Changes
