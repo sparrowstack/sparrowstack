@@ -34,14 +34,3 @@ jobs:
                   version: bun run version-packages
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
-
-            - name: Update bun.lock
-              if: steps.changesets.outputs.hasChangesets == 'true'
-              run: |
-                  bun rm bun.lock
-                  bun install
-                  git add bun.lock
-                  git commit -m "chore: update bun.lock"
-                  git push
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN_CI }}
