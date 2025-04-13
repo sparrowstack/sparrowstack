@@ -1,5 +1,11 @@
 # @sparrowstack/logger
 
+## 0.3.21
+
+### Patch Changes
+
+- fa5f8a0: test changeset
+
 ## 0.3.20
 
 ### Patch Changes

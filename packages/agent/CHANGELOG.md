@@ -1,5 +1,19 @@
 # @sparrowstack/agent
 
+## 0.3.21
+
+### Patch Changes
+
+- fa5f8a0: test changeset
+- Updated dependencies [fa5f8a0]
+    - @sparrowstack/chat-message-manager@0.3.21
+    - @sparrowstack/core@0.3.21
+    - @sparrowstack/logger@0.3.21
+    - @sparrowstack/structured-output@0.3.21
+    - @sparrowstack/system-prompt@0.3.21
+    - @sparrowstack/system-prompts@0.3.21
+    - @sparrowstack/tool@0.3.21
+
 ## 0.3.20
 
 ### Patch Changes

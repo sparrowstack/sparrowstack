@@ -1,6 +1,6 @@
 {
 	"name": "@sparrowstack/sparrow",
-	"version": "0.3.20",
+	"version": "0.3.21",
 	"description": "Sparrow - AI Agent Framework",
 	"type": "module",
 	"main": "./dist/index.js",
